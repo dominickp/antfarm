@@ -1,0 +1,22 @@
+{
+  "name": "pusher",
+  "version": "1.0.0",
+  "description": "A sample project showing flawless consumption of a TypeScript NPM module using TypeScript. This project consumes the sister project [ts-npm-module](https://github.com/basarat/ts-npm-module) using NPM.",
+  "main": "js/index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dominickp/pusher.git"
+  },
+  "author": "peluso.dominick@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dominickp/pusher/issues"
+  },
+  "homepage": "https://github.com/dominickp/pusher#readme"
+}
