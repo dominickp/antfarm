@@ -13,8 +13,14 @@ export class Folder extends Nest {
     watch(){
         watch(this.path, function(filename) {
             console.log(filename, ' changed.');
-            super.arrive(this);
+
+            // Make a new Job and trigger arrived
+            this.arrive();
         });
+    }
+
+    arrive(){
+        super.arrive();
     }
 
 

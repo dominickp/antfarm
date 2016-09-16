@@ -15,8 +15,11 @@ var Folder = (function (_super) {
     Folder.prototype.watch = function () {
         watch(this.path, function (filename) {
             console.log(filename, ' changed.');
-            _super.arrive.call(this, this);
+            this.arrive();
         });
+    };
+    Folder.prototype.arrive = function () {
+        _super.prototype.arrive.call(this);
     };
     return Folder;
 }(nest_1.Nest));
