@@ -7,6 +7,11 @@ var Tunnel = (function () {
         if (distanceInMeters === void 0) { distanceInMeters = 0; }
         console.log(this.name + " moved " + distanceInMeters + "m.");
     };
+    Tunnel.prototype.watch = function (nest) {
+        nest.register(this);
+    };
+    Tunnel.prototype.arrive = function (job, nest) {
+    };
     Tunnel.prototype.run = function () {
     };
     return Tunnel;

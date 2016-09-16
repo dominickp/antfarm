@@ -1,7 +1,7 @@
 {
-  "name": "pusher",
+  "name": "antfarm",
   "version": "1.0.0",
-  "description": "A sample project showing flawless consumption of a TypeScript NPM module using TypeScript. This project consumes the sister project [ts-npm-module](https://github.com/basarat/ts-npm-module) using NPM.",
+  "description": "Example.",
   "main": "js/index.js",
   "directories": {
     "example": "example"
@@ -11,12 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dominickp/pusher.git"
+    "url": "git+https://github.com/dominickp/antfarm.git"
   },
   "author": "peluso.dominick@gmail.com",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/dominickp/pusher/issues"
   },
-  "homepage": "https://github.com/dominickp/pusher#readme"
+  "homepage": "https://github.com/dominickp/pusher#readme",
+  "dependencies": {
+    "node-watch": "^0.4.0"
+  }
 }
