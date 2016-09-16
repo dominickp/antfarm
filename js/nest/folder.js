@@ -5,6 +5,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var watch = require('node-watch');
+var nest_1 = require('./nest');
 var Folder = (function (_super) {
     __extends(Folder, _super);
     function Folder(path) {
@@ -18,5 +19,5 @@ var Folder = (function (_super) {
         });
     };
     return Folder;
-}(Nest));
+}(nest_1.Nest));
 exports.Folder = Folder;

@@ -1,4 +1,5 @@
 var watch = require('node-watch');
+import { Nest } from './nest';
 
 export class Folder extends Nest {
     path: string;
