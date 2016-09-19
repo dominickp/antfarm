@@ -19,7 +19,7 @@ export class Tunnel {
     }
 
     arrive(job: Job, nest: Nest) {
-
+        console.log("New job arrived. " + job.name);
     }
 
     run() {
