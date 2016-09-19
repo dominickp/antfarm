@@ -7,7 +7,7 @@
     "example": "example"
   },
   "scripts": {
-    "test": "mocha",
+    "test": "tsc -p ./ts && mocha --watch",
     "test:auto": "mocha --watch"
   },
   "repository": {

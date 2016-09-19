@@ -1,5 +1,5 @@
 var chai = require('chai');
-var assert = chai.assert; 
+var assert = chai.assert;
 
 describe('Test', function() {
     describe('Testing', function() {
@@ -8,3 +8,4 @@ describe('Test', function() {
         });
     });
 });
+
