@@ -1,5 +1,5 @@
-import { Nest } from './nest/nest';
-import { Job } from './job/job';
+import { Nest } from '../nest/nest';
+import { Job } from '../job/job';
 export declare class Tunnel {
     name: string;
     watching: Nest[];

@@ -1,4 +1,4 @@
-import { Tunnel } from '../tunnel';
+import { Tunnel } from '../tunnel/tunnel';
 import { Job } from '../job/job';
 export declare class Nest {
     name: string;
