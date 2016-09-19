@@ -1,6 +1,6 @@
 {
   "name": "antfarm",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Example.",
   "main": "index.js",
   "directories": {
