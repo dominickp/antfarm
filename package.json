@@ -2,7 +2,7 @@
   "name": "antfarm",
   "version": "1.0.5",
   "description": "Example.",
-  "main": "js/index.js",
+  "main": "index.js",
   "directories": {
     "example": "example"
   },

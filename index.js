@@ -1,2 +1,7 @@
 'use strict';
-module.exports = require('./js/antfarm');
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(require('./lib/job/job'));
+__export(require('./lib/nest/nest'));
+__export(require('./lib/tunnel/tunnel'));
