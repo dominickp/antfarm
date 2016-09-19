@@ -10,7 +10,7 @@ describe('Nest Folder', function() {
 
     describe('Loading', function() {
         it('should create a folder', function() {
-            var folder = antfarm.createFolder("path");
+            var folder = antfarm.createFolderNest("path");
             folder.should.be.a('object');
         });
     });

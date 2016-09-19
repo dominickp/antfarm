@@ -22,6 +22,7 @@
   "homepage": "https://github.com/dominickp/pusher#readme",
   "dependencies": {
     "chalk": "^1.1.3",
+    "easy-ftp": "^0.3.22",
     "node-watch": "^0.4.0",
     "pkginfo": "^0.4.0"
   },

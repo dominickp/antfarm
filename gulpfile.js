@@ -4,11 +4,14 @@ var gulp = require('gulp'),
     runSequence = require('run-sequence');
 
 
-var tsProject = ts.createProject({
-    declaration: true,
-    noExternalResolve: true,
-    module:'commonjs'
-});
+var tsProject = ts.createProject(
+    'tsconfig.json',
+    {
+        declaration: true,
+        noExternalResolve: true,
+        module:'commonjs'
+    }
+);
 
 gulp.task('test', function() {
     gulp.src('test/**/*.spec.js', {read: false})
