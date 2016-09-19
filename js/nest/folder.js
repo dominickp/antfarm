@@ -8,9 +8,8 @@ var watch = require('node-watch');
 var nest_1 = require('./nest');
 var Folder = (function (_super) {
     __extends(Folder, _super);
-    function Folder(path) {
-        this.path = path;
-        this.watch();
+    function Folder() {
+        _super.apply(this, arguments);
     }
     Folder.prototype.watch = function () {
         watch(this.path, function (filename) {
@@ -19,7 +18,6 @@ var Folder = (function (_super) {
         });
     };
     Folder.prototype.arrive = function () {
-        _super.prototype.arrive.call(this);
     };
     return Folder;
 }(nest_1.Nest));

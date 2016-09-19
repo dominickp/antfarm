@@ -4,11 +4,13 @@ import { Nest } from './nest';
 export class Folder extends Nest {
     path: string;
 
+    /*
     constructor(path: string) {
-        this.path = path;
+        //this.path = path;
 
-        this.watch();
+        //this.watch();
     }
+    */
 
     watch(){
         watch(this.path, function(filename) {
@@ -20,7 +22,7 @@ export class Folder extends Nest {
     }
 
     arrive(){
-        super.arrive();
+        //super.arrive();
     }
 
 
