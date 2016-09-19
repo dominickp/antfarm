@@ -1,6 +1,8 @@
 var gulp = require('gulp'),
     ts = require('gulp-typescript'),
-    mocha = require('gulp-mocha');
+    mocha = require('gulp-mocha'),
+    runSequence = require('run-sequence');
+
 
 var tsProject = ts.createProject({
     declaration: true,
@@ -11,7 +13,7 @@ var tsProject = ts.createProject({
 gulp.task('test', function() {
     gulp.src('test/**/*.spec.js', {read: false})
     // gulp-mocha needs filepaths so you can't have any plugins before it
-        .pipe(mocha({reporter: 'nyan'}))
+        .pipe(mocha({reporter: 'landing'}))
 });
 
 gulp.task('build', function() {
@@ -21,10 +23,16 @@ gulp.task('build', function() {
     return tsResult.js.pipe(gulp.dest('./'));
 });
 
+gulp.task('build-test', function(callback) {
+    runSequence('build',
+        ['test'],
+        callback);
+});
 
 gulp.task('watch', function(){
-    gulp.watch('src/**/*.ts', ["build", "test"]);
+    gulp.watch('src/**/*.ts', ["build-test"]);
+    gulp.watch('test/**/*.js', ["test"]);
 });
 
 
-gulp.task('default', ['build', 'watch']);
+gulp.task('default', ['build', 'test', 'watch']);

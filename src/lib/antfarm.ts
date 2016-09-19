@@ -13,9 +13,15 @@ import {Job} from "./job/job";
  * Expose `Antfarm`.
  */
 
-export interface Antfarm {
-    tunnel: Tunnel,
-    nest: Nest,
-    folder: Folder,
-    job: Job
-}
+module.exports = {
+
+    version(){
+        return "1.0";
+    },
+    createTunnel(name){
+        return new Tunnel(name);
+    },
+    createFolder(name){
+        return new Folder(name);
+    }
+};
