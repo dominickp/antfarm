@@ -1,6 +1,7 @@
 import { Nest } from '../nest/nest';
 import { Job } from '../job/job';
-export declare class Tunnel {
+import { Environment } from '../environment/environment';
+export declare class Tunnel extends Environment {
     name: string;
     watching: Nest[];
     run_list: any[];

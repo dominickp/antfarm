@@ -1,7 +1,8 @@
 import { Nest } from '../nest/nest'
 import { Job } from '../job/job'
+import { Environment } from '../environment/environment'
 
-export class Tunnel {
+export class Tunnel extends Environment{
     name: string;
 
     watching: Nest[];
@@ -9,6 +10,7 @@ export class Tunnel {
     run_list: any[];
 
     constructor(theName: string) {
+        super();
         this.name = theName;
         this.run_list = [];
     }
@@ -22,7 +24,7 @@ export class Tunnel {
     }
 
     arrive(job: Job, nest: Nest) {
-        console.log("New job arrived. " + job.name + " in nest " + nest.name);
+        super.log(1, "New job arrived. " + job.name + " in nest " + nest.name);
         this.executeRun(job, nest);
     }
 
