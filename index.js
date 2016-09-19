@@ -5,3 +5,4 @@ function __export(m) {
 __export(require('./lib/job/job'));
 __export(require('./lib/nest/nest'));
 __export(require('./lib/tunnel/tunnel'));
+__export(require('./lib/nest/folder'));
