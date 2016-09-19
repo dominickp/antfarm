@@ -15,6 +15,7 @@ export class Nest {
     }
 
     arrive(job: Job) {
+        job.tunnel = this.tunnel;
         this.tunnel.arrive(job, this);
     }
 }

@@ -5,12 +5,15 @@ import { Environment } from '../environment/environment'
 export class Tunnel extends Environment{
     name: string;
 
-    watching: Nest[];
+    nests: Nest[];
 
     run_list: any[];
 
+    run_fail: any;
+
     constructor(theName: string) {
         super();
+        this.nests = [];
         this.name = theName;
         this.run_list = [];
     }
@@ -21,6 +24,7 @@ export class Tunnel extends Environment{
 
     watch(nest: Nest) {
         nest.register(this);
+        this.nests.push(nest);
     }
 
     arrive(job: Job, nest: Nest) {
@@ -33,10 +37,19 @@ export class Tunnel extends Environment{
         this.run_list.push(callback);
     }
 
+    fail(callback) {
+        this.run_fail = callback;
+    }
+
     executeRun(job: Job, nest: Nest){
         this.run_list.forEach(function(callback){
             callback(job, nest);
         })
+    }
+
+    executeFail(job: Job, nest: Nest, reason: string){
+        super.log(3, "Job failed " + job.name);
+        this.run_fail(job, nest, reason);
     }
 
 
