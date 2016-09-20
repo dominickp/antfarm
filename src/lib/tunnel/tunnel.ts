@@ -40,13 +40,20 @@ export class Tunnel {
     }
 
     executeRun(job: Job, nest: Nest){
+        let tn = this;
         this.run_list.forEach(function(callback){
-            callback(job, nest);
+            try {
+                callback(job, nest);
+            } catch (e) {
+                // Fail if an error is thrown
+                tn.executeFail(job, nest, e);
+            }
+
         })
     }
 
     executeFail(job: Job, nest: Nest, reason: string){
-        this.e.log(3, "Job failed " + job.name);
+        this.e.log(3, `Job "${job.name}" failed for reason "${reason}".`);
         this.run_fail(job, nest, reason);
     }
 
