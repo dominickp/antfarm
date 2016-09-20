@@ -1,10 +1,8 @@
 import { Nest } from './nest';
 import { Job } from './../job/job';
-//var fs = require('fs');
-const path_mod = require('path');
 
-var EasyFtp = require('easy-ftp');
-var tmp = require('tmp');
+var   EasyFtp = require('easy-ftp'),
+        tmp = require('tmp');
 
 import {Environment} from "../environment/environment";
 
@@ -45,37 +43,43 @@ export class Ftp extends Nest {
 
         let ftp = this;
 
-        ftp.client.connect(ftp.config);
-        ftp.client.ls("/", function(err, list){
+        try {
+            ftp.client.connect(ftp.config);
 
-            ftp.e.log(1, `FTP ls found ${list.length} files.`);
+            ftp.client.ls("/", function(err, list){
+                ftp.e.log(1, `FTP ls found ${list.length} files.`);
 
-            // Download and insert new Job
-            list.forEach(function(file, index){
-                // Create temp file
-                tmp.file(function _tempFileCreated(err, temp_path, fd, cleanupCallback) {
-                    if (err) throw err;
+                // Download and insert new Job
+                list.forEach(function(file, index){
+                    // Create temp file
+                    tmp.file(function _tempFileCreated(err, temp_path, fd, cleanupCallback) {
+                        if (err) throw err;
 
-                    ftp.e.log(1, `FTP is downloading file "${file.name}".`);
+                        ftp.e.log(1, `FTP is downloading file "${file.name}".`);
 
-                    ftp.client.download(file.name, temp_path, function(err){
-                        if(err){
-                            ftp.e.log(3, `FTP error: "${err}".`);
-                        }
+                        ftp.client.download(file.name, temp_path, function(err){
+                            if(err){
+                                ftp.e.log(3, `FTP error: "${err}".`);
+                            }
+                        });
+
+                        let job = new Job(temp_path);
+                        job.setPath(temp_path);
+                        ftp.arrive(job);
+
+                        // If we don't need the file anymore we could manually call the cleanupCallback
+                        // But that is not necessary if we didn't pass the keep option because the library
+                        // will clean after itself.
+                        cleanupCallback();
                     });
-
-                    let job = new Job(temp_path);
-                    job.setPath(temp_path);
-                    ftp.arrive(job);
-
-                    // If we don't need the file anymore we could manually call the cleanupCallback
-                    // But that is not necessary if we didn't pass the keep option because the library
-                    // will clean after itself.
-                    cleanupCallback();
                 });
             });
 
-        });
+        } catch(e) {
+            ftp.e.log(3, e);
+        }
+
+
     }
 
     watch() {

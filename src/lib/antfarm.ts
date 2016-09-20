@@ -37,7 +37,7 @@ class Antfarm {
     createFolderNest(name : string){
         return new Folder(this.e, name);
     }
-    createFTPNest(e, host : string, port: number, username: string, password: string, checkEvery: number){
+    createFTPNest(host : string, port: number, username: string, password: string, checkEvery: number){
         return new Ftp(this.e, host, port, username, password, checkEvery);
     }
 };
