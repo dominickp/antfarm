@@ -10,5 +10,5 @@ export declare class Logger {
     };
     constructor(options?: Options);
     createLogger(): void;
-    log(type: number, message: string): void;
+    log(type: number, message: string, instance?: any): void;
 }

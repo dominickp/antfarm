@@ -19,7 +19,7 @@ export class Environment {
         this.logger = new Logger(this.options);
     }
 
-    log(type: number, message: string){
-        this.logger.log(type, message);
+    log(type: number, message: string, instance?: any){
+        this.logger.log(type, message, instance);
     }
 }

@@ -72,21 +72,27 @@ export class Logger {
         }
     }
 
-    log(type: number, message: string){
+    log(type: number, message: string, instance?: any){
         if(typeof(this.log_types[type]) == "undefined"){
             type = 0;
         }
 
         let log_types = this.log_types;
-
+/*
         if(log_types[type] == "debug"){
             this.logger.debug(message);
         } else if(log_types[type] == "info") {
-            this.logger.info(message);
+            this.logger.info(instance.constructor.name, message);
         } else if(log_types[type] == "warning") {
-            this.logger.warn(message);
+            this.logger.warn(instance.constructor.name, message);
         } else if(log_types[type] == "error") {
-            this.logger.error(message);
+            this.logger.error(instance.constructor.name, message);
+        }
+*/
+        if(instance){
+            this.logger.log(log_types[type], instance.constructor.name, message);
+        } else {
+            this.logger.log(log_types[type], message);
         }
 
     }

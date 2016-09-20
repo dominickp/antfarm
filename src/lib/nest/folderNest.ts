@@ -47,7 +47,7 @@ export class FolderNest extends Nest {
                 fl.arrive(job);
             } catch (e) {
                 // It isn't accessible
-                fl.e.log(0, "Nest watch event was ignored because file did not exist.");
+                fl.e.log(0, "Nest watch event was ignored because file did not exist.", fl);
             }
 
         });
