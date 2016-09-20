@@ -2,7 +2,7 @@ import { Tunnel } from '../tunnel/tunnel'
 import { Nest } from '../nest/nest';
 import {Environment} from "../environment/environment";
 
-export class Job extends Environment {
+export class Job {
     name: string;
 
     path: string;
@@ -11,16 +11,20 @@ export class Job extends Environment {
 
     nest: Nest;
 
-    constructor(name: string) {
-        super();
+    protected e: Environment;
+
+    constructor(e: Environment, name: string) {
+
+        this.e = e;
+
         this.name = name;
 
-        super.log(1, `New Job "${name}" created.`);
+        this.e.log(1, `New Job "${name}" created.`);
     }
 
     fail(reason: string){
         if(!this.tunnel){
-            super.log(3, `Job "${name}" failed before tunnel was set.`);
+            this.e.log(3, `Job "${name}" failed before tunnel was set.`);
         }
         this.tunnel.executeFail(this, this.nest, reason);
     }

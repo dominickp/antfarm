@@ -29,7 +29,7 @@ export class Folder extends Nest {
 
             items.forEach(function(item){
                 // Make a new Job and trigger arrived
-                let job = new Job(item);
+                let job = new Job(fl.e, item);
                 job.setPath(fl.path + item);
                 fl.arrive(job);
             });
@@ -42,7 +42,7 @@ export class Folder extends Nest {
 
         node_watch(fl.path, function (filename) {
             // Make a new Job and trigger arrived
-            let job = new Job(filename);
+            let job = new Job(fl.e, filename);
             job.setPath(fl.path + filename);
             fl.arrive(job);
         });

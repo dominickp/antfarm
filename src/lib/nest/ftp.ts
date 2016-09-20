@@ -63,7 +63,7 @@ export class Ftp extends Nest {
                             }
                         });
 
-                        let job = new Job(temp_path);
+                        let job = new Job(this.e, temp_path);
                         job.setPath(temp_path);
                         ftp.arrive(job);
 
