@@ -15,6 +15,8 @@ export class Ftp extends Nest {
 
     checkEvery: number;
 
+    checkEveryMs: number;
+
     constructor(host: string, port = 21, username = '', password = '', checkEvery = 0) {
         super(host);
 
@@ -29,10 +31,11 @@ export class Ftp extends Nest {
 
         this.checkEvery = checkEvery;
 
+        this.checkEveryMs = this.checkEvery * 60000;
 
         this.load();
 
-        if(checkEvery){
+        if(checkEvery) {
             this.watch();
         }
     }
@@ -55,7 +58,9 @@ export class Ftp extends Nest {
                     ftp.log(1, `FTP is downloading file "${file.name}".`);
 
                     ftp.client.download(file.name, temp_path, function(err){
-                        console.log(err);
+                        if(err){
+                            ftp.log(3, `FTP error: "${err}".`);
+                        }
                     });
 
                     let job = new Job(temp_path);
@@ -73,10 +78,17 @@ export class Ftp extends Nest {
     }
 
     watch() {
-
         let ftp = this;
 
+        ftp.log(1, "Watching FTP directory.");
 
+        let count = 0;
+
+        setInterval(function() {
+            count++;
+            ftp.log(1, `Re-checking FTP, attempt ${count}.`);
+            ftp.load();
+        }, ftp.checkEveryMs, count);
     }
 
     arrive(job: Job) {

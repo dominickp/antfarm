@@ -7,7 +7,6 @@ export declare class Tunnel extends Environment {
     run_list: any[];
     run_fail: any;
     constructor(theName: string);
-    move(distanceInMeters?: number): void;
     watch(nest: Nest): void;
     arrive(job: Job, nest: Nest): void;
     run(callback: any): void;

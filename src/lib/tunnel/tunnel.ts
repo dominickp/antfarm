@@ -18,10 +18,6 @@ export class Tunnel extends Environment{
         this.run_list = [];
     }
 
-    move(distanceInMeters: number = 0) {
-        console.log(`${this.name} moved ${distanceInMeters}m.`);
-    }
-
     watch(nest: Nest) {
         nest.register(this);
         this.nests.push(nest);
