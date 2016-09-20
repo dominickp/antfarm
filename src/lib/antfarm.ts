@@ -9,23 +9,19 @@ import {Nest} from "./nest/nest";
 import {Ftp} from "./nest/ftp";
 import {Folder} from "./nest/folder";
 import {Job} from "./job/job";
+import {Environment} from "./environment/environment";
 
 
 /**
  * Expose `Antfarm`.
  */
 
-interface Options {
-
-    hello?: string;
-}
 
 
-class Antfarm {
-
-    hello: string;
+class Antfarm extends Environment{
 
     constructor(options: Options) {
+        super(options);
         //this.hello = options.hello;
     }
 

@@ -1,6 +1,16 @@
-var chalk = require('chalk');
+const chalk = require('chalk');
+const fs = require('fs');
+
+const winston = require('winston');
+winston.emitErrs = true;
 
 export class Environment {
+
+    protected options: Options;
+
+    protected logger;
+
+    protected log_dir: string;
 
     protected log_types = {
         0: "debug",
@@ -9,25 +19,79 @@ export class Environment {
         3: "error"
     };
 
+    constructor(options?: Options){
+
+        this.options = options;
+
+        this.createLogger();
+    }
+
+
+    createLogger(){
+        if(this.options) {
+
+            if (this.options.log_dir) {
+
+                // Create the log directory if it does not exist
+                if (!fs.existsSync(this.options.log_dir)) {
+                    fs.mkdirSync(this.options.log_dir);
+                }
+
+                this.logger = new winston.Logger({
+                    transports: [
+                        new winston.transports.File({
+                            level: this.options.log_file_level || 'info',
+                            filename: `${this.options.log_dir}/somefile.log`,
+                            handleExceptions: true,
+                            json: true,
+                            maxsize: this.options.log_max_size || 5242880, //5MB
+                            maxFiles: this.options.log_max_files || 5,
+                            colorize: false
+                        }),
+                        new winston.transports.Console({
+                            level: this.options.log_out_level || 'debug',
+                            handleExceptions: true,
+                            json: false,
+                            colorize: true
+                        })
+                    ],
+                    exitOnError: false
+                });
+            }
+        } else {
+            this.logger = new winston.Logger({
+                transports: [
+                    new winston.transports.Console({
+                        level: 'debug',
+                        handleExceptions: true,
+                        json: false,
+                        colorize: true
+                    })
+                ],
+                exitOnError: false
+            });
+        }
+    }
+
     log(type: number, message: string){
         if(typeof(this.log_types[type]) == "undefined"){
             type = 0;
         }
 
-        let log_string = "» ";
         let log_types = this.log_types;
 
         if(log_types[type] == "debug"){
-            log_string += chalk.cyan(log_types[type] + ": " + message);
+            this.logger.debug(message);
         } else if(log_types[type] == "info") {
-            log_string += chalk.white(log_types[type] + ": " + message);
+            this.logger.info(message);
         } else if(log_types[type] == "warning") {
-            log_string += chalk.yellow(log_types[type] + ": " + message);
+            this.logger.warn(message);
         } else if(log_types[type] == "error") {
-            log_string += chalk.red(log_types[type] + ": " + message);
+            this.logger.error(message);
         }
 
-        console.log(log_string);
+        //console.log(log_string);
+
 
     }
 }
