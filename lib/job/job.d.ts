@@ -7,5 +7,6 @@ export declare abstract class Job {
     nest: Nest;
     protected e: Environment;
     constructor(e: Environment, name: string);
+    getName(): string;
     fail(reason: string): void;
 }

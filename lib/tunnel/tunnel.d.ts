@@ -1,3 +1,4 @@
+import { FolderNest } from '../nest/folderNest';
 import { Nest } from '../nest/nest';
 import { Job } from '../job/job';
 import { Environment } from '../environment/environment';
@@ -8,7 +9,7 @@ export declare class Tunnel {
     run_fail: any;
     protected e: Environment;
     constructor(e: Environment, theName: string);
-    watch(nest: Nest): void;
+    watch(nest: FolderNest): void;
     arrive(job: Job, nest: Nest): void;
     run(callback: any): void;
     fail(callback: any): void;

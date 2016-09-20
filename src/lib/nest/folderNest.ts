@@ -5,7 +5,7 @@ import { FileJob } from './../job/fileJob';
 var fs = require('fs');
 const path_mod = require('path');
 
-export class Folder extends Nest {
+export class FolderNest extends Nest {
     path: string;
 
 
@@ -16,9 +16,6 @@ export class Folder extends Nest {
         super(e, nest_name);
 
         this.path = path;
-
-        this.load();
-        this.watch();
     }
 
     load(){
@@ -40,11 +37,19 @@ export class Folder extends Nest {
 
         let fl = this;
 
-        node_watch(fl.path, function (filename) {
-            // Make a new Job and trigger arrived
-            let job = new FileJob(fl.e, `${fl.path}/${filename}`);
-            // job.setPath(fl.path + filename);
-            fl.arrive(job);
+        node_watch(fl.path, function (filepath) {
+
+            // Verify file still exists, node-watch fires on any change, even delete
+            try {
+                fs.accessSync(filepath, fs.F_OK);
+                // Make a new Job and trigger arrived
+                let job = new FileJob(fl.e, filepath);
+                fl.arrive(job);
+            } catch (e) {
+                // It isn't accessible
+                fl.e.log(0, "Nest watch event was ignored because file did not exist.");
+            }
+
         });
     }
 
@@ -52,5 +57,9 @@ export class Folder extends Nest {
         super.arrive(job);
     }
 
-
+    take(job: FileJob){
+        let new_path = `${this.path}/${job.getBasename()}`;
+        fs.renameSync(job.path, new_path);
+        return new_path;
+    }
 }

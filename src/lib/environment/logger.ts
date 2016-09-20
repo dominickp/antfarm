@@ -50,7 +50,8 @@ export class Logger {
                             level: this.options.log_out_level || 'debug',
                             handleExceptions: true,
                             json: false,
-                            colorize: true
+                            colorize: true,
+                            prettyPrint: true
                         })
                     ],
                     exitOnError: false

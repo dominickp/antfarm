@@ -1,3 +1,4 @@
+import { FolderNest } from '../nest/folderNest'
 import { Nest } from '../nest/nest'
 import { Job } from '../job/job'
 import { Environment } from '../environment/environment'
@@ -20,13 +21,15 @@ export class Tunnel {
         this.run_list = [];
     }
 
-    watch(nest: Nest) {
+    watch(nest: FolderNest) {
         nest.register(this);
+        nest.load();
+        nest.watch();
         this.nests.push(nest);
     }
 
     arrive(job: Job, nest: Nest) {
-        this.e.log(1, `Job "${job.name}" arrival in Nest "${nest.name}" triggered Tunnel "${this.name}" run.`);
+        this.e.log(1, `Job "${job.getName()}" arrival in Nest "${nest.name}" triggered Tunnel "${this.name}" run.`);
         this.executeRun(job, nest);
     }
 

@@ -20,9 +20,13 @@ export abstract class Job {
         this.e.log(1, `New Job "${name}" created.`);
     }
 
+    getName(){
+        return this.name;
+    }
+
     fail(reason: string){
         if(!this.tunnel){
-            this.e.log(3, `Job "${name}" failed before tunnel was set.`);
+            this.e.log(3, `Job "${this.getName()}" failed before tunnel was set.`);
         }
         this.tunnel.executeFail(this, this.nest, reason);
     }
