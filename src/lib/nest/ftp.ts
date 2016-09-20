@@ -4,6 +4,7 @@ import { Job } from './../job/job';
 const path_mod = require('path');
 
 var EasyFtp = require('easy-ftp');
+var tmp = require('tmp');
 
 
 export class Ftp extends Nest {
@@ -45,6 +46,30 @@ export class Ftp extends Nest {
             console.log("found "+ list.length + " files.");
 
             // Download and insert new Job
+            list.forEach(function(file, index){
+                // Create temp file
+                tmp.file(function _tempFileCreated(err, temp_path, fd, cleanupCallback) {
+                    if (err) throw err;
+
+                    console.log("temp_path: ", temp_path);
+                    console.log("File: ", file.name);
+                    console.log("Filedescriptor: ", fd);
+
+                    ftp.client.download(file.name, temp_path, function(err){
+                        console.log(err);
+                    });
+
+                    let job = new Job(temp_path);
+                    job.setPath(temp_path);
+                    ftp.arrive(job);
+
+                    // If we don't need the file anymore we could manually call the cleanupCallback
+                    // But that is not necessary if we didn't pass the keep option because the library
+                    // will clean after itself.
+                    cleanupCallback();
+                });
+            });
+
         });
     }
 
