@@ -1,7 +1,7 @@
 import {Environment} from "../environment/environment";
 var node_watch = require('node-watch');
 import { Nest } from './nest';
-import { Job } from './../job/job';
+import { FileJob } from './../job/fileJob';
 var fs = require('fs');
 const path_mod = require('path');
 
@@ -27,10 +27,10 @@ export class Folder extends Nest {
         fs.readdir(fl.path, function(err, items) {
             items = items.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
 
-            items.forEach(function(item){
+            items.forEach(function(filename){
                 // Make a new Job and trigger arrived
-                let job = new Job(fl.e, item);
-                job.setPath(fl.path + item);
+                let job = new FileJob(fl.e, `${fl.path}/${filename}`);
+                // job.setPath(fl.path + item);
                 fl.arrive(job);
             });
         });
@@ -42,13 +42,13 @@ export class Folder extends Nest {
 
         node_watch(fl.path, function (filename) {
             // Make a new Job and trigger arrived
-            let job = new Job(fl.e, filename);
-            job.setPath(fl.path + filename);
+            let job = new FileJob(fl.e, `${fl.path}/${filename}`);
+            // job.setPath(fl.path + filename);
             fl.arrive(job);
         });
     }
 
-    arrive(job: Job) {
+    arrive(job: FileJob) {
         super.arrive(job);
     }
 

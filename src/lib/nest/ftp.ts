@@ -1,5 +1,5 @@
 import { Nest } from './nest';
-import { Job } from './../job/job';
+import { FileJob } from './../job/fileJob';
 
 var   EasyFtp = require('easy-ftp'),
         tmp = require('tmp');
@@ -63,8 +63,8 @@ export class Ftp extends Nest {
                             }
                         });
 
-                        let job = new Job(this.e, temp_path);
-                        job.setPath(temp_path);
+                        let job = new FileJob(this.e, temp_path);
+                        //job.setPath(temp_path);
                         ftp.arrive(job);
 
                         // If we don't need the file anymore we could manually call the cleanupCallback
@@ -96,7 +96,7 @@ export class Ftp extends Nest {
         }, ftp.checkEveryMs, count);
     }
 
-    arrive(job: Job) {
+    arrive(job: FileJob) {
         super.arrive(job);
     }
 

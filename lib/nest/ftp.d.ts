@@ -1,5 +1,5 @@
 import { Nest } from './nest';
-import { Job } from './../job/job';
+import { FileJob } from './../job/fileJob';
 import { Environment } from "../environment/environment";
 export declare class Ftp extends Nest {
     client: any;
@@ -9,5 +9,5 @@ export declare class Ftp extends Nest {
     constructor(e: Environment, host: string, port?: number, username?: string, password?: string, checkEvery?: number);
     load(): void;
     watch(): void;
-    arrive(job: Job): void;
+    arrive(job: FileJob): void;
 }
