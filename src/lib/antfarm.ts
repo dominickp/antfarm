@@ -16,10 +16,7 @@ import {Environment} from "./environment/environment";
  * Expose `Antfarm`.
  */
 
-
-
 class Antfarm {
-
 
     protected e: Environment;
 
@@ -29,7 +26,7 @@ class Antfarm {
     }
 
     version(){
-        return "1.0";
+        return "0.0.1";
     }
     createTunnel(name){
         return new Tunnel(this.e, name);
@@ -40,6 +37,6 @@ class Antfarm {
     createFTPNest(host : string, port: number, username: string, password: string, checkEvery: number){
         return new Ftp(this.e, host, port, username, password, checkEvery);
     }
-};
+}
 
 module.exports = Antfarm;
