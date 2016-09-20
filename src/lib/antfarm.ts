@@ -15,18 +15,32 @@ import {Job} from "./job/job";
  * Expose `Antfarm`.
  */
 
-module.exports = {
+interface Options {
+
+    hello?: string;
+}
+
+
+class Antfarm {
+
+    hello: string;
+
+    constructor(options: Options) {
+        //this.hello = options.hello;
+    }
 
     version(){
         return "1.0";
-    },
+    }
     createTunnel(name){
         return new Tunnel(name);
-    },
+    }
     createFolderNest(name : string){
         return new Folder(name);
-    },
+    }
     createFTPNest(host : string, port: number, username: string, password: string, checkEvery: number){
         return new Ftp(host, port, username, password, checkEvery);
     }
 };
+
+module.exports = Antfarm;

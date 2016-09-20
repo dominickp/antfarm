@@ -1,8 +1,11 @@
 'use strict';
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-__export(require('./lib/job/job'));
-__export(require('./lib/nest/nest'));
-__export(require('./lib/tunnel/tunnel'));
-__export(require('./lib/nest/folder'));
+/*
+export * from './lib/job/job';
+export * from './lib/nest/nest';
+export * from './lib/tunnel/tunnel';
+export * from './lib/nest/folder';
+export * from './lib/antfarm';
+
+    */
+var Antfarm = require('./lib/antfarm');
+module.exports = Antfarm;
