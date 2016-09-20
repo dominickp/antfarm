@@ -1,16 +1,18 @@
 var should = require('chai').should();
+var Antfarm = require('./../../lib/antfarm');
 
 describe('Nest Folder', function() {
 
-    var antfarm = require('./../../lib/antfarm');
+    var options = {};
+    var af;
 
     beforeEach(function() {
-        antfarm = require('./../../lib/antfarm');
+        af = new Antfarm(options);
     });
 
     describe('Loading', function() {
         it('should create a folder', function() {
-            var folder = antfarm.createFolderNest("path");
+            var folder = af.createFolderNest("path");
             folder.should.be.a('object');
         });
     });
