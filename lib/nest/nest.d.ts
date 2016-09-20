@@ -1,6 +1,7 @@
 import { Tunnel } from '../tunnel/tunnel';
 import { Job } from '../job/job';
-export declare class Nest {
+import { Environment } from "../environment/environment";
+export declare class Nest extends Environment {
     name: string;
     tunnel: Tunnel;
     constructor(name: string);

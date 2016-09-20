@@ -28,7 +28,7 @@ export class Tunnel extends Environment{
     }
 
     arrive(job: Job, nest: Nest) {
-        super.log(1, "New job arrived. " + job.name + " in nest " + nest.name);
+        super.log(1, `Job "${job.name}" arrival in Nest "${nest.name}" triggered Tunnel "${this.name}" run.`);
         this.executeRun(job, nest);
     }
 

@@ -14,7 +14,7 @@ export class Environment {
             type = 0;
         }
 
-        let log_string = "LOG ";
+        let log_string = "» ";
         let log_types = this.log_types;
 
         if(log_types[type] == "debug"){

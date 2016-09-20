@@ -43,7 +43,8 @@ export class Ftp extends Nest {
 
         ftp.client.connect(ftp.config);
         ftp.client.ls("/", function(err, list){
-            console.log("found "+ list.length + " files.");
+
+            ftp.log(1, `FTP ls found ${list.length} files.`);
 
             // Download and insert new Job
             list.forEach(function(file, index){
@@ -51,9 +52,7 @@ export class Ftp extends Nest {
                 tmp.file(function _tempFileCreated(err, temp_path, fd, cleanupCallback) {
                     if (err) throw err;
 
-                    console.log("temp_path: ", temp_path);
-                    console.log("File: ", file.name);
-                    console.log("Filedescriptor: ", fd);
+                    ftp.log(1, `FTP is downloading file "${file.name}".`);
 
                     ftp.client.download(file.name, temp_path, function(err){
                         console.log(err);
