@@ -6,6 +6,7 @@ const path_mod = require('path');
 var EasyFtp = require('easy-ftp');
 var tmp = require('tmp');
 
+import {Environment} from "../environment/environment";
 
 export class Ftp extends Nest {
 
@@ -17,8 +18,8 @@ export class Ftp extends Nest {
 
     checkEveryMs: number;
 
-    constructor(host: string, port = 21, username = '', password = '', checkEvery = 0) {
-        super(host);
+    constructor(e: Environment, host: string, port = 21, username = '', password = '', checkEvery = 0) {
+        super(e, host);
 
         this.client = new EasyFtp();
 
@@ -47,7 +48,7 @@ export class Ftp extends Nest {
         ftp.client.connect(ftp.config);
         ftp.client.ls("/", function(err, list){
 
-            ftp.log(1, `FTP ls found ${list.length} files.`);
+            ftp.e.log(1, `FTP ls found ${list.length} files.`);
 
             // Download and insert new Job
             list.forEach(function(file, index){
@@ -55,11 +56,11 @@ export class Ftp extends Nest {
                 tmp.file(function _tempFileCreated(err, temp_path, fd, cleanupCallback) {
                     if (err) throw err;
 
-                    ftp.log(1, `FTP is downloading file "${file.name}".`);
+                    ftp.e.log(1, `FTP is downloading file "${file.name}".`);
 
                     ftp.client.download(file.name, temp_path, function(err){
                         if(err){
-                            ftp.log(3, `FTP error: "${err}".`);
+                            ftp.e.log(3, `FTP error: "${err}".`);
                         }
                     });
 
@@ -80,13 +81,13 @@ export class Ftp extends Nest {
     watch() {
         let ftp = this;
 
-        ftp.log(1, "Watching FTP directory.");
+        ftp.e.log(1, "Watching FTP directory.");
 
         let count = 0;
 
         setInterval(function() {
             count++;
-            ftp.log(1, `Re-checking FTP, attempt ${count}.`);
+            ftp.e.log(1, `Re-checking FTP, attempt ${count}.`);
             ftp.load();
         }, ftp.checkEveryMs, count);
     }

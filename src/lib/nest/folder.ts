@@ -1,3 +1,4 @@
+import {Environment} from "../environment/environment";
 var node_watch = require('node-watch');
 import { Nest } from './nest';
 import { Job } from './../job/job';
@@ -7,11 +8,13 @@ const path_mod = require('path');
 export class Folder extends Nest {
     path: string;
 
-    constructor(path: string) {
+
+    constructor(e: Environment, path: string) {
 
         let nest_name = path_mod.basename(path);
 
-        super(nest_name);
+        super(e, nest_name);
+
         this.path = path;
 
         this.load();

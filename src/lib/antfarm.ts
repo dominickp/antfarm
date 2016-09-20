@@ -18,10 +18,13 @@ import {Environment} from "./environment/environment";
 
 
 
-class Antfarm extends Environment{
+class Antfarm {
+
+
+    protected e: Environment;
 
     constructor(options: Options) {
-        super(options);
+        this.e = new Environment(options);
         //this.hello = options.hello;
     }
 
@@ -29,13 +32,13 @@ class Antfarm extends Environment{
         return "1.0";
     }
     createTunnel(name){
-        return new Tunnel(name);
+        return new Tunnel(this.e, name);
     }
     createFolderNest(name : string){
-        return new Folder(name);
+        return new Folder(this.e, name);
     }
-    createFTPNest(host : string, port: number, username: string, password: string, checkEvery: number){
-        return new Ftp(host, port, username, password, checkEvery);
+    createFTPNest(e, host : string, port: number, username: string, password: string, checkEvery: number){
+        return new Ftp(this.e, host, port, username, password, checkEvery);
     }
 };
 

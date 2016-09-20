@@ -2,13 +2,15 @@ import { Tunnel } from '../tunnel/tunnel'
 import { Job } from '../job/job'
 import {Environment} from "../environment/environment";
 
-export class Nest extends Environment {
+export abstract class Nest {
     name: string;
 
     tunnel: Tunnel;
 
-    constructor(name: string) {
-        super();
+    protected e: Environment;
+
+    constructor(e: Environment, name: string) {
+        this.e = e;
         this.name = name;
     }
 
@@ -17,7 +19,7 @@ export class Nest extends Environment {
     }
 
     arrive(job: Job) {
-        super.log(1, `Job "${job.name}" arrived in Nest "${this.name}".`);
+        this.e.log(1, `Job "${job.name}" arrived in Nest "${this.name}".`);
         job.tunnel = this.tunnel;
         this.tunnel.arrive(job, this);
     }

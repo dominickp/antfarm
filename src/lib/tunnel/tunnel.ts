@@ -2,7 +2,7 @@ import { Nest } from '../nest/nest'
 import { Job } from '../job/job'
 import { Environment } from '../environment/environment'
 
-export class Tunnel extends Environment{
+export class Tunnel {
     name: string;
 
     nests: Nest[];
@@ -11,8 +11,10 @@ export class Tunnel extends Environment{
 
     run_fail: any;
 
-    constructor(theName: string) {
-        super();
+    protected e: Environment;
+
+    constructor(e: Environment, theName: string) {
+        this.e = e;
         this.nests = [];
         this.name = theName;
         this.run_list = [];
@@ -24,7 +26,7 @@ export class Tunnel extends Environment{
     }
 
     arrive(job: Job, nest: Nest) {
-        super.log(1, `Job "${job.name}" arrival in Nest "${nest.name}" triggered Tunnel "${this.name}" run.`);
+        this.e.log(1, `Job "${job.name}" arrival in Nest "${nest.name}" triggered Tunnel "${this.name}" run.`);
         this.executeRun(job, nest);
     }
 
@@ -44,7 +46,7 @@ export class Tunnel extends Environment{
     }
 
     executeFail(job: Job, nest: Nest, reason: string){
-        super.log(3, "Job failed " + job.name);
+        this.e.log(3, "Job failed " + job.name);
         this.run_fail(job, nest, reason);
     }
 

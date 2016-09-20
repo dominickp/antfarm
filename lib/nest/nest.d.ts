@@ -1,10 +1,11 @@
 import { Tunnel } from '../tunnel/tunnel';
 import { Job } from '../job/job';
 import { Environment } from "../environment/environment";
-export declare class Nest extends Environment {
+export declare abstract class Nest {
     name: string;
     tunnel: Tunnel;
-    constructor(name: string);
+    protected e: Environment;
+    constructor(e: Environment, name: string);
     register(tunnel: Tunnel): void;
     arrive(job: Job): void;
 }
