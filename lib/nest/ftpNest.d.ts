@@ -10,4 +10,5 @@ export declare class FtpNest extends Nest {
     load(): void;
     watch(): void;
     arrive(job: FileJob): void;
+    take(job: FileJob): string;
 }

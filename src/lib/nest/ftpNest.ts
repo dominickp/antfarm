@@ -1,8 +1,9 @@
 import { Nest } from './nest';
 import { FileJob } from './../job/fileJob';
 
-var   EasyFtp = require('easy-ftp'),
-        tmp = require('tmp');
+var     EasyFtp = require('easy-ftp'),
+        tmp = require('tmp'),
+        fs = require('fs');
 
 import {Environment} from "../environment/environment";
 
@@ -99,5 +100,19 @@ export class FtpNest extends Nest {
         super.arrive(job);
     }
 
+    take(job: FileJob){
+
+        let ftp = this;
+
+        ftp.client.upload(job.getPath(), `/${job.getName()}`, function(err){
+            if(err){
+                ftp.e.log(3, `Error uploading ${job.getName()} to FTP.`, ftp);
+            }
+
+            fs.unlinkSync(job.path);
+        });
+
+        return job.getName();
+    }
 
 }
