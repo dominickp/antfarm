@@ -17,20 +17,14 @@ describe('Tunnels', function() {
     });
 
     it('should add a run callback to the run list', function () {
-        var my_application = function(job, nest){
-            console.log("Do it");
-        };
-        tunnel.run(my_application);
+        tunnel.run(function(){});
         tunnel.getRunList().length.should.equal(1);
     });
 
     it('should add multiple run callbacks to the run list', function () {
-        var my_application = function(job, nest){
-            console.log("Do it");
-        };
-        tunnel.run(my_application);
-        tunnel.run(my_application);
-        tunnel.run(my_application);
+        tunnel.run(function(){});
+        tunnel.run(function(){});
+        tunnel.run(function(){});
         tunnel.getRunList().length.should.equal(3);
     });
 
