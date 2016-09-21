@@ -51,11 +51,9 @@ export class FileJob extends Job {
     }
 
     move(destinationNest){
-
         let path = destinationNest.take(this);
         this.path = path;
 
-        this.e.log(1, `Job "${this.basename}" was moved to Nest "${destinationNest.name}".`)
-
+        this.e.log(1, `Job "${this.basename}" was moved to Nest "${destinationNest.name}".`);
     }
 }

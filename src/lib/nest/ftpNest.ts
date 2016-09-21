@@ -55,14 +55,19 @@ export class FtpNest extends Nest {
 
                         ftp.client.download(file.name, temp_path, function(err){
                             if(err){
-                                ftp.e.log(3, `FTP error: "${err}".`, ftp);
+                                ftp.e.log(3, `Download error: "${err}".`, ftp);
                             } else {
                                 let job = new FileJob(ftp.e, temp_path);
                                 job.setName(file.name);
                                 ftp.arrive(job);
+                                // Delete on success
+                                ftp.client.rm(file.name, function(err){
+                                    if(err){
+                                        ftp.e.log(3, `Remove error: "${err}".`, ftp);
+                                    }
+                                });
                             }
                             ftp.client.close();
-
                         });
 
                         cleanupCallback();
