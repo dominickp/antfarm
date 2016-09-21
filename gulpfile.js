@@ -15,8 +15,7 @@ gulp.task("typedoc", function() {
             name: "Antfarm",
             ignoreCompilerErrors: false,
             includeDeclarations: false
-        }))
-        ;
+        }));
 });
 
 gulp.task("tslint", function() {
@@ -40,7 +39,7 @@ var tsProject = ts.createProject(
 );
 
 gulp.task('test', function() {
-    gulp.src('test/**/*.spec.js', {read: false})
+    return gulp.src('test/**/*.spec.js', {read: false})
     // gulp-mocha needs filepaths so you can't have any plugins before it
         .pipe(mocha({reporter: 'landing'}))
 });
@@ -57,7 +56,7 @@ gulp.task('build-test', function(callback) {
         'build',
         'test',
         'tslint',
-        'typedoc',
+        // 'typedoc',
         callback);
 });
 
