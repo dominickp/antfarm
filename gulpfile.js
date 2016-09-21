@@ -12,7 +12,8 @@ gulp.task("typedoc", function() {
             target: "es5",
             out: "./docs/",
             name: "Antfarm",
-            ignoreCompilerErrors: false
+            ignoreCompilerErrors: false,
+            includeDeclarations: false
         }))
         ;
 });
