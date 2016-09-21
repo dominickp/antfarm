@@ -19,7 +19,7 @@ export abstract class Nest {
     }
 
     arrive(job: Job) {
-        this.e.log(1, `Job "${job.getName()}" arrived in Nest "${this.name}".`);
+        this.e.log(1, `Job "${job.getName()}" arrived in Nest "${this.name}".`, this);
         job.tunnel = this.tunnel;
         this.tunnel.arrive(job, this);
     }

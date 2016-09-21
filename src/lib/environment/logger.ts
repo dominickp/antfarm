@@ -90,7 +90,7 @@ export class Logger {
         }
 */
         if(instance){
-            this.logger.log(log_types[type], instance.constructor.name, message);
+            this.logger.log(log_types[type], `[${instance.constructor.name}]`, message);
         } else {
             this.logger.log(log_types[type], message);
         }

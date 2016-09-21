@@ -16,7 +16,7 @@ export class FtpNest extends Nest {
 
     checkEveryMs: number;
 
-    constructor(e: Environment, host: string, port = 21, username = '', password = '', checkEvery = 0) {
+    constructor(e: Environment, host: string, port = 21, username = '', password = '', checkEvery = 10) {
         super(e, host);
 
         this.client = new EasyFtp();
@@ -32,11 +32,6 @@ export class FtpNest extends Nest {
 
         this.checkEveryMs = this.checkEvery * 60000;
 
-        this.load();
-
-        if(checkEvery) {
-            this.watch();
-        }
     }
 
     load(){
@@ -48,7 +43,7 @@ export class FtpNest extends Nest {
 
             ftp.client.ls("/", function(err, list){
 
-                ftp.e.log(1, `FTP ls found ${list.length} files.`);
+                ftp.e.log(1, `FTP ls found ${list.length} files.`, ftp);
 
                 // Download and insert new Job
                 list.forEach(function(file, index){
@@ -56,17 +51,17 @@ export class FtpNest extends Nest {
                     tmp.file(function _tempFileCreated(err, temp_path, fd, cleanupCallback) {
                         if (err) throw err;
 
-                        ftp.e.log(1, `FTP is downloading file "${file.name}".`);
+                        ftp.e.log(1, `FTP is downloading file "${file.name}".`, ftp);
 
                         ftp.client.download(file.name, temp_path, function(err){
                             if(err){
-                                ftp.e.log(3, `FTP error: "${err}".`);
+                                ftp.e.log(3, `FTP error: "${err}".`, ftp);
+                            } else {
+                                let job = new FileJob(ftp.e, temp_path);
+                                ftp.arrive(job);
+                                ftp.client.close();
                             }
                         });
-
-                        let job = new FileJob(ftp.e, temp_path);
-                        //job.setPath(temp_path);
-                        ftp.arrive(job);
 
                         cleanupCallback();
                     });
@@ -74,9 +69,8 @@ export class FtpNest extends Nest {
             });
 
         } catch(e) {
-            ftp.e.log(3, e);
+            ftp.e.log(3, e, ftp);
         }
-
 
     }
 
