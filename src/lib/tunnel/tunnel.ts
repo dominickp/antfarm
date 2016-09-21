@@ -4,13 +4,14 @@ import { Job } from '../job/job'
 import { Environment } from '../environment/environment'
 
 export class Tunnel {
-    name: string;
 
-    nests: Nest[];
+    protected name: string;
 
-    run_list: any[];
+    protected nests: Nest[];
 
-    run_fail: any;
+    protected run_list: any[];
+
+    protected run_fail: any;
 
     protected e: Environment;
 
@@ -19,6 +20,18 @@ export class Tunnel {
         this.nests = [];
         this.name = theName;
         this.run_list = [];
+    }
+
+    getName(){
+        return this.name;
+    }
+
+    getNests(){
+        return this.nests;
+    }
+
+    getRunList(){
+        return this.run_list;
     }
 
     watch(nest: FolderNest) {
