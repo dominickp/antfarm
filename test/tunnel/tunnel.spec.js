@@ -1,5 +1,5 @@
-var should = require('chai').should();
-var Antfarm = require('./../../lib/antfarm');
+var should = require("chai").should();
+var Antfarm = require("./../../lib/antfarm");
 
 describe('Tunnels', function() {
 

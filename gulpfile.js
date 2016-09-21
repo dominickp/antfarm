@@ -3,7 +3,8 @@ var gulp = require('gulp'),
     mocha = require('gulp-mocha'),
     runSequence = require('run-sequence'),
     typedoc = require("gulp-typedoc"),
-    tslint = require("gulp-tslint");
+    tslint = require("gulp-tslint"),
+    stylish = require('tslint-stylish');
 
 gulp.task("typedoc", function() {
     return gulp
@@ -26,7 +27,11 @@ gulp.task("tslint", function() {
         .pipe(tslint({
             formatter: "verbose"
         }))
-        .pipe(tslint.report())
+        .pipe(tslint.report(stylish, {
+            emitError: false,
+            sort: true,
+            bell: true
+        }));
 });
 
 var tsProject = ts.createProject(
