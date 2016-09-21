@@ -10,8 +10,9 @@ gulp.task("typedoc", function() {
         .pipe(typedoc({
             module: "commonjs",
             target: "es5",
-            out: "docs/",
-            name: "Antfarm"
+            out: "./docs/",
+            name: "Antfarm",
+            ignoreCompilerErrors: false
         }))
         ;
 });
@@ -40,7 +41,7 @@ gulp.task('build', function() {
 
 gulp.task('build-test', function(callback) {
     runSequence('build',
-        ['test'],
+        ['test', 'typedoc'],
         callback);
 });
 
@@ -50,4 +51,4 @@ gulp.task('watch', function(){
 });
 
 
-gulp.task('default', ['build', 'test', 'watch']);
+gulp.task('default', ['build-test', 'watch']);
