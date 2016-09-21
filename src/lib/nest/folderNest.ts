@@ -1,13 +1,13 @@
 import {Environment} from "../environment/environment";
-var node_watch = require('node-watch');
-import { Nest } from './nest';
-import { FileJob } from './../job/fileJob';
-var fs = require('fs');
-const path_mod = require('path');
+import { Nest } from "./nest";
+import { FileJob } from "./../job/fileJob";
+
+const   node_watch = require("node-watch"),
+        fs = require("fs"),
+        path_mod = require("path");
 
 export class FolderNest extends Nest {
     path: string;
-
 
     constructor(e: Environment, path: string) {
 
@@ -18,7 +18,7 @@ export class FolderNest extends Nest {
         this.path = path;
     }
 
-    load(){
+    load() {
 
         let fl = this;
         fs.readdir(fl.path, function(err, items) {
@@ -57,7 +57,7 @@ export class FolderNest extends Nest {
         super.arrive(job);
     }
 
-    take(job: FileJob){
+    take(job: FileJob) {
 
         // the other nest that this is taking from should provide a temporary location or local path of the job
 

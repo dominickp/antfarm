@@ -1,8 +1,8 @@
-import tunnel = require('./tunnel/tunnel');
-import nest = require('./nest/nest');
-import folderNest = require('./nest/folderNest');
+import tunnel = require("./tunnel/tunnel");
+import nest = require("./nest/nest");
+import folderNest = require("./nest/folderNest");
 // import Ftp = require('./nest/ftp');
-import job = require('./job/job');
+import job = require("./job/job");
 
 import {Tunnel} from "./tunnel/tunnel";
 import {Nest} from "./nest/nest";
@@ -22,19 +22,18 @@ class Antfarm {
 
     constructor(options: Options) {
         this.e = new Environment(options);
-        //this.hello = options.hello;
     }
 
-    version(){
+    version() {
         return "0.0.1";
     }
-    createTunnel(name){
+    createTunnel(name) {
         return new Tunnel(this.e, name);
     }
-    createFolderNest(name : string){
+    createFolderNest(name: string) {
         return new FolderNest(this.e, name);
     }
-    createFtpNest(host : string, port: number, username: string, password: string, checkEvery: number){
+    createFtpNest(host: string, port: number, username: string, password: string, checkEvery: number) {
         return new FtpNest(this.e, host, port, username, password, checkEvery);
     }
 }

@@ -1,10 +1,9 @@
-const   mime = require('mime-types'),
-        fileExtension = require('file-extension'),
-        node_path = require('path');
-
 import {Environment} from "../environment/environment";
 import {Job} from "./job";
-import { Nest } from '../nest/nest';
+
+const   mime = require("mime-types"),
+        fileExtension = require("file-extension"),
+        node_path = require("path");
 
 export class FileJob extends Job {
 
@@ -30,31 +29,31 @@ export class FileJob extends Job {
         this.extension = fileExtension(this.path);
     }
 
-    getName(){
+    getName() {
         return this.basename;
     }
 
-    getPath(){
+    getPath() {
         return this.path;
     }
 
-    setName(filename: string){
+    setName(filename: string) {
         this.basename = filename;
     }
 
-    getContentType(){
+    getContentType() {
         return this.contentType;
     }
 
-    getExtension(){
+    getExtension() {
         return this.extension;
     }
 
-    getBasename(){
+    getBasename() {
         return this.basename;
     }
 
-    move(destinationNest){
+    move(destinationNest) {
         let path = destinationNest.take(this);
         this.path = path;
 

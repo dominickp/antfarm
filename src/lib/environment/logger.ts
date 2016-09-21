@@ -1,6 +1,5 @@
-const   fs = require('fs'),
-        winston = require('winston');
-winston.emitErrs = true;
+const   fs = require("fs"),
+        winston = require("winston");
 
 export class Logger {
 
@@ -17,7 +16,8 @@ export class Logger {
         3: "error"
     };
 
-    constructor(options?: Options){
+    constructor(options?: Options) {
+        winston.emitErrs = true;
 
         this.options = options;
 
@@ -25,8 +25,8 @@ export class Logger {
     }
 
 
-    createLogger(){
-        if(this.options) {
+    createLogger() {
+        if (this.options) {
 
             if (this.options.log_dir) {
 
@@ -38,16 +38,16 @@ export class Logger {
                 this.logger = new winston.Logger({
                     transports: [
                         new winston.transports.File({
-                            level: this.options.log_file_level || 'info',
+                            level: this.options.log_file_level || "info",
                             filename: `${this.options.log_dir}/somefile.log`,
                             handleExceptions: true,
                             json: true,
-                            maxsize: this.options.log_max_size || 5242880, //5MB
+                            maxsize: this.options.log_max_size || 5242880, // 5MB
                             maxFiles: this.options.log_max_files || 5,
                             colorize: false
                         }),
                         new winston.transports.Console({
-                            level: this.options.log_out_level || 'debug',
+                            level: this.options.log_out_level || "debug",
                             handleExceptions: true,
                             json: false,
                             colorize: true,
@@ -61,7 +61,7 @@ export class Logger {
             this.logger = new winston.Logger({
                 transports: [
                     new winston.transports.Console({
-                        level: 'debug',
+                        level: "debug",
                         handleExceptions: true,
                         json: false,
                         colorize: true
@@ -72,8 +72,8 @@ export class Logger {
         }
     }
 
-    log(type: number, message: string, instance?: any){
-        if(typeof(this.log_types[type]) == "undefined"){
+    log(type: number, message: string, instance?: any) {
+        if (typeof(this.log_types[type]) === "undefined") {
             type = 0;
         }
 
@@ -89,7 +89,7 @@ export class Logger {
             this.logger.error(instance.constructor.name, message);
         }
 */
-        if(instance){
+        if (instance) {
             this.logger.log(log_types[type], `[${instance.constructor.name}]`, message);
         } else {
             this.logger.log(log_types[type], message);

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 /*
 export * from './lib/job/job';
 export * from './lib/nest/nest';
@@ -8,6 +8,6 @@ export * from './lib/antfarm';
 
     */
 
-let Antfarm = require('./lib/antfarm');
+let Antfarm = require("./lib/antfarm");
 
 module.exports = Antfarm;

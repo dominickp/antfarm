@@ -1,5 +1,5 @@
-import { Nest } from './nest';
-import { FileJob } from './../job/fileJob';
+import { Nest } from "./nest";
+import { FileJob } from "./../job/fileJob";
 import { Environment } from "../environment/environment";
 export declare class FtpNest extends Nest {
     client: any;

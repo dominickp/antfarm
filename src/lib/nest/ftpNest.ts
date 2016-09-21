@@ -1,9 +1,9 @@
-import { Nest } from './nest';
-import { FileJob } from './../job/fileJob';
+import { Nest } from "./nest";
+import { FileJob } from "./../job/fileJob";
 
-var     EasyFtp = require('easy-ftp'),
-        tmp = require('tmp'),
-        fs = require('fs');
+const   EasyFtp = require("easy-ftp"),
+        tmp = require("tmp"),
+        fs = require("fs");
 
 import {Environment} from "../environment/environment";
 
@@ -17,7 +17,7 @@ export class FtpNest extends Nest {
 
     checkEveryMs: number;
 
-    constructor(e: Environment, host: string, port = 21, username = '', password = '', checkEvery = 10) {
+    constructor(e: Environment, host: string, port = 21, username = "", password = "", checkEvery = 10) {
         super(e, host);
 
         this.client = new EasyFtp();
@@ -35,7 +35,7 @@ export class FtpNest extends Nest {
 
     }
 
-    load(){
+    load() {
 
         let ftp = this;
 
@@ -54,8 +54,8 @@ export class FtpNest extends Nest {
 
                         ftp.e.log(1, `FTP is downloading file "${file.name}".`, ftp);
 
-                        ftp.client.download(file.name, temp_path, function(err){
-                            if(err){
+                        ftp.client.download(file.name, temp_path, function(err) {
+                            if (err) {
                                 ftp.e.log(3, `Download error: "${err}".`, ftp);
                             } else {
                                 let job = new FileJob(ftp.e, temp_path);
@@ -63,7 +63,7 @@ export class FtpNest extends Nest {
                                 ftp.arrive(job);
                                 // Delete on success
                                 ftp.client.rm(file.name, function(err){
-                                    if(err){
+                                    if (err) {
                                         ftp.e.log(3, `Remove error: "${err}".`, ftp);
                                     }
                                 });
@@ -76,7 +76,7 @@ export class FtpNest extends Nest {
                 });
             });
 
-        } catch(e) {
+        } catch (e) {
             ftp.e.log(3, e, ftp);
         }
 
@@ -100,12 +100,12 @@ export class FtpNest extends Nest {
         super.arrive(job);
     }
 
-    take(job: FileJob){
+    take(job: FileJob) {
 
         let ftp = this;
 
         ftp.client.upload(job.getPath(), `/${job.getName()}`, function(err){
-            if(err){
+            if (err) {
                 ftp.e.log(3, `Error uploading ${job.getName()} to FTP.`, ftp);
             }
 

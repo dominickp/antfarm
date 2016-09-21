@@ -1,5 +1,5 @@
-import { Tunnel } from '../tunnel/tunnel'
-import { Job } from '../job/job'
+import { Tunnel } from "../tunnel/tunnel";
+import { Job } from "../job/job";
 import { Environment } from "../environment/environment";
 
 export abstract class Nest {
@@ -14,7 +14,7 @@ export abstract class Nest {
         this.name = name;
     }
 
-    register(tunnel: Tunnel){
+    register(tunnel: Tunnel) {
         this.tunnel = tunnel;
     }
 

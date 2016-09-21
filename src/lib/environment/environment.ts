@@ -1,9 +1,3 @@
-const chalk = require('chalk');
-const fs = require('fs');
-
-const winston = require('winston');
-winston.emitErrs = true;
-
 import {Logger} from "./logger";
 
 export class Environment {
@@ -12,14 +6,14 @@ export class Environment {
 
     protected logger: Logger;
 
-    constructor(options?: Options){
+    constructor(options?: Options) {
 
         this.options = options;
 
         this.logger = new Logger(this.options);
     }
 
-    log(type: number, message: string, instance?: any){
+    log(type: number, message: string, instance?: any) {
         this.logger.log(type, message, instance);
     }
 }

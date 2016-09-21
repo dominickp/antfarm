@@ -1,7 +1,7 @@
-import { FolderNest } from "../nest/folderNest"
-import { Nest } from "../nest/nest"
-import { Job } from "../job/job"
-import { Environment } from "../environment/environment"
+import { FolderNest } from "../nest/folderNest";
+import { Nest } from "../nest/nest";
+import { Job } from "../job/job";
+import { Environment } from "../environment/environment";
 
 export class Tunnel {
 
@@ -22,15 +22,15 @@ export class Tunnel {
         this.run_list = [];
     }
 
-    getName(){
+    getName() {
         return this.name;
     }
 
-    getNests(){
+    getNests() {
         return this.nests;
     }
 
-    getRunList(){
+    getRunList() {
         return this.run_list;
     }
 
@@ -55,7 +55,7 @@ export class Tunnel {
         this.run_fail = callback;
     }
 
-    executeRun(job: Job, nest: Nest){
+    executeRun(job: Job, nest: Nest) {
         let tn = this;
         this.run_list.forEach(function(callback){
             try {
@@ -65,10 +65,10 @@ export class Tunnel {
                 tn.executeFail(job, nest, e);
             }
 
-        })
+        });
     }
 
-    executeFail(job: Job, nest: Nest, reason: string){
+    executeFail(job: Job, nest: Nest, reason: string) {
         this.e.log(3, `Job "${job.name}" failed for reason "${reason}".`, this);
         this.run_fail(job, nest, reason);
     }

@@ -1,5 +1,5 @@
-import { Tunnel } from '../tunnel/tunnel'
-import { Nest } from '../nest/nest';
+import { Tunnel } from "../tunnel/tunnel";
+import { Nest } from "../nest/nest";
 import {Environment} from "../environment/environment";
 
 export abstract class Job {
@@ -20,12 +20,12 @@ export abstract class Job {
         this.e.log(1, `New Job "${name}" created.`, this);
     }
 
-    getName(){
+    getName() {
         return this.name;
     }
 
-    fail(reason: string){
-        if(!this.tunnel){
+    fail(reason: string) {
+        if (!this.tunnel) {
             this.e.log(3, `Job "${this.getName()}" failed before tunnel was set.`, this);
         }
         this.tunnel.executeFail(this, this.nest, reason);

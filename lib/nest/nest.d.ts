@@ -1,5 +1,5 @@
-import { Tunnel } from '../tunnel/tunnel';
-import { Job } from '../job/job';
+import { Tunnel } from "../tunnel/tunnel";
+import { Job } from "../job/job";
 import { Environment } from "../environment/environment";
 export declare abstract class Nest {
     name: string;
