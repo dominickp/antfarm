@@ -1,1 +1,1 @@
-declare var Antfarm: any;
+declare let Antfarm: any;

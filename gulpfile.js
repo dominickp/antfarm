@@ -2,7 +2,8 @@ var gulp = require('gulp'),
     ts = require('gulp-typescript'),
     mocha = require('gulp-mocha'),
     runSequence = require('run-sequence'),
-    typedoc = require("gulp-typedoc");
+    typedoc = require("gulp-typedoc"),
+    tslint = require("gulp-tslint");
 
 gulp.task("typedoc", function() {
     return gulp
@@ -16,6 +17,17 @@ gulp.task("typedoc", function() {
             includeDeclarations: false
         }))
         ;
+});
+
+gulp.task("tslint", function() {
+    gulp.src([
+        "!./src/**/*.d.ts",
+        "./src/**/*.ts"
+    ])
+        .pipe(tslint({
+            formatter: "verbose"
+        }))
+        .pipe(tslint.report())
 });
 
 var tsProject = ts.createProject(
@@ -41,8 +53,11 @@ gulp.task('build', function() {
 });
 
 gulp.task('build-test', function(callback) {
-    runSequence('build',
-        ['test', 'typedoc'],
+    runSequence(
+        'build',
+        'test',
+        'tslint',
+        'typedoc',
         callback);
 });
 

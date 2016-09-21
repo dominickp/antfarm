@@ -8,6 +8,6 @@ export * from './lib/antfarm';
 
     */
 
-var Antfarm = require('./lib/antfarm');
+let Antfarm = require('./lib/antfarm');
 
 module.exports = Antfarm;
