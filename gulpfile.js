@@ -1,8 +1,20 @@
 var gulp = require('gulp'),
     ts = require('gulp-typescript'),
     mocha = require('gulp-mocha'),
-    runSequence = require('run-sequence');
+    runSequence = require('run-sequence'),
+    typedoc = require("gulp-typedoc");
 
+gulp.task("typedoc", function() {
+    return gulp
+        .src(["./src/**/*.ts"])
+        .pipe(typedoc({
+            module: "commonjs",
+            target: "es5",
+            out: "docs/",
+            name: "Antfarm"
+        }))
+        ;
+});
 
 var tsProject = ts.createProject(
     'tsconfig.json',
