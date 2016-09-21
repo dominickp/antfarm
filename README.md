@@ -85,3 +85,30 @@ Jobs are provided within tunnel events and have lots of helpful methods.
         // Do stuff to PDFs
     }
 ```
+
+## Examples
+
+### FTP to folder
+This workflow watches an FTP folder for new files every 5 minutes. Then, when found, simply transfers them to the desktop.
+
+```js
+var Antfarm = require('../lib/antfarm'),
+    af = new Antfarm({
+        log_dir: "/Users/dominickpeluso/Desktop"
+    });
+
+var my_ftp = af.createFtpNest("ftp.ants.com", 21, 'username', 'password', 5);
+var out_folder = af.createFolderNest("/Users/dominickpeluso/Desktop");
+
+var ftp_tunnel = af.createTunnel("FTP test");
+
+ftp_tunnel.watch(out_folder);
+
+ftp_tunnel.run(function(job, nest){
+    job.move(my_ftp);
+});
+
+ftp_tunnel.fail(function(job, nest){
+    console.log("do fail");
+});
+```
