@@ -11,7 +11,6 @@ describe('Tunnels', function() {
         tunnel = af.createTunnel("Test tunnel");
     });
 
-
     it('should get the tunnel name', function () {
         tunnel.getName().should.equal("Test tunnel");
     });
@@ -27,7 +26,6 @@ describe('Tunnels', function() {
         tunnel.run(function(){});
         tunnel.getRunList().length.should.equal(3);
     });
-
 
     it('should execute a run callback', function () {
         var myObj = {num: 0};

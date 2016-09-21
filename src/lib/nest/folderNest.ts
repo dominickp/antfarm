@@ -58,6 +58,9 @@ export class FolderNest extends Nest {
     }
 
     take(job: FileJob){
+
+        // the other nest that this is taking from should provide a temporary location or local path of the job
+
         let new_path = `${this.path}/${job.getBasename()}`;
         fs.renameSync(job.path, new_path);
         return new_path;
