@@ -6,7 +6,7 @@ var gulp = require('gulp'),
     tslint = require("gulp-tslint"),
     stylish = require('tslint-stylish');
 
-gulp.task("typedoc", function() {
+gulp.task("doc", function() {
     return gulp
         .src(["./src/**/*.ts"])
         .pipe(typedoc({
