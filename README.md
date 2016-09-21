@@ -94,7 +94,7 @@ This workflow watches an FTP folder for new files every 5 minutes. Then, when fo
 ```js
 var Antfarm = require('../lib/antfarm'),
     af = new Antfarm({
-        log_dir: "/Users/dominickpeluso/Desktop"
+        log_dir: "/Users/dominickpeluso/Logs"
     });
 
 var my_ftp = af.createFtpNest("ftp.ants.com", 21, 'username', 'password', 5);
@@ -110,5 +110,44 @@ ftp_tunnel.run(function(job, nest){
 
 ftp_tunnel.fail(function(job, nest){
     console.log("do fail");
+});
+```
+
+### Route jobs to folders via filetype
+
+```js
+// Import Antfarm and set some options
+var Antfarm = require('../lib/antfarm'),
+    af = new Antfarm({
+        log_dir: "/Users/dominickpeluso/Logs"
+    });
+
+// Set some paths for convenience
+const INPUT_PATH = '/Users/dominickpeluso/Desktop/Antfarm Example/Hotfolder In';
+const OUTPUT_PDF_PATH = '/Users/dominickpeluso/Desktop/Antfarm Example/Out/PDF';
+const OUTPUT_OTHER_PATH = '/Users/dominickpeluso/Desktop/Antfarm Example/Out/Others';
+
+// Build a Tunnel
+var tunnel = af.createTunnel("Hotfolder sorting workflow");
+
+// Create a Nest for our hot folder
+var hotfolder = af.createFolderNest(INPUT_PATH);
+
+// Attach the Nest to our Tunnel to watch for new files
+tunnel.watch(hotfolder);
+
+// When a new file is found, execute the following
+tunnel.run(function(job, nest){
+    // Move PDFs to one folder, all others to another
+    if(job.getExtension() == "pdf"){
+        job.move(af.createFolderNest(OUTPUT_PDF_PATH));
+    } else {
+        job.move(af.createFolderNest(OUTPUT_OTHER_PATH));
+    }
+});
+
+// When a job fails, execute the following
+tunnel.fail(function(job, nest){
+    console.log("Job " + job.getName() + " failed!");
 });
 ```
