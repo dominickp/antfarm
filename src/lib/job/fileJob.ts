@@ -34,6 +34,10 @@ export class FileJob extends Job {
         return this.basename;
     }
 
+    setName(filename: string){
+        this.basename = filename;
+    }
+
     getContentType(){
         return this.contentType;
     }

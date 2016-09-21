@@ -29,7 +29,7 @@ export class Tunnel {
     }
 
     arrive(job: Job, nest: Nest) {
-        this.e.log(1, `Job "${job.getName()}" arrival in Nest "${nest.name}" triggered Tunnel "${this.name}" run.`);
+        this.e.log(1, `Job "${job.getName()}" arrival in Nest "${nest.name}" triggered Tunnel "${this.name}" run.`, this);
         this.executeRun(job, nest);
     }
 

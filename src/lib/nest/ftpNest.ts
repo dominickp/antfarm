@@ -58,9 +58,11 @@ export class FtpNest extends Nest {
                                 ftp.e.log(3, `FTP error: "${err}".`, ftp);
                             } else {
                                 let job = new FileJob(ftp.e, temp_path);
+                                job.setName(file.name);
                                 ftp.arrive(job);
-                                ftp.client.close();
                             }
+                            ftp.client.close();
+
                         });
 
                         cleanupCallback();
@@ -77,13 +79,13 @@ export class FtpNest extends Nest {
     watch() {
         let ftp = this;
 
-        ftp.e.log(1, "Watching FTP directory.");
+        ftp.e.log(1, "Watching FTP directory.", ftp);
 
         let count = 0;
 
         setInterval(function() {
             count++;
-            ftp.e.log(1, `Re-checking FTP, attempt ${count}.`);
+            ftp.e.log(1, `Re-checking FTP, attempt ${count}.`, ftp);
             ftp.load();
         }, ftp.checkEveryMs, count);
     }
