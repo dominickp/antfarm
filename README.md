@@ -4,6 +4,26 @@ Antfarm is a simple automation framework that aims to make file automation robus
 
 🐜🐜🐜🐜🐜
 
+## Usage
+
+```sh
+$ npm install antfarm
+```
+
+```js
+var Antfarm = require('antfarm');
+
+var options = {
+        log_dir: "/Users/dominickpeluso/Desktop",
+        log_max_size: null,
+        log_max_files: null,
+        log_file_level: null,
+        log_out_level: null
+    };
+    
+var af = new Antfarm(options);
+```
+
 ## Components
 
 ### Tunnels
@@ -55,4 +75,13 @@ tunnel.run(function(job, nest){
     // Uploads files from desktop to the FTP
     job.move(ftp_nest);
 });
+```
+
+### Jobs
+Jobs are provided within tunnel events and have lots of helpful methods.
+
+```js
+    if(job.getExtension() == "pdf"){
+        // Do stuff to PDFs
+    }
 ```
