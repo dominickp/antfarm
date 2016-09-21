@@ -114,6 +114,7 @@ ftp_tunnel.fail(function(job, nest){
 ```
 
 ### Route jobs to folders via filetype
+This workflow routes PDFs which arrive in the hotfolder to a particular folder while routing all other filetypes to another folder.
 
 ```js
 // Import Antfarm and set some options
