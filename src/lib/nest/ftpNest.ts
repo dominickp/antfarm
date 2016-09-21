@@ -6,7 +6,7 @@ var   EasyFtp = require('easy-ftp'),
 
 import {Environment} from "../environment/environment";
 
-export class Ftp extends Nest {
+export class FtpNest extends Nest {
 
     client: any;
 
@@ -47,6 +47,7 @@ export class Ftp extends Nest {
             ftp.client.connect(ftp.config);
 
             ftp.client.ls("/", function(err, list){
+
                 ftp.e.log(1, `FTP ls found ${list.length} files.`);
 
                 // Download and insert new Job
@@ -63,13 +64,10 @@ export class Ftp extends Nest {
                             }
                         });
 
-                        let job = new FileJob(this.e, temp_path);
+                        let job = new FileJob(ftp.e, temp_path);
                         //job.setPath(temp_path);
                         ftp.arrive(job);
 
-                        // If we don't need the file anymore we could manually call the cleanupCallback
-                        // But that is not necessary if we didn't pass the keep option because the library
-                        // will clean after itself.
                         cleanupCallback();
                     });
                 });
