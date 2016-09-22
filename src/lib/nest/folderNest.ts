@@ -15,7 +15,19 @@ export class FolderNest extends Nest {
 
         super(e, nest_name);
 
+        this.checkDirectorySync(path);
+
         this.path = path;
+    }
+
+    checkDirectorySync(directory) {
+        let fn = this;
+        try {
+            fs.statSync(directory);
+        } catch (e) {
+            fs.mkdirSync(directory);
+            fn.e.log(1, `Directory "${directory}" was created since it did not already exist.`, this);
+        }
     }
 
     load() {

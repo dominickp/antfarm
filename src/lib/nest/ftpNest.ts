@@ -43,6 +43,8 @@ export class FtpNest extends Nest {
         try {
             ftp.client.connect(ftp.config);
 
+            console.log("about to ls");
+
             ftp.client.ls("/", function(err, list) {
 
                 if (err) {
@@ -100,15 +102,22 @@ export class FtpNest extends Nest {
 
     take(job: FileJob) {
 
-        let ftp = this;
+        try {
+            let ftp = this;
+            // ???
+            console.log(job.getPath(), `/${job.getName()}`);
+            ftp.client.connect(ftp.config);
+            ftp.client.upload(job.getPath(), `/${job.getName()}`, function (err) {
+                if (err) {
+                    ftp.e.log(3, `Error uploading ${job.getName()} to FTP.`, ftp);
+                }
 
-        ftp.client.upload(job.getPath(), `/${job.getName()}`, function(err){
-            if (err) {
-                ftp.e.log(3, `Error uploading ${job.getName()} to FTP.`, ftp);
-            }
-
-            fs.unlinkSync(job.getPath());
-        });
+                fs.unlinkSync(job.getPath());
+                ftp.client.close();
+            });
+        } catch (e) {
+            console.log("Take upload error, " + e);
+        }
 
         return job.getName();
     }
