@@ -50,6 +50,20 @@ tunnel.run(function(job, nest){
 });
 ```
 
+If you need to run logic synchronously, you can do so with runSync:
+
+```js
+ftp_tunnel.runSync(function(job, nest, done){
+    console.log("Do this first");
+    done();
+});
+
+ftp_tunnel.runSync(function(job, nest, done){
+    console.log("Do this second");
+    done();
+});
+````
+
 Similar to the run method, the fail method will allow you to handle job errors.
 ```js
 // When a job fails, execute the following
