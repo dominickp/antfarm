@@ -39,6 +39,10 @@ export class Tunnel {
         return this.run_list;
     }
 
+    getRunSyncList() {
+        return this.run_sync_list;
+    }
+
     watch(nest: FolderNest) {
         nest.register(this);
         nest.load();
@@ -96,7 +100,7 @@ export class Tunnel {
             if (err) {
                 tn.executeFail(job, nest, err);
             }
-            tn.e.log(0, "Done with synchronous run list.", tn);
+            tn.e.log(0, `Completed ${tn.getRunSyncList().length} synchronous run list(s).`, tn);
         });
     }
 

@@ -13,6 +13,7 @@ export declare class Tunnel {
     getName(): string;
     getNests(): Nest[];
     getRunList(): any[];
+    getRunSyncList(): any[];
     watch(nest: FolderNest): void;
     arrive(job: Job, nest: Nest): void;
     /**
