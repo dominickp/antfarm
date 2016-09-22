@@ -3,7 +3,8 @@ import { Nest } from "../nest/nest";
 import { Job } from "../job/job";
 import { Environment } from "../environment/environment";
 
-const async = require("async");
+const   async = require("async"),
+        minimatch = require("minimatch");
 
 export class Tunnel {
 
@@ -20,6 +21,13 @@ export class Tunnel {
     protected e: Environment;
 
     protected job_counter: number;
+
+    protected match_obj = {
+        queue: [],
+        run: null,
+        pattern: null,
+        orphan_minutes: null
+    };
 
     constructor(e: Environment, theName: string) {
         this.e = e;
@@ -58,6 +66,7 @@ export class Tunnel {
         this.e.log(1, `Job ${this.job_counter} Nest "${nest.name}" triggered Tunnel "${this.name}" run.`, this);
         this.executeRun(job, nest);
         this.executeRunSync(job, nest);
+        this.executeMatch(job, nest);
     }
 
     /**
@@ -112,5 +121,58 @@ export class Tunnel {
         this.e.log(3, `Job "${job.getName()}" failed for reason "${reason}".`, this);
         this.run_fail(job, nest, reason);
     }
+
+    /**
+     * Interface for matching two or more files together based on an array of glob filename patterns.
+     * @param pattern
+     * @param orphanMinutes
+     * @param callback
+     */
+    match(pattern: string[]|string, orphanMinutes: number, callback: any) {
+        this.match_obj.pattern = pattern;
+        this.match_obj.orphan_minutes = orphanMinutes;
+        this.match_obj.run = callback;
+    }
+
+    /**
+     * Match execution
+     * @param job
+     * @param nest
+     */
+    protected executeMatch(job: Job, nest: Nest) {
+
+        // Try to find match in queue
+
+        let tn = this;
+
+        let match_result;
+        let matched_jobs = [];
+
+        tn.e.log(0, "Executing matching process.", tn);
+
+        tn.match_obj.pattern.forEach(function(pattern, i){
+
+            tn.match_obj.queue.forEach(function(qJob){
+                match_result = minimatch(qJob.getName(), pattern);
+                if (match_result === true) {
+                    matched_jobs.push(job);
+                }
+                console.log(match_result);
+            });
+
+        });
+
+        // if found
+        if (matched_jobs.length > 0) {
+            tn.match_obj.run(matched_jobs);
+        }
+
+        // If not found, add this job to the queue
+        tn.match_obj.queue.push(job);
+
+        // Need to set a timeout for the job to fail
+
+    }
+
 
 }

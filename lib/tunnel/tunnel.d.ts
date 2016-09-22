@@ -10,6 +10,12 @@ export declare class Tunnel {
     protected run_fail: any;
     protected e: Environment;
     protected job_counter: number;
+    protected match_obj: {
+        queue: any[];
+        run: any;
+        pattern: any;
+        orphan_minutes: any;
+    };
     constructor(e: Environment, theName: string);
     getName(): string;
     getNests(): Nest[];
@@ -31,4 +37,17 @@ export declare class Tunnel {
     executeRun(job: Job, nest: Nest): void;
     executeRunSync(job: Job, nest: Nest): void;
     executeFail(job: Job, nest: Nest, reason: string): void;
+    /**
+     * Interface for matching two or more files together based on an array of glob filename patterns.
+     * @param pattern
+     * @param orphanMinutes
+     * @param callback
+     */
+    match(pattern: string[] | string, orphanMinutes: number, callback: any): void;
+    /**
+     * Match execution
+     * @param job
+     * @param nest
+     */
+    protected executeMatch(job: Job, nest: Nest): void;
 }
