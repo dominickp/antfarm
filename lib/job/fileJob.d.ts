@@ -13,5 +13,10 @@ export declare class FileJob extends Job {
     getContentType(): string;
     getExtension(): string;
     getBasename(): string;
+    /**
+     * Moves a file to a nest. This is an asynchronous method which provides a callback on completion.
+     * @param destinationNest
+     * @param callback
+     */
     move(destinationNest: any, callback: any): void;
 }

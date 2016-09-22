@@ -53,6 +53,11 @@ export class FileJob extends Job {
         return this.basename;
     }
 
+    /**
+     * Moves a file to a nest. This is an asynchronous method which provides a callback on completion.
+     * @param destinationNest
+     * @param callback
+     */
     move(destinationNest, callback) {
 
         let fj = this;

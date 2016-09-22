@@ -99,6 +99,18 @@ tunnel.run(<span class="hljs-function"><span class="hljs-keyword">function</span
     <span class="hljs-comment">// your application code</span>
 });
 </code></pre>
+				<p>If you need to run logic synchronously, you can do so with runSync:</p>
+				<pre><code class="lang-js">ftp_tunnel.runSync(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest, done</span>)</span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Do this first"</span>);
+    done();
+});
+
+ftp_tunnel.runSync(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest, done</span>)</span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Do this second"</span>);
+    done();
+});
+<span class="hljs-string">`</span>
+</code></pre>
 				<p>Similar to the run method, the fail method will allow you to handle job errors.</p>
 				<pre><code class="lang-js"><span class="hljs-comment">// When a job fails, execute the following</span>
 tunnel.fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest</span>)</span>{
