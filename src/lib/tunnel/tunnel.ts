@@ -105,7 +105,7 @@ export class Tunnel {
     }
 
     executeFail(job: Job, nest: Nest, reason: string) {
-        this.e.log(3, `Job "${job.name}" failed for reason "${reason}".`, this);
+        this.e.log(3, `Job "${job.getName()}" failed for reason "${reason}".`, this);
         this.run_fail(job, nest, reason);
     }
 

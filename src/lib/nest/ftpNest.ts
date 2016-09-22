@@ -65,7 +65,7 @@ export class FtpNest extends Nest {
                             ftp.e.log(3, `Download error: "${err}".`, ftp);
                             ftp_client.close();
                         } else {
-                            job.setDownloaded(true);
+                            job.setIsLocallyAvailable(true);
                             // Delete on success
                             ftp_client.rm(file.name, function (err) {
                                 if (err) {
