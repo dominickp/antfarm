@@ -53,14 +53,15 @@ tunnel.run(function(job, nest){
 If you need to run logic synchronously, you can do so with runSync:
 
 ```js
-ftp_tunnel.runSync(function(job, nest, done){
+tunnel.runSync(function(job, nest, done){
     console.log("Do this first");
-    done();
 });
 
-ftp_tunnel.runSync(function(job, nest, done){
+tunnel.runSync(function(job, nest, done){
     console.log("Do this second");
-    done();
+    job.move(my_ftp, function(){
+        done();
+    });
 });
 ````
 
@@ -87,7 +88,9 @@ tunnel.watch(desktop_nest);
 
 tunnel.run(function(job, nest){
     // Uploads files from desktop to the FTP
-    job.move(ftp_nest);
+    job.move(ftp_nest, function(){
+        // Moved
+    });
 });
 ```
 
