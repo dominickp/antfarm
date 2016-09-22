@@ -4,7 +4,8 @@ import { FtpFileJob } from "./../job/ftpFileJob";
 
 const   EasyFtp = require("easy-ftp"),
         tmp = require("tmp"),
-        fs = require("fs");
+        fs = require("fs"),
+        async = require("async");
 
 import {Environment} from "../environment/environment";
 
@@ -54,7 +55,8 @@ export class FtpNest extends Nest {
 
                 ftp.e.log(1, `FTP ls found ${list.length} files.`, ftp);
 
-                list.forEach(function (file, index) {
+
+                async.eachSeries(list, function (file, done) {
                     // Create temp file
                     ftp.e.log(1, `FTP found file "${file.name}".`, ftp);
                     let job = new FtpFileJob(ftp.e, file.name);
@@ -63,7 +65,7 @@ export class FtpNest extends Nest {
                     ftp_client.download(file.name, job.getPath(), function (err) {
                         if (err) {
                             ftp.e.log(3, `Download error: "${err}".`, ftp);
-                            ftp_client.close();
+                            done();
                         } else {
                             job.setIsLocallyAvailable(true);
                             // Delete on success
@@ -72,11 +74,21 @@ export class FtpNest extends Nest {
                                     ftp.e.log(3, `Remove error: "${err}".`, ftp);
                                 }
                                 ftp.arrive(job);
-                                ftp_client.close();
+                                done();
                             });
                         }
                     });
+                }, function (err) {
+                    if (err) {
+                        ftp.e.log(3, `Async series download error: "${err}".`, ftp);
+                    }
+                    ftp.e.log(0, `Completed ${list.length} synchronous download(s).`, ftp);
+                    ftp_client.close();
                 });
+                //
+                // list.forEach(function (file, index) {
+                //
+                // });
             });
         } catch (e) {
             ftp.e.log(3, e, ftp);
