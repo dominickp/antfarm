@@ -21,8 +21,6 @@ export class FtpNest extends Nest {
     constructor(e: Environment, host: string, port = 21, username = "", password = "", checkEvery = 10) {
         super(e, host);
 
-        this.client = new EasyFtp();
-
         this.config = {
             host: host,
             port: port,
@@ -36,19 +34,22 @@ export class FtpNest extends Nest {
 
     }
 
+    protected getClient() {
+        return new EasyFtp();
+    }
+
     load() {
 
         let ftp = this;
 
         try {
-            ftp.client.connect(ftp.config);
+            let ftp_client = ftp.getClient();
+            ftp_client.connect(ftp.config);
 
-            console.log("about to ls");
-
-            ftp.client.ls("/", function(err, list) {
+            ftp_client.ls("/", function(err, list) {
 
                 if (err) {
-                    ftp.client.close();
+                    ftp_client.close();
                 }
 
                 ftp.e.log(1, `FTP ls found ${list.length} files.`, ftp);
@@ -59,19 +60,19 @@ export class FtpNest extends Nest {
                     let job = new FtpFileJob(ftp.e, file.name);
 
                     // Download to the temp job location
-                    ftp.client.download(file.name, job.getPath(), function (err) {
+                    ftp_client.download(file.name, job.getPath(), function (err) {
                         if (err) {
                             ftp.e.log(3, `Download error: "${err}".`, ftp);
-                            ftp.client.close();
+                            ftp_client.close();
                         } else {
                             job.setDownloaded(true);
                             // Delete on success
-                            ftp.client.rm(file.name, function (err) {
+                            ftp_client.rm(file.name, function (err) {
                                 if (err) {
                                     ftp.e.log(3, `Remove error: "${err}".`, ftp);
                                 }
                                 ftp.arrive(job);
-                                ftp.client.close();
+                                ftp_client.close();
                             });
                         }
                     });
@@ -101,24 +102,26 @@ export class FtpNest extends Nest {
     }
 
     take(job: FileJob, callback: any) {
+        let ftp = this;
 
         try {
-            let ftp = this;
             let ftp_path = `/${job.getName()}`;
-            // ???
-            console.log(job.getPath(), ftp_path);
-            ftp.client.connect(ftp.config);
-            ftp.client.upload(job.getPath(), ftp_path, function (err) {
+
+            let ftp_client = ftp.getClient();
+
+            ftp_client.connect(ftp.config);
+
+            ftp_client.upload(job.getPath(), ftp_path, function (err) {
                 if (err) {
                     ftp.e.log(3, `Error uploading ${job.getName()} to FTP.`, ftp);
                 }
 
                 fs.unlinkSync(job.getPath());
-                ftp.client.close();
+                ftp_client.close();
                 callback();
             });
         } catch (e) {
-            console.log("Take upload error, " + e);
+            ftp.e.log(3, "Take upload error, " + e, ftp);
         }
     }
 

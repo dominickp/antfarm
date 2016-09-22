@@ -13,5 +13,5 @@ export declare class FileJob extends Job {
     getContentType(): string;
     getExtension(): string;
     getBasename(): string;
-    move(destinationNest: any): void;
+    move(destinationNest: any, callback: any): void;
 }

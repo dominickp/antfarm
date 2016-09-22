@@ -53,7 +53,7 @@ export class FileJob extends Job {
         return this.basename;
     }
 
-    move(destinationNest) {
+    move(destinationNest, callback) {
 
         let fj = this;
 
@@ -61,9 +61,15 @@ export class FileJob extends Job {
             destinationNest.take(fj, function(new_path){
                 fj.setPath(new_path);
                 fj.e.log(1, `Job "${fj.basename}" was moved to Nest "${destinationNest.name}".`, fj);
+                if (callback) {
+                    callback();
+                }
             });
         } catch (e) {
             fj.e.log(3, `Job "${fj.basename}" was not moved to Nest "${destinationNest.name}". ${e}`, fj);
+            if (callback) {
+                callback();
+            }
         }
     }
 }
