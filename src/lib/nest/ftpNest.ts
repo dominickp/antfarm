@@ -1,5 +1,6 @@
 import { Nest } from "./nest";
 import { FileJob } from "./../job/fileJob";
+import { FtpFileJob } from "./../job/ftpFileJob";
 
 const   EasyFtp = require("easy-ftp"),
         tmp = require("tmp"),
@@ -42,44 +43,41 @@ export class FtpNest extends Nest {
         try {
             ftp.client.connect(ftp.config);
 
-            ftp.client.ls("/", function(err, list){
+            ftp.client.ls("/", function(err, list) {
+
+                if (err) {
+                    ftp.client.close();
+                }
 
                 ftp.e.log(1, `FTP ls found ${list.length} files.`, ftp);
 
-                // Download and insert new Job
-                list.forEach(function(file, index){
+                list.forEach(function (file, index) {
                     // Create temp file
-                    tmp.file(function _tempFileCreated(err, temp_path, fd, cleanupCallback) {
-                        if (err) throw err;
+                    ftp.e.log(1, `FTP found file "${file.name}".`, ftp);
+                    let job = new FtpFileJob(ftp.e, file.name);
 
-                        ftp.e.log(1, `FTP is downloading file "${file.name}".`, ftp);
-
-                        ftp.client.download(file.name, temp_path, function(err) {
-                            if (err) {
-                                ftp.e.log(3, `Download error: "${err}".`, ftp);
-                            } else {
-                                let job = new FileJob(ftp.e, temp_path);
-                                job.setName(file.name);
-                                ftp.arrive(job);
-                                // Delete on success
-                                ftp.client.rm(file.name, function(err){
-                                    if (err) {
-                                        ftp.e.log(3, `Remove error: "${err}".`, ftp);
-                                    }
-                                });
-                            }
+                    // Download to the temp job location
+                    ftp.client.download(file.name, job.getPath(), function (err) {
+                        if (err) {
+                            ftp.e.log(3, `Download error: "${err}".`, ftp);
                             ftp.client.close();
-                        });
-
-                        cleanupCallback();
+                        } else {
+                            job.setDownloaded(true);
+                            // Delete on success
+                            ftp.client.rm(file.name, function (err) {
+                                if (err) {
+                                    ftp.e.log(3, `Remove error: "${err}".`, ftp);
+                                }
+                                ftp.arrive(job);
+                                ftp.client.close();
+                            });
+                        }
                     });
                 });
             });
-
         } catch (e) {
             ftp.e.log(3, e, ftp);
         }
-
     }
 
     watch() {
@@ -109,7 +107,7 @@ export class FtpNest extends Nest {
                 ftp.e.log(3, `Error uploading ${job.getName()} to FTP.`, ftp);
             }
 
-            fs.unlinkSync(job.path);
+            fs.unlinkSync(job.getPath());
         });
 
         return job.getName();

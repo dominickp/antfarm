@@ -6,13 +6,9 @@ const   mime = require("mime-types"),
         node_path = require("path");
 
 export class FileJob extends Job {
-
-    path: string;
-
+    protected path: string;
     protected basename: string;
-
     protected contentType: string;
-
     protected extension: string;
 
     constructor(e: Environment, path: string) {
