@@ -8,5 +8,5 @@ export declare class FolderNest extends Nest {
     load(): void;
     watch(): void;
     arrive(job: FileJob): void;
-    take(job: FileJob): string;
+    take(job: FileJob, callback: any): void;
 }

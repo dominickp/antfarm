@@ -12,7 +12,7 @@ export class FtpFileJob extends FileJob {
         // Create temp file
         let tmpobj = tmp.fileSync();
         super(e, tmpobj.name);
-        this.basename = basename;
+        this.setName(basename);
         this.downloaded = false;
     }
 

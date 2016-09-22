@@ -33,6 +33,10 @@ export class FileJob extends Job {
         return this.path;
     }
 
+    setPath(path: string) {
+        this.path = path;
+    }
+
     setName(filename: string) {
         this.basename = filename;
     }
@@ -51,12 +55,15 @@ export class FileJob extends Job {
 
     move(destinationNest) {
 
+        let fj = this;
+
         try {
-            let path = destinationNest.take(this);
-            this.path = path;
-            this.e.log(1, `Job "${this.basename}" was moved to Nest "${destinationNest.name}".`, this);
+            destinationNest.take(fj, function(new_path){
+                fj.setPath(new_path);
+                fj.e.log(1, `Job "${fj.basename}" was moved to Nest "${destinationNest.name}".`, fj);
+            });
         } catch (e) {
-            this.e.log(3, `Job "${this.basename}" was not moved to Nest "${destinationNest.name}". ${e}`, this);
+            fj.e.log(3, `Job "${fj.basename}" was not moved to Nest "${destinationNest.name}". ${e}`, fj);
         }
     }
 }

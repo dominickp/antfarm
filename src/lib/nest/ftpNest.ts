@@ -100,26 +100,26 @@ export class FtpNest extends Nest {
         super.arrive(job);
     }
 
-    take(job: FileJob) {
+    take(job: FileJob, callback: any) {
 
         try {
             let ftp = this;
+            let ftp_path = `/${job.getName()}`;
             // ???
-            console.log(job.getPath(), `/${job.getName()}`);
+            console.log(job.getPath(), ftp_path);
             ftp.client.connect(ftp.config);
-            ftp.client.upload(job.getPath(), `/${job.getName()}`, function (err) {
+            ftp.client.upload(job.getPath(), ftp_path, function (err) {
                 if (err) {
                     ftp.e.log(3, `Error uploading ${job.getName()} to FTP.`, ftp);
                 }
 
                 fs.unlinkSync(job.getPath());
                 ftp.client.close();
+                callback();
             });
         } catch (e) {
             console.log("Take upload error, " + e);
         }
-
-        return job.getName();
     }
 
 }
