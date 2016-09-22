@@ -19,12 +19,15 @@ export class Tunnel {
 
     protected e: Environment;
 
+    protected job_counter: number;
+
     constructor(e: Environment, theName: string) {
         this.e = e;
         this.nests = [];
         this.name = theName;
         this.run_list = [];
         this.run_sync_list = [];
+        this.job_counter = 0;
     }
 
     getName() {
@@ -51,7 +54,8 @@ export class Tunnel {
     }
 
     arrive(job: Job, nest: Nest) {
-        this.e.log(1, `Job "${job.getName()}" arrival in Nest "${nest.name}" triggered Tunnel "${this.name}" run.`, this);
+        this.job_counter++;
+        this.e.log(1, `Job ${this.job_counter} Nest "${nest.name}" triggered Tunnel "${this.name}" run.`, this);
         this.executeRun(job, nest);
         this.executeRunSync(job, nest);
     }

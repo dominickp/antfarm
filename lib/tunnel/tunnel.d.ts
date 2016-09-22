@@ -9,6 +9,7 @@ export declare class Tunnel {
     protected run_sync_list: any[];
     protected run_fail: any;
     protected e: Environment;
+    protected job_counter: number;
     constructor(e: Environment, theName: string);
     getName(): string;
     getNests(): Nest[];
