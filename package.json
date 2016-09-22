@@ -17,10 +17,11 @@
   "author": "peluso.dominick@gmail.com",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dominickp/pusher/issues"
+    "url": "https://github.com/dominickp/antfarm/issues"
   },
-  "homepage": "https://github.com/dominickp/pusher#readme",
+  "homepage": "https://github.com/dominickp/antfarm#readme",
   "dependencies": {
+    "async": "^2.0.1",
     "chalk": "^1.1.3",
     "easy-ftp": "^0.3.22",
     "file-extension": "^2.0.1",
