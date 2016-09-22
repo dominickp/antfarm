@@ -1,7 +1,7 @@
 {
   "name": "antfarm",
   "version": "1.1.0",
-  "description": "Example.",
+  "description": "File automation framework for ants.",
   "main": "index.js",
   "directories": {
     "example": "example"
