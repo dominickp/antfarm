@@ -3,10 +3,12 @@ import {Job} from "./job";
 
 const   mime = require("mime-types"),
         fileExtension = require("file-extension"),
-        node_path = require("path");
+        node_path = require("path"),
+        fs = require("fs");
 
 export class FileJob extends Job {
     protected path: string;
+    protected dirname: string;
     protected basename: string;
     protected contentType: string;
     protected extension: string;
@@ -17,16 +19,24 @@ export class FileJob extends Job {
         this.path = path;
 
         this.basename = node_path.basename(this.path);
+        this.dirname = node_path.dirname(this.path);
 
         // verify path leads to a valid, readable file, handle error if not
 
-        this.contentType = mime.lookup(this.path);
+        this.getStatistics();
+    }
 
-        this.extension = fileExtension(this.path);
+    protected getStatistics() {
+        this.contentType = mime.lookup(this.getPath());
+        this.extension = fileExtension(this.getPath());
     }
 
     getName() {
         return this.basename;
+    }
+
+    getDirname() {
+        return this.dirname;
     }
 
     getPath() {
@@ -76,5 +86,15 @@ export class FileJob extends Job {
                 callback();
             }
         }
+    }
+
+    /**
+     * Renames the local job file to the current name.
+     */
+    renameLocal() {
+        let new_path = this.getDirname() + node_path.sep + this.getName();
+        fs.renameSync(this.getPath(), new_path);
+        this.setPath(new_path);
+        this.getStatistics();
     }
 }
