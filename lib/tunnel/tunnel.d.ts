@@ -15,7 +15,6 @@ export declare class Tunnel {
         run: any;
         pattern: any;
         orphan_minutes: any;
-        matching_limit: any;
     };
     constructor(e: Environment, theName: string);
     getName(): string;
@@ -41,11 +40,10 @@ export declare class Tunnel {
     /**
      * Interface for matching two or more files together based on an array of glob filename patterns.
      * @param pattern
-     * @param matchingLimit
      * @param orphanMinutes
      * @param callback
      */
-    match(pattern: string[] | string, matchingLimit: number, orphanMinutes: number, callback: any): void;
+    match(pattern: string[] | string, orphanMinutes: number, callback: any): void;
     /**
      * Match execution
      * @param job

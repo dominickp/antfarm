@@ -26,8 +26,7 @@ export class Tunnel {
         queue: [],
         run: null,
         pattern: null,
-        orphan_minutes: null,
-        matching_limit: null
+        orphan_minutes: null
     };
 
     constructor(e: Environment, theName: string) {
@@ -126,14 +125,12 @@ export class Tunnel {
     /**
      * Interface for matching two or more files together based on an array of glob filename patterns.
      * @param pattern
-     * @param matchingLimit
      * @param orphanMinutes
      * @param callback
      */
-    match(pattern: string[]|string, matchingLimit: number, orphanMinutes: number, callback: any) {
+    match(pattern: string[]|string, orphanMinutes: number, callback: any) {
         this.match_obj.pattern = pattern;
         this.match_obj.orphan_minutes = orphanMinutes;
-        this.match_obj.matching_limit = matchingLimit;
         this.match_obj.run = callback;
     }
 
@@ -154,8 +151,6 @@ export class Tunnel {
         let job_base, qjob_base;
 
         tn.e.log(0, "Executing matching process.", tn);
-
-        let stop = 2;
 
         tn.match_obj.pattern.forEach(function(pattern, i) {
             job_pattern_match_result = mm.isMatch(job.getName(), pattern);
@@ -203,7 +198,6 @@ export class Tunnel {
                 tn.e.log(0, `Orphan timeout executed on ${tn.match_obj.queue.length} jobs.`, tn);
                 tn.match_obj.queue = [];
             }
-        // }, tn.match_obj.orphan_minutes * 60000);
-        }, tn.match_obj.orphan_minutes);
+        }, tn.match_obj.orphan_minutes * 60000);
     }
 }
