@@ -63,7 +63,7 @@ tunnel.runSync(function(job, nest, done){
         done();
     });
 });
-````
+```
 
 Similar to the run method, the fail method will allow you to handle job errors.
 ```js
