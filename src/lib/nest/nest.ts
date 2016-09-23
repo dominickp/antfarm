@@ -14,6 +14,10 @@ export abstract class Nest {
         this.name = name;
     }
 
+    getName() {
+        return this.name;
+    }
+
     register(tunnel: Tunnel) {
         this.tunnel = tunnel;
     }
