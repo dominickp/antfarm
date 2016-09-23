@@ -4,7 +4,7 @@ import { Job } from "../job/job";
 import { Environment } from "../environment/environment";
 
 const   async = require("async"),
-        minimatch = require("minimatch");
+        mm = require("micromatch");
 
 export class Tunnel {
 
@@ -26,7 +26,8 @@ export class Tunnel {
         queue: [],
         run: null,
         pattern: null,
-        orphan_minutes: null
+        orphan_minutes: null,
+        matching_limit: null
     };
 
     constructor(e: Environment, theName: string) {
@@ -125,12 +126,14 @@ export class Tunnel {
     /**
      * Interface for matching two or more files together based on an array of glob filename patterns.
      * @param pattern
+     * @param matchingLimit
      * @param orphanMinutes
      * @param callback
      */
-    match(pattern: string[]|string, orphanMinutes: number, callback: any) {
+    match(pattern: string[]|string, matchingLimit: number, orphanMinutes: number, callback: any) {
         this.match_obj.pattern = pattern;
         this.match_obj.orphan_minutes = orphanMinutes;
+        this.match_obj.matching_limit = matchingLimit;
         this.match_obj.run = callback;
     }
 
@@ -145,34 +148,62 @@ export class Tunnel {
 
         let tn = this;
 
-        let match_result;
+        let qjob_pattern_match_result, job_pattern_match_result;
         let matched_jobs = [];
+
+        let job_base, qjob_base;
 
         tn.e.log(0, "Executing matching process.", tn);
 
-        tn.match_obj.pattern.forEach(function(pattern, i){
+        let stop = 2;
 
-            tn.match_obj.queue.forEach(function(qJob){
-                match_result = minimatch(qJob.getName(), pattern);
-                if (match_result === true) {
-                    matched_jobs.push(job);
+        tn.match_obj.pattern.forEach(function(pattern, i) {
+            job_pattern_match_result = mm.isMatch(job.getName(), pattern);
+            if (job_pattern_match_result === true) {
+                job_base = job.getName().substr(0, job.getName().indexOf(pattern.replace("*", "")));
+            }
+        });
+
+
+        tn.match_obj.queue.slice().reverse().forEach(function(qJob, qIndex, qObject){
+            tn.match_obj.pattern.forEach(function(pattern) {
+                qjob_pattern_match_result = mm.isMatch(qJob.getName(), pattern);
+                if (qjob_pattern_match_result === true) {
+                    qjob_base = qJob.getName().substr(0, qJob.getName().indexOf(pattern.replace("*", "")));
+
+                    if (job_base === qjob_base) {
+                        // Pull out qjob from queue
+                        tn.match_obj.queue.splice(qObject.length - 1 - qIndex, 1);
+                        matched_jobs.push(qJob);
+                        return;
+                    }
                 }
-                console.log(match_result);
             });
-
         });
 
         // if found
         if (matched_jobs.length > 0) {
+            matched_jobs.push(job);
+            tn.e.log(0, `Matched ${matched_jobs.length} jobs.`, tn);
             tn.match_obj.run(matched_jobs);
+        } else {
+            // If not found, add this job to the queue
+            tn.match_obj.queue.push(job);
         }
 
-        // If not found, add this job to the queue
-        tn.match_obj.queue.push(job);
-
         // Need to set a timeout for the job to fail
+        setTimeout(function() {
+            if (tn.match_obj.queue.length !== 0) {
+                // Fail all jobs in the queue
+                tn.match_obj.queue.forEach(function(fJob){
+                    fJob.fail("Orphan timeout.");
+                });
 
+                // Wipe the queue
+                tn.e.log(0, `Orphan timeout executed on ${tn.match_obj.queue.length} jobs.`, tn);
+                tn.match_obj.queue = [];
+            }
+        // }, tn.match_obj.orphan_minutes * 60000);
+        }, tn.match_obj.orphan_minutes);
     }
-
-
 }
