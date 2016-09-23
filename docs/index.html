@@ -100,14 +100,15 @@ tunnel.run(<span class="hljs-function"><span class="hljs-keyword">function</span
 });
 </code></pre>
 				<p>If you need to run logic synchronously, you can do so with runSync:</p>
-				<pre><code class="lang-js">ftp_tunnel.runSync(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest, done</span>)</span>{
+				<pre><code class="lang-js">tunnel.runSync(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest, done</span>)</span>{
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Do this first"</span>);
-    done();
 });
 
-ftp_tunnel.runSync(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest, done</span>)</span>{
+tunnel.runSync(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest, done</span>)</span>{
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Do this second"</span>);
-    done();
+    job.move(my_ftp, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+        done();
+    });
 });
 <span class="hljs-string">`</span>
 </code></pre>
@@ -127,7 +128,9 @@ tunnel.fail(<span class="hljs-function"><span class="hljs-keyword">function</spa
 
 tunnel.run(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest</span>)</span>{
     <span class="hljs-comment">// Uploads files from desktop to the FTP</span>
-    job.move(ftp_nest);
+    job.move(ftp_nest, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+        <span class="hljs-comment">// Moved</span>
+    });
 });
 </code></pre>
 				<h3 id="jobs">Jobs</h3>
@@ -194,6 +197,31 @@ tunnel.run(<span class="hljs-function"><span class="hljs-keyword">function</span
 <span class="hljs-comment">// When a job fails, execute the following</span>
 tunnel.fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest</span>)</span>{
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Job "</span> + job.getName() + <span class="hljs-string">" failed!"</span>);
+});
+</code></pre>
+				<h3 id="matching-files-together">Matching files together</h3>
+				<pre><code class="lang-js"><span class="hljs-keyword">var</span> Antfarm = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../lib/antfarm'</span>),
+    af = <span class="hljs-keyword">new</span> Antfarm({
+        <span class="hljs-attr">log_dir</span>: <span class="hljs-string">"/Users/dominickpeluso/Desktop"</span>
+    });
+
+<span class="hljs-keyword">var</span> hotfolder = af.createFolderNest(<span class="hljs-string">"/Users/dominickpeluso/Desktop/Antfarm Example/FTP Out/"</span>);
+<span class="hljs-keyword">var</span> tunnel = af.createTunnel(<span class="hljs-string">"Matching workflow"</span>);
+
+tunnel.watch(hotfolder);
+
+<span class="hljs-comment">// Match .pdf with .xml with a 1 minute timeout</span>
+tunnel.match([<span class="hljs-string">"*.xml"</span>, <span class="hljs-string">"*_art.pdf"</span>], <span class="hljs-number">1</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">jobs</span>)</span>{
+
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"MATCHES FOUND "</span> + jobs[<span class="hljs-number">0</span>].getName(), jobs[<span class="hljs-number">1</span>].getName());
+    <span class="hljs-comment">// =&gt; MATCHES FOUND hello copy 5.xml hello copy 5_art.pdf</span>
+
+});
+
+<span class="hljs-comment">// Orphaned files fail out</span>
+tunnel.fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest</span>)</span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"do fail"</span>, job.getName());
+    <span class="hljs-comment">// =&gt; do fail sqljdbc.jar</span>
 });
 </code></pre>
 			</div>

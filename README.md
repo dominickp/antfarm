@@ -169,3 +169,30 @@ tunnel.fail(function(job, nest){
     console.log("Job " + job.getName() + " failed!");
 });
 ```
+
+### Matching files together
+```js
+var Antfarm = require('../lib/antfarm'),
+    af = new Antfarm({
+        log_dir: "/Users/dominickpeluso/Desktop"
+    });
+
+var hotfolder = af.createFolderNest("/Users/dominickpeluso/Desktop/Antfarm Example/FTP Out/");
+var tunnel = af.createTunnel("Matching workflow");
+
+tunnel.watch(hotfolder);
+
+// Match .pdf with .xml with a 1 minute timeout
+tunnel.match(["*.xml", "*_art.pdf"], 1, function(jobs){
+
+    console.log("MATCHES FOUND " + jobs[0].getName(), jobs[1].getName());
+    // => MATCHES FOUND hello copy 5.xml hello copy 5_art.pdf
+
+});
+
+// Orphaned files fail out
+tunnel.fail(function(job, nest){
+    console.log("do fail", job.getName());
+    // => do fail sqljdbc.jar
+});
+```
