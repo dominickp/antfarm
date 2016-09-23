@@ -141,63 +141,65 @@ export class Tunnel {
      */
     protected executeMatch(job: Job, nest: Nest) {
 
-        // Try to find match in queue
+        if (this.match_obj.run) {
+            // Try to find match in queue
 
-        let tn = this;
+            let tn = this;
 
-        let qjob_pattern_match_result, job_pattern_match_result;
-        let matched_jobs = [];
+            let qjob_pattern_match_result, job_pattern_match_result;
+            let matched_jobs = [];
 
-        let job_base, qjob_base;
+            let job_base, qjob_base;
 
-        tn.e.log(0, "Executing matching process.", tn);
+            tn.e.log(0, "Executing matching process.", tn);
 
-        tn.match_obj.pattern.forEach(function(pattern, i) {
-            job_pattern_match_result = mm.isMatch(job.getName(), pattern);
-            if (job_pattern_match_result === true) {
-                job_base = job.getName().substr(0, job.getName().indexOf(pattern.replace("*", "")));
-            }
-        });
-
-
-        tn.match_obj.queue.slice().reverse().forEach(function(qJob, qIndex, qObject){
-            tn.match_obj.pattern.forEach(function(pattern) {
-                qjob_pattern_match_result = mm.isMatch(qJob.getName(), pattern);
-                if (qjob_pattern_match_result === true) {
-                    qjob_base = qJob.getName().substr(0, qJob.getName().indexOf(pattern.replace("*", "")));
-
-                    if (job_base === qjob_base) {
-                        // Pull out qjob from queue
-                        tn.match_obj.queue.splice(qObject.length - 1 - qIndex, 1);
-                        matched_jobs.push(qJob);
-                        return;
-                    }
+            tn.match_obj.pattern.forEach(function (pattern, i) {
+                job_pattern_match_result = mm.isMatch(job.getName(), pattern);
+                if (job_pattern_match_result === true) {
+                    job_base = job.getName().substr(0, job.getName().indexOf(pattern.replace("*", "")));
                 }
             });
-        });
 
-        // if found
-        if (matched_jobs.length > 0) {
-            matched_jobs.push(job);
-            tn.e.log(0, `Matched ${matched_jobs.length} jobs.`, tn);
-            tn.match_obj.run(matched_jobs);
-        } else {
-            // If not found, add this job to the queue
-            tn.match_obj.queue.push(job);
-        }
 
-        // Need to set a timeout for the job to fail
-        setTimeout(function() {
-            if (tn.match_obj.queue.length !== 0) {
-                // Fail all jobs in the queue
-                tn.match_obj.queue.forEach(function(fJob){
-                    fJob.fail("Orphan timeout.");
+            tn.match_obj.queue.slice().reverse().forEach(function (qJob, qIndex, qObject) {
+                tn.match_obj.pattern.forEach(function (pattern) {
+                    qjob_pattern_match_result = mm.isMatch(qJob.getName(), pattern);
+                    if (qjob_pattern_match_result === true) {
+                        qjob_base = qJob.getName().substr(0, qJob.getName().indexOf(pattern.replace("*", "")));
+
+                        if (job_base === qjob_base) {
+                            // Pull out qjob from queue
+                            tn.match_obj.queue.splice(qObject.length - 1 - qIndex, 1);
+                            matched_jobs.push(qJob);
+                            return;
+                        }
+                    }
                 });
+            });
 
-                // Wipe the queue
-                tn.e.log(0, `Orphan timeout executed on ${tn.match_obj.queue.length} jobs.`, tn);
-                tn.match_obj.queue = [];
+            // if found
+            if (matched_jobs.length > 0) {
+                matched_jobs.push(job);
+                tn.e.log(0, `Matched ${matched_jobs.length} jobs.`, tn);
+                tn.match_obj.run(matched_jobs);
+            } else {
+                // If not found, add this job to the queue
+                tn.match_obj.queue.push(job);
             }
-        }, tn.match_obj.orphan_minutes * 60000);
+
+            // Need to set a timeout for the job to fail
+            setTimeout(function () {
+                if (tn.match_obj.queue.length !== 0) {
+                    // Fail all jobs in the queue
+                    tn.match_obj.queue.forEach(function (fJob) {
+                        fJob.fail("Orphan timeout.");
+                    });
+
+                    // Wipe the queue
+                    tn.e.log(0, `Orphan timeout executed on ${tn.match_obj.queue.length} jobs.`, tn);
+                    tn.match_obj.queue = [];
+                }
+            }, tn.match_obj.orphan_minutes * 60000);
+        }
     }
 }
