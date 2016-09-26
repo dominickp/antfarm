@@ -23,27 +23,26 @@ export class FolderJob extends Job {
         this.dirname = node_path.dirname(this.path);
 
         // verify path leads to a valid, readable file, handle error if not
-
-        this.createFiles();
     }
 
-    protected createFiles() {
+    /**
+     * Creates file objects for folder contents. Async operation returns a callback on completion.
+     * @param callback
+     */
+    public createFiles(callback: any) {
         let fl = this;
         let folder_path = this.getPath();
         fs.readdir(folder_path, function(err, items) {
             items = items.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
 
             items.forEach(function(filename){
-
                 let filepath = folder_path + node_path.sep + filename;
-
                 let file = new File(fl.e, filepath);
                 fl.addFile(file);
             });
-        });
-    }
 
-    protected getStatistics() {
+            callback();
+        });
     }
 
     getPath() {
@@ -52,6 +51,7 @@ export class FolderJob extends Job {
 
     addFile(file: File) {
         this.files.push(file);
+        this.e.log(0, `Adding file "${file.getName()}" to job.`, this);
     }
 
     getFile(index: number) {
@@ -67,7 +67,7 @@ export class FolderJob extends Job {
      * @returns {number}
      */
     count() {
-        return this.getFiles().length;
+        return this.files.length;
     }
 
     getExtension() {

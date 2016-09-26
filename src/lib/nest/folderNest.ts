@@ -44,13 +44,17 @@ export class FolderNest extends Nest {
 
             if (path_stats.isDirectory()) {
                 job = new FolderJob(fl.e, path);
+                job.createFiles(function(){
+                    // Trigger arrived
+                    fl.arrive(job);
+                });
             } else if (path_stats.isFile()) {
                 job = new FileJob(fl.e, path);
+                // Trigger arrived
+                fl.arrive(job);
             } else {
                 throw "Path is not a file or folder!";
             }
-            // Trigger arrived
-            fl.arrive(job);
         } catch (e) {
             // It isn't accessible
             fl.e.log(0, "Job creation ignored because file did not exist.", fl);

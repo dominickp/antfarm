@@ -7,8 +7,11 @@ export declare class FolderJob extends Job {
     protected basename: string;
     protected files: File[];
     constructor(e: Environment, path: string);
-    protected createFiles(): void;
-    protected getStatistics(): void;
+    /**
+     * Creates file objects for folder contents. Async operation returns a callback on completion.
+     * @param callback
+     */
+    createFiles(callback: any): void;
     getPath(): string;
     addFile(file: File): void;
     getFile(index: number): File;
