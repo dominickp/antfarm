@@ -52,8 +52,12 @@ class Antfarm {
         let loaded_counter = 0;
 
         for (let workflow in workflows) {
-            new workflows[workflow](af);
-            loaded_counter++;
+            try {
+                new workflows[workflow](af);
+                loaded_counter++;
+            } catch (e) {
+                af.e.log(3, `Couldn't load workflow module "${workflow}". ${e}`, af);
+            }
         }
 
         af.e.log(1, `Loaded ${loaded_counter} workflows.`, af);
