@@ -46,6 +46,7 @@ class Antfarm {
         let af = this;
         let workflows = require("require-dir-all")(directory, {
             _parentsToSkip: 1,
+            indexAsParent: true,
             throwNoDir: true
         });
         let loaded_counter = 0;
