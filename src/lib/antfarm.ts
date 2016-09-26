@@ -36,6 +36,27 @@ class Antfarm {
     createFtpNest(host: string, port: number, username: string, password: string, checkEvery: number) {
         return new FtpNest(this.e, host, port, username, password, checkEvery);
     }
+
+    /**
+     * Load an entire directory of workflow modules.
+     * @param directory
+     */
+
+    loadDir(directory: string) {
+        let af = this;
+        let workflows = require("require-dir-all")(directory, {
+            _parentsToSkip: 1,
+            throwNoDir: true
+        });
+        let loaded_counter = 0;
+
+        for (let workflow in workflows) {
+            new workflows[workflow](af);
+            loaded_counter++;
+        }
+
+        af.e.log(1, `Loaded ${loaded_counter} workflows.`, af);
+    }
 }
 
 module.exports = Antfarm;

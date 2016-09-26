@@ -103,6 +103,30 @@ Jobs are provided within tunnel events and have lots of helpful methods.
     }
 ```
 
+### Loading workflow modules
+You can put your workflows in separate node modules in another directory and have Antfarm load them all.
+
+```js
+// Import Antfarm
+var Antfarm = require('../lib/antfarm'),
+    af = new Antfarm({});
+
+// Load your workflow directory
+af.loadDir("./workflows");
+```
+
+Your workflow files should export a function that takes an Antfarm object in its constructor, like so:
+```js
+// ./workflows/workflow_a.js
+var WorkflowA = function(antfarm){
+    var wf = this;
+    wf.af = antfarm;
+    wf.tunnel = wf.af.createTunnel("Workflow A");
+    // etc...
+};
+module.exports = WorkflowA;
+```
+
 ## Examples
 
 ### FTP to folder

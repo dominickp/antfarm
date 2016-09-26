@@ -110,7 +110,6 @@ tunnel.runSync(<span class="hljs-function"><span class="hljs-keyword">function</
         done();
     });
 });
-<span class="hljs-string">`</span>
 </code></pre>
 				<p>Similar to the run method, the fail method will allow you to handle job errors.</p>
 				<pre><code class="lang-js"><span class="hljs-comment">// When a job fails, execute the following</span>
@@ -138,6 +137,25 @@ tunnel.run(<span class="hljs-function"><span class="hljs-keyword">function</span
 				<pre><code class="lang-js">    <span class="hljs-keyword">if</span>(job.getExtension() == <span class="hljs-string">"pdf"</span>){
         <span class="hljs-comment">// Do stuff to PDFs</span>
     }
+</code></pre>
+				<h3 id="loading-workflow-modules">Loading workflow modules</h3>
+				<p>You can put your workflows in separate node modules in another directory and have Antfarm load them all.</p>
+				<pre><code class="lang-js"><span class="hljs-comment">// Import Antfarm</span>
+<span class="hljs-keyword">var</span> Antfarm = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../lib/antfarm'</span>),
+    af = <span class="hljs-keyword">new</span> Antfarm({});
+
+<span class="hljs-comment">// Load your workflow directory</span>
+af.loadDir(<span class="hljs-string">"./workflows"</span>);
+</code></pre>
+				<p>Your workflow files should export a function that takes an Antfarm object in its constructor, like so:</p>
+				<pre><code class="lang-js"><span class="hljs-comment">// ./workflows/workflow_a.js</span>
+<span class="hljs-keyword">var</span> WorkflowA = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">antfarm</span>)</span>{
+    <span class="hljs-keyword">var</span> wf = <span class="hljs-keyword">this</span>;
+    wf.af = antfarm;
+    wf.tunnel = wf.af.createTunnel(<span class="hljs-string">"Workflow A"</span>);
+    <span class="hljs-comment">// etc...</span>
+};
+<span class="hljs-built_in">module</span>.exports = WorkflowA;
 </code></pre>
 				<h2 id="examples">Examples</h2>
 				<h3 id="ftp-to-folder">FTP to folder</h3>
