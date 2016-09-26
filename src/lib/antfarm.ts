@@ -20,7 +20,7 @@ class Antfarm {
 
     protected e: Environment;
 
-    constructor(options: Options) {
+    constructor(options: AntfarmOptions) {
         this.e = new Environment(options);
     }
 
