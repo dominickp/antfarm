@@ -19,11 +19,17 @@ export class FolderJob extends Job {
 
         this.files = [];
 
-        this.basename = node_path.basename(this.path);
-        this.dirname = node_path.dirname(this.path);
+
+        this.getStatistics();
 
         // verify path leads to a valid, readable file, handle error if not
     }
+
+    protected getStatistics() {
+        this.basename = node_path.basename(this.getPath());
+        this.dirname = node_path.dirname(this.getPath());
+    }
+
 
     /**
      * Creates file objects for folder contents. Async operation returns a callback on completion.
@@ -45,8 +51,26 @@ export class FolderJob extends Job {
         });
     }
 
+    getName() {
+        return this.getBasename();
+    }
+
+    getBasename() {
+        return this.basename;
+    }
+
+    getDirname() {
+        return this.dirname;
+    }
+
+
     getPath() {
         return this.path;
+    }
+
+    setPath(path: string) {
+        this.path = path;
+        this.getStatistics();
     }
 
     addFile(file: File) {
@@ -80,6 +104,42 @@ export class FolderJob extends Job {
 
     isFile() {
         return false;
+    }
+
+
+    /**
+     * Moves a folder to a nest. This is an asynchronous method which provides a callback on completion.
+     * @param destinationNest
+     * @param callback
+     */
+    move(destinationNest, callback) {
+        let fj = this;
+        try {
+            destinationNest.take(fj, function(new_path){
+                fj.setPath(new_path);
+                fj.e.log(1, `Job "${fj.getName()}" was moved to Nest "${destinationNest.name}".`, fj);
+                if (callback) {
+                    callback();
+                }
+            });
+        } catch (e) {
+            fj.e.log(3, `Job "${fj.getName()}" was not moved to Nest "${destinationNest.name}". ${e}`, fj);
+            if (callback) {
+                callback();
+            }
+        }
+    }
+
+    /**
+     * Renames the job folder, leaving its content's names alone.
+     * @param newName
+     */
+    rename(newName: string) {
+        let fj = this;
+        let new_path = fj.getDirname() + node_path.sep + newName;
+        fs.renameSync(fj.getPath(), new_path);
+
+        fj.setPath(new_path);
     }
 
 }
