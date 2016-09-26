@@ -1,5 +1,5 @@
 export declare class Logger {
-    protected options: Options;
+    protected options: AntfarmOptions;
     protected logger: any;
     protected log_dir: string;
     protected log_types: {
@@ -8,7 +8,7 @@ export declare class Logger {
         2: string;
         3: string;
     };
-    constructor(options?: Options);
+    constructor(options?: AntfarmOptions);
     createLogger(): void;
     log(type: number, message: string, instance?: any): void;
 }

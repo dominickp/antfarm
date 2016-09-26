@@ -1,66 +1,61 @@
 import {Environment} from "../environment/environment";
 import {Job} from "./job";
+import {File} from "./file";
 
-const   mime = require("mime-types"),
-        fileExtension = require("file-extension"),
-        node_path = require("path"),
+const   node_path = require("path"),
         fs = require("fs");
 
 export class FileJob extends Job {
-    protected path: string;
-    protected dirname: string;
-    protected basename: string;
-    protected contentType: string;
-    protected extension: string;
+
+    protected file: File;
 
     constructor(e: Environment, path: string) {
         super(e, path);
-
-        this.path = path;
-
-        this.basename = node_path.basename(this.path);
-        this.dirname = node_path.dirname(this.path);
-
-        // verify path leads to a valid, readable file, handle error if not
-
-        this.getStatistics();
+        this.file = new File(e, path);
     }
 
-    protected getStatistics() {
-        this.contentType = mime.lookup(this.getPath());
-        this.extension = fileExtension(this.getPath());
+    getFile() {
+        return this.file;
     }
 
     getName() {
-        return this.basename;
+        return this.file.getName();
     }
 
     getDirname() {
-        return this.dirname;
+        return this.file.getDirname();
     }
 
     getPath() {
-        return this.path;
+        return this.file.getPath();
     }
 
     setPath(path: string) {
-        this.path = path;
+        this.file.setPath(path);
     }
 
     setName(filename: string) {
-        this.basename = filename;
+        this.file.setName(filename);
     }
 
     getContentType() {
-        return this.contentType;
+        return this.file.getContentType();
     }
 
     getExtension() {
-        return this.extension;
+        return this.file.getExtension();
     }
 
     getBasename() {
-        return this.basename;
+        return this.file.getBasename();
+    }
+
+    isFolder() {
+        return false;
+    }
+
+    isFile() {
+        return true;
     }
 
     /**
@@ -75,26 +70,23 @@ export class FileJob extends Job {
         try {
             destinationNest.take(fj, function(new_path){
                 fj.setPath(new_path);
-                fj.e.log(1, `Job "${fj.basename}" was moved to Nest "${destinationNest.name}".`, fj);
+                fj.e.log(1, `Job "${fj.getBasename()}" was moved to Nest "${destinationNest.name}".`, fj);
                 if (callback) {
                     callback();
                 }
             });
         } catch (e) {
-            fj.e.log(3, `Job "${fj.basename}" was not moved to Nest "${destinationNest.name}". ${e}`, fj);
+            fj.e.log(3, `Job "${fj.getBasename()}" was not moved to Nest "${destinationNest.name}". ${e}`, fj);
             if (callback) {
                 callback();
             }
         }
     }
 
-    /**
-     * Renames the local job file to the current name.
-     */
-    renameLocal() {
-        let new_path = this.getDirname() + node_path.sep + this.getName();
-        fs.renameSync(this.getPath(), new_path);
-        this.setPath(new_path);
-        this.getStatistics();
+    rename(newName: string) {
+        let file = this.getFile();
+        file.setName(newName);
+        file.renameLocal();
     }
+
 }

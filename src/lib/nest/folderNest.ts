@@ -1,6 +1,7 @@
 import {Environment} from "../environment/environment";
 import { Nest } from "./nest";
 import { FileJob } from "./../job/fileJob";
+import { FolderJob } from "./../job/folderJob";
 
 const   node_watch = require("node-watch"),
         fs = require("fs"),
@@ -30,6 +31,34 @@ export class FolderNest extends Nest {
         }
     }
 
+    protected createJob(path: string) {
+
+        let fl = this;
+        let job;
+        // Verify file still exists, node-watch fires on any change, even delete
+        try {
+            fs.accessSync(path, fs.F_OK);
+
+            // Check job is folder
+            let path_stats = fs.lstatSync(path);
+
+            if (path_stats.isDirectory()) {
+                job = new FolderJob(fl.e, path);
+            } else if (path_stats.isFile()) {
+                job = new FileJob(fl.e, path);
+            } else {
+                throw "Path is not a file or folder!";
+            }
+            // Trigger arrived
+            fl.arrive(job);
+        } catch (e) {
+            // It isn't accessible
+            fl.e.log(0, "Job creation ignored because file did not exist.", fl);
+        }
+
+        return job;
+    }
+
     load() {
 
         let fl = this;
@@ -37,10 +66,14 @@ export class FolderNest extends Nest {
             items = items.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
 
             items.forEach(function(filename){
-                // Make a new Job and trigger arrived
-                let job = new FileJob(fl.e, `${fl.path}/${filename}`);
-                // job.setPath(fl.path + item);
-                fl.arrive(job);
+
+                let filepath = fl.path + path_mod.sep + filename;
+
+                let job = fl.createJob(filepath);
+
+                if (job) {
+                    fl.arrive(job);
+                }
             });
         });
     }
@@ -49,17 +82,17 @@ export class FolderNest extends Nest {
 
         let fl = this;
 
-        node_watch(fl.path, function (filepath) {
+        let watch_options = {
+            recursive: false
+        };
+
+        node_watch(fl.path, watch_options, function (filepath) {
 
             // Verify file still exists, node-watch fires on any change, even delete
-            try {
-                fs.accessSync(filepath, fs.F_OK);
-                // Make a new Job and trigger arrived
-                let job = new FileJob(fl.e, filepath);
+            let job = fl.createJob(filepath);
+
+            if (job) {
                 fl.arrive(job);
-            } catch (e) {
-                // It isn't accessible
-                fl.e.log(0, "Nest watch event was ignored because file did not exist.", fl);
             }
 
         });

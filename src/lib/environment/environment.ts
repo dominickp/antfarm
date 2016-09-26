@@ -2,11 +2,11 @@ import {Logger} from "./logger";
 
 export class Environment {
 
-    protected options: Options;
+    protected options: AntfarmOptions;
 
     protected logger: Logger;
 
-    constructor(options?: Options) {
+    constructor(options?: AntfarmOptions) {
 
         this.options = options;
 

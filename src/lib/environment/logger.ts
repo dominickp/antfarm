@@ -3,7 +3,7 @@ const   fs = require("fs"),
 
 export class Logger {
 
-    protected options: Options;
+    protected options: AntfarmOptions;
 
     protected logger;
 
@@ -16,7 +16,7 @@ export class Logger {
         3: "error"
     };
 
-    constructor(options?: Options) {
+    constructor(options?: AntfarmOptions) {
         winston.emitErrs = true;
 
         this.options = options;
