@@ -73,11 +73,7 @@ export class FolderNest extends Nest {
 
                 let filepath = fl.path + path_mod.sep + filename;
 
-                let job = fl.createJob(filepath);
-
-                if (job) {
-                    fl.arrive(job);
-                }
+                fl.createJob(filepath); // Arrives as well
             });
         });
     }
@@ -93,12 +89,7 @@ export class FolderNest extends Nest {
         node_watch(fl.path, watch_options, function (filepath) {
 
             // Verify file still exists, node-watch fires on any change, even delete
-            let job = fl.createJob(filepath);
-
-            if (job) {
-                fl.arrive(job);
-            }
-
+            let job = fl.createJob(filepath); // Arrives as well
         });
     }
 
