@@ -108,7 +108,7 @@ Jobs are provided within tunnel events and have lots of helpful methods.
 ```
 
 #### Transferring
-Jobs can be easily transferred to other tunnels with the transfer method.
+Jobs can be easily transferred to other tunnels with the transfer method. 
 
 ```js
 tunnel1.run(function(job, nest){
