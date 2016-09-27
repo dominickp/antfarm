@@ -8,4 +8,4 @@ node_js:
   - "0.6"
 before_script:
   - npm install -g gulp
-script: gulp build-test
+script: gulp travis
