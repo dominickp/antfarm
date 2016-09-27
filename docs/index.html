@@ -66,8 +66,12 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<h1 id="antfarm">antfarm</h1>
-				<p>Antfarm is a simple automation framework that aims to make file automation robust and scalable.</p>
-				<p>🐜🐜🐜🐜🐜</p>
+				<p>Antfarm is a simple automation framework that aims to make file automation robust and scalable. 🐜</p>
+				<p><a href="https://travis-ci.org/dominickp/antfarm"><img src="https://travis-ci.org/dominickp/antfarm.svg?branch=master" alt="Build Status"></a>
+					<a href="https://coveralls.io/github/dominickp/antfarm?branch=master"><img src="https://coveralls.io/repos/github/dominickp/antfarm/badge.svg?branch=master" alt="Coverage Status"></a>
+					<a href="https://badge.fury.io/js/antfarm"><img src="https://badge.fury.io/js/antfarm.svg" alt="npm version"></a>
+					<a href="https://david-dm.org/dominickp/antfarm"><img src="https://david-dm.org/dominickp/antfarm.svg" alt="Dependancy Status"></a>
+				<a href="https://gitter.im/open-automation/Lobby"><img src="https://badges.gitter.im/dominickp/antfarm.svg" alt="Gitter"></a></p>
 				<h2 id="usage">Usage</h2>
 				<pre><code class="lang-sh">$ npm install antfarm
 </code></pre>
@@ -137,6 +141,15 @@ tunnel.run(<span class="hljs-function"><span class="hljs-keyword">function</span
 				<pre><code class="lang-js">    <span class="hljs-keyword">if</span>(job.getExtension() == <span class="hljs-string">"pdf"</span>){
         <span class="hljs-comment">// Do stuff to PDFs</span>
     }
+</code></pre>
+				<h4 id="transferring">Transferring</h4>
+				<p>Jobs can be easily transferred to other tunnels with the transfer method.</p>
+				<pre><code class="lang-js">tunnel1.run(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest</span>)</span>{
+    job.transfer(tunnel2);
+});
+tunnel2.run(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job</span>)</span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Got "</span> + job.getName() + <span class="hljs-string">" in tunnel "</span> + tunnel2.getName());
+});
 </code></pre>
 				<h3 id="loading-workflow-modules">Loading workflow modules</h3>
 				<p>You can put your workflows in separate node modules in another directory and have Antfarm load them all.</p>

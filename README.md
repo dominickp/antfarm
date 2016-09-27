@@ -107,6 +107,18 @@ Jobs are provided within tunnel events and have lots of helpful methods.
     }
 ```
 
+#### Transferring
+Jobs can be easily transferred to other tunnels with the transfer method.
+
+```js
+tunnel1.run(function(job, nest){
+    job.transfer(tunnel2);
+});
+tunnel2.run(function(job){
+    console.log("Got " + job.getName() + " in tunnel " + tunnel2.getName());
+});
+```
+
 ### Loading workflow modules
 You can put your workflows in separate node modules in another directory and have Antfarm load them all.
 
