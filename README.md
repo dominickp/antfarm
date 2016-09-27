@@ -2,6 +2,8 @@
 
 Antfarm is a simple automation framework that aims to make file automation robust and scalable.
 
+[![Build Status](https://travis-ci.org/dominickp/antfarm.svg?branch=master)](https://travis-ci.org/dominickp/antfarm)
+
 🐜🐜🐜🐜🐜
 
 ## Usage
