@@ -8,24 +8,20 @@ var path = require('path');
 
 describe('Tunnels', function() {
 
-    var options = {
-        log_dir: "/Users/dominickpeluso/Desktop",
-        log_out_level: "error"
-    };
     var af, tunnel, tmpobj, tempFileObj;
 
-    before(function(){
-        //
-        // var fs_obj = {};
-        //
-        // fs_obj[_DIR_1_] = {
-        //     'some-file.txt': 'file content here',
-        //     'empty-dir': {/** empty directory */}
-        // };
-        // fs_obj[_DIR_2_] = {/** another empty directory */};
-        //
-        // mock(fs_obj);
+    var options = {
+        log_out_level: "error"
+    };
 
+    before("make temporary log directory", function(done){
+        tmp.dir({ unsafeCleanup: true }, function(err, dir) {
+            if (err) return done(err);
+            setTimeout(function(){
+                options.log_dir = dir;
+                done()
+            }, 600);
+        });
     });
 
     beforeEach(function() {
