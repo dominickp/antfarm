@@ -4,7 +4,9 @@ Antfarm is a simple automation framework that aims to make file automation robus
 
 [![Build Status](https://travis-ci.org/dominickp/antfarm.svg?branch=master)](https://travis-ci.org/dominickp/antfarm)
 [![Coverage Status](https://coveralls.io/repos/github/dominickp/antfarm/badge.svg?branch=master)](https://coveralls.io/github/dominickp/antfarm?branch=master)
+[![npm version](https://badge.fury.io/js/antfarm.svg)](https://badge.fury.io/js/antfarm)
 [![Dependancy Status](https://david-dm.org/dominickp/antfarm.svg)](https://david-dm.org/dominickp/antfarm)
+[![Gitter](https://badges.gitter.im/dominickp/antfarm.svg)](https://gitter.im/open-automation/Lobby)
 
 ## Usage
 
