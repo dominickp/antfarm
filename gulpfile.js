@@ -6,6 +6,8 @@ var gulp = require('gulp'),
     tslint = require("gulp-tslint"),
     stylish = require('tslint-stylish');
 
+process.setMaxListeners(0);
+
 gulp.task("doc", function() {
     return gulp
         .src(["./src/**/*.ts"])

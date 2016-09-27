@@ -98,7 +98,7 @@ describe('Tunnels', function() {
             tunnel.getNests().length.should.be.equal(2);
         });
 
-        it('should run on a new watch', function(done) {
+        it('should run on a nest arrival when watching', function(done) {
             var tn = af.createTunnel("Watch tunnel");
             tn.watch(af.createFolderNest(tmpDir));
 
