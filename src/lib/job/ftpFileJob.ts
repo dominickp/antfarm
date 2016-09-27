@@ -14,7 +14,7 @@ export class FtpFileJob extends FileJob {
         let tmpobj = tmp.fileSync();
         super(e, tmpobj.name);
         this.rename(basename);
-        this.setIsLocallyAvailable(false);
+        this.setLocallyAvailable(false);
     }
 
 }

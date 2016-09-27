@@ -34,10 +34,8 @@ describe('Job', function() {
                 tunnel.watch(nest);
 
                 done()
-            }, 600);
+            }, 400);
         });
-
-
     });
 
     afterEach("remove temporary file", function(){
@@ -116,6 +114,27 @@ describe('Job', function() {
         triggerNewJob(job_name);
     });
 
+    describe("LifeCycle", function(){
+        it('should create a lifecycle', function (done) {
+            var job_name = "MyJobFile_001.pdf";
+            tunnel.runSync(function(job){
+                job.getLifeCycle().length.should.equal(1);
+                done();
+            });
+            triggerNewJob(job_name);
+        });
+        it('should add lifecycle events', function (done) {
+            var job_name = "MyJobFile_001.pdf";
+            tunnel.runSync(function(job){
+                job.setName("Some other name.pdf");
+                job.getLifeCycle().length.should.equal(2);
+                job.setName("Some other name.pdf");
+                job.getLifeCycle().length.should.equal(3);
+                done();
+            });
+            triggerNewJob(job_name);
+        });
+    });
 
 });
 

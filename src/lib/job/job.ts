@@ -1,6 +1,7 @@
 import { Tunnel } from "../tunnel/tunnel";
 import { Nest } from "../nest/nest";
 import {Environment} from "../environment/environment";
+import {LifeEvent} from "../environment/lifeEvent";
 
 export abstract class Job {
     protected name: string;
@@ -11,7 +12,9 @@ export abstract class Job {
 
     protected e: Environment;
 
-    protected isLocallyAvailable: boolean;
+    protected locallyAvailable: boolean;
+
+    protected lifeCycle: LifeEvent[];
 
     constructor(e: Environment, name: string) {
 
@@ -19,15 +22,27 @@ export abstract class Job {
 
         this.name = name;
 
+        this.lifeCycle = [];
+
+        this.createLifeEvent("created", null, name);
+
         this.e.log(1, `New Job "${name}" created.`, this);
     }
 
-    getIsLocallyAvailable() {
-        return this.isLocallyAvailable;
+    isLocallyAvailable() {
+        return this.locallyAvailable;
     }
 
-    setIsLocallyAvailable(available: boolean) {
-        this.isLocallyAvailable = available;
+    setLocallyAvailable(available: boolean) {
+        this.locallyAvailable = available;
+    }
+
+    getLifeCycle() {
+        return this.lifeCycle;
+    }
+
+    protected createLifeEvent(verb: string, start: string, finish: string) {
+        this.lifeCycle.push(new LifeEvent(verb, start, finish));
     }
 
     setName(name: string) {
@@ -70,7 +85,9 @@ export abstract class Job {
         let oldTunnel = this.getTunnel();
         job.setTunnel(tunnel);
         tunnel.arrive(job, null);
+
         job.e.log(1, `Job "${job.getName()}" transferred to Tunnel "${oldTunnel.getName()}".`, job);
+        job.createLifeEvent("transfer", oldTunnel.getName(), tunnel.getName());
     }
 
 

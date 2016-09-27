@@ -35,6 +35,7 @@ export class FileJob extends Job {
     }
 
     setName(filename: string) {
+        this.createLifeEvent("set name", this.getName(), filename);
         this.file.setName(filename);
     }
 
