@@ -61,9 +61,9 @@ export class Tunnel {
         this.nests.push(nest);
     }
 
-    arrive(job: Job, nest: Nest) {
+    arrive(job: Job, nest?: Nest) {
         this.job_counter++;
-        this.e.log(1, `Job ${this.job_counter} Nest "${nest.name}" triggered Tunnel "${this.name}" run.`, this);
+        this.e.log(1, `Job ${this.job_counter} triggered Tunnel "${this.name}" run.`, this);
         this.executeRun(job, nest);
         this.executeRunSync(job, nest);
         this.executeMatch(job, nest);

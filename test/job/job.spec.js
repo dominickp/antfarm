@@ -102,6 +102,20 @@ describe('Job', function() {
         triggerNewJob(job_name);
     });
 
+    it('should transfer from one tunnel to another', function (done) {
+        var tunnel2 = af.createTunnel("Another tunnel");
+        var job_name = "MyJobFile_001.pdf";
+        tunnel.run(function(job){
+            job.getName().should.equal("MyJobFile_001.pdf");
+            job.transfer(tunnel2);
+        });
+        tunnel2.run(function(job){
+            job.getName().should.equal("MyJobFile_001.pdf");
+            done();
+        });
+        triggerNewJob(job_name);
+    });
+
 
 });
 

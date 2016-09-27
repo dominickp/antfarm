@@ -17,4 +17,9 @@ export declare abstract class Job {
     setTunnel(tunnel: Tunnel): void;
     getTunnel(): Tunnel;
     fail(reason: string): void;
+    /**
+     * Transfer a job to another tunnel directly.
+     * @param tunnel
+     */
+    transfer(tunnel: Tunnel): void;
 }

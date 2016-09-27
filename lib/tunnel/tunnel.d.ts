@@ -22,7 +22,7 @@ export declare class Tunnel {
     getRunList(): any[];
     getRunSyncList(): any[];
     watch(nest: FolderNest): void;
-    arrive(job: Job, nest: Nest): void;
+    arrive(job: Job, nest?: Nest): void;
     /**
      * Run program logic asynchronously.
      * @param callback

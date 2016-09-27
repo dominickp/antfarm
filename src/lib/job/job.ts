@@ -61,5 +61,17 @@ export abstract class Job {
         this.tunnel.executeFail(this, this.nest, reason);
     }
 
+    /**
+     * Transfer a job to another tunnel directly.
+     * @param tunnel
+     */
+    transfer(tunnel: Tunnel) {
+        let job = this;
+        let oldTunnel = this.getTunnel();
+        job.setTunnel(tunnel);
+        tunnel.arrive(job, null);
+        job.e.log(1, `Job "${job.getName()}" transferred to Tunnel "${oldTunnel.getName()}".`, job);
+    }
+
 
 }
