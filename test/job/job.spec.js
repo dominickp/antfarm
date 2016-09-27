@@ -8,10 +8,19 @@ var path = require('path');
 describe('Job', function() {
 
     var options = {
-        log_dir: "/Users/dominickpeluso/Desktop",
         log_out_level: "error"
     };
     var af, tunnel, tmpDir, nest, temp_file_path;
+
+    before("make temporary log directory", function(done){
+        tmp.dir({ unsafeCleanup: true }, function(err, dir) {
+            if (err) return done(err);
+            setTimeout(function(){
+                options.log_dir = dir;
+                done()
+            }, 600);
+        });
+    });
 
     beforeEach("make antfarm, tunnel, and nest", function(done) {
         af = new Antfarm(options);
