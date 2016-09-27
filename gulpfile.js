@@ -111,8 +111,8 @@ gulp.task('test-travis', function (cb) {
 });
 
 gulp.task('coveralls-travis', function () {
-    if (!process.env.CI) return;
-    return gulp.src('./coverage/lcov.info')
+    // if (!process.env.CI) return;
+    return gulp.src('./coverage/**/lcov.info')
         .pipe(coveralls());
 });
 
@@ -169,7 +169,6 @@ gulp.task('travis', function(callback) {
     runSequence(
         'build',
         'test-travis',
-        'coveralls-travis',
         callback);
 });
 

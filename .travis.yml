@@ -7,4 +7,4 @@ node_js:
   - "4.4.2"
 before_script:
   - npm install -g gulp
-script: gulp travis
+script: gulp travis && gulp coveralls-travis
