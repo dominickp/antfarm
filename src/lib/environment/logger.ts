@@ -57,7 +57,7 @@ export class Logger {
                 transports: [
                     new winston.transports.File({
                         level: this.options.log_file_level || "info",
-                        filename: `${this.options.log_dir}/somefile.log`,
+                        filename: `${this.options.log_dir}/antfarm.log`,
                         handleExceptions: true,
                         json: true,
                         maxsize: this.options.log_max_size || 5242880, // 5MB
