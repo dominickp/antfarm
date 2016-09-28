@@ -1,10 +1,13 @@
 language: node_js
 node_js:
-  - "6"
   - "node"
+  - "6"
   - "6.1"
+  - "5"
   - "5.11"
+  - "4"
   - "4.4.2"
+  - "iojs"
 before_script:
   - npm install -g gulp
 script: gulp travis && gulp coveralls-travis
