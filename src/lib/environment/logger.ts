@@ -1,5 +1,6 @@
 const   fs = require("fs"),
-        winston = require("winston");
+        winston = require("winston"),
+        _ = require("lodash");
 
 export class Logger {
 
@@ -24,8 +25,27 @@ export class Logger {
         this.createLogger();
     }
 
+    protected consoleFormatter(options) {
 
-    createLogger() {
+        let kvString = "";
+
+        _.forEach(options.meta, function(key, value){
+            kvString += " " +
+                        winston.config.colorize("silly", `${value}`) +
+                        winston.config.colorize("debug", " > ") +
+                        key;
+        });
+
+        let formattedDate = new Date().toLocaleString();
+
+        return  winston.config.colorize(options.level, formattedDate) + " " +
+                winston.config.colorize(options.level, _.padEnd(options.level, 6)) +
+                options.message + " " +
+                kvString;
+    };
+
+    protected createLogger() {
+        let lg = this;
         if (this.options) {
 
             if (this.options.log_dir) {
@@ -52,11 +72,10 @@ export class Logger {
                             prettyPrint: true,
                             colorize: true,
                             silent: false,
-                            timestamp: true,
-                            formatter: function (options) {
-                                return winston.config.colorize(options.level, options.level)
-                                    + options.message + " " + JSON.stringify(options.meta);
-                            }
+                            timestamp: function() {
+                                return Date();
+                            },
+                            formatter: function(options) { return lg.consoleFormatter(options); }
                         })
                     ],
                     exitOnError: false
@@ -68,9 +87,13 @@ export class Logger {
                     new winston.transports.Console({
                         level: "debug",
                         handleExceptions: true,
-                        json: false,
+                        prettyPrint: true,
                         colorize: true,
-                        prettyPrint: true
+                        silent: false,
+                        timestamp: function() {
+                            return Date();
+                        },
+                        formatter: function(options) { return lg.consoleFormatter(options); }
                     })
                 ],
                 exitOnError: false
@@ -79,25 +102,20 @@ export class Logger {
     }
 
     protected getEntry(entry: Object, actor?: any, instances = []) {
-
         instances.push(actor);
-
         if (instances) {
             instances.forEach(function(instance){
                 if (instance && typeof instance !== "undefined") {
-                    try {
-                        let super_name = instance.toString();
-                        entry[super_name] = instance.getName();
-                    } catch (e) {
-                        entry["Undefined"] = "got one";
-                    }
+                    let super_name = instance.toString();
 
-                    //
-                    entry["date"] = new Date();
+                    try {
+                        entry[super_name] = instance.getName();
+                        if (super_name === "Job") entry["JobId"] = instance.getId();
+                    } catch (e) {
+                    }
                 }
             });
         }
-
         return entry;
     }
 

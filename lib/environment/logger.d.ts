@@ -9,7 +9,8 @@ export declare class Logger {
         3: string;
     };
     constructor(options?: AntfarmOptions);
-    createLogger(): void;
+    protected consoleFormatter(options: any): string;
+    protected createLogger(): void;
     protected getEntry(entry: Object, actor?: any, instances?: any[]): Object;
     /**
      * Create a log entry. Used for log files and console reporting.
