@@ -22,6 +22,7 @@ class Antfarm {
 
     constructor(options: AntfarmOptions) {
         this.e = new Environment(options);
+        this.e.log(1, "Started antfarm", this);
     }
 
     version() {

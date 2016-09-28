@@ -3,7 +3,7 @@ var Antfarm = require('./../../lib/antfarm');
 
 describe('Antfarm', function() {
 
-    var options = {};
+    var options = {log_out_level: "error"};
     var af;
 
     beforeEach(function() {

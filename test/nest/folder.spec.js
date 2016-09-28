@@ -5,7 +5,7 @@ var tmp = require('tmp');
 
 describe('Nest Folder', function() {
 
-    var options = {};
+    var options = {log_out_level: "error"};
     var af, tunnel, tmpobj;
 
     beforeEach(function() {
