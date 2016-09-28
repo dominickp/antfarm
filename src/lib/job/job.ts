@@ -6,18 +6,13 @@ import {LifeEvent} from "../environment/lifeEvent";
 const shortid = require("shortid");
 
 export abstract class Job {
+
     protected name: string;
-
     protected tunnel: Tunnel;
-
     protected nest: Nest;
-
     protected e: Environment;
-
     protected locallyAvailable: boolean;
-
     protected lifeCycle: LifeEvent[];
-
     protected id: string;
 
     constructor(e: Environment, name: string) {
@@ -38,15 +33,15 @@ export abstract class Job {
         return "Job";
     }
 
-    isLocallyAvailable() {
+    public isLocallyAvailable() {
         return this.locallyAvailable;
     }
 
-    setLocallyAvailable(available: boolean) {
+    public setLocallyAvailable(available: boolean) {
         this.locallyAvailable = available;
     }
 
-    getLifeCycle() {
+    public getLifeCycle() {
         return this.lifeCycle;
     }
 
@@ -54,39 +49,39 @@ export abstract class Job {
         this.lifeCycle.push(new LifeEvent(verb, start, finish));
     }
 
-    setName(name: string) {
+    public setName(name: string) {
         this.name = name;
     }
 
-    getId() {
+    public getId() {
         return this.id;
     }
 
-    getName() {
+    public getName() {
         return this.name;
     }
 
-    getNameProper() {
+    public getNameProper() {
         return this.getName();
     }
 
-    setNest(nest: Nest) {
+    public setNest(nest: Nest) {
         this.nest = nest;
     }
 
-    getNest() {
+    public getNest() {
         return this.nest;
     }
 
-    setTunnel(tunnel: Tunnel) {
+    public setTunnel(tunnel: Tunnel) {
         this.tunnel = tunnel;
     }
 
-    getTunnel() {
+    public getTunnel() {
         return this.tunnel;
     }
 
-    fail(reason: string) {
+    public fail(reason: string) {
         if (!this.tunnel) {
             this.e.log(3, `Job "${this.getName()}" failed before tunnel was set.`, this);
         }
@@ -97,7 +92,7 @@ export abstract class Job {
      * Transfer a job to another tunnel directly.
      * @param tunnel
      */
-    transfer(tunnel: Tunnel) {
+    public transfer(tunnel: Tunnel) {
         let job = this;
         let oldTunnel = this.getTunnel();
         job.setTunnel(tunnel);

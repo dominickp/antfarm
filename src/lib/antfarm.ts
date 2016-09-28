@@ -25,16 +25,16 @@ class Antfarm {
         this.e.log(1, "Started antfarm", this);
     }
 
-    version() {
+    public version() {
         return "0.0.1";
     }
-    createTunnel(name) {
+    public createTunnel(name) {
         return new Tunnel(this.e, name);
     }
-    createFolderNest(name: string) {
+    public createFolderNest(name: string) {
         return new FolderNest(this.e, name);
     }
-    createFtpNest(host: string, port: number, username: string, password: string, checkEvery: number) {
+    public createFtpNest(host: string, port: number, username: string, password: string, checkEvery: number) {
         return new FtpNest(this.e, host, port, username, password, checkEvery);
     }
 
@@ -43,7 +43,7 @@ class Antfarm {
      * @param directory
      */
 
-    loadDir(directory: string) {
+    public loadDir(directory: string) {
         let af = this;
         let workflows = require("require-dir-all")(directory, {
             _parentsToSkip: 1,

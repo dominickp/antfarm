@@ -11,13 +11,10 @@ import {Environment} from "../environment/environment";
 
 export class FtpNest extends Nest {
 
-    client: any;
-
-    config: {};
-
-    checkEvery: number;
-
-    checkEveryMs: number;
+    protected client: any;
+    protected config: {};
+    protected checkEvery: number;
+    protected checkEveryMs: number;
 
     constructor(e: Environment, host: string, port = 21, username = "", password = "", checkEvery = 10) {
         super(e, host);
@@ -39,7 +36,7 @@ export class FtpNest extends Nest {
         return new EasyFtp();
     }
 
-    load() {
+    public load() {
 
         let ftp = this;
 
@@ -95,7 +92,7 @@ export class FtpNest extends Nest {
         }
     }
 
-    watch() {
+    public watch() {
         let ftp = this;
 
         ftp.e.log(1, "Watching FTP directory.", ftp);
@@ -109,11 +106,11 @@ export class FtpNest extends Nest {
         }, ftp.checkEveryMs, count);
     }
 
-    arrive(job: FileJob) {
+    public arrive(job: FileJob) {
         super.arrive(job);
     }
 
-    take(job: FileJob, callback: any) {
+    public take(job: FileJob, callback: any) {
         let ftp = this;
 
         try {

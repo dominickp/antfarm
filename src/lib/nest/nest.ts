@@ -3,10 +3,9 @@ import { Job } from "../job/job";
 import { Environment } from "../environment/environment";
 
 export abstract class Nest {
-    name: string;
 
-    tunnel: Tunnel;
-
+    protected name: string;
+    protected tunnel: Tunnel;
     protected e: Environment;
 
     constructor(e: Environment, name: string) {
@@ -18,15 +17,15 @@ export abstract class Nest {
         return "Nest";
     }
 
-    getName() {
+    public getName() {
         return this.name;
     }
 
-    register(tunnel: Tunnel) {
+    public register(tunnel: Tunnel) {
         this.tunnel = tunnel;
     }
 
-    arrive(job: Job) {
+    public arrive(job: Job) {
         this.e.log(1, `Job "${job.getName()}" arrived in Nest "${this.name}".`, this);
         job.setTunnel(this.tunnel);
         this.tunnel.arrive(job, this);

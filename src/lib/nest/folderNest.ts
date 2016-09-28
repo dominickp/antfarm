@@ -8,7 +8,8 @@ const   node_watch = require("node-watch"),
         path_mod = require("path");
 
 export class FolderNest extends Nest {
-    path: string;
+
+    protected path: string;
 
     constructor(e: Environment, path: string) {
 
@@ -21,7 +22,7 @@ export class FolderNest extends Nest {
         this.path = path;
     }
 
-    checkDirectorySync(directory) {
+    protected checkDirectorySync(directory) {
         let fn = this;
         try {
             fs.statSync(directory);
@@ -63,7 +64,7 @@ export class FolderNest extends Nest {
         return job;
     }
 
-    load() {
+    public load() {
 
         let fl = this;
         fs.readdir(fl.path, function(err, items) {
@@ -78,7 +79,7 @@ export class FolderNest extends Nest {
         });
     }
 
-    watch() {
+    public watch() {
 
         let fl = this;
 
@@ -93,11 +94,11 @@ export class FolderNest extends Nest {
         });
     }
 
-    arrive(job: FileJob) {
+    public arrive(job: FileJob) {
         super.arrive(job);
     }
 
-    take(job: FileJob, callback: any) {
+    public take(job: FileJob, callback: any) {
 
         // the other nest that this is taking from should provide a temporary location or local path of the job
 

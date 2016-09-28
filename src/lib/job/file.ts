@@ -30,7 +30,7 @@ export class File {
         this.extension = fileExtension(this.getPath());
     }
 
-    getName() {
+    public getName() {
         return this.basename;
     }
 
@@ -38,42 +38,42 @@ export class File {
      * Get the file name of the job without the file extension.
      * @returns {string}
      */
-    getNameProper() {
+    public getNameProper() {
         return node_path.basename(this.getBasename(), node_path.extname(this.getBasename()));
     }
 
-    getDirname() {
+    public getDirname() {
         return this.dirname;
     }
 
-    getPath() {
+    public getPath() {
         return this.path;
     }
 
-    setPath(path: string) {
+    public setPath(path: string) {
         this.path = path;
     }
 
-    setName(filename: string) {
+    public setName(filename: string) {
         this.basename = filename;
     }
 
-    getContentType() {
+    public getContentType() {
         return this.contentType;
     }
 
-    getExtension() {
+    public getExtension() {
         return this.extension;
     }
 
-    getBasename() {
+    public getBasename() {
         return this.basename;
     }
 
     /**
      * Renames the local job file to the current name.
      */
-    renameLocal() {
+    public renameLocal() {
         let new_path = this.getDirname() + node_path.sep + this.getName();
         fs.renameSync(this.getPath(), new_path);
         this.setPath(new_path);

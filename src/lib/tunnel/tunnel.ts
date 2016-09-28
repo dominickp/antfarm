@@ -42,30 +42,30 @@ export class Tunnel {
         return "Tunnel";
     }
 
-    getName() {
+    public getName() {
         return this.name;
     }
 
-    getNests() {
+    public getNests() {
         return this.nests;
     }
 
-    getRunList() {
+    public getRunList() {
         return this.run_list;
     }
 
-    getRunSyncList() {
+    public getRunSyncList() {
         return this.run_sync_list;
     }
 
-    watch(nest: FolderNest) {
+    public watch(nest: FolderNest) {
         nest.register(this);
         nest.load();
         nest.watch();
         this.nests.push(nest);
     }
 
-    arrive(job: Job, nest?: Nest) {
+    public arrive(job: Job, nest?: Nest) {
         this.job_counter++;
         this.e.log(1, `Job ${this.job_counter} triggered tunnel arrive.`, this, [job, nest]);
         this.executeRun(job, nest);
@@ -77,7 +77,7 @@ export class Tunnel {
      * Run program logic asynchronously.
      * @param callback
      */
-    run(callback) {
+    public run(callback) {
         this.run_list.push(callback);
     }
 
@@ -85,15 +85,15 @@ export class Tunnel {
      * Run program logic synchronously.
      * @param callback
      */
-    runSync(callback) {
+    public runSync(callback) {
         this.run_sync_list.push(callback);
     }
 
-    fail(callback) {
+    public fail(callback) {
         this.run_fail = callback;
     }
 
-    executeRun(job: Job, nest: Nest) {
+    protected executeRun(job: Job, nest: Nest) {
         let tn = this;
         this.run_list.forEach(function(callback){
             try {
@@ -106,7 +106,7 @@ export class Tunnel {
         });
     }
 
-    executeRunSync(job: Job, nest: Nest) {
+    protected executeRunSync(job: Job, nest: Nest) {
         let tn = this;
 
         async.eachSeries(tn.run_sync_list, function (run, callback) {
@@ -121,7 +121,7 @@ export class Tunnel {
         });
     }
 
-    executeFail(job: Job, nest: Nest, reason: string) {
+    public executeFail(job: Job, nest: Nest, reason: string) {
         this.e.log(3, `Failed for reason "${reason}".`, this, [job, nest]);
         this.run_fail(job, nest, reason);
     }
@@ -132,7 +132,7 @@ export class Tunnel {
      * @param orphanMinutes
      * @param callback
      */
-    match(pattern: string[]|string, orphanMinutes: number, callback: any) {
+    public match(pattern: string[]|string, orphanMinutes: number, callback: any) {
         this.match_obj.pattern = pattern;
         this.match_obj.orphan_minutes = orphanMinutes;
         this.match_obj.run = callback;

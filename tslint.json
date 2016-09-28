@@ -9,6 +9,7 @@
             true,
             "spaces"
         ],
+        "member-access": true,
         "no-duplicate-variable": true,
         "no-eval": true,
         "no-internal-module": true,

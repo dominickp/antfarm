@@ -51,38 +51,37 @@ export class FolderJob extends Job {
         });
     }
 
-    getName() {
+    public getName() {
         return this.getBasename();
     }
 
-    getBasename() {
+    public getBasename() {
         return this.basename;
     }
 
-    getDirname() {
+    public getDirname() {
         return this.dirname;
     }
 
-
-    getPath() {
+    public getPath() {
         return this.path;
     }
 
-    setPath(path: string) {
+    public setPath(path: string) {
         this.path = path;
         this.getStatistics();
     }
 
-    addFile(file: File) {
+    public addFile(file: File) {
         this.files.push(file);
         this.e.log(0, `Adding file "${file.getName()}" to job.`, this);
     }
 
-    getFile(index: number) {
+    public getFile(index: number) {
         return this.files[index];
     }
 
-    getFiles() {
+    public getFiles() {
         return this.files;
     }
 
@@ -90,19 +89,19 @@ export class FolderJob extends Job {
      * Get the number of files in this folder.
      * @returns {number}
      */
-    count() {
+    public count() {
         return this.files.length;
     }
 
-    getExtension() {
+    public getExtension() {
         return null;
     }
 
-    isFolder() {
+    public isFolder() {
         return true;
     }
 
-    isFile() {
+    public isFile() {
         return false;
     }
 
@@ -112,7 +111,7 @@ export class FolderJob extends Job {
      * @param destinationNest
      * @param callback
      */
-    move(destinationNest, callback) {
+    public move(destinationNest, callback) {
         let fj = this;
         try {
             destinationNest.take(fj, function(new_path){
@@ -134,7 +133,7 @@ export class FolderJob extends Job {
      * Renames the job folder, leaving its content's names alone.
      * @param newName
      */
-    rename(newName: string) {
+    public rename(newName: string) {
         let fj = this;
         let new_path = fj.getDirname() + node_path.sep + newName;
         fs.renameSync(fj.getPath(), new_path);

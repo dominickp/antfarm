@@ -17,14 +17,12 @@ export class Environment {
         return "Environment";
     }
 
-    log(type: number, message: string, actor?: any, instances = []) {
+    public log(type: number, message: string, actor?: any, instances = []) {
         // try {
         //     this.logger.log(type, message, actor, instances);
         // } catch (e) {
         //     console.log(e);
         // }
-
         this.logger.log(type, message, actor, instances);
-
     }
 }

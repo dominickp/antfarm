@@ -14,52 +14,52 @@ export class FileJob extends Job {
         this.file = new File(e, path);
     }
 
-    getFile() {
+    public getFile() {
         return this.file;
     }
 
-    getName() {
+    public getName() {
         return this.file.getName();
     }
 
-    getNameProper() {
+    public getNameProper() {
         return this.file.getNameProper();
     }
 
-    getDirname() {
+    public getDirname() {
         return this.file.getDirname();
     }
 
-    getPath() {
+    public getPath() {
         return this.file.getPath();
     }
 
-    setPath(path: string) {
+    public setPath(path: string) {
         this.file.setPath(path);
     }
 
-    setName(filename: string) {
+    public setName(filename: string) {
         this.createLifeEvent("set name", this.getName(), filename);
         this.file.setName(filename);
     }
 
-    getContentType() {
+    public getContentType() {
         return this.file.getContentType();
     }
 
-    getExtension() {
+    public getExtension() {
         return this.file.getExtension();
     }
 
-    getBasename() {
+    public getBasename() {
         return this.file.getBasename();
     }
 
-    isFolder() {
+    public isFolder() {
         return false;
     }
 
-    isFile() {
+    public isFile() {
         return true;
     }
 
@@ -68,7 +68,7 @@ export class FileJob extends Job {
      * @param destinationNest
      * @param callback
      */
-    move(destinationNest, callback) {
+    public move(destinationNest, callback) {
 
         let fj = this;
 
@@ -88,7 +88,7 @@ export class FileJob extends Job {
         }
     }
 
-    rename(newName: string) {
+    public rename(newName: string) {
         let file = this.getFile();
         file.setName(newName);
         file.renameLocal();
