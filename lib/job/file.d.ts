@@ -8,6 +8,11 @@ export declare class File {
     constructor(e: Environment, path: string);
     protected getStatistics(): void;
     getName(): string;
+    /**
+     * Get the file name of the job without the file extension.
+     * @returns {string}
+     */
+    getNameProper(): any;
     getDirname(): string;
     getPath(): string;
     setPath(path: string): void;

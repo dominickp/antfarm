@@ -30,9 +30,16 @@ export class File {
         this.extension = fileExtension(this.getPath());
     }
 
-
     getName() {
         return this.basename;
+    }
+
+    /**
+     * Get the file name of the job without the file extension.
+     * @returns {string}
+     */
+    getNameProper() {
+        return node_path.basename(this.getBasename(), node_path.extname(this.getBasename()));
     }
 
     getDirname() {
@@ -62,7 +69,6 @@ export class File {
     getBasename() {
         return this.basename;
     }
-
 
     /**
      * Renames the local job file to the current name.

@@ -22,6 +22,10 @@ export class FileJob extends Job {
         return this.file.getName();
     }
 
+    getNameProper() {
+        return this.file.getNameProper();
+    }
+
     getDirname() {
         return this.file.getDirname();
     }

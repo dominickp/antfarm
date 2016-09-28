@@ -6,6 +6,7 @@ export declare class FileJob extends Job {
     constructor(e: Environment, path: string);
     getFile(): File;
     getName(): string;
+    getNameProper(): any;
     getDirname(): string;
     getPath(): string;
     setPath(path: string): void;

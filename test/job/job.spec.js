@@ -58,7 +58,7 @@ describe('Job', function() {
         triggerNewJob(job_name);
     });
 
-    xit('should get the job name proper', function (done) {
+    it('should get the job name proper', function (done) {
         var job_name = "MyJobFile_001.pdf";
         tunnel.run(function(job){
             job.getNameProper().should.equal("MyJobFile_001");
