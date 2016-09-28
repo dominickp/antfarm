@@ -17,6 +17,7 @@ export declare class Tunnel {
         orphan_minutes: any;
     };
     constructor(e: Environment, theName: string);
+    toString(): string;
     getName(): string;
     getNests(): Nest[];
     getRunList(): any[];

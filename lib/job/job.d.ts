@@ -9,12 +9,15 @@ export declare abstract class Job {
     protected e: Environment;
     protected locallyAvailable: boolean;
     protected lifeCycle: LifeEvent[];
+    protected id: string;
     constructor(e: Environment, name: string);
+    toString(): string;
     isLocallyAvailable(): boolean;
     setLocallyAvailable(available: boolean): void;
     getLifeCycle(): LifeEvent[];
     protected createLifeEvent(verb: string, start: string, finish: string): void;
     setName(name: string): void;
+    getId(): string;
     getName(): string;
     setNest(nest: Nest): void;
     getNest(): Nest;

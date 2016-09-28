@@ -62,10 +62,16 @@ var handleMochaError = function (err) {
     process.exit(1);
 };
 
+function handleError(err) {
+    console.log(err.toString());
+    this.emit('end');
+}
+
 gulp.task('test', function() {
     return gulp.src('test/**/*.spec.js', {read: false})
     // gulp-mocha needs filepaths so you can't have any plugins before it
-        .pipe(mocha({reporter: 'nyan'}));
+        .pipe(mocha({reporter: 'nyan'})
+        .on("error", handleError));
 });
 
 gulp.task('test-travis', function (cb) {

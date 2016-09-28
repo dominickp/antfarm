@@ -49,9 +49,14 @@ export class Logger {
                         new winston.transports.Console({
                             level: this.options.log_out_level || "debug",
                             handleExceptions: true,
-                            json: false,
+                            prettyPrint: true,
                             colorize: true,
-                            prettyPrint: true
+                            silent: false,
+                            timestamp: true,
+                            formatter: function (options) {
+                                return winston.config.colorize(options.level, options.level)
+                                    + options.message + " " + JSON.stringify(options.meta);
+                            }
                         })
                     ],
                     exitOnError: false
@@ -64,7 +69,8 @@ export class Logger {
                         level: "debug",
                         handleExceptions: true,
                         json: false,
-                        colorize: true
+                        colorize: true,
+                        prettyPrint: true
                     })
                 ],
                 exitOnError: false
@@ -72,28 +78,51 @@ export class Logger {
         }
     }
 
-    log(type: number, message: string, instance?: any) {
+    protected getEntry(entry: Object, actor?: any, instances = []) {
+
+        instances.push(actor);
+
+        if (instances) {
+            instances.forEach(function(instance){
+                if (instance && typeof instance !== "undefined") {
+                    try {
+                        let super_name = instance.toString();
+                        entry[super_name] = instance.getName();
+                    } catch (e) {
+                        entry["Undefined"] = "got one";
+                    }
+
+                    //
+                    entry["date"] = new Date();
+                }
+            });
+        }
+
+        return entry;
+    }
+
+    /**
+     * Create a log entry. Used for log files and console reporting.
+     * @param type
+     * @param message
+     * @param actor
+     * @param instances
+     */
+    public log(type: number, message: string, actor?: any,  instances?: any) {
         if (typeof(this.log_types[type]) === "undefined") {
             type = 0;
         }
 
         let log_types = this.log_types;
-/*
-        if(log_types[type] == "debug"){
-            this.logger.debug(message);
-        } else if(log_types[type] == "info") {
-            this.logger.info(instance.constructor.name, message);
-        } else if(log_types[type] == "warning") {
-            this.logger.warn(instance.constructor.name, message);
-        } else if(log_types[type] == "error") {
-            this.logger.error(instance.constructor.name, message);
-        }
-*/
-        if (instance) {
-            this.logger.log(log_types[type], `[${instance.constructor.name}]`, message);
-        } else {
-            this.logger.log(log_types[type], message);
-        }
 
+        let entry = {
+            message: message,
+            actor: actor.constructor.name
+        };
+
+        let modified_entry = this.getEntry(entry, actor, instances);
+
+        this.logger.log(log_types[type], modified_entry);
     }
+
 }

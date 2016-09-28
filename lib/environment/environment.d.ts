@@ -3,5 +3,6 @@ export declare class Environment {
     protected options: AntfarmOptions;
     protected logger: Logger;
     constructor(options?: AntfarmOptions);
-    log(type: number, message: string, instance?: any): void;
+    toString(): string;
+    log(type: number, message: string, actor?: any, instances?: any[]): void;
 }

@@ -14,6 +14,10 @@ export abstract class Nest {
         this.name = name;
     }
 
+    public toString() {
+        return "Nest";
+    }
+
     getName() {
         return this.name;
     }

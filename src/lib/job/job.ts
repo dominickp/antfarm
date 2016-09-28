@@ -3,6 +3,8 @@ import { Nest } from "../nest/nest";
 import {Environment} from "../environment/environment";
 import {LifeEvent} from "../environment/lifeEvent";
 
+const shortid = require("shortid");
+
 export abstract class Job {
     protected name: string;
 
@@ -16,17 +18,24 @@ export abstract class Job {
 
     protected lifeCycle: LifeEvent[];
 
+    protected id: string;
+
     constructor(e: Environment, name: string) {
 
         this.e = e;
+
+        this.id = shortid.generate();
 
         this.name = name;
 
         this.lifeCycle = [];
 
         this.createLifeEvent("created", null, name);
-
         this.e.log(1, `New Job "${name}" created.`, this);
+    }
+
+    public toString() {
+        return "Job";
     }
 
     isLocallyAvailable() {
@@ -47,6 +56,10 @@ export abstract class Job {
 
     setName(name: string) {
         this.name = name;
+    }
+
+    getId() {
+        return this.id;
     }
 
     getName() {
@@ -86,7 +99,7 @@ export abstract class Job {
         job.setTunnel(tunnel);
         tunnel.arrive(job, null);
 
-        job.e.log(1, `Job "${job.getName()}" transferred to Tunnel "${oldTunnel.getName()}".`, job);
+        job.e.log(1, `Transferred to Tunnel "${tunnel.getName()}".`, job, [oldTunnel]);
         job.createLifeEvent("transfer", oldTunnel.getName(), tunnel.getName());
     }
 

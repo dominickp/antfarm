@@ -38,6 +38,10 @@ export class Tunnel {
         this.job_counter = 0;
     }
 
+    public toString() {
+        return "Tunnel";
+    }
+
     getName() {
         return this.name;
     }
@@ -63,7 +67,7 @@ export class Tunnel {
 
     arrive(job: Job, nest?: Nest) {
         this.job_counter++;
-        this.e.log(1, `Job ${this.job_counter} triggered Tunnel "${this.name}" run.`, this);
+        this.e.log(1, `Job ${this.job_counter} triggered tunnel arrive.`, this, [job, nest]);
         this.executeRun(job, nest);
         this.executeRunSync(job, nest);
         this.executeMatch(job, nest);
@@ -113,12 +117,12 @@ export class Tunnel {
             if (err) {
                 tn.executeFail(job, nest, err);
             }
-            tn.e.log(0, `Completed ${tn.getRunSyncList().length} synchronous run list(s).`, tn);
+            tn.e.log(0, `Completed ${tn.getRunSyncList().length} synchronous run list(s).`, tn, [job, nest]);
         });
     }
 
     executeFail(job: Job, nest: Nest, reason: string) {
-        this.e.log(3, `Job "${job.getName()}" failed for reason "${reason}".`, this);
+        this.e.log(3, `Failed for reason "${reason}".`, this, [job, nest]);
         this.run_fail(job, nest, reason);
     }
 

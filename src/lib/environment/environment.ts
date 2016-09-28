@@ -13,7 +13,15 @@ export class Environment {
         this.logger = new Logger(this.options);
     }
 
-    log(type: number, message: string, instance?: any) {
-        this.logger.log(type, message, instance);
+    public toString() {
+        return "Environment";
+    }
+
+    log(type: number, message: string, actor?: any, instances = []) {
+        try {
+            this.logger.log(type, message, actor, instances);
+        } catch (e) {
+            console.log(e);
+        }
     }
 }
