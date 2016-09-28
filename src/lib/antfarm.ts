@@ -10,6 +10,7 @@ import {FtpNest} from "./nest/ftpNest";
 import {FolderNest} from "./nest/folderNest";
 import {Job} from "./job/job";
 import {Environment} from "./environment/environment";
+import {WebhookNest} from "./nest/webhookNest";
 
 
 /**
@@ -28,21 +29,51 @@ class Antfarm {
     public version() {
         return "0.0.1";
     }
+
+    /**
+     * Factory method which returns a Tunnel.
+     * @param name
+     * @returns {Tunnel}
+     */
     public createTunnel(name) {
         return new Tunnel(this.e, name);
     }
+
+    /**
+     * Factory method which returns a FolderNest.
+     * @param name
+     * @returns {FolderNest}
+     */
     public createFolderNest(name: string) {
         return new FolderNest(this.e, name);
     }
+
+    /**
+     * Factory method which returns an FtpNest.
+     * @param host
+     * @param port
+     * @param username
+     * @param password
+     * @param checkEvery
+     * @returns {FtpNest}
+     */
     public createFtpNest(host: string, port: number, username: string, password: string, checkEvery: number) {
         return new FtpNest(this.e, host, port, username, password, checkEvery);
+    }
+
+    /**
+     * Factory method which returns a WebhookNest.
+     * @param port
+     * @returns {WebhookNest}
+     */
+    public createWebhookNest(port: number) {
+        return new WebhookNest(this.e, port);
     }
 
     /**
      * Load an entire directory of workflow modules.
      * @param directory
      */
-
     public loadDir(directory: string) {
         let af = this;
         let workflows = require("require-dir-all")(directory, {
