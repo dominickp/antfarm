@@ -22,9 +22,8 @@
   "homepage": "https://github.com/dominickp/antfarm#readme",
   "dependencies": {
     "async": "^2.0.1",
-    "chalk": "^1.1.3",
     "easy-ftp": "^0.3.22",
-    "file-extension": "^2.0.1",
+    "file-extension": "^3.0.2",
     "lodash": "^4.16.2",
     "micromatch": "^2.3.11",
     "mime-types": "^2.1.12",
