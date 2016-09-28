@@ -19,6 +19,7 @@ export declare abstract class Job {
     setName(name: string): void;
     getId(): string;
     getName(): string;
+    getNameProper(): string;
     setNest(nest: Nest): void;
     getNest(): Nest;
     setTunnel(tunnel: Tunnel): void;

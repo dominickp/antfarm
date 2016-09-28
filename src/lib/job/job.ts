@@ -66,6 +66,10 @@ export abstract class Job {
         return this.name;
     }
 
+    getNameProper() {
+        return this.getName();
+    }
+
     setNest(nest: Nest) {
         this.nest = nest;
     }
