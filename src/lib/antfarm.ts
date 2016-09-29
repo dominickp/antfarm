@@ -63,11 +63,12 @@ class Antfarm {
 
     /**
      * Factory method which returns a WebhookNest.
-     * @param port
+     * @param path
+     * @param httpMethod
      * @returns {WebhookNest}
      */
-    public createWebhookNest(name: string) {
-        return new WebhookNest(this.e, name);
+    public createWebhookNest(path: string, httpMethod?: string) {
+        return new WebhookNest(this.e, path, httpMethod);
     }
 
     /**

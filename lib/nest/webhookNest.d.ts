@@ -2,8 +2,13 @@ import { Environment } from "../environment/environment";
 import { Nest } from "./nest";
 import { WebhookJob } from "../job/webhookJob";
 export declare class WebhookNest extends Nest {
-    protected name: string;
-    constructor(e: Environment, name: string);
+    protected path: string;
+    protected httpMethod: string;
+    constructor(e: Environment, path: string | string[], httpMethod?: string);
+    setPath(path: any): void;
+    getPath(): string;
+    getHttpMethod(): string;
+    protected setHttpMethod(httpMethod: any): void;
     getName(): string;
     load(): void;
     /**

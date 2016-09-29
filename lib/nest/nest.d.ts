@@ -8,6 +8,7 @@ export declare abstract class Nest {
     constructor(e: Environment, name: string);
     toString(): string;
     getName(): string;
+    getTunnel(): Tunnel;
     register(tunnel: Tunnel): void;
     arrive(job: Job): void;
 }

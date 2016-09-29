@@ -3,6 +3,7 @@ import {Nest} from "./../nest/nest";
 import {ClientRequest} from "http";
 import {ClientResponse} from "http";
 import {WebhookJob} from "../job/webhookJob";
+import {WebhookNest} from "../nest/webhookNest";
 
 const   http = require("http"),
         // Router = require("router"),
@@ -28,7 +29,6 @@ export class Environment {
         this.options = options;
 
         this.router = Router({});
-
 
         if (this.options.port) {
             this.createServer();
@@ -62,38 +62,56 @@ export class Environment {
         });
     }
 
-    // protected handleRequest
-
-    public addWebhook(nest: Nest, name: string) {
+    /**
+     * Handles request and response of the web hook, creates a new job, as well as calling the nest's arrive.
+     * @param nest
+     * @param req
+     * @param res
+     */
+    protected handleHookRequest = function(nest: WebhookNest, req, res) {
         let e = this;
+        let job = new WebhookJob(e, req, res);
+        nest.arrive(job);
 
-        let hook = e.router.route("/hooks/" + name);
-        e.log(1, `Watching webhook /hooks/${name}`, e);
+        let responseString = JSON.stringify({
+            message: `Job ${job.getId()} was created!`,
+            job: {
+                id: job.getId(),
+                name: job.getName()
+            },
+            nest: {
+                name: nest.getName()
+            }
+        });
 
-        this.routes.push(hook);
+        res.setHeader("Content-Type", "application/json; charset=utf-8");
+        res.end(responseString);
+    };
 
-        hook.get(function (req, res) {
+    /**
+     * Adds a webhook to the webhook server.
+     * @param nest
+     */
+    public addWebhook(nest: WebhookNest) {
+        let e = this;
+        let httpMethod = nest.getHttpMethod();
+        let path = nest.getPath();
 
-            let job = new WebhookJob(e, req, res);
-            nest.arrive(job);
+        let hook = e.router.route("/hooks" + path);
 
-            let responseString = JSON.stringify({
-                message: `Job ${job.getId()} was created!`,
-                job: {
-                    id: job.getId(),
-                    name: job.getName()
-                },
-                nest: {
-                    name: nest.getName()
-                }
-            });
+        e.log(1, `Watching webhook ${httpMethod.toUpperCase()} /hooks${path}`, e);
 
-            res.setHeader("Content-Type", "application/json; charset=utf-8");
-            res.end(responseString);
+        this.routes.push({
+            path: hook.path,
+            nest: nest.getName(),
+            tunnel: nest.getTunnel().getName(),
+            methods: hook.methods
+        });
+
+        hook[httpMethod](function (req, res) {
+            e.handleHookRequest(nest, req, res);
         });
     }
-
-
 
     public toString() {
         return "Environment";
