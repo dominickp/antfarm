@@ -10,12 +10,15 @@ const   node_watch = require("node-watch"),
 export class FolderNest extends Nest {
 
     protected path: string;
+    protected allowCreate: boolean;
 
-    constructor(e: Environment, path: string) {
+    constructor(e: Environment, path: string, allowCreate: boolean) {
 
         let nest_name = path_mod.basename(path);
 
         super(e, nest_name);
+
+        this.allowCreate = allowCreate;
 
         this.checkDirectorySync(path);
 
@@ -27,8 +30,12 @@ export class FolderNest extends Nest {
         try {
             fs.statSync(directory);
         } catch (e) {
-            fs.mkdirSync(directory);
-            fn.e.log(1, `Directory "${directory}" was created since it did not already exist.`, this);
+            if (fn.allowCreate) {
+                fs.mkdirSync(directory);
+                fn.e.log(1, `Directory "${directory}" was created since it did not already exist.`, this);
+            } else {
+                fn.e.log(3, `Directory "${directory}" did not exist and was created.`, this);
+            }
         }
     }
 

@@ -41,11 +41,12 @@ class Antfarm {
 
     /**
      * Factory method which returns a FolderNest.
-     * @param name
+     * @param path          Path of the folder.
+     * @param allowCreate   Optional boolean flag to allow creation of folder if it does not exist.
      * @returns {FolderNest}
      */
-    public createFolderNest(name: string) {
-        return new FolderNest(this.e, name);
+    public createFolderNest(path: string, allowCreate = false) {
+        return new FolderNest(this.e, path, allowCreate);
     }
 
     /**
