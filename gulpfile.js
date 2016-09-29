@@ -21,7 +21,7 @@ gulp.task("doc", function() {
             name: "Antfarm",
             ignoreCompilerErrors: false,
             includeDeclarations: false,
-            version: false
+            mode: "file"
         }));
 });
 
