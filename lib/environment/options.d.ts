@@ -19,4 +19,8 @@ interface AntfarmOptions {
      * Level of console logging: "debug", "info", "warning", and "error".
      */
     log_out_level?: string;
+    /**
+     * Port of server for webhooks.
+     */
+    port?: number;
 }

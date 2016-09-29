@@ -66,8 +66,8 @@ class Antfarm {
      * @param port
      * @returns {WebhookNest}
      */
-    public createWebhookNest(port: number) {
-        return new WebhookNest(this.e, port);
+    public createWebhookNest(name: string) {
+        return new WebhookNest(this.e, name);
     }
 
     /**

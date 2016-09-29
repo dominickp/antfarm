@@ -25,4 +25,9 @@ interface AntfarmOptions {
      */
     log_out_level?: string;
 
+    /**
+     * Port of server for webhooks.
+     */
+    port?: number;
+
 }

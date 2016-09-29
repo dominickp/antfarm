@@ -7,30 +7,17 @@ const   http = require("http");
 
 export class WebhookNest extends Nest {
 
-    protected port: number;
+    protected name: string;
 
-    protected server;
-
-    constructor(e: Environment, port: number) {
-        super(e, "Webhook " + port.toString());
+    constructor(e: Environment, name: string) {
+        super(e, name);
         let wh = this;
-        wh.port = port;
-        wh.createServer();
+        wh.name = name;
     }
 
-    /**
-     * Creates the server.
-     */
-    protected createServer() {
-        let wh = this;
-        wh.server = http.createServer(function(request, response){
-            response.end("It Works!! Path Hit: " + request.url);
 
-            let job = new WebhookJob(wh.e, request, response);
-            wh.arrive(job);
-
-            wh.e.log(1, `Request received. Sent ${request.url}.`, wh);
-        });
+    public getName() {
+        return this.name;
     }
 
     public load() {
@@ -38,15 +25,11 @@ export class WebhookNest extends Nest {
     }
 
     /**
-     * Start server listening
+     * Add webhook to server watch list.
      */
     public watch() {
         let wh = this;
-
-        wh.server.listen(wh.port, function(){
-            // Callback triggered when server is successfully listening.
-            wh.e.log(1, `Server listening on: http://localhost:${wh.port}/.`, wh);
-        });
+        wh.e.addWebhook(wh, wh.getName());
     }
 
 

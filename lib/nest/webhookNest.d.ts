@@ -2,16 +2,12 @@ import { Environment } from "../environment/environment";
 import { Nest } from "./nest";
 import { WebhookJob } from "../job/webhookJob";
 export declare class WebhookNest extends Nest {
-    protected port: number;
-    protected server: any;
-    constructor(e: Environment, port: number);
-    /**
-     * Creates the server.
-     */
-    protected createServer(): void;
+    protected name: string;
+    constructor(e: Environment, name: string);
+    getName(): string;
     load(): void;
     /**
-     * Start server listening
+     * Add webhook to server watch list.
      */
     watch(): void;
     /**
