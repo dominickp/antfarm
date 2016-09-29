@@ -12,13 +12,17 @@ export class FolderJob extends Job {
 
     protected files: File[];
 
+    /**
+     * FolderJob constructor
+     * @param e
+     * @param path
+     */
     constructor(e: Environment, path: string) {
         super(e, path);
 
         this.path = path;
 
         this.files = [];
-
 
         this.getStatistics();
 
@@ -29,7 +33,6 @@ export class FolderJob extends Job {
         this.basename = node_path.basename(this.getPath());
         this.dirname = node_path.dirname(this.getPath());
     }
-
 
     /**
      * Creates file objects for folder contents. Async operation returns a callback on completion.
@@ -51,36 +54,69 @@ export class FolderJob extends Job {
         });
     }
 
+    /**
+     * Gets the job name.
+     * @returns {string}
+     */
     public getName() {
         return this.getBasename();
     }
 
+    /**
+     * Get the basename.
+     * @returns {string}
+     */
     public getBasename() {
         return this.basename;
     }
 
+    /**
+     * Get the directory name.
+     * @returns {string}
+     */
     public getDirname() {
         return this.dirname;
     }
 
+    /**
+     * Get the path.
+     * @returns {string}
+     */
     public getPath() {
         return this.path;
     }
 
+    /**
+     * Set a new path.
+     * @param path
+     */
     public setPath(path: string) {
         this.path = path;
         this.getStatistics();
     }
 
+    /**
+     * Add a file object to the job.
+     * @param file
+     */
     public addFile(file: File) {
         this.files.push(file);
         this.e.log(0, `Adding file "${file.getName()}" to job.`, this);
     }
 
+    /**
+     * Get a file object from the job.
+     * @param index
+     * @returns {File}
+     */
     public getFile(index: number) {
         return this.files[index];
     }
 
+    /**
+     * Get all files associated with the job.
+     * @returns {File[]}
+     */
     public getFiles() {
         return this.files;
     }
@@ -93,18 +129,29 @@ export class FolderJob extends Job {
         return this.files.length;
     }
 
+    /**
+     * Get the extension.
+     * @returns {null}
+     */
     public getExtension() {
         return null;
     }
 
+    /**
+     * Check if job is a folder.
+     * @returns {boolean}
+     */
     public isFolder() {
         return true;
     }
 
+    /**
+     * Check if job is a file.
+     * @returns {boolean}
+     */
     public isFile() {
         return false;
     }
-
 
     /**
      * Moves a folder to a nest. This is an asynchronous method which provides a callback on completion.

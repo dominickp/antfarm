@@ -13,6 +13,11 @@ export class File {
     protected contentType: string;
     protected extension: string;
 
+    /**
+     * File constructor
+     * @param e
+     * @param path
+     */
     constructor(e: Environment, path: string) {
 
         this.path = path;
@@ -25,13 +30,28 @@ export class File {
         this.getStatistics();
     }
 
+    /**
+     * Refresh the file statistics after a rename or modification.
+     */
     protected getStatistics() {
         this.contentType = mime.lookup(this.getPath());
         this.extension = fileExtension(this.getPath());
     }
 
+    /**
+     * Get the basename.
+     * @returns {string}
+     */
     public getName() {
         return this.basename;
+    }
+
+    /**
+     * Set a new file name.
+     * @param filename
+     */
+    public setName(filename: string) {
+        this.basename = filename;
     }
 
     /**
@@ -42,30 +62,50 @@ export class File {
         return node_path.basename(this.getBasename(), node_path.extname(this.getBasename()));
     }
 
+    /**
+     * Get the top level directory name.
+     * @returns {string}
+     */
     public getDirname() {
         return this.dirname;
     }
 
+    /**
+     * Get the complete directory path.
+     * @returns {string}
+     */
     public getPath() {
         return this.path;
     }
 
+    /**
+     * Set the complete directory path.
+     * @param path
+     */
     public setPath(path: string) {
         this.path = path;
     }
 
-    public setName(filename: string) {
-        this.basename = filename;
-    }
-
+    /**
+     * Get the content-type of the file.
+     * @returns {string}
+     */
     public getContentType() {
         return this.contentType;
     }
 
+    /**
+     * Get the file extension.
+     * @returns {string}
+     */
     public getExtension() {
         return this.extension;
     }
 
+    /**
+     * Get the basename.
+     * @returns {string}
+     */
     public getBasename() {
         return this.basename;
     }
