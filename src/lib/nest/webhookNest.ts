@@ -69,7 +69,6 @@ export class WebhookNest extends Nest {
         wh.e.addWebhook(wh);
     }
 
-
     /**
      * Creates a new job
      * @param job
@@ -77,6 +76,5 @@ export class WebhookNest extends Nest {
     public arrive(job: WebhookJob) {
         super.arrive(job);
     }
-
 
 }

@@ -6,23 +6,16 @@ import {WebhookJob} from "../job/webhookJob";
 import {WebhookNest} from "../nest/webhookNest";
 
 const   http = require("http"),
-        // Router = require("router"),
         finalhandler = require("finalhandler"),
         Router = require("router");
-
-// const router = Router({});
 
 export class Environment {
 
     protected options: AntfarmOptions;
-
     protected logger: Logger;
-
     protected server;
-
     protected router;
-
-    protected routes = [];
+    protected hookRoutes = [];
 
     constructor(options?: AntfarmOptions) {
 
@@ -58,7 +51,7 @@ export class Environment {
 
         e.router.get("/hooks", function (req, res) {
             res.setHeader("Content-Type", "application/json; charset=utf-8");
-            res.end(JSON.stringify(e.routes));
+            res.end(JSON.stringify(e.hookRoutes));
         });
     }
 
@@ -101,7 +94,7 @@ export class Environment {
 
         e.log(1, `Watching webhook ${httpMethod.toUpperCase()} /hooks${path}`, e);
 
-        this.routes.push({
+        this.hookRoutes.push({
             path: hook.path,
             nest: nest.getName(),
             tunnel: nest.getTunnel().getName(),

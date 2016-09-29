@@ -5,7 +5,7 @@ export declare class Environment {
     protected logger: Logger;
     protected server: any;
     protected router: any;
-    protected routes: any[];
+    protected hookRoutes: any[];
     constructor(options?: AntfarmOptions);
     /**
      * Creates the server.
