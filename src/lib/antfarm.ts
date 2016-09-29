@@ -25,7 +25,7 @@ class Antfarm {
      * Antfarm constructor
      * @param options   Antfarm options
      */
-    constructor(options: AntfarmOptions) {
+    constructor(options?: AntfarmOptions) {
         this.e = new Environment(options);
         this.e.log(1, "Started antfarm", this);
     }
@@ -62,17 +62,17 @@ class Antfarm {
      * @param checkEvery    Frequency of re-checking FTP in minutes.
      * @returns {FtpNest}
      */
-    public createFtpNest(host: string, port: number, username: string, password: string, checkEvery: number) {
+    public createFtpNest(host: string, port = 21, username = "", password = "", checkEvery = 10) {
         return new FtpNest(this.e, host, port, username, password, checkEvery);
     }
 
     /**
      * Factory method which returns a WebhookNest.
      * @param path              The path which is generated in the webhook's route. You can supply a string or array of strings.
-     * @param httpMethod        Optional HTTP method for this webhook. Default is "any".
+     * @param httpMethod        HTTP method for this webhook. Choose "all" for any HTTP method.
      * @returns {WebhookNest}
      */
-    public createWebhookNest(path: string|string[], httpMethod?: string) {
+    public createWebhookNest(path: string|string[], httpMethod = "all") {
         return new WebhookNest(this.e, path, httpMethod);
     }
 

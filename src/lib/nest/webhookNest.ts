@@ -11,7 +11,7 @@ export class WebhookNest extends Nest {
 
     protected httpMethod: string;
 
-    constructor(e: Environment, path: string|string[], httpMethod = "all") {
+    constructor(e: Environment, path: string|string[], httpMethod: string) {
         super(e, path.toString());
         let wh = this;
         wh.setPath(path);

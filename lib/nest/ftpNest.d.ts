@@ -6,7 +6,7 @@ export declare class FtpNest extends Nest {
     protected config: {};
     protected checkEvery: number;
     protected checkEveryMs: number;
-    constructor(e: Environment, host: string, port?: number, username?: string, password?: string, checkEvery?: number);
+    constructor(e: Environment, host: string, port: number, username: string, password: string, checkEvery: number);
     protected getClient(): any;
     load(): void;
     watch(): void;
