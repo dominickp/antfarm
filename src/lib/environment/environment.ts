@@ -2,6 +2,7 @@ import {Logger} from "./logger";
 import {Nest} from "./../nest/nest";
 import {ClientRequest} from "http";
 import {ClientResponse} from "http";
+import {WebhookJob} from "../job/webhookJob";
 
 const   http = require("http"),
         // Router = require("router"),
@@ -55,8 +56,8 @@ export class Environment {
             e.log(1, "Server listening on: http://localhost:" +  e.options.port, e);
         });
 
-        e.router.get("/hooks",function (req, res) {
-            res.setHeader('Content-Type', 'application/json; charset=utf-8')
+        e.router.get("/hooks", function (req, res) {
+            res.setHeader("Content-Type", "application/json; charset=utf-8");
             res.end(JSON.stringify(e.routes));
         });
     }
@@ -72,8 +73,23 @@ export class Environment {
         this.routes.push(hook);
 
         hook.get(function (req, res) {
-            res.setHeader('Content-Type', 'text/plain; charset=utf-8')
-            res.end('All Systems Green!')
+
+            let job = new WebhookJob(e, req, res);
+            nest.arrive(job);
+
+            let responseString = JSON.stringify({
+                message: `Job ${job.getId()} was created!`,
+                job: {
+                    id: job.getId(),
+                    name: job.getName()
+                },
+                nest: {
+                    name: nest.getName()
+                }
+            });
+
+            res.setHeader("Content-Type", "application/json; charset=utf-8");
+            res.end(responseString);
         });
     }
 
