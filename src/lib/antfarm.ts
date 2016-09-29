@@ -21,6 +21,10 @@ class Antfarm {
 
     protected e: Environment;
 
+    /**
+     * Antfarm constructor
+     * @param options   Antfarm options
+     */
     constructor(options: AntfarmOptions) {
         this.e = new Environment(options);
         this.e.log(1, "Started antfarm", this);
@@ -51,11 +55,11 @@ class Antfarm {
 
     /**
      * Factory method which returns an FtpNest.
-     * @param host
-     * @param port
-     * @param username
-     * @param password
-     * @param checkEvery
+     * @param host          Hostname or IP address of the FTP server.
+     * @param port          Port number of the FTP server.
+     * @param username      FTP account username.
+     * @param password      FTP account password.
+     * @param checkEvery    Frequency of re-checking FTP in minutes.
      * @returns {FtpNest}
      */
     public createFtpNest(host: string, port: number, username: string, password: string, checkEvery: number) {
@@ -64,17 +68,17 @@ class Antfarm {
 
     /**
      * Factory method which returns a WebhookNest.
-     * @param path
-     * @param httpMethod
+     * @param path              The path which is generated in the webhook's route. You can supply a string or array of strings.
+     * @param httpMethod        Optional HTTP method for this webhook. Default is "any".
      * @returns {WebhookNest}
      */
-    public createWebhookNest(path: string, httpMethod?: string) {
+    public createWebhookNest(path: string|string[], httpMethod?: string) {
         return new WebhookNest(this.e, path, httpMethod);
     }
 
     /**
      * Load an entire directory of workflow modules.
-     * @param directory
+     * @param directory     Path to the workflow modules.
      */
     public loadDir(directory: string) {
         let af = this;
