@@ -11,6 +11,12 @@ export class WebhookNest extends Nest {
 
     protected httpMethod: string;
 
+    /**
+     * Webhook Nest constructor
+     * @param e
+     * @param path
+     * @param httpMethod
+     */
     constructor(e: Environment, path: string|string[], httpMethod: string) {
         super(e, path.toString());
         let wh = this;
@@ -18,6 +24,11 @@ export class WebhookNest extends Nest {
         wh.setHttpMethod(httpMethod);
     }
 
+    /**
+     * Set the path as a string or a string array. All parts are URI encoded.
+     * Create directory structures with an array: ["one", "two"] results in "/one/two".
+     * @param path
+     */
     public setPath(path: any) {
         let wh = this;
         let modifiedPath = "";
@@ -36,14 +47,26 @@ export class WebhookNest extends Nest {
         wh.path = modifiedPath;
     }
 
+    /**
+     * Get the path.
+     * @returns {string}
+     */
     public getPath() {
         return this.path;
     }
 
+    /**
+     * Get the HTTP method.
+     * @returns {string}
+     */
     public getHttpMethod() {
         return this.httpMethod;
     }
 
+    /**
+     * Set the HTTP method.
+     * @param httpMethod
+     */
     protected setHttpMethod(httpMethod) {
         let lower = httpMethod.toLowerCase();
         let acceptableMethods = [ "get", "post", "put", "head", "delete", "options", "trace", "copy", "lock", "mkcol", "move", "purge", "propfind", "proppatch", "unlock", "report", "mkactivity", "checkout", "merge", "m-search", "notify", "subscribe", "unsubscribe", "patch", "search", "connect", "all" ];
@@ -53,13 +76,18 @@ export class WebhookNest extends Nest {
         this.httpMethod = lower;
     }
 
+    /**
+     * Get the name.
+     * @returns {string}
+     */
     public getName() {
         return this.name;
     }
 
-    public load() {
-
-    }
+    /**
+     * On load, do nothing.
+     */
+    public load() {}
 
     /**
      * Add webhook to server watch list.

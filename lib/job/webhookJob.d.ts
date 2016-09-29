@@ -5,6 +5,12 @@ import { ClientResponse } from "http";
 export declare class WebhookJob extends Job {
     protected request: ClientRequest;
     protected response: ClientResponse;
+    /**
+     * WebhookJob constructor
+     * @param e
+     * @param request
+     * @param response
+     */
     constructor(e: Environment, request: ClientRequest, response: ClientResponse);
     /**
      * Get the HTTP response object.

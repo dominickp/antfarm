@@ -8,9 +8,14 @@ export class WebhookJob extends Job {
     protected request: ClientRequest;
     protected response: ClientResponse;
 
+    /**
+     * WebhookJob constructor
+     * @param e
+     * @param request
+     * @param response
+     */
     constructor(e: Environment, request: ClientRequest, response: ClientResponse) {
         super(e, "Webhook Job");
-
         this.request = request;
         this.response = response;
     }
@@ -30,7 +35,5 @@ export class WebhookJob extends Job {
     public getRequest() {
         return this.request;
     }
-
-
 
 }
