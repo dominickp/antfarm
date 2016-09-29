@@ -20,7 +20,8 @@ gulp.task("doc", function() {
             out: "./docs/",
             name: "Antfarm",
             ignoreCompilerErrors: false,
-            includeDeclarations: false
+            includeDeclarations: false,
+            version: false
         }));
 });
 
