@@ -1,6 +1,9 @@
 import { Tunnel } from "../tunnel/tunnel";
 import { Job } from "../job/job";
 import { Environment } from "../environment/environment";
+/**
+ * A nest is a resource that holds or produces jobs.
+ */
 export declare abstract class Nest {
     protected name: string;
     protected tunnel: Tunnel;

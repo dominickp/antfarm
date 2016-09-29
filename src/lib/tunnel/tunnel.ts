@@ -5,7 +5,9 @@ import { Environment } from "../environment/environment";
 
 const   async = require("async"),
         mm = require("micromatch");
-
+/**
+ * Tunnels are runnable work flow units that can watch nests.
+ */
 export class Tunnel {
 
     protected name: string;
