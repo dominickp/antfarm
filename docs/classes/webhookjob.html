@@ -109,6 +109,8 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="webhookjob.html#createlifeevent" class="tsd-kind-icon">create<wbr>Life<wbr>Event</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="webhookjob.html#fail" class="tsd-kind-icon">fail</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookjob.html#getdataasfilejob" class="tsd-kind-icon">get<wbr>Data<wbr>AsFile<wbr>Job</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookjob.html#getdataasstring" class="tsd-kind-icon">get<wbr>Data<wbr>AsString</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="webhookjob.html#getid" class="tsd-kind-icon">get<wbr>Id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="webhookjob.html#getlifecycle" class="tsd-kind-icon">get<wbr>Life<wbr>Cycle</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="webhookjob.html#getname" class="tsd-kind-icon">get<wbr>Name</a></li>
@@ -117,6 +119,8 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookjob.html#getrequest" class="tsd-kind-icon">get<wbr>Request</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookjob.html#getresponse" class="tsd-kind-icon">get<wbr>Response</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="webhookjob.html#gettunnel" class="tsd-kind-icon">get<wbr>Tunnel</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookjob.html#geturlparameter" class="tsd-kind-icon">get<wbr>Url<wbr>Parameter</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookjob.html#geturlparameters" class="tsd-kind-icon">get<wbr>Url<wbr>Parameters</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="webhookjob.html#islocallyavailable" class="tsd-kind-icon">is<wbr>Locally<wbr>Available</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="webhookjob.html#setlocallyavailable" class="tsd-kind-icon">set<wbr>Locally<wbr>Available</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="webhookjob.html#setname" class="tsd-kind-icon">set<wbr>Name</a></li>
@@ -135,14 +139,14 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Webhook<wbr>Job<span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="environment.html" class="tsd-signature-type">Environment</a>, request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ClientRequest</span>, response<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ClientResponse</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="webhookjob.html" class="tsd-signature-type">WebhookJob</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Webhook<wbr>Job<span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="environment.html" class="tsd-signature-type">Environment</a>, request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ServerRequest</span>, response<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ClientResponse</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="webhookjob.html" class="tsd-signature-type">WebhookJob</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overwrites <a href="job.html">Job</a>.<a href="job.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/webhookJob.ts#L9">lib/job/webhookJob.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/webhookJob.ts#L14">lib/job/webhookJob.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -156,7 +160,7 @@
 									<h5>e: <a href="environment.html" class="tsd-signature-type">Environment</a></h5>
 								</li>
 								<li>
-									<h5>request: <span class="tsd-signature-type">ClientRequest</span></h5>
+									<h5>request: <span class="tsd-signature-type">ServerRequest</span></h5>
 								</li>
 								<li>
 									<h5>response: <span class="tsd-signature-type">ClientResponse</span></h5>
@@ -180,7 +184,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="job.html">Job</a>.<a href="job.html#e">e</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/job.ts#L13">lib/job/job.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/job.ts#L13">lib/job/job.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -191,7 +195,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="job.html">Job</a>.<a href="job.html#id">id</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/job.ts#L16">lib/job/job.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/job.ts#L16">lib/job/job.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -202,7 +206,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="job.html">Job</a>.<a href="job.html#lifecycle">lifeCycle</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/job.ts#L15">lib/job/job.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/job.ts#L15">lib/job/job.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -213,7 +217,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="job.html">Job</a>.<a href="job.html#locallyavailable">locallyAvailable</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/job.ts#L14">lib/job/job.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/job.ts#L14">lib/job/job.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -224,7 +228,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="job.html">Job</a>.<a href="job.html#name">name</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/job.ts#L10">lib/job/job.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/job.ts#L10">lib/job/job.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -235,17 +239,17 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="job.html">Job</a>.<a href="job.html#nest">nest</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/job.ts#L12">lib/job/job.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/job.ts#L12">lib/job/job.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="request" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> request</h3>
-					<div class="tsd-signature tsd-kind-icon">request<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ClientRequest</span></div>
+					<div class="tsd-signature tsd-kind-icon">request<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ServerRequest</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/webhookJob.ts#L8">lib/job/webhookJob.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/webhookJob.ts#L13">lib/job/webhookJob.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -255,7 +259,7 @@
 					<div class="tsd-signature tsd-kind-icon">response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ClientResponse</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/webhookJob.ts#L9">lib/job/webhookJob.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/webhookJob.ts#L14">lib/job/webhookJob.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -266,7 +270,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="job.html">Job</a>.<a href="job.html#tunnel">tunnel</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/job.ts#L11">lib/job/job.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/job.ts#L11">lib/job/job.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -284,7 +288,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="job.html">Job</a>.<a href="job.html#createlifeevent">createLifeEvent</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/job.ts#L71">lib/job/job.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/job.ts#L71">lib/job/job.ts:71</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -321,7 +325,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="job.html">Job</a>.<a href="job.html#fail">fail</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/job.ts#L143">lib/job/job.ts:143</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/job.ts#L143">lib/job/job.ts:143</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -341,6 +345,77 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getdataasfilejob" class="tsd-anchor"></a>
+					<h3>get<wbr>Data<wbr>AsFile<wbr>Job</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Data<wbr>AsFile<wbr>Job<span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/webhookJob.ts#L89">lib/job/webhookJob.ts:89</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets a FileJob from the request body with a temporary file name.
+									The callback will be given the job as its parameter.</p>
+									<h4 id="example">Example</h4>
+									<pre><code class="lang-js"> webhookJob.getDataAsFileJob(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fileJob</span>)</span>{
+     fileJob.rename(<span class="hljs-string">"myfile.zip"</span>);
+     fileJob.move(af.createFolderNest(<span class="hljs-string">"/var/out/webhook"</span>));
+ });
+</code></pre>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>callback: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getdataasstring" class="tsd-anchor"></a>
+					<h3>get<wbr>Data<wbr>AsString</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Data<wbr>AsString<span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/webhookJob.ts#L120">lib/job/webhookJob.ts:120</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get a string from the request body.
+									The given callback is given a string parameter.</p>
+									<h4 id="example">Example</h4>
+									<pre><code class="lang-js">webhookJob.getDataAsString(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">requestBody</span>)</span>{
+    <span class="hljs-built_in">console</span>.log(requestBody);
+});
+</code></pre>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>callback: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="getid" class="tsd-anchor"></a>
 					<h3>get<wbr>Id</h3>
@@ -352,7 +427,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="job.html">Job</a>.<a href="job.html#getid">getId</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/job.ts#L95">lib/job/job.ts:95</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/job.ts#L95">lib/job/job.ts:95</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -375,7 +450,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="job.html">Job</a>.<a href="job.html#getlifecycle">getLifeCycle</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/job.ts#L61">lib/job/job.ts:61</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/job.ts#L61">lib/job/job.ts:61</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -398,7 +473,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="job.html">Job</a>.<a href="job.html#getname">getName</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/job.ts#L87">lib/job/job.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/job.ts#L87">lib/job/job.ts:87</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -421,7 +496,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="job.html">Job</a>.<a href="job.html#getnameproper">getNameProper</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/job.ts#L103">lib/job/job.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/job.ts#L103">lib/job/job.ts:103</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -444,7 +519,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="job.html">Job</a>.<a href="job.html#getnest">getNest</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/job.ts#L119">lib/job/job.ts:119</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/job.ts#L119">lib/job/job.ts:119</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -460,13 +535,13 @@
 					<a name="getrequest" class="tsd-anchor"></a>
 					<h3>get<wbr>Request</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Request<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ClientRequest</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Request<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ServerRequest</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/webhookJob.ts#L35">lib/job/webhookJob.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/webhookJob.ts#L40">lib/job/webhookJob.ts:40</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -474,7 +549,7 @@
 									<p>Get the HTTP request object.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ClientRequest</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ServerRequest</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -488,7 +563,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/webhookJob.ts#L27">lib/job/webhookJob.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/webhookJob.ts#L32">lib/job/webhookJob.ts:32</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -511,7 +586,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="job.html">Job</a>.<a href="job.html#gettunnel">getTunnel</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/job.ts#L135">lib/job/job.ts:135</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/job.ts#L135">lib/job/job.ts:135</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -520,6 +595,69 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="tunnel.html" class="tsd-signature-type">Tunnel</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="geturlparameter" class="tsd-anchor"></a>
+					<h3>get<wbr>Url<wbr>Parameter</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Url<wbr>Parameter<span class="tsd-signature-symbol">(</span>parameter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/webhookJob.ts#L55">lib/job/webhookJob.ts:55</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return a specific URL parameter.</p>
+									<h4 id="example">Example</h4>
+									<pre><code class="lang-js"><span class="hljs-comment">// Webhook URL: /hooks/my/hook?customer_id=MyCust</span>
+<span class="hljs-keyword">var</span> customer_id = webhookJob.getUrlParameter(<span class="hljs-string">"customer_id"</span>);
+<span class="hljs-comment">// customer_id =&gt; MyCust</span>
+</code></pre>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>parameter: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="geturlparameters" class="tsd-anchor"></a>
+					<h3>get<wbr>Url<wbr>Parameters</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Url<wbr>Parameters<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/webhookJob.ts#L71">lib/job/webhookJob.ts:71</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return all URl parameters.</p>
+									<ul>
+										<li><h4 id="example">Example</h4>
+											<pre><code class="lang-js"><span class="hljs-comment">// Webhook URL: /hooks/my/hook?customer_id=MyCust&amp;file_name=MyFile.zip</span>
+<span class="hljs-keyword">var</span> query = webhookJob.getUrlParameters();
+<span class="hljs-comment">// query =&gt; {customer_id: "MyCust", file_name: "MyFile.zip"}</span>
+</code></pre>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -534,7 +672,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="job.html">Job</a>.<a href="job.html#islocallyavailable">isLocallyAvailable</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/job.ts#L45">lib/job/job.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/job.ts#L45">lib/job/job.ts:45</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -557,7 +695,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="job.html">Job</a>.<a href="job.html#setlocallyavailable">setLocallyAvailable</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/job.ts#L53">lib/job/job.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/job.ts#L53">lib/job/job.ts:53</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -588,7 +726,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="job.html">Job</a>.<a href="job.html#setname">setName</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/job.ts#L79">lib/job/job.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/job.ts#L79">lib/job/job.ts:79</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -619,7 +757,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="job.html">Job</a>.<a href="job.html#setnest">setNest</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/job.ts#L111">lib/job/job.ts:111</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/job.ts#L111">lib/job/job.ts:111</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -650,7 +788,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="job.html">Job</a>.<a href="job.html#settunnel">setTunnel</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/job.ts#L127">lib/job/job.ts:127</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/job.ts#L127">lib/job/job.ts:127</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -681,7 +819,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="job.html">Job</a>.<a href="job.html#tostring">toString</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/job.ts#L37">lib/job/job.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/job.ts#L37">lib/job/job.ts:37</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -704,7 +842,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="job.html">Job</a>.<a href="job.html#transfer">transfer</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/790164c/src/lib/job/job.ts#L154">lib/job/job.ts:154</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/287bbaa/src/lib/job/job.ts#L154">lib/job/job.ts:154</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -816,6 +954,12 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="webhookjob.html#fail" class="tsd-kind-icon">fail</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="webhookjob.html#getdataasfilejob" class="tsd-kind-icon">get<wbr>Data<wbr>AsFile<wbr>Job</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="webhookjob.html#getdataasstring" class="tsd-kind-icon">get<wbr>Data<wbr>AsString</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="webhookjob.html#getid" class="tsd-kind-icon">get<wbr>Id</a>
 							</li>
@@ -839,6 +983,12 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="webhookjob.html#gettunnel" class="tsd-kind-icon">get<wbr>Tunnel</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="webhookjob.html#geturlparameter" class="tsd-kind-icon">get<wbr>Url<wbr>Parameter</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="webhookjob.html#geturlparameters" class="tsd-kind-icon">get<wbr>Url<wbr>Parameters</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="webhookjob.html#islocallyavailable" class="tsd-kind-icon">is<wbr>Locally<wbr>Available</a>
@@ -915,6 +1065,9 @@
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#tmp" class="tsd-kind-icon">tmp</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#url" class="tsd-kind-icon">url</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#winston" class="tsd-kind-icon">winston</a>
