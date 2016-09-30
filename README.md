@@ -49,9 +49,7 @@ This workflow watches an FTP folder for new files every 5 minutes. Then, when fo
 
 ```js
 var Antfarm = require('../lib/antfarm'),
-    af = new Antfarm({
-        log_dir: "/Users/dominickpeluso/Logs"
-    });
+    af = new Antfarm();
 
 var my_ftp = af.createFtpNest("ftp.ants.com", 21, 'username', 'password', 5);
 var out_folder = af.createFolderNest("/Users/dominickpeluso/Desktop");
@@ -64,8 +62,8 @@ ftp_tunnel.run(function(job, nest){
     job.move(my_ftp);
 });
 
-ftp_tunnel.fail(function(job, nest){
-    console.log("do fail");
+ftp_tunnel.fail(function(job, nest, reason){
+    console.log("Job " + job.getName() + " failed:" + reason);
 });
 ```
 
@@ -74,21 +72,14 @@ This workflow routes PDFs which arrive in the hotfolder to a particular folder w
 
 ```js
 // Import Antfarm and set some options
-var Antfarm = require('../lib/antfarm'),
-    af = new Antfarm({
-        log_dir: "/Users/dominickpeluso/Logs"
-    });
-
-// Set some paths for convenience
-const INPUT_PATH = '/Users/dominickpeluso/Desktop/Antfarm Example/Hotfolder In';
-const OUTPUT_PDF_PATH = '/Users/dominickpeluso/Desktop/Antfarm Example/Out/PDF';
-const OUTPUT_OTHER_PATH = '/Users/dominickpeluso/Desktop/Antfarm Example/Out/Others';
+var Antfarm = require('antfarm'),
+    af = new Antfarm();
 
 // Build a Tunnel
 var tunnel = af.createTunnel("Hotfolder sorting workflow");
 
 // Create a Nest for our hot folder
-var hotfolder = af.createFolderNest(INPUT_PATH);
+var hotfolder = af.createFolderNest("/var/hotfolders/a");
 
 // Attach the Nest to our Tunnel to watch for new files
 tunnel.watch(hotfolder);
@@ -97,24 +88,22 @@ tunnel.watch(hotfolder);
 tunnel.run(function(job, nest){
     // Move PDFs to one folder, all others to another
     if(job.getExtension() == "pdf"){
-        job.move(af.createFolderNest(OUTPUT_PDF_PATH));
+        job.move(af.createFolderNest("/var/out/pdf"));
     } else {
-        job.move(af.createFolderNest(OUTPUT_OTHER_PATH));
+        job.move(af.createFolderNest("/var/out/others"));
     }
 });
 
 // When a job fails, execute the following
-tunnel.fail(function(job, nest){
-    console.log("Job " + job.getName() + " failed!");
+tunnel.fail(function(job, nest, reason){
+    console.log("Job " + job.getName() + " failed:" + reason);
 });
 ```
 
 ### Matching files together
 ```js
-var Antfarm = require('../lib/antfarm'),
-    af = new Antfarm({
-        log_dir: "/Users/dominickpeluso/Desktop"
-    });
+var Antfarm = require('antfarm'),
+    af = new Antfarm();
 
 var hotfolder = af.createFolderNest("/Users/dominickpeluso/Desktop/Antfarm Example/FTP Out/");
 var tunnel = af.createTunnel("Matching workflow");
@@ -123,15 +112,12 @@ tunnel.watch(hotfolder);
 
 // Match .pdf with .xml with a 1 minute timeout
 tunnel.match(["*.xml", "*_art.pdf"], 1, function(jobs){
-
     console.log("MATCHES FOUND " + jobs[0].getName(), jobs[1].getName());
-    // => MATCHES FOUND hello copy 5.xml hello copy 5_art.pdf
-
+    // => MATCHES FOUND myFile.xml myFile_art.pdf
 });
 
 // Orphaned files fail out
-tunnel.fail(function(job, nest){
-    console.log("do fail", job.getName());
-    // => do fail sqljdbc.jar
+tunnel.fail(function(job, nest, reason){
+    console.log("Job " + job.getName() + " failed:" + reason);
 });
 ```
