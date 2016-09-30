@@ -1,7 +1,4 @@
 import {Logger} from "./logger";
-import {Nest} from "./../nest/nest";
-import {ClientRequest} from "http";
-import {ClientResponse} from "http";
 import {WebhookJob} from "../job/webhookJob";
 import {WebhookNest} from "../nest/webhookNest";
 
