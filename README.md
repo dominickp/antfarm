@@ -48,7 +48,7 @@ https://dominickp.github.io/antfarm
 This workflow watches an FTP folder for new files every 5 minutes. Then, when found, simply transfers them to the desktop.
 
 ```js
-var Antfarm = require('../lib/antfarm'),
+var Antfarm = require('antfarm'),
     af = new Antfarm();
 
 var my_ftp = af.createFtpNest("ftp.ants.com", 21, 'username', 'password', 5);
