@@ -30,10 +30,18 @@ export class WebhookNest extends Nest {
         }
     }
 
+    /**
+     * Get the custom handleRequest function.
+     * @returns {any}
+     */
     public getCustomHandleRequest() {
         return this.handleRequest;
     }
 
+    /**
+     * Set the custom handlerRequest function.
+     * @param handleRequest
+     */
     protected setCustomHandleRequest(handleRequest) {
         if (handleRequest !== null && typeof handleRequest !== "function") {
             throw("Custom handleRequest must be a function.");

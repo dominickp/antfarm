@@ -13,7 +13,15 @@ export declare class WebhookNest extends Nest {
      * @param handleRequest     Custom request handler function.
      */
     constructor(e: Environment, path: string | string[], httpMethod: string, handleRequest?: any);
+    /**
+     * Get the custom handleRequest function.
+     * @returns {any}
+     */
     getCustomHandleRequest(): any;
+    /**
+     * Set the custom handlerRequest function.
+     * @param handleRequest
+     */
     protected setCustomHandleRequest(handleRequest: any): void;
     /**
      * Set the path as a string or a string array. All parts are URI encoded.
