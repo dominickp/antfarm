@@ -66,8 +66,7 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<h1 id="antfarm">antfarm</h1>
-				<p>Antfarm is a simple automation framework that aims to make file automation robust and scalable. 🐜
-				<a href="https://dominickp.github.io/antfarm">https://dominickp.github.io/antfarm</a></p>
+				<p>Antfarm is a simple automation framework that aims to make file automation robust and scalable. 🐜</p>
 				<p><a href="https://travis-ci.org/dominickp/antfarm"><img src="https://travis-ci.org/dominickp/antfarm.svg?branch=master" alt="Build Status"></a>
 					<a href="https://coveralls.io/github/dominickp/antfarm?branch=master"><img src="https://coveralls.io/repos/github/dominickp/antfarm/badge.svg?branch=master" alt="Coverage Status"></a>
 					<a href="https://badge.fury.io/js/antfarm"><img src="https://badge.fury.io/js/antfarm.svg" alt="npm version"></a>
@@ -76,108 +75,34 @@
 				<h2 id="usage">Usage</h2>
 				<pre><code class="lang-sh">$ npm install antfarm
 </code></pre>
-				<pre><code class="lang-js"><span class="hljs-keyword">var</span> Antfarm = <span class="hljs-built_in">require</span>(<span class="hljs-string">'antfarm'</span>);
+				<pre><code class="lang-js"><span class="hljs-keyword">var</span> Antfarm = <span class="hljs-built_in">require</span>(<span class="hljs-string">'antfarm'</span>),
+   af = <span class="hljs-keyword">new</span> Antfarm();
 
-<span class="hljs-keyword">var</span> options = {
-        <span class="hljs-attr">log_dir</span>: <span class="hljs-string">"/Users/dominickpeluso/Desktop"</span>,
-        <span class="hljs-attr">log_max_size</span>: <span class="hljs-literal">null</span>,
-        <span class="hljs-attr">log_max_files</span>: <span class="hljs-literal">null</span>,
-        <span class="hljs-attr">log_file_level</span>: <span class="hljs-literal">null</span>,
-        <span class="hljs-attr">log_out_level</span>: <span class="hljs-literal">null</span>
-    };
+<span class="hljs-keyword">var</span> hotfolder_a = af.createFolderNest(<span class="hljs-string">"/var/hotfolders/a"</span>);
+<span class="hljs-keyword">var</span> pdf_folder = af.createFolderNest(<span class="hljs-string">"/var/out/pdf"</span>);
+<span class="hljs-keyword">var</span> other_folder = af.createFolderNest(<span class="hljs-string">"/var/out/others"</span>);
 
-<span class="hljs-keyword">var</span> af = <span class="hljs-keyword">new</span> Antfarm(options);
-</code></pre>
-				<h2 id="components">Components</h2>
-				<h3 id="tunnels">Tunnels</h3>
-				<p>Tunnels are defined workflows which modularize and run your program code.</p>
-				<pre><code class="lang-js"><span class="hljs-comment">// Build a Tunnel</span>
-<span class="hljs-keyword">var</span> tunnel = af.createTunnel(<span class="hljs-string">"Hotfolder sorting workflow"</span>);
-</code></pre>
-				<p>You can attach nests to tunnels, which triggers the nest&#39;s watching behavior.</p>
-				<pre><code class="lang-js"><span class="hljs-comment">// Attach the Nest to our Tunnel to watch for new files</span>
-tunnel.watch(hotfolder);
-</code></pre>
-				<p>Tunnels handle your application logic via the run method. You can have multiple run instances within a single tunnel, allowing you to run several actions concurrently.</p>
-				<pre><code class="lang-js"><span class="hljs-comment">// When a new file is found, execute the following</span>
-tunnel.run(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest</span>)</span>{
-    <span class="hljs-comment">// your application code</span>
-});
-</code></pre>
-				<p>If you need to run logic synchronously, you can do so with runSync:</p>
-				<pre><code class="lang-js">tunnel.runSync(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest, done</span>)</span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Do this first"</span>);
-});
+<span class="hljs-keyword">var</span> tunnel = af.createTunnel(<span class="hljs-string">"Simple pdf sorting workflow"</span>);
 
-tunnel.runSync(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest, done</span>)</span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Do this second"</span>);
-    job.move(my_ftp, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-        done();
-    });
-});
-</code></pre>
-				<p>Similar to the run method, the fail method will allow you to handle job errors.</p>
-				<pre><code class="lang-js"><span class="hljs-comment">// When a job fails, execute the following</span>
-tunnel.fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest</span>)</span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Job "</span> + job.getName() + <span class="hljs-string">" failed!"</span>);
-});
-</code></pre>
-				<h3 id="nests">Nests</h3>
-				<p>Nests are a simple abstraction for storage locations (filesystem folders, S3 buckets, FTP, etc...). </p>
-				<pre><code class="lang-js"><span class="hljs-keyword">var</span> desktop_nest = af.createFolderNest(<span class="hljs-string">"/Users/dominickpeluso/Desktop"</span>);
-<span class="hljs-keyword">var</span> ftp_nest = af.createFtpNest(<span class="hljs-string">"ftp.ants.com"</span>, <span class="hljs-number">21</span>, <span class="hljs-string">'username'</span>, <span class="hljs-string">'password'</span>, <span class="hljs-number">5</span>);
-</code></pre>
-				<p>You can easily move jobs from one nest to another without having to worry about its type.</p>
-				<pre><code class="lang-js">tunnel.watch(desktop_nest);
+tunnel.watch(hotfolder_a);
 
 tunnel.run(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest</span>)</span>{
-    <span class="hljs-comment">// Uploads files from desktop to the FTP</span>
-    job.move(ftp_nest, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-        <span class="hljs-comment">// Moved</span>
-    });
-});
-</code></pre>
-				<h3 id="jobs">Jobs</h3>
-				<p>Jobs are provided within tunnel events and have lots of helpful methods.</p>
-				<pre><code class="lang-js">    <span class="hljs-keyword">if</span>(job.getExtension() == <span class="hljs-string">"pdf"</span>){
-        <span class="hljs-comment">// Do stuff to PDFs</span>
+    <span class="hljs-keyword">if</span>(job.getExtension() == <span class="hljs-string">"pdf"</span>){
+        job.move(pdf_folder);
+    } <span class="hljs-keyword">else</span> {
+        job.move(other_folder);
     }
-</code></pre>
-				<h4 id="transferring">Transferring</h4>
-				<p>Jobs can be easily transferred to other tunnels with the transfer method. </p>
-				<pre><code class="lang-js">tunnel1.run(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest</span>)</span>{
-    job.transfer(tunnel2);
-});
-tunnel2.run(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job</span>)</span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Got "</span> + job.getName() + <span class="hljs-string">" in tunnel "</span> + tunnel2.getName());
 });
 </code></pre>
-				<h3 id="loading-workflow-modules">Loading workflow modules</h3>
-				<p>You can put your workflows in separate node modules in another directory and have Antfarm load them all.</p>
-				<pre><code class="lang-js"><span class="hljs-comment">// Import Antfarm</span>
-<span class="hljs-keyword">var</span> Antfarm = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../lib/antfarm'</span>),
-    af = <span class="hljs-keyword">new</span> Antfarm({});
-
-<span class="hljs-comment">// Load your workflow directory</span>
-af.loadDir(<span class="hljs-string">"./workflows"</span>);
-</code></pre>
-				<p>Your workflow files should export a function that takes an Antfarm object in its constructor, like so:</p>
-				<pre><code class="lang-js"><span class="hljs-comment">// ./workflows/workflow_a.js</span>
-<span class="hljs-keyword">var</span> WorkflowA = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">antfarm</span>)</span>{
-    <span class="hljs-keyword">var</span> wf = <span class="hljs-keyword">this</span>;
-    wf.af = antfarm;
-    wf.tunnel = wf.af.createTunnel(<span class="hljs-string">"Workflow A"</span>);
-    <span class="hljs-comment">// etc...</span>
-};
-<span class="hljs-built_in">module</span>.exports = WorkflowA;
-</code></pre>
+				<h2 id="wiki">Wiki</h2>
+				<p><a href="https://github.com/dominickp/antfarm/wiki">https://github.com/dominickp/antfarm/wiki</a></p>
+				<h2 id="api-reference">API Reference</h2>
+				<p><a href="https://dominickp.github.io/antfarm">https://dominickp.github.io/antfarm</a></p>
 				<h2 id="examples">Examples</h2>
 				<h3 id="ftp-to-folder">FTP to folder</h3>
 				<p>This workflow watches an FTP folder for new files every 5 minutes. Then, when found, simply transfers them to the desktop.</p>
-				<pre><code class="lang-js"><span class="hljs-keyword">var</span> Antfarm = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../lib/antfarm'</span>),
-    af = <span class="hljs-keyword">new</span> Antfarm({
-        <span class="hljs-attr">log_dir</span>: <span class="hljs-string">"/Users/dominickpeluso/Logs"</span>
-    });
+				<pre><code class="lang-js"><span class="hljs-keyword">var</span> Antfarm = <span class="hljs-built_in">require</span>(<span class="hljs-string">'antfarm'</span>),
+    af = <span class="hljs-keyword">new</span> Antfarm();
 
 <span class="hljs-keyword">var</span> my_ftp = af.createFtpNest(<span class="hljs-string">"ftp.ants.com"</span>, <span class="hljs-number">21</span>, <span class="hljs-string">'username'</span>, <span class="hljs-string">'password'</span>, <span class="hljs-number">5</span>);
 <span class="hljs-keyword">var</span> out_folder = af.createFolderNest(<span class="hljs-string">"/Users/dominickpeluso/Desktop"</span>);
@@ -190,28 +115,21 @@ ftp_tunnel.run(<span class="hljs-function"><span class="hljs-keyword">function</
     job.move(my_ftp);
 });
 
-ftp_tunnel.fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest</span>)</span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"do fail"</span>);
+ftp_tunnel.fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest, reason</span>)</span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Job "</span> + job.getName() + <span class="hljs-string">" failed:"</span> + reason);
 });
 </code></pre>
 				<h3 id="route-jobs-to-folders-via-filetype">Route jobs to folders via filetype</h3>
 				<p>This workflow routes PDFs which arrive in the hotfolder to a particular folder while routing all other filetypes to another folder.</p>
 				<pre><code class="lang-js"><span class="hljs-comment">// Import Antfarm and set some options</span>
-<span class="hljs-keyword">var</span> Antfarm = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../lib/antfarm'</span>),
-    af = <span class="hljs-keyword">new</span> Antfarm({
-        <span class="hljs-attr">log_dir</span>: <span class="hljs-string">"/Users/dominickpeluso/Logs"</span>
-    });
-
-<span class="hljs-comment">// Set some paths for convenience</span>
-<span class="hljs-keyword">const</span> INPUT_PATH = <span class="hljs-string">'/Users/dominickpeluso/Desktop/Antfarm Example/Hotfolder In'</span>;
-<span class="hljs-keyword">const</span> OUTPUT_PDF_PATH = <span class="hljs-string">'/Users/dominickpeluso/Desktop/Antfarm Example/Out/PDF'</span>;
-<span class="hljs-keyword">const</span> OUTPUT_OTHER_PATH = <span class="hljs-string">'/Users/dominickpeluso/Desktop/Antfarm Example/Out/Others'</span>;
+<span class="hljs-keyword">var</span> Antfarm = <span class="hljs-built_in">require</span>(<span class="hljs-string">'antfarm'</span>),
+    af = <span class="hljs-keyword">new</span> Antfarm();
 
 <span class="hljs-comment">// Build a Tunnel</span>
 <span class="hljs-keyword">var</span> tunnel = af.createTunnel(<span class="hljs-string">"Hotfolder sorting workflow"</span>);
 
 <span class="hljs-comment">// Create a Nest for our hot folder</span>
-<span class="hljs-keyword">var</span> hotfolder = af.createFolderNest(INPUT_PATH);
+<span class="hljs-keyword">var</span> hotfolder = af.createFolderNest(<span class="hljs-string">"/var/hotfolders/a"</span>);
 
 <span class="hljs-comment">// Attach the Nest to our Tunnel to watch for new files</span>
 tunnel.watch(hotfolder);
@@ -220,22 +138,20 @@ tunnel.watch(hotfolder);
 tunnel.run(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest</span>)</span>{
     <span class="hljs-comment">// Move PDFs to one folder, all others to another</span>
     <span class="hljs-keyword">if</span>(job.getExtension() == <span class="hljs-string">"pdf"</span>){
-        job.move(af.createFolderNest(OUTPUT_PDF_PATH));
+        job.move(af.createFolderNest(<span class="hljs-string">"/var/out/pdf"</span>));
     } <span class="hljs-keyword">else</span> {
-        job.move(af.createFolderNest(OUTPUT_OTHER_PATH));
+        job.move(af.createFolderNest(<span class="hljs-string">"/var/out/others"</span>));
     }
 });
 
 <span class="hljs-comment">// When a job fails, execute the following</span>
-tunnel.fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest</span>)</span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Job "</span> + job.getName() + <span class="hljs-string">" failed!"</span>);
+tunnel.fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest, reason</span>)</span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Job "</span> + job.getName() + <span class="hljs-string">" failed:"</span> + reason);
 });
 </code></pre>
 				<h3 id="matching-files-together">Matching files together</h3>
-				<pre><code class="lang-js"><span class="hljs-keyword">var</span> Antfarm = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../lib/antfarm'</span>),
-    af = <span class="hljs-keyword">new</span> Antfarm({
-        <span class="hljs-attr">log_dir</span>: <span class="hljs-string">"/Users/dominickpeluso/Desktop"</span>
-    });
+				<pre><code class="lang-js"><span class="hljs-keyword">var</span> Antfarm = <span class="hljs-built_in">require</span>(<span class="hljs-string">'antfarm'</span>),
+    af = <span class="hljs-keyword">new</span> Antfarm();
 
 <span class="hljs-keyword">var</span> hotfolder = af.createFolderNest(<span class="hljs-string">"/Users/dominickpeluso/Desktop/Antfarm Example/FTP Out/"</span>);
 <span class="hljs-keyword">var</span> tunnel = af.createTunnel(<span class="hljs-string">"Matching workflow"</span>);
@@ -244,16 +160,13 @@ tunnel.watch(hotfolder);
 
 <span class="hljs-comment">// Match .pdf with .xml with a 1 minute timeout</span>
 tunnel.match([<span class="hljs-string">"*.xml"</span>, <span class="hljs-string">"*_art.pdf"</span>], <span class="hljs-number">1</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">jobs</span>)</span>{
-
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"MATCHES FOUND "</span> + jobs[<span class="hljs-number">0</span>].getName(), jobs[<span class="hljs-number">1</span>].getName());
-    <span class="hljs-comment">// =&gt; MATCHES FOUND hello copy 5.xml hello copy 5_art.pdf</span>
-
+    <span class="hljs-comment">// =&gt; MATCHES FOUND myFile.xml myFile_art.pdf</span>
 });
 
 <span class="hljs-comment">// Orphaned files fail out</span>
-tunnel.fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest</span>)</span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"do fail"</span>, job.getName());
-    <span class="hljs-comment">// =&gt; do fail sqljdbc.jar</span>
+tunnel.fail(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest, reason</span>)</span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Job "</span> + job.getName() + <span class="hljs-string">" failed:"</span> + reason);
 });
 </code></pre>
 			</div>
