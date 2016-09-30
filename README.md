@@ -1,7 +1,6 @@
 # antfarm
 
 Antfarm is a simple automation framework that aims to make file automation robust and scalable. 🐜
-https://dominickp.github.io/antfarm
 
 [![Build Status](https://travis-ci.org/dominickp/antfarm.svg?branch=master)](https://travis-ci.org/dominickp/antfarm)
 [![Coverage Status](https://coveralls.io/repos/github/dominickp/antfarm/badge.svg?branch=master)](https://coveralls.io/github/dominickp/antfarm?branch=master)
@@ -16,133 +15,32 @@ $ npm install antfarm
 ```
 
 ```js
-var Antfarm = require('antfarm');
+var Antfarm = require('antfarm'),
+   af = new Antfarm();
+   
+var hotfolder_a = af.createFolderNest("/var/hotfolders/a");
+var pdf_folder = af.createFolderNest("/var/out/pdf");
+var other_folder = af.createFolderNest("/var/out/others");
 
-var options = {
-        log_dir: "/Users/dominickpeluso/Desktop",
-        log_max_size: null,
-        log_max_files: null,
-        log_file_level: null,
-        log_out_level: null
-    };
-    
-var af = new Antfarm(options);
-```
+var tunnel = af.createTunnel("Simple pdf sorting workflow");
 
-## Components
-
-### Tunnels
-Tunnels are defined workflows which modularize and run your program code.
-
-```js
-// Build a Tunnel
-var tunnel = af.createTunnel("Hotfolder sorting workflow");
-```
-
-You can attach nests to tunnels, which triggers the nest's watching behavior.
-
-```js
-// Attach the Nest to our Tunnel to watch for new files
-tunnel.watch(hotfolder);
-```
-
-Tunnels handle your application logic via the run method. You can have multiple run instances within a single tunnel, allowing you to run several actions concurrently.
-
-```js
-// When a new file is found, execute the following
-tunnel.run(function(job, nest){
-    // your application code
-});
-```
-
-If you need to run logic synchronously, you can do so with runSync:
-
-```js
-tunnel.runSync(function(job, nest, done){
-    console.log("Do this first");
-});
-
-tunnel.runSync(function(job, nest, done){
-    console.log("Do this second");
-    job.move(my_ftp, function(){
-        done();
-    });
-});
-```
-
-Similar to the run method, the fail method will allow you to handle job errors.
-```js
-// When a job fails, execute the following
-tunnel.fail(function(job, nest){
-    console.log("Job " + job.getName() + " failed!");
-});
-```
-
-### Nests
-Nests are a simple abstraction for storage locations (filesystem folders, S3 buckets, FTP, etc...). 
-
-```js
-var desktop_nest = af.createFolderNest("/Users/dominickpeluso/Desktop");
-var ftp_nest = af.createFtpNest("ftp.ants.com", 21, 'username', 'password', 5);
-```
-
-You can easily move jobs from one nest to another without having to worry about its type.
-
-```js
-tunnel.watch(desktop_nest);
+tunnel.watch(hotfolder_a);
 
 tunnel.run(function(job, nest){
-    // Uploads files from desktop to the FTP
-    job.move(ftp_nest, function(){
-        // Moved
-    });
-});
-```
-
-### Jobs
-Jobs are provided within tunnel events and have lots of helpful methods.
-
-```js
     if(job.getExtension() == "pdf"){
-        // Do stuff to PDFs
+        job.move(pdf_folder);
+    } else {
+        job.move(other_folder);
     }
-```
-
-#### Transferring
-Jobs can be easily transferred to other tunnels with the transfer method. 
-
-```js
-tunnel1.run(function(job, nest){
-    job.transfer(tunnel2);
 });
-tunnel2.run(function(job){
-    console.log("Got " + job.getName() + " in tunnel " + tunnel2.getName());
-});
+    
 ```
 
-### Loading workflow modules
-You can put your workflows in separate node modules in another directory and have Antfarm load them all.
+## Wiki
+https://github.com/dominickp/antfarm/wiki
 
-```js
-// Import Antfarm
-var Antfarm = require('../lib/antfarm'),
-    af = new Antfarm({});
-
-// Load your workflow directory
-af.loadDir("./workflows");
-```
-
-Your workflow files should export a function that takes an Antfarm object in its constructor, like so:
-```js
-// ./workflows/workflow_a.js
-var WorkflowA = function(antfarm){
-    var wf = this;
-    wf.af = antfarm;
-    wf.tunnel = wf.af.createTunnel("Workflow A");
-    // etc...
-};
-module.exports = WorkflowA;
-```
+## API Reference
+https://dominickp.github.io/antfarm
 
 ## Examples
 
