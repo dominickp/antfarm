@@ -16,7 +16,7 @@ export class Environment {
     protected router;
     protected hookRoutes = [];
 
-    constructor(options?: AntfarmOptions) {
+    constructor(options = {}) {
 
         this.options = options;
 

@@ -8,7 +8,7 @@ export declare class Environment {
     protected server: any;
     protected router: any;
     protected hookRoutes: any[];
-    constructor(options?: AntfarmOptions);
+    constructor(options?: {});
     /**
      * Creates the server.
      */
