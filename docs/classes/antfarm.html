@@ -124,7 +124,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/190b0e2/src/lib/antfarm.ts#L22">lib/antfarm.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/f13dd17/src/lib/antfarm.ts#L22">lib/antfarm.ts:22</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -156,7 +156,7 @@
 					<div class="tsd-signature tsd-kind-icon">e<span class="tsd-signature-symbol">:</span> <a href="environment.html" class="tsd-signature-type">Environment</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/190b0e2/src/lib/antfarm.ts#L22">lib/antfarm.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/f13dd17/src/lib/antfarm.ts#L22">lib/antfarm.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -173,7 +173,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/190b0e2/src/lib/antfarm.ts#L52">lib/antfarm.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/f13dd17/src/lib/antfarm.ts#L52">lib/antfarm.ts:52</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -210,7 +210,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/190b0e2/src/lib/antfarm.ts#L65">lib/antfarm.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/f13dd17/src/lib/antfarm.ts#L65">lib/antfarm.ts:65</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -265,7 +265,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/190b0e2/src/lib/antfarm.ts#L42">lib/antfarm.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/f13dd17/src/lib/antfarm.ts#L42">lib/antfarm.ts:42</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -287,13 +287,13 @@
 					<a name="createwebhooknest" class="tsd-anchor"></a>
 					<h3>create<wbr>Webhook<wbr>Nest</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Webhook<wbr>Nest<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, httpMethod<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="webhooknest.html" class="tsd-signature-type">WebhookNest</a></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Webhook<wbr>Nest<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, httpMethod<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, handleRequest<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="webhooknest.html" class="tsd-signature-type">WebhookNest</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/190b0e2/src/lib/antfarm.ts#L75">lib/antfarm.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/f13dd17/src/lib/antfarm.ts#L93">lib/antfarm.ts:93</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -315,8 +315,27 @@
 										<p>HTTP method for this webhook. Choose &quot;all&quot; for any HTTP method.</p>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> handleRequest: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Optional callback function to handle the request, for sending a custom response.</p>
+									</div>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="webhooknest.html" class="tsd-signature-type">WebhookNest</a></h4>
+							<h4 id="example">Example</h4>
+							<pre><code class="lang-js"><span class="hljs-keyword">var</span> webhook = af.createWebhookNest([<span class="hljs-string">"proof"</span>, <span class="hljs-string">"create"</span>], <span class="hljs-string">"post"</span>);
+</code></pre>
+							<h4 id="example-returning-custom-response">Example returning custom response</h4>
+							<pre><code class="lang-js"><span class="hljs-keyword">var</span> webhook = af.createWebhookNest([<span class="hljs-string">"proof"</span>, <span class="hljs-string">"create"</span>], <span class="hljs-string">"post"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req, res, job, nest</span>)</span>{
+    res.setHeader(<span class="hljs-string">"Content-Type"</span>, <span class="hljs-string">"application/json; charset=utf-8"</span>);
+    res.end(<span class="hljs-built_in">JSON</span>.stringify({
+         <span class="hljs-attr">job_name</span>: job.getName(),
+         <span class="hljs-attr">job_id</span>: job.getId(),
+         <span class="hljs-attr">message</span>: <span class="hljs-string">"Proof created!"</span>
+    }));
+});
+</code></pre>
 						</li>
 					</ul>
 				</section>
@@ -330,7 +349,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/190b0e2/src/lib/antfarm.ts#L83">lib/antfarm.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/f13dd17/src/lib/antfarm.ts#L101">lib/antfarm.ts:101</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -361,7 +380,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/190b0e2/src/lib/antfarm.ts#L33">lib/antfarm.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/f13dd17/src/lib/antfarm.ts#L33">lib/antfarm.ts:33</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>

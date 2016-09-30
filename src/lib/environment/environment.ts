@@ -1,6 +1,8 @@
 import {Logger} from "./logger";
 import {WebhookJob} from "../job/webhookJob";
 import {WebhookNest} from "../nest/webhookNest";
+import {ServerRequest} from "http";
+import {ServerResponse} from "http";
 
 const   http = require("http"),
         finalhandler = require("finalhandler"),
@@ -57,25 +59,30 @@ export class Environment {
      * @param nest
      * @param req
      * @param res
+     * @param customHandler     Custom request handler.
      */
-    protected handleHookRequest = function(nest: WebhookNest, req, res) {
+    protected handleHookRequest = function(nest: WebhookNest, req: ServerRequest, res: ServerResponse, customHandler?: any) {
         let e = this;
         let job = new WebhookJob(e, req, res);
         nest.arrive(job);
 
-        let responseString = JSON.stringify({
-            message: `Job ${job.getId()} was created!`,
-            job: {
-                id: job.getId(),
-                name: job.getName()
-            },
-            nest: {
-                name: nest.getName()
-            }
-        });
+        if (customHandler) {
+            customHandler(req, res, job, nest);
+        } else {
+            let responseString = JSON.stringify({
+                message: `Job ${job.getId()} was created!`,
+                job: {
+                    id: job.getId(),
+                    name: job.getName()
+                },
+                nest: {
+                    name: nest.getName()
+                }
+            });
 
-        res.setHeader("Content-Type", "application/json; charset=utf-8");
-        res.end(responseString);
+            res.setHeader("Content-Type", "application/json; charset=utf-8");
+            res.end(responseString);
+        }
     };
 
     /**
@@ -99,7 +106,10 @@ export class Environment {
         });
 
         hook[httpMethod](function (req, res) {
-            e.handleHookRequest(nest, req, res);
+
+            let customHandler = nest.getCustomHandleRequest();
+
+            e.handleHookRequest(nest, req, res, customHandler);
         });
     }
 

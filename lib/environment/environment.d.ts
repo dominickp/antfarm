@@ -1,5 +1,7 @@
 import { Logger } from "./logger";
 import { WebhookNest } from "../nest/webhookNest";
+import { ServerRequest } from "http";
+import { ServerResponse } from "http";
 export declare class Environment {
     protected options: AntfarmOptions;
     protected logger: Logger;
@@ -16,8 +18,9 @@ export declare class Environment {
      * @param nest
      * @param req
      * @param res
+     * @param customHandler     Custom request handler.
      */
-    protected handleHookRequest: (nest: WebhookNest, req: any, res: any) => void;
+    protected handleHookRequest: (nest: WebhookNest, req: ServerRequest, res: ServerResponse, customHandler?: any) => void;
     /**
      * Adds a webhook to the webhook server.
      * @param nest

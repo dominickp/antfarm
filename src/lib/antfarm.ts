@@ -70,10 +70,28 @@ class Antfarm {
      * Factory method which returns a WebhookNest.
      * @param path              The path which is generated in the webhook's route. You can supply a string or array of strings.
      * @param httpMethod        HTTP method for this webhook. Choose "all" for any HTTP method.
+     * @param handleRequest     Optional callback function to handle the request, for sending a custom response.
      * @returns {WebhookNest}
+     *
+     * #### Example
+     * ```js
+     * var webhook = af.createWebhookNest(["proof", "create"], "post");
+     * ```
+     *
+     * #### Example returning custom response
+     * ```js
+     * var webhook = af.createWebhookNest(["proof", "create"], "post", function(req, res, job, nest){
+     *     res.setHeader("Content-Type", "application/json; charset=utf-8");
+     *     res.end(JSON.stringify({
+     *          job_name: job.getName(),
+     *          job_id: job.getId(),
+     *          message: "Proof created!"
+     *     }));
+     * });
+     * ```
      */
-    public createWebhookNest(path: string|string[], httpMethod = "all") {
-        return new WebhookNest(this.e, path, httpMethod);
+    public createWebhookNest(path: string|string[], httpMethod = "all", handleRequest?: any) {
+        return new WebhookNest(this.e, path, httpMethod, handleRequest);
     }
 
     /**

@@ -4,13 +4,17 @@ import { WebhookJob } from "../job/webhookJob";
 export declare class WebhookNest extends Nest {
     protected path: string;
     protected httpMethod: string;
+    protected handleRequest: any;
     /**
      * Webhook Nest constructor
      * @param e
      * @param path
      * @param httpMethod
+     * @param handleRequest     Custom request handler function.
      */
-    constructor(e: Environment, path: string | string[], httpMethod: string);
+    constructor(e: Environment, path: string | string[], httpMethod: string, handleRequest?: any);
+    getCustomHandleRequest(): any;
+    protected setCustomHandleRequest(handleRequest: any): void;
     /**
      * Set the path as a string or a string array. All parts are URI encoded.
      * Create directory structures with an array: ["one", "two"] results in "/one/two".

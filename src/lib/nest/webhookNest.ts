@@ -11,17 +11,34 @@ export class WebhookNest extends Nest {
 
     protected httpMethod: string;
 
+    protected handleRequest: any;
+
     /**
      * Webhook Nest constructor
      * @param e
      * @param path
      * @param httpMethod
+     * @param handleRequest     Custom request handler function.
      */
-    constructor(e: Environment, path: string|string[], httpMethod: string) {
+    constructor(e: Environment, path: string|string[], httpMethod: string, handleRequest?: any) {
         super(e, path.toString());
         let wh = this;
         wh.setPath(path);
         wh.setHttpMethod(httpMethod);
+        if (handleRequest) {
+            wh.setCustomHandleRequest(handleRequest);
+        }
+    }
+
+    public getCustomHandleRequest() {
+        return this.handleRequest;
+    }
+
+    protected setCustomHandleRequest(handleRequest) {
+        if (handleRequest !== null && typeof handleRequest !== "function") {
+            throw("Custom handleRequest must be a function.");
+        }
+        this.handleRequest = handleRequest;
     }
 
     /**

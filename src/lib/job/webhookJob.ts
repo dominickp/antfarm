@@ -1,7 +1,7 @@
 import {Environment} from "../environment/environment";
 import {Job} from "./job";
 import {ServerRequest} from "http";
-import {ClientResponse} from "http";
+import {ServerResponse} from "http";
 import {FileJob} from "./fileJob";
 
 const   fs = require("fs"),
@@ -11,7 +11,7 @@ const   fs = require("fs"),
 export class WebhookJob extends Job {
 
     protected request: ServerRequest;
-    protected response: ClientResponse;
+    protected response: ServerResponse;
 
     /**
      * WebhookJob constructor
@@ -19,7 +19,7 @@ export class WebhookJob extends Job {
      * @param request
      * @param response
      */
-    constructor(e: Environment, request: ServerRequest, response: ClientResponse) {
+    constructor(e: Environment, request: ServerRequest, response: ServerResponse) {
         super(e, "Webhook Job");
         this.request = request;
         this.response = response;
