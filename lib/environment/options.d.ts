@@ -23,4 +23,8 @@ interface AntfarmOptions {
      * Port of server for webhooks.
      */
     port?: number;
+    /**
+     * Auto managed folder path.
+     */
+    auto_managed_folder_directory: string;
 }

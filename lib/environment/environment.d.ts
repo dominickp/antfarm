@@ -8,7 +8,9 @@ export declare class Environment {
     protected server: any;
     protected router: any;
     protected hookRoutes: any[];
-    constructor(options?: {});
+    constructor(options: AntfarmOptions);
+    protected setOptions(options: AntfarmOptions): void;
+    getAutoManagedFolderDirectory(): string;
     /**
      * Creates the server.
      */

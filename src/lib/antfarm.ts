@@ -11,6 +11,7 @@ import {FolderNest} from "./nest/folderNest";
 import {Job} from "./job/job";
 import {Environment} from "./environment/environment";
 import {WebhookNest} from "./nest/webhookNest";
+import {AutoFolderNest} from "./nest/autoFolderNest";
 
 
 /**
@@ -49,8 +50,28 @@ class Antfarm {
      * @param allowCreate   Optional boolean flag to allow creation of folder if it does not exist.
      * @returns {FolderNest}
      */
-    public createFolderNest(path: string, allowCreate = false) {
+    public createFolderNest(path?: string, allowCreate = false) {
         return new FolderNest(this.e, path, allowCreate);
+    }
+
+    /**
+     * Factory method which returns an AutoFolderNest. If the auto managed directory does not exist, it is created.
+     * @param hierarchy     Path of the folder as a string or an array of strings as path segments.
+     * @returns {AutoFolderNest}
+     *
+     * #### Example
+     * ```js
+     * af.createAutoFolderNest("outfolder")
+     * // /Users/dominick/My Automanaged Directory/outfolder
+     * ```
+     * #### Example
+     * ```js
+     * af.createAutoFolderNest(["proofing", "others"])
+     * // /Users/dominick/My Automanaged Directory/proofing/others
+     * ```
+     */
+    public createAutoFolderNest(hierarchy: string|string[]) {
+        return new AutoFolderNest(this.e, hierarchy);
     }
 
     /**

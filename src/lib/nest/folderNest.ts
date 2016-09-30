@@ -5,14 +5,16 @@ import { FolderJob } from "./../job/folderJob";
 
 const   node_watch = require("node-watch"),
         fs = require("fs"),
-        path_mod = require("path");
+        path_mod = require("path"),
+        tmp = require("tmp"),
+        mkdirp = require("mkdirp");
 
 export class FolderNest extends Nest {
 
     protected path: string;
     protected allowCreate: boolean;
 
-    constructor(e: Environment, path: string, allowCreate: boolean) {
+    constructor(e: Environment, path?: string, allowCreate?: boolean) {
 
         let nest_name = path_mod.basename(path);
 
@@ -25,16 +27,20 @@ export class FolderNest extends Nest {
         this.path = path;
     }
 
+    /**
+     * Check if the path for the backing folder is created. If not, optionally create it.
+     * @param directory
+     */
     protected checkDirectorySync(directory) {
         let fn = this;
         try {
             fs.statSync(directory);
         } catch (e) {
             if (fn.allowCreate) {
-                fs.mkdirSync(directory);
+                mkdirp.sync(directory);
                 fn.e.log(1, `Directory "${directory}" was created since it did not already exist.`, this);
             } else {
-                fn.e.log(3, `Directory "${directory}" did not exist and was created.`, this);
+                fn.e.log(3, `Directory "${directory}" did not exist and was not created.`, this);
             }
         }
     }

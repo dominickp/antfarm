@@ -101,6 +101,7 @@
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="antfarm.html#createautofoldernest" class="tsd-kind-icon">create<wbr>Auto<wbr>Folder<wbr>Nest</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="antfarm.html#createfoldernest" class="tsd-kind-icon">create<wbr>Folder<wbr>Nest</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="antfarm.html#createftpnest" class="tsd-kind-icon">create<wbr>Ftp<wbr>Nest</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-not-exported"><a href="antfarm.html#createtunnel" class="tsd-kind-icon">create<wbr>Tunnel</a></li>
@@ -124,7 +125,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/f13dd17/src/lib/antfarm.ts#L22">lib/antfarm.ts:22</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/a5e2ea0/src/lib/antfarm.ts#L23">lib/antfarm.ts:23</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -156,7 +157,7 @@
 					<div class="tsd-signature tsd-kind-icon">e<span class="tsd-signature-symbol">:</span> <a href="environment.html" class="tsd-signature-type">Environment</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/f13dd17/src/lib/antfarm.ts#L22">lib/antfarm.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/a5e2ea0/src/lib/antfarm.ts#L23">lib/antfarm.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -164,16 +165,55 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
-					<a name="createfoldernest" class="tsd-anchor"></a>
-					<h3>create<wbr>Folder<wbr>Nest</h3>
+					<a name="createautofoldernest" class="tsd-anchor"></a>
+					<h3>create<wbr>Auto<wbr>Folder<wbr>Nest</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Folder<wbr>Nest<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, allowCreate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="foldernest.html" class="tsd-signature-type">FolderNest</a></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Auto<wbr>Folder<wbr>Nest<span class="tsd-signature-symbol">(</span>hierarchy<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="autofoldernest.html" class="tsd-signature-type">AutoFolderNest</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/f13dd17/src/lib/antfarm.ts#L52">lib/antfarm.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/a5e2ea0/src/lib/antfarm.ts#L73">lib/antfarm.ts:73</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Factory method which returns an AutoFolderNest. If the auto managed directory does not exist, it is created.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>hierarchy: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Path of the folder as a string or an array of strings as path segments.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="autofoldernest.html" class="tsd-signature-type">AutoFolderNest</a></h4>
+							<h4 id="example">Example</h4>
+							<pre><code class="lang-js">af.createAutoFolderNest(<span class="hljs-string">"outfolder"</span>)
+<span class="hljs-comment">// /Users/dominick/My Automanaged Directory/outfolder</span>
+</code></pre>
+							<h4 id="example">Example</h4>
+							<pre><code class="lang-js">af.createAutoFolderNest([<span class="hljs-string">"proofing"</span>, <span class="hljs-string">"others"</span>])
+<span class="hljs-comment">// /Users/dominick/My Automanaged Directory/proofing/others</span>
+</code></pre>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+					<a name="createfoldernest" class="tsd-anchor"></a>
+					<h3>create<wbr>Folder<wbr>Nest</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Folder<wbr>Nest<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, allowCreate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="foldernest.html" class="tsd-signature-type">FolderNest</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/a5e2ea0/src/lib/antfarm.ts#L53">lib/antfarm.ts:53</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -184,7 +224,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>path: <span class="tsd-signature-type">string</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> path: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Path of the folder.</p>
 									</div>
@@ -210,7 +250,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/f13dd17/src/lib/antfarm.ts#L65">lib/antfarm.ts:65</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/a5e2ea0/src/lib/antfarm.ts#L86">lib/antfarm.ts:86</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -265,7 +305,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/f13dd17/src/lib/antfarm.ts#L42">lib/antfarm.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/a5e2ea0/src/lib/antfarm.ts#L43">lib/antfarm.ts:43</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -293,7 +333,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/f13dd17/src/lib/antfarm.ts#L93">lib/antfarm.ts:93</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/a5e2ea0/src/lib/antfarm.ts#L114">lib/antfarm.ts:114</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -349,7 +389,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/f13dd17/src/lib/antfarm.ts#L101">lib/antfarm.ts:101</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/a5e2ea0/src/lib/antfarm.ts#L122">lib/antfarm.ts:122</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -380,7 +420,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/f13dd17/src/lib/antfarm.ts#L33">lib/antfarm.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/a5e2ea0/src/lib/antfarm.ts#L34">lib/antfarm.ts:34</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -411,6 +451,9 @@
 								<a href="antfarm.html#e" class="tsd-kind-icon">e</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
+								<a href="antfarm.html#createautofoldernest" class="tsd-kind-icon">create<wbr>Auto<wbr>Folder<wbr>Nest</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
 								<a href="antfarm.html#createfoldernest" class="tsd-kind-icon">create<wbr>Folder<wbr>Nest</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-not-exported">
@@ -432,6 +475,9 @@
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-class">
+						<a href="autofoldernest.html" class="tsd-kind-icon">Auto<wbr>Folder<wbr>Nest</a>
+					</li>
 					<li class=" tsd-kind-class">
 						<a href="environment.html" class="tsd-kind-icon">Environment</a>
 					</li>
@@ -503,6 +549,9 @@
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#mime" class="tsd-kind-icon">mime</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#mkdirp" class="tsd-kind-icon">mkdirp</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#mm" class="tsd-kind-icon">mm</a>

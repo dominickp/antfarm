@@ -6,7 +6,8 @@ import {ServerResponse} from "http";
 
 const   http = require("http"),
         finalhandler = require("finalhandler"),
-        Router = require("router");
+        Router = require("router"),
+        fs = require("fs");
 
 export class Environment {
 
@@ -16,18 +17,35 @@ export class Environment {
     protected router;
     protected hookRoutes = [];
 
-    constructor(options = {}) {
-
-        this.options = options;
+    constructor(options: AntfarmOptions) {
 
         this.router = Router({});
 
-        if (this.options.port) {
+        this.logger = new Logger(options);
+
+        this.setOptions(options);
+    }
+
+    protected setOptions(options: AntfarmOptions) {
+        let e = this;
+
+        if (options.auto_managed_folder_directory) {
+            try {
+                fs.statSync(options.auto_managed_folder_directory);
+            } catch (err) {
+                e.log(3, `Auto managed directory "${options.auto_managed_folder_directory}" does not exist.`, this);
+            }
+        }
+
+        if (options.port) {
             this.createServer();
         }
 
-        this.logger = new Logger(this.options);
+        this.options = options;
+    }
 
+    public getAutoManagedFolderDirectory() {
+        return this.options.auto_managed_folder_directory;
     }
 
     /**

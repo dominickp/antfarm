@@ -30,4 +30,9 @@ interface AntfarmOptions {
      */
     port?: number;
 
+    /**
+     * Auto managed folder path.
+     */
+    auto_managed_folder_directory: string;
+
 }

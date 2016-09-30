@@ -28,6 +28,7 @@
     "lodash": "^4.16.2",
     "micromatch": "^2.3.11",
     "mime-types": "^2.1.12",
+    "mkdirp": "^0.5.1",
     "node-watch": "^0.4.0",
     "pkginfo": "^0.4.0",
     "require-dir-all": "^0.4.9",
