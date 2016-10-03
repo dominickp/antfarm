@@ -26,6 +26,11 @@ interface FieldOptions {
     type?: string;
 
     /**
+     * Placeholder text
+     */
+    placeholder?: string;
+
+    /**
      * Acceptable options
      */
     valueList: any[];
