@@ -105,7 +105,7 @@ export class Environment {
                     name: nest.getName()
                 }
             });
-
+            res.setHeader("Access-Control-Allow-Origin", "*");
             res.setHeader("Content-Type", "application/json; charset=utf-8");
             res.end(responseString);
         }
@@ -125,6 +125,7 @@ export class Environment {
             customHandler(req, res, ui);
         } else {
             let responseString = JSON.stringify(ui.getInterface());
+            res.setHeader("Access-Control-Allow-Origin", "*");
             res.setHeader("Content-Type", "application/json; charset=utf-8");
             res.end(responseString);
         }
