@@ -135,6 +135,16 @@ export class WebhookNest extends Nest {
 
     /**
      * Create a webhook interface and register it to the webhook.
+     * Webhook interfaces allow you to describe how webhooks should be used for an interface.
+     * #### Example
+     * ```js
+     * var ui = webhook.createInterface();
+     * ui.addField({
+     *      id: "job_number",
+     *      name: "Job Number",
+     *      required: true
+     * });
+     * ```
      */
     public createInterface() {
         let wh = this;
