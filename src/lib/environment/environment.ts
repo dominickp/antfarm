@@ -70,10 +70,12 @@ export class Environment {
 
         e.router.get("/hooks", function (req, res) {
             res.setHeader("Content-Type", "application/json; charset=utf-8");
+            res.setHeader("Access-Control-Allow-Origin", "*");
             res.end(JSON.stringify(e.hookRoutes));
         });
         e.router.get("/hooks-ui", function (req, res) {
             res.setHeader("Content-Type", "application/json; charset=utf-8");
+            res.setHeader("Access-Control-Allow-Origin", "*");
             res.end(JSON.stringify(e.hookInterfaceRoutes));
         });
     }
@@ -147,6 +149,7 @@ export class Environment {
         }
 
         this.hookRoutes.push({
+            id: nest.getId(),
             path: hook.path,
             nest: nest.getName(),
             tunnel: nest.getTunnel().getName(),
@@ -176,6 +179,7 @@ export class Environment {
         e.log(1, `Watching webhook interface GET /hooks-ui${path}`, e);
 
         this.hookInterfaceRoutes.push({
+            id: nest.getId(),
             path: hook.path,
             nest: nest.getName(),
             target: "/hooks" + nest.getPath()
