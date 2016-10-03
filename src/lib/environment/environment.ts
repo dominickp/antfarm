@@ -3,6 +3,7 @@ import {WebhookJob} from "../job/webhookJob";
 import {WebhookNest} from "../nest/webhookNest";
 import {ServerRequest} from "http";
 import {ServerResponse} from "http";
+import {WebhookInterface} from "../ui/webhookInterface";
 
 const   http = require("http"),
         finalhandler = require("finalhandler"),
@@ -16,6 +17,7 @@ export class Environment {
     protected server;
     protected router;
     protected hookRoutes = [];
+    protected hookInterfaceRoutes = [];
 
     constructor(options: AntfarmOptions) {
 
@@ -70,6 +72,10 @@ export class Environment {
             res.setHeader("Content-Type", "application/json; charset=utf-8");
             res.end(JSON.stringify(e.hookRoutes));
         });
+        e.router.get("/hooks-ui", function (req, res) {
+            res.setHeader("Content-Type", "application/json; charset=utf-8");
+            res.end(JSON.stringify(e.hookInterfaceRoutes));
+        });
     }
 
     /**
@@ -104,6 +110,25 @@ export class Environment {
     };
 
     /**
+     * Handles request and response of the web hook interface.
+     * @param ui
+     * @param req
+     * @param res
+     * @param customHandler     Custom request handler.
+     */
+    protected handleHookInterfaceRequest = function(ui: WebhookInterface, req: ServerRequest, res: ServerResponse, customHandler?: any) {
+        let e = this;
+
+        if (customHandler) {
+            customHandler(req, res, ui);
+        } else {
+            let responseString = JSON.stringify(ui.getInterface());
+            res.setHeader("Content-Type", "application/json; charset=utf-8");
+            res.end(responseString);
+        }
+    };
+
+    /**
      * Adds a webhook to the webhook server.
      * @param nest
      */
@@ -116,11 +141,17 @@ export class Environment {
 
         e.log(1, `Watching webhook ${httpMethod.toUpperCase()} /hooks${path}`, e);
 
+        let ui_path;
+        if (nest.getInterface()) {
+            ui_path = "hooks-ui" + nest.getInterface().getPath();
+        }
+
         this.hookRoutes.push({
             path: hook.path,
             nest: nest.getName(),
             tunnel: nest.getTunnel().getName(),
-            methods: hook.methods
+            methods: hook.methods,
+            interface_path: ui_path
         });
 
         hook[httpMethod](function (req, res) {
@@ -128,6 +159,34 @@ export class Environment {
             let customHandler = nest.getCustomHandleRequest();
 
             e.handleHookRequest(nest, req, res, customHandler);
+        });
+    }
+
+    /**
+     * Adds a webhook interface to the webhook server.
+     * @param webhook_interface
+     */
+    public addWebhookInterface(webhook_interface: WebhookInterface) {
+        let e = this;
+        let nest = webhook_interface.getNest();
+        let path = webhook_interface.getPath();
+
+        let hook = e.router.route("/hooks-ui" + path);
+
+        e.log(1, `Watching webhook interface GET /hooks-ui${path}`, e);
+
+        this.hookInterfaceRoutes.push({
+            path: hook.path,
+            nest: nest.getName(),
+            target: "/hooks" + nest.getPath()
+            // tunnel: nest.getTunnel().getName()
+        });
+
+        hook["get"](function (req, res) {
+
+            let customHandler = webhook_interface.getCustomHandleRequest();
+
+            e.handleHookInterfaceRequest(webhook_interface, req, res, customHandler);
         });
     }
 

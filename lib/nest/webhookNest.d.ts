@@ -1,10 +1,12 @@
 import { Environment } from "../environment/environment";
 import { Nest } from "./nest";
 import { WebhookJob } from "../job/webhookJob";
+import { WebhookInterface } from "../ui/webhookInterface";
 export declare class WebhookNest extends Nest {
     protected path: string;
     protected httpMethod: string;
     protected handleRequest: any;
+    protected ui: WebhookInterface;
     /**
      * Webhook Nest constructor
      * @param e
@@ -62,4 +64,9 @@ export declare class WebhookNest extends Nest {
      * @param job
      */
     arrive(job: WebhookJob): void;
+    /**
+     * Create a webhook interface and register it to the webhook.
+     */
+    createInterface(): WebhookInterface;
+    getInterface(): WebhookInterface;
 }

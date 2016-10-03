@@ -2,6 +2,7 @@ import {Environment} from "../environment/environment";
 import { Nest } from "./nest";
 import { FileJob } from "./../job/fileJob";
 import {WebhookJob} from "../job/webhookJob";
+import {WebhookInterface} from "../ui/webhookInterface";
 
 const   http = require("http");
 
@@ -12,6 +13,8 @@ export class WebhookNest extends Nest {
     protected httpMethod: string;
 
     protected handleRequest: any;
+
+    protected ui: WebhookInterface;
 
     /**
      * Webhook Nest constructor
@@ -128,6 +131,23 @@ export class WebhookNest extends Nest {
      */
     public arrive(job: WebhookJob) {
         super.arrive(job);
+    }
+
+    /**
+     * Create a webhook interface and register it to the webhook.
+     */
+    public createInterface() {
+        let wh = this;
+        let ui = new WebhookInterface(wh.e, wh);
+        this.ui = ui;
+
+        wh.e.addWebhookInterface(ui);
+
+        return ui;
+    }
+
+    public getInterface() {
+        return this.ui;
     }
 
 }
