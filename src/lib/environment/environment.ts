@@ -37,11 +37,11 @@ export class Environment {
             }
         }
 
+        this.options = options;
+
         if (options.port) {
             this.createServer();
         }
-
-        this.options = options;
     }
 
     public getAutoManagedFolderDirectory() {
