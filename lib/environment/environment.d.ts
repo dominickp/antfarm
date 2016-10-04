@@ -3,15 +3,22 @@ import { WebhookNest } from "../nest/webhookNest";
 import { ServerRequest } from "http";
 import { ServerResponse } from "http";
 import { WebhookInterface } from "../ui/webhookInterface";
+import { Server } from "./server";
 export declare class Environment {
     protected options: AntfarmOptions;
     protected logger: Logger;
     protected server: any;
+    protected server2: Server;
     protected router: any;
     protected hookRoutes: any[];
     protected hookInterfaceRoutes: any[];
     constructor(options: AntfarmOptions);
     protected setOptions(options: AntfarmOptions): void;
+    /**
+     * Get the Antfarm options.
+     * @returns {AntfarmOptions}
+     */
+    getOptions(): AntfarmOptions;
     getAutoManagedFolderDirectory(): string;
     /**
      * Creates the server.

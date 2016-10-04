@@ -4,6 +4,7 @@ import {WebhookNest} from "../nest/webhookNest";
 import {ServerRequest} from "http";
 import {ServerResponse} from "http";
 import {WebhookInterface} from "../ui/webhookInterface";
+import {Server} from "./server";
 
 const   http = require("http"),
         finalhandler = require("finalhandler"),
@@ -15,6 +16,7 @@ export class Environment {
     protected options: AntfarmOptions;
     protected logger: Logger;
     protected server;
+    protected server2: Server;
     protected router;
     protected hookRoutes = [];
     protected hookInterfaceRoutes = [];
@@ -46,6 +48,14 @@ export class Environment {
         }
     }
 
+    /**
+     * Get the Antfarm options.
+     * @returns {AntfarmOptions}
+     */
+    public getOptions() {
+        return this.options;
+    }
+
     public getAutoManagedFolderDirectory() {
         return this.options.auto_managed_folder_directory;
     }
@@ -53,33 +63,38 @@ export class Environment {
     /**
      * Creates the server.
      */
+    // protected createServer() {
+    //     let e = this;
+    //     e.server = http.createServer(function(request, response) {
+    //         try {
+    //             response.setHeader("Access-Control-Allow-Headers", "Content-Type,Accept");
+    //             response.setHeader("Access-Control-Allow-Origin", "*");
+    //             e.router(request, response, finalhandler(request, response));
+    //         } catch (err) {
+    //             e.log(3, err, e);
+    //         }
+    //     });
+    //
+    //     e.server.listen(e.options.port, function(){
+    //         // Callback triggered when server is successfully listening. Hurray!
+    //         e.log(1, "Server listening on: http://localhost:" +  e.options.port, e);
+    //     });
+    //
+    //     e.router.get("/hooks", function (req, res) {
+    //         res.setHeader("Content-Type", "application/json; charset=utf-8");
+    //         res.setHeader("Access-Control-Allow-Origin", "*");
+    //         res.end(JSON.stringify(e.hookRoutes));
+    //     });
+    //     e.router.get("/hooks-ui", function (req, res) {
+    //         res.setHeader("Content-Type", "application/json; charset=utf-8");
+    //         res.setHeader("Access-Control-Allow-Origin", "*");
+    //         res.end(JSON.stringify(e.hookInterfaceRoutes));
+    //     });
+    // }
+
     protected createServer() {
-        let e = this;
-        e.server = http.createServer(function(request, response) {
-            try {
-                response.setHeader("Access-Control-Allow-Headers", "Content-Type,Accept");
-                response.setHeader("Access-Control-Allow-Origin", "*");
-                e.router(request, response, finalhandler(request, response));
-            } catch (err) {
-                e.log(3, err, e);
-            }
-        });
-
-        e.server.listen(e.options.port, function(){
-            // Callback triggered when server is successfully listening. Hurray!
-            e.log(1, "Server listening on: http://localhost:" +  e.options.port, e);
-        });
-
-        e.router.get("/hooks", function (req, res) {
-            res.setHeader("Content-Type", "application/json; charset=utf-8");
-            res.setHeader("Access-Control-Allow-Origin", "*");
-            res.end(JSON.stringify(e.hookRoutes));
-        });
-        e.router.get("/hooks-ui", function (req, res) {
-            res.setHeader("Content-Type", "application/json; charset=utf-8");
-            res.setHeader("Access-Control-Allow-Origin", "*");
-            res.end(JSON.stringify(e.hookInterfaceRoutes));
-        });
+        let server = new Server(this);
+        this.server2 = server;
     }
 
     /**
@@ -92,7 +107,9 @@ export class Environment {
     protected handleHookRequest = function(nest: WebhookNest, req: ServerRequest, res: ServerResponse, customHandler?: any) {
         let e = this;
 
-        console.log("method", req.method);
+        console.log("Content-Type", res.getHeader("Content-Type"));
+        console.log("req headers", JSON.stringify(req.headers));
+        console.log("res headers", JSON.stringify(res.headers));
 
         // Handle CORS
         if (req.method === "OPTIONS") {
