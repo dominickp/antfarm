@@ -10,9 +10,14 @@ export declare class FolderNest extends Nest {
      * @param directory
      */
     protected checkDirectorySync(directory: any): void;
-    protected createJob(path: string): any;
+    protected createJob(path: string, arrive?: boolean): any;
     load(): void;
     watch(): void;
     arrive(job: FileJob): void;
     take(job: FileJob, callback: any): void;
+    /**
+     * Loads jobs that have piled up in the nest if it was not watched.
+     * @returns {Array}     Array of jobs
+     */
+    getUnwatchedJobs(): any[];
 }

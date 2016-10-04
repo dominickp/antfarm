@@ -57,6 +57,7 @@ export class Environment {
         let e = this;
         e.server = http.createServer(function(request, response) {
             try {
+                response.setHeader("Access-Control-Allow-Origin", "*");
                 e.router(request, response, finalhandler(request, response));
             } catch (err) {
                 e.log(3, err, e);
@@ -89,6 +90,25 @@ export class Environment {
      */
     protected handleHookRequest = function(nest: WebhookNest, req: ServerRequest, res: ServerResponse, customHandler?: any) {
         let e = this;
+
+        console.log("method", req.method);
+
+        // Handle CORS
+        if (req.method === "OPTIONS") {
+            // add needed headers
+            let headers = {};
+            headers["Access-Control-Allow-Origin"] = "*";
+            headers["Access-Control-Allow-Methods"] = "POST, GET, PUT, DELETE, OPTIONS";
+            headers["Access-Control-Allow-Credentials"] = true;
+            headers["Access-Control-Max-Age"] = "86400"; // 24 hours
+            headers["Access-Control-Allow-Headers"] = "X-Requested-With, Access-Control-Allow-Origin, X-HTTP-Method-Override, Content-Type, Authorization, Accept";
+            // respond to the request
+            console.log(headers);
+            res.writeHead(200, headers);
+            res.end();
+        }
+
+
         let job = new WebhookJob(e, req, res);
         nest.arrive(job);
 
@@ -146,7 +166,7 @@ export class Environment {
 
         let ui_path;
         if (nest.getInterface()) {
-            ui_path = "hooks-ui" + nest.getInterface().getPath();
+            ui_path = "/hooks-ui" + nest.getInterface().getPath();
         }
 
         this.hookRoutes.push({

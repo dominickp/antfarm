@@ -1,9 +1,11 @@
 import { Environment } from "../environment/environment";
 import { WebhookNest } from "../nest/webhookNest";
+import { FolderNest } from "../nest/folderNest";
 export declare class WebhookInterface {
     protected fields: any[];
     protected e: Environment;
     protected nest: WebhookNest;
+    protected checkpointNest: FolderNest;
     protected handleRequest: any;
     /**
      * Constructor
@@ -33,10 +35,17 @@ export declare class WebhookInterface {
      */
     getInterface(): {
         fields: any[];
+        jobs: any[];
     };
     /**
      * Get the nest path.
      * @returns {string}
      */
     getPath(): string;
+    /**
+     * Adds pending jobs to the interfaces job list.
+     * @param nest
+     */
+    checkNest(nest: FolderNest): void;
+    getJobs(): any[];
 }

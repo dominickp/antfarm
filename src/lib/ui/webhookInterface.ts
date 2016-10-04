@@ -1,5 +1,6 @@
 import {Environment} from "../environment/environment";
 import {WebhookNest} from "../nest/webhookNest";
+import {FolderNest} from "../nest/folderNest";
 
 export class WebhookInterface {
 
@@ -8,6 +9,8 @@ export class WebhookInterface {
     protected e: Environment;
 
     protected nest: WebhookNest;
+
+    protected checkpointNest: FolderNest;
 
     protected handleRequest: any;
 
@@ -52,8 +55,23 @@ export class WebhookInterface {
      * @returns {{fields: Array}}
      */
     public getInterface() {
+
+        let jobs = this.getJobs();
+        let jobsArray = [];
+
+        jobs.forEach(function(job){
+            jobsArray.push({
+                id: job.getId(),
+                name: job.getName(),
+                path: job.getPath()
+            });
+        });
+
+        // console.log(jobs as JobsInterface[]);
+
         return {
-            fields: this.fields
+            fields: this.fields,
+            jobs: jobsArray
         };
     }
 
@@ -63,5 +81,17 @@ export class WebhookInterface {
      */
     public getPath() {
         return this.nest.getPath();
+    }
+
+    /**
+     * Adds pending jobs to the interfaces job list.
+     * @param nest
+     */
+    public checkNest(nest: FolderNest) {
+        this.checkpointNest = nest;
+    }
+
+    public getJobs() {
+        return this.checkpointNest.getUnwatchedJobs();
     }
 }

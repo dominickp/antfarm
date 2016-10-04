@@ -2,6 +2,7 @@ import {Environment} from "../environment/environment";
 import { Nest } from "./nest";
 import { FileJob } from "./../job/fileJob";
 import { FolderJob } from "./../job/folderJob";
+import {Job} from "../job/job";
 
 const   node_watch = require("node-watch"),
         fs = require("fs"),
@@ -45,7 +46,7 @@ export class FolderNest extends Nest {
         }
     }
 
-    protected createJob(path: string) {
+    protected createJob(path: string, arrive = true) {
 
         let fl = this;
         let job;
@@ -59,13 +60,17 @@ export class FolderNest extends Nest {
             if (path_stats.isDirectory()) {
                 job = new FolderJob(fl.e, path);
                 job.createFiles(function(){
-                    // Trigger arrived
-                    fl.arrive(job);
+                    if (arrive) {
+                        // Trigger arrived
+                        fl.arrive(job);
+                    }
                 });
             } else if (path_stats.isFile()) {
                 job = new FileJob(fl.e, path);
-                // Trigger arrived
-                fl.arrive(job);
+                if (arrive) {
+                    // Trigger arrived
+                    fl.arrive(job);
+                }
             } else {
                 throw "Path is not a file or folder!";
             }
@@ -121,5 +126,26 @@ export class FolderNest extends Nest {
         job.setPath(new_path);
 
         callback(new_path);
+    }
+
+    /**
+     * Loads jobs that have piled up in the nest if it was not watched.
+     * @returns {Array}     Array of jobs
+     */
+    public getUnwatchedJobs() {
+        let fl = this;
+        let jobs = [];
+        let fileArray = fs.readdirSync(fl.path);
+
+        let items = fileArray.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
+
+        items.forEach(function(filename){
+            let filepath = fl.path + path_mod.sep + filename;
+            let job = fl.createJob(filepath, false);
+            jobs.push(job);
+        });
+
+        return jobs;
+
     }
 }
