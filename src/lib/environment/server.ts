@@ -1,9 +1,10 @@
 import {Environment} from "./environment";
 import {WebhookNest} from "../nest/webhookNest";
 import {WebhookJob} from "../job/webhookJob";
-import express = require("express");
+import * as express from "express";
+import {WebhookInterface} from "../ui/webhookInterface";
 
-const   express = require("express"),
+const
         cors = require("cors"),
         multer = require("multer"),
         path = require("path");
@@ -16,10 +17,16 @@ export class Server {
     protected hookRoutes = [];
     protected hookInterfaceRoutes = [];
 
+    protected config = {
+        hooks_prefix: "/hooks",
+        hooks_ui_prefix: "/hooks-ui"
+    };
+
     constructor(e: Environment) {
         this.e = e;
         this.server = express();
         this.createServer();
+
     }
 
     /**
@@ -32,6 +39,14 @@ export class Server {
 
         s.server.use(cors());
 
+        // Add index routes
+        s.server.get(s.config.hooks_prefix, function(req, res){
+            res.json(s.hookRoutes);
+        });
+        s.server.get(s.config.hooks_ui_prefix, function(req, res){
+            res.json(s.hookInterfaceRoutes);
+        });
+
         s.server.listen(port, () => s.e.log(1, `Server up and listening on port ${port}.`, s));
     }
 
@@ -39,23 +54,15 @@ export class Server {
         return "Server";
     }
 
-    protected handleHookRequest() {
-        let s = this;
-
-    }
-
     public addWebhook(nest: WebhookNest) {
         let s = this;
         let e = s.e;
 
-        const   hooks_prefix = "/hooks",
-                hooks_ui_prefix = "/hooks-ui";
-
         let httpMethod = nest.getHttpMethod();
-        let hook_path = hooks_prefix + nest.getPath();
+        let hook_path = s.config.hooks_prefix + nest.getPath();
         let hook_ui_path;
         if (nest.getInterface()) {
-            hook_ui_path = hooks_ui_prefix + nest.getInterface().getPath();
+            hook_ui_path = s.config.hooks_ui_prefix + nest.getInterface().getPath();
         }
 
         s.hookRoutes.push({
@@ -67,7 +74,7 @@ export class Server {
             interface_path: hook_ui_path
         });
 
-        s.server[httpMethod](function (req, res) {
+        s.server[httpMethod](hook_path, function (req, res) {
 
             let customHandler = nest.getCustomHandleRequest();
 
@@ -82,7 +89,7 @@ export class Server {
      * @param res
      * @param customHandler     Custom request handler.
      */
-    protected handleHookRequest = function(nest: WebhookNest, req: express.Request, res: express.Response, customHandler?: any) {
+    protected handleHookRequest = function(nest: WebhookNest, req, res, customHandler?: any) {
         let e = this;
 
         // Job arrive
@@ -92,7 +99,7 @@ export class Server {
         if (customHandler) {
             customHandler(req, res, job, nest);
         } else {
-            let responseString = JSON.stringify({
+            let response = {
                 message: `Job ${job.getId()} was created!`,
                 job: {
                     id: job.getId(),
@@ -101,10 +108,57 @@ export class Server {
                 nest: {
                     name: nest.getName()
                 }
-            });
-            res.json(responseString);
+            };
+            res.json(response);
         }
     };
+
+    /**
+     * Adds a webhook interface to the webhook server.
+     * @param ui
+     */
+    public addWebhookInterface(ui: WebhookInterface) {
+        let s = this;
+        let nest = ui.getNest();
+
+        let hook_path = s.config.hooks_prefix + nest.getPath();
+        let hook_ui_path = s.config.hooks_ui_prefix + ui.getPath();
+
+        s.e.log(1, `Watching webhook interface GET ${hook_ui_path}`, s);
+
+        this.hookInterfaceRoutes.push({
+            id: nest.getId(),
+            path: hook_ui_path,
+            nest: nest.getName(),
+            target: hook_path
+            // tunnel: nest.getTunnel().getName()
+        });
+
+        s.server.get(hook_ui_path, function (req, res) {
+
+            let customHandler = ui.getCustomHandleRequest();
+
+            s.handleHookInterfaceRequest(ui, req, res, customHandler);
+        });
+    }
+
+    /**
+     * Handles request and response of the web hook interface.
+     * @param ui
+     * @param req
+     * @param res
+     * @param customHandler     Custom request handler.
+     */
+    protected handleHookInterfaceRequest = function(ui: WebhookInterface, req, res, customHandler?: any) {
+        let e = this;
+
+        if (customHandler) {
+            customHandler(req, res, ui);
+        } else {
+            res.json(ui.getInterface());
+        }
+    };
+
 
 
 }

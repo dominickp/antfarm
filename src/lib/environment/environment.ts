@@ -6,10 +6,7 @@ import {ServerResponse} from "http";
 import {WebhookInterface} from "../ui/webhookInterface";
 import {Server} from "./server";
 
-const   http = require("http"),
-        finalhandler = require("finalhandler"),
-        Router = require("router"),
-        fs = require("fs");
+const   fs = require("fs");
 
 export class Environment {
 
@@ -17,13 +14,10 @@ export class Environment {
     protected logger: Logger;
     protected server;
     protected server2: Server;
-    protected router;
     protected hookRoutes = [];
     protected hookInterfaceRoutes = [];
 
     constructor(options: AntfarmOptions) {
-
-        this.router = Router({});
 
         this.logger = new Logger(options);
 
@@ -98,139 +92,21 @@ export class Environment {
     }
 
     /**
-     * Handles request and response of the web hook, creates a new job, as well as calling the nest's arrive.
-     * @param nest
-     * @param req
-     * @param res
-     * @param customHandler     Custom request handler.
-     */
-    protected handleHookRequest = function(nest: WebhookNest, req: ServerRequest, res: ServerResponse, customHandler?: any) {
-        let e = this;
-
-        console.log("Content-Type", res.getHeader("Content-Type"));
-        console.log("req headers", JSON.stringify(req.headers));
-        console.log("res headers", JSON.stringify(res.headers));
-
-        // Handle CORS
-        if (req.method === "OPTIONS") {
-            // add needed headers
-            let headers = {};
-            headers["Access-Control-Allow-Origin"] = "*";
-            headers["Access-Control-Allow-Methods"] = "POST, GET, PUT, DELETE, OPTIONS";
-            headers["Access-Control-Allow-Credentials"] = true;
-            headers["Access-Control-Max-Age"] = "86400"; // 24 hours
-            headers["Access-Control-Allow-Headers"] = "X-Requested-With, Access-Control-Allow-Origin, X-HTTP-Method-Override, Content-Type, Authorization, Accept";
-            // respond to the request
-            console.log(headers);
-            res.writeHead(200, headers);
-            res.end();
-        }
-
-
-        let job = new WebhookJob(e, req, res);
-        nest.arrive(job);
-
-        if (customHandler) {
-            customHandler(req, res, job, nest);
-        } else {
-            let responseString = JSON.stringify({
-                message: `Job ${job.getId()} was created!`,
-                job: {
-                    id: job.getId(),
-                    name: job.getName()
-                },
-                nest: {
-                    name: nest.getName()
-                }
-            });
-            res.setHeader("Access-Control-Allow-Origin", "*");
-            res.setHeader("Content-Type", "application/json; charset=utf-8");
-            res.end(responseString);
-        }
-    };
-
-    /**
-     * Handles request and response of the web hook interface.
-     * @param ui
-     * @param req
-     * @param res
-     * @param customHandler     Custom request handler.
-     */
-    protected handleHookInterfaceRequest = function(ui: WebhookInterface, req: ServerRequest, res: ServerResponse, customHandler?: any) {
-        let e = this;
-
-        if (customHandler) {
-            customHandler(req, res, ui);
-        } else {
-            let responseString = JSON.stringify(ui.getInterface());
-            res.setHeader("Access-Control-Allow-Origin", "*");
-            res.setHeader("Content-Type", "application/json; charset=utf-8");
-            res.end(responseString);
-        }
-    };
-
-    /**
      * Adds a webhook to the webhook server.
      * @param nest
      */
     public addWebhook(nest: WebhookNest) {
         let e = this;
-        let httpMethod = nest.getHttpMethod();
-        let path = nest.getPath();
-
-        let hook = e.router.route("/hooks" + path);
-
-        e.log(1, `Watching webhook ${httpMethod.toUpperCase()} /hooks${path}`, e);
-
-        let ui_path;
-        if (nest.getInterface()) {
-            ui_path = "/hooks-ui" + nest.getInterface().getPath();
-        }
-
-        this.hookRoutes.push({
-            id: nest.getId(),
-            path: hook.path,
-            nest: nest.getName(),
-            tunnel: nest.getTunnel().getName(),
-            methods: hook.methods,
-            interface_path: ui_path
-        });
-
-        hook[httpMethod](function (req, res) {
-
-            let customHandler = nest.getCustomHandleRequest();
-
-            e.handleHookRequest(nest, req, res, customHandler);
-        });
+        e.server2.addWebhook(nest);
     }
 
     /**
      * Adds a webhook interface to the webhook server.
-     * @param webhook_interface
+     * @param ui
      */
-    public addWebhookInterface(webhook_interface: WebhookInterface) {
+    public addWebhookInterface(ui: WebhookInterface) {
         let e = this;
-        let nest = webhook_interface.getNest();
-        let path = webhook_interface.getPath();
-
-        let hook = e.router.route("/hooks-ui" + path);
-
-        e.log(1, `Watching webhook interface GET /hooks-ui${path}`, e);
-
-        this.hookInterfaceRoutes.push({
-            id: nest.getId(),
-            path: hook.path,
-            nest: nest.getName(),
-            target: "/hooks" + nest.getPath()
-            // tunnel: nest.getTunnel().getName()
-        });
-
-        hook["get"](function (req, res) {
-
-            let customHandler = webhook_interface.getCustomHandleRequest();
-
-            e.handleHookInterfaceRequest(webhook_interface, req, res, customHandler);
-        });
+        e.server2.addWebhookInterface(ui);
     }
 
     public toString() {

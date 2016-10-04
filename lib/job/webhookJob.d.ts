@@ -1,27 +1,25 @@
 import { Environment } from "../environment/environment";
 import { Job } from "./job";
-import { ServerRequest } from "http";
-import { ServerResponse } from "http";
 export declare class WebhookJob extends Job {
-    protected request: ServerRequest;
-    protected response: ServerResponse;
+    protected request: any;
+    protected response: any;
     /**
      * WebhookJob constructor
      * @param e
      * @param request
      * @param response
      */
-    constructor(e: Environment, request: ServerRequest, response: ServerResponse);
+    constructor(e: Environment, request: any, response: any);
     /**
      * Get the HTTP response object.
      * @returns {ClientResponse}
      */
-    getResponse(): ServerResponse;
+    getResponse(): any;
     /**
      * Get the HTTP request object.
      * @returns {ClientRequest}
      */
-    getRequest(): ServerRequest;
+    getRequest(): any;
     /**
      * Return a specific URL parameter.
      * #### Example

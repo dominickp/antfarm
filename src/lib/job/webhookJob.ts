@@ -3,6 +3,7 @@ import {Job} from "./job";
 import {ServerRequest} from "http";
 import {ServerResponse} from "http";
 import {FileJob} from "./fileJob";
+import express = require("express");
 
 const   fs = require("fs"),
         tmp = require("tmp"),
@@ -10,8 +11,8 @@ const   fs = require("fs"),
 
 export class WebhookJob extends Job {
 
-    protected request: ServerRequest;
-    protected response: ServerResponse;
+    protected request;
+    protected response;
 
     /**
      * WebhookJob constructor
@@ -19,7 +20,7 @@ export class WebhookJob extends Job {
      * @param request
      * @param response
      */
-    constructor(e: Environment, request: ServerRequest, response: ServerResponse) {
+    constructor(e: Environment, request, response) {
         super(e, "Webhook Job");
         this.request = request;
         this.response = response;
