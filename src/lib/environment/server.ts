@@ -65,6 +65,8 @@ export class Server {
             hook_ui_path = s.config.hooks_ui_prefix + nest.getInterface().getPath();
         }
 
+        s.e.log(1, `Watching webhook ${httpMethod.toUpperCase()} ${hook_ui_path}`, s);
+
         s.hookRoutes.push({
             id: nest.getId(),
             path: hook_path,
@@ -90,10 +92,10 @@ export class Server {
      * @param customHandler     Custom request handler.
      */
     protected handleHookRequest = function(nest: WebhookNest, req, res, customHandler?: any) {
-        let e = this;
+        let s = this;
 
         // Job arrive
-        let job = new WebhookJob(e, req, res);
+        let job = new WebhookJob(s.e, req, res);
         nest.arrive(job);
 
         if (customHandler) {
