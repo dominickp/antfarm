@@ -55,7 +55,11 @@ export declare class WebhookJob extends Job {
      * ```
      * @returns {any}
      */
-    getDataAsFileJob(callback: any): void;
+    /**
+     * Returns FileJobs made from files sent via FormData to the webhook.
+     * @returns {FileJob[]}
+     */
+    getFormDataJobs(): any[];
     /**
      * Get a string from the request body.
      * The given callback is given a string parameter.

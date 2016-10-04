@@ -98,7 +98,7 @@ export class Server {
 
         s.server[httpMethod](hook_path, s.upload.any(), function (req, res) {
 
-            console.log(req.body, req.files, req.file);
+            // console.log(req.body, req.files, req.file);
 
             let customHandler = nest.getCustomHandleRequest();
 

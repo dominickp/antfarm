@@ -89,28 +89,46 @@ export class WebhookJob extends Job {
      * ```
      * @returns {any}
      */
-    public getDataAsFileJob(callback: any) {
+    // public getDataAsFileJob(callback: any) {
+    //     let wh = this;
+    //     let req = wh.getRequest();
+    //     let res = wh.getResponse();
+    //     let data = [];
+    //
+    //
+    //     console.log("ctype", req.headers);
+    //
+    //     req.on("data", function(chunk) {
+    //         data.push(chunk);
+    //     });
+    //     req.on("end", function() {
+    //         let buffer = Buffer.concat(data);
+    //
+    //         let filePath = tmp.tmpNameSync();
+    //         fs.writeFileSync(filePath, buffer);
+    //
+    //         let fileJob = new FileJob(wh.e, filePath);
+    //
+    //         callback(fileJob);
+    //     });
+    // }
+
+    /**
+     * Returns FileJobs made from files sent via FormData to the webhook.
+     * @returns {FileJob[]}
+     */
+    public getFormDataJobs() {
         let wh = this;
-        let req = wh.getRequest();
-        let res = wh.getResponse();
-        let data = [];
+        let files = this.getRequest().files;
+        let jobs = [];
 
-
-        console.log("ctype", req.headers);
-
-        req.on("data", function(chunk) {
-            data.push(chunk);
+        files.forEach(function(file){
+            let job = new FileJob(wh.e, file.path);
+            job.rename(file.originalname);
+            jobs.push(job);
         });
-        req.on("end", function() {
-            let buffer = Buffer.concat(data);
 
-            let filePath = tmp.tmpNameSync();
-            fs.writeFileSync(filePath, buffer);
-
-            let fileJob = new FileJob(wh.e, filePath);
-
-            callback(fileJob);
-        });
+        return jobs;
     }
 
     /**
