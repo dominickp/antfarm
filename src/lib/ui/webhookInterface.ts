@@ -92,6 +92,10 @@ export class WebhookInterface {
     }
 
     public getJobs() {
-        return this.checkpointNest.getUnwatchedJobs();
+        if (this.checkpointNest) {
+            return this.checkpointNest.getUnwatchedJobs();
+        } else {
+            return [];
+        }
     }
 }

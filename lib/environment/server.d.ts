@@ -7,6 +7,7 @@ export declare class Server {
     protected e: Environment;
     protected hookRoutes: any[];
     protected hookInterfaceRoutes: any[];
+    protected upload: any;
     protected config: {
         hooks_prefix: string;
         hooks_ui_prefix: string;

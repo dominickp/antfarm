@@ -7,7 +7,9 @@ import express = require("express");
 
 const   fs = require("fs"),
         tmp = require("tmp"),
-        url = require("url");
+        url = require("url"),
+        multer = require("multer"),
+        path = require("path");
 
 export class WebhookJob extends Job {
 
@@ -90,7 +92,11 @@ export class WebhookJob extends Job {
     public getDataAsFileJob(callback: any) {
         let wh = this;
         let req = wh.getRequest();
+        let res = wh.getResponse();
         let data = [];
+
+
+        console.log("ctype", req.headers);
 
         req.on("data", function(chunk) {
             data.push(chunk);

@@ -7,7 +7,8 @@ import {WebhookInterface} from "../ui/webhookInterface";
 const
         cors = require("cors"),
         multer = require("multer"),
-        path = require("path");
+        path = require("path"),
+        tmp = require("tmp");
 
 
 export class Server {
@@ -16,6 +17,7 @@ export class Server {
     protected e: Environment;
     protected hookRoutes = [];
     protected hookInterfaceRoutes = [];
+    protected upload;
 
     protected config = {
         hooks_prefix: "/hooks",
@@ -26,6 +28,21 @@ export class Server {
         this.e = e;
         this.server = express();
         this.createServer();
+
+        // let tmpDir = tmp.dirSync().name;
+        let tmpDir = "./example";
+
+        this.upload = multer({
+                destination: tmpDir,
+                storage: multer.diskStorage({
+                    filename: function (req, file, cb) {
+                        console.log(req.headers);
+
+                        cb(null, file.fieldname + "-" + Date.now());
+                    }
+                })
+            });
+
 
     }
 
@@ -54,6 +71,9 @@ export class Server {
         return "Server";
     }
 
+
+
+
     public addWebhook(nest: WebhookNest) {
         let s = this;
         let e = s.e;
@@ -72,11 +92,13 @@ export class Server {
             path: hook_path,
             nest: nest.getName(),
             tunnel: nest.getTunnel().getName(),
-            methods: httpMethod,
+            method: httpMethod,
             interface_path: hook_ui_path
         });
 
-        s.server[httpMethod](hook_path, function (req, res) {
+        s.server[httpMethod](hook_path, s.upload.any(), function (req, res) {
+
+            console.log(req.body, req.files, req.file);
 
             let customHandler = nest.getCustomHandleRequest();
 
@@ -93,6 +115,8 @@ export class Server {
      */
     protected handleHookRequest = function(nest: WebhookNest, req, res, customHandler?: any) {
         let s = this;
+
+        console.log("files", res.files);
 
         // Job arrive
         let job = new WebhookJob(s.e, req, res);
@@ -115,6 +139,8 @@ export class Server {
         }
     };
 
+
+
     /**
      * Adds a webhook interface to the webhook server.
      * @param ui
@@ -136,7 +162,7 @@ export class Server {
             // tunnel: nest.getTunnel().getName()
         });
 
-        s.server.get(hook_ui_path, function (req, res) {
+        s.server.get(hook_ui_path,  function (req, res) {
 
             let customHandler = ui.getCustomHandleRequest();
 
