@@ -57,6 +57,7 @@ export class Environment {
         let e = this;
         e.server = http.createServer(function(request, response) {
             try {
+                response.setHeader("Access-Control-Allow-Headers", "Content-Type,Accept");
                 response.setHeader("Access-Control-Allow-Origin", "*");
                 e.router(request, response, finalhandler(request, response));
             } catch (err) {
