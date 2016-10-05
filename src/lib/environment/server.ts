@@ -183,6 +183,15 @@ export class Server {
         // Job arrive
         let job = new WebhookJob(s.e, req, res);
 
+        // Fill in default values
+        let params = job.getQueryStringValues();
+        let fields = ui.getInterface().fields;
+        fields.forEach(field => {
+            if (field.id in params && params[field.id] !== "undefined") {
+                field.value = params[field.id];
+            }
+        });
+
         // Do steps
         ui.getSteps().forEach(function(step){
             s.e.log(1, `Running UI step "${step.name}".`, s);

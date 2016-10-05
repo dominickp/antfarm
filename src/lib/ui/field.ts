@@ -45,4 +45,11 @@ interface FieldOptions {
      */
     description: string;
 
+    /**
+     * Default value.
+     */
+    defaultValue: string;
+
+
+
 }

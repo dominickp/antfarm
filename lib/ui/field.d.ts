@@ -35,4 +35,8 @@ interface FieldOptions {
      * Description to display near the form field.
      */
     description: string;
+    /**
+     * Default value.
+     */
+    defaultValue: string;
 }
