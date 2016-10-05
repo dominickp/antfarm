@@ -35,4 +35,14 @@ interface FieldOptions {
      */
     valueList: any[];
 
+    /**
+     * Tooltip to show more details on hover.
+     */
+    tooltip: string;
+
+    /**
+     * Description to display near the form field.
+     */
+    description: string;
+
 }
