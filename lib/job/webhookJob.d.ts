@@ -31,7 +31,7 @@ export declare class WebhookJob extends Job {
      * @param parameter
      * @returns {any}
      */
-    getUrlParameter(parameter: string): any;
+    getQueryStringValue(parameter: string): any;
     /**
      * Return all URl parameters.
      * * #### Example
@@ -42,7 +42,7 @@ export declare class WebhookJob extends Job {
      * ```
      * @returns {any}
      */
-    getUrlParameters(): any;
+    getQueryStringValues(): any;
     /**
      * Gets a FileJob from the request body with a temporary file name.
      * The callback will be given the job as its parameter.
@@ -59,7 +59,18 @@ export declare class WebhookJob extends Job {
      * Returns FileJobs made from files sent via FormData to the webhook.
      * @returns {FileJob[]}
      */
-    getFormDataJobs(): any[];
+    getFormDataFiles(): any[];
+    /**
+     * Get all FormData values.
+     * @returns {any}
+     */
+    getFormDataValues(): any;
+    /**
+     * Get a single FormData value.
+     * @param key
+     * @returns {any}
+     */
+    getFormDataValue(key: string): any;
     /**
      * Get a string from the request body.
      * The given callback is given a string parameter.

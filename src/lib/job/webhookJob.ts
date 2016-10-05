@@ -55,7 +55,7 @@ export class WebhookJob extends Job {
      * @param parameter
      * @returns {any}
      */
-    public getUrlParameter(parameter: string) {
+    public getQueryStringValue(parameter: string) {
         let wh = this;
         let url_parts = url.parse(wh.getRequest().url, true);
         return url_parts.query[parameter];
@@ -71,7 +71,7 @@ export class WebhookJob extends Job {
      * ```
      * @returns {any}
      */
-    public getUrlParameters() {
+    public getQueryStringValues() {
         let wh = this;
         let url_parts = url.parse(wh.getRequest().url, true);
         return url_parts.query;
@@ -117,9 +117,9 @@ export class WebhookJob extends Job {
      * Returns FileJobs made from files sent via FormData to the webhook.
      * @returns {FileJob[]}
      */
-    public getFormDataJobs() {
+    public getFormDataFiles() {
         let wh = this;
-        let files = this.getRequest().files;
+        let files = wh.getRequest().files;
         let jobs = [];
 
         files.forEach(function(file){
@@ -129,6 +129,29 @@ export class WebhookJob extends Job {
         });
 
         return jobs;
+    }
+
+    /**
+     * Get all FormData values.
+     * @returns {any}
+     */
+    public getFormDataValues() {
+        let wh = this;
+        let body = wh.getRequest().body;
+
+        return body;
+    }
+
+    /**
+     * Get a single FormData value.
+     * @param key
+     * @returns {any}
+     */
+    public getFormDataValue(key: string) {
+        let wh = this;
+        let formData = wh.getFormDataValues();
+
+        return formData[key];
     }
 
     /**
