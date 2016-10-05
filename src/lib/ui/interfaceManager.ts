@@ -84,11 +84,8 @@ export class InterfaceManager {
         let im = this;
         let wi;
         // Find in this.interfaceInstances
-        console.log("looking for", sessionId);
         if (sessionId) {
-
             wi = _.find(im.interfaceInstances, function(i) { return i.getSessionId() === sessionId; });
-
         }
 
         if (!wi) {
@@ -104,6 +101,8 @@ export class InterfaceManager {
             }
 
             im.interfaceInstances.push(wi);
+        } else {
+            im.e.log(0, `Restored interface session ${wi.getSessionId()}.`, im);
         }
 
         return wi;

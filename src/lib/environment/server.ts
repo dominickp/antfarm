@@ -119,8 +119,6 @@ export class Server {
     protected handleHookRequest = function(nest: WebhookNest, req, res, customHandler?: any) {
         let s = this;
 
-        console.log("files", res.files);
-
         // Job arrive
         let job = new WebhookJob(s.e, req, res);
         nest.arrive(job);
@@ -190,15 +188,10 @@ export class Server {
         // Fill in default values
         let params = job.getQueryStringValues();
 
-
         // If session not set, return a fresh ui somehow
         let sessionId = params["sessionId"] || job.getFormDataValue("sessionId");
-        console.log(params);
-        console.log("sessionId", sessionId);
 
         let ui = im.getInterface(sessionId);
-
-
 
         let fields = ui.getInterface().fields;
         fields.forEach(field => {
