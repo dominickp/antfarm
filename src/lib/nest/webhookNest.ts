@@ -136,6 +136,8 @@ export class WebhookNest extends Nest {
     /**
      * Create a webhook interface and register it to the webhook.
      * Webhook interfaces allow you to describe how webhooks should be used for an interface.
+     * @param handleRequest     Optional custom request handler.
+     * @returns {WebhookInterface}
      * #### Example
      * ```js
      * var ui = webhook.createInterface();
@@ -146,9 +148,9 @@ export class WebhookNest extends Nest {
      * });
      * ```
      */
-    public createInterface() {
+    public createInterface(handleRequest: any) {
         let wh = this;
-        let ui = new WebhookInterface(wh.e, wh);
+        let ui = new WebhookInterface(wh.e, wh, handleRequest);
         this.ui = ui;
 
         wh.e.addWebhookInterface(ui);

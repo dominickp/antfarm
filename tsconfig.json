@@ -9,7 +9,6 @@
     "noImplicitAny": false
   },
   "exclude": [
-    "node_modules",
-    "src/lib/typings"
+    "node_modules"
   ]
 }

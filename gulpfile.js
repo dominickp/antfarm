@@ -159,7 +159,10 @@ gulp.task('coveralls-travis', function () {
 // });
 
 gulp.task('build', function() {
-    var tsResult = gulp.src(['./src/**/*.ts', './devtypes/**/*.ts'])
+    var tsResult = gulp.src([
+        './src/**/*.ts',
+        './devtypes/**/*.ts',
+    ])
         .pipe(ts(tsProject));
     tsResult.dts.pipe(gulp.dest('./'));
     return tsResult.js.pipe(gulp.dest('./'));

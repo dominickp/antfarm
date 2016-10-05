@@ -178,7 +178,16 @@ export class Server {
      * @param customHandler     Custom request handler.
      */
     protected handleHookInterfaceRequest = function(ui: WebhookInterface, req, res, customHandler?: any) {
-        let e = this;
+        let s = this;
+
+        // Job arrive
+        let job = new WebhookJob(s.e, req, res);
+
+        // Do steps
+        ui.getSteps().forEach(function(step){
+            s.e.log(1, `Running UI step "${step.name}".`, s);
+            step.callback(job);
+        });
 
         if (customHandler) {
             customHandler(req, res, ui);

@@ -7,6 +7,7 @@ export declare class WebhookInterface {
     protected nest: WebhookNest;
     protected checkpointNest: FolderNest;
     protected handleRequest: any;
+    protected steps: any[];
     /**
      * Constructor
      * @param {Environment} e
@@ -36,6 +37,7 @@ export declare class WebhookInterface {
     getInterface(): {
         fields: any[];
         jobs: any[];
+        steps: any[];
     };
     /**
      * Get the nest path.
@@ -48,4 +50,15 @@ export declare class WebhookInterface {
      */
     checkNest(nest: FolderNest): void;
     getJobs(): any[];
+    /**
+     * Adds a user interface step
+     * @param name      Name of the step
+     * @param callback
+     */
+    addStep(name: string, callback: any): void;
+    /**
+     * Get steps
+     * @returns {Array}
+     */
+    getSteps(): any[];
 }

@@ -14,6 +14,8 @@ export class WebhookInterface {
 
     protected handleRequest: any;
 
+    protected steps = [];
+
     /**
      * Constructor
      * @param {Environment} e
@@ -71,7 +73,8 @@ export class WebhookInterface {
 
         return {
             fields: this.fields,
-            jobs: jobsArray
+            jobs: jobsArray,
+            steps: this.getSteps()
         };
     }
 
@@ -97,5 +100,26 @@ export class WebhookInterface {
         } else {
             return [];
         }
+    }
+
+
+    /**
+     * Adds a user interface step
+     * @param name      Name of the step
+     * @param callback
+     */
+    public addStep(name: string, callback: any) {
+        this.steps.push({
+            name: name,
+            callback: callback
+        });
+    }
+
+    /**
+     * Get steps
+     * @returns {Array}
+     */
+    public getSteps() {
+        return this.steps;
     }
 }
