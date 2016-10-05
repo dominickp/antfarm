@@ -3,6 +3,7 @@ import { Nest } from "./nest";
 import { FileJob } from "./../job/fileJob";
 import {WebhookJob} from "../job/webhookJob";
 import {WebhookInterface} from "../ui/webhookInterface";
+import {InterfaceManager} from "../ui/interfaceManager";
 
 const   http = require("http");
 
@@ -15,6 +16,8 @@ export class WebhookNest extends Nest {
     protected handleRequest: any;
 
     protected ui: WebhookInterface;
+
+    protected im: InterfaceManager;
 
     /**
      * Webhook Nest constructor
@@ -31,6 +34,8 @@ export class WebhookNest extends Nest {
         if (handleRequest) {
             wh.setCustomHandleRequest(handleRequest);
         }
+
+        this.im = new InterfaceManager(this.e, this);
     }
 
     /**
@@ -148,18 +153,26 @@ export class WebhookNest extends Nest {
      * });
      * ```
      */
-    public createInterface(handleRequest: any) {
-        let wh = this;
-        let ui = new WebhookInterface(wh.e, wh, handleRequest);
-        this.ui = ui;
+    // public createInterface(handleRequest: any) {
+    //     let wh = this;
+    //     let ui = new WebhookInterface(wh.e, wh, handleRequest);
+    //     this.ui = ui;
+    //
+    //     wh.e.addWebhookInterface(ui);
+    //
+    //     return ui;
+    // }
 
-        wh.e.addWebhookInterface(ui);
-
-        return ui;
+    /**
+     *
+     * @returns {InterfaceManager}
+     */
+    public getInterfaceManager() {
+        return this.im;
     }
-
-    public getInterface() {
-        return this.ui;
-    }
+    //
+    // public getInterface() {
+    //     return this.ui;
+    // }
 
 }

@@ -2,39 +2,33 @@ import {Environment} from "../environment/environment";
 import {WebhookNest} from "../nest/webhookNest";
 import {FolderNest} from "../nest/folderNest";
 
+const shortid   = require("shortid");
+
 export class WebhookInterface {
 
     protected fields = [];
-
     protected e: Environment;
-
     protected nest: WebhookNest;
-
     protected checkpointNest: FolderNest;
-
-    protected handleRequest: any;
-
     protected steps = [];
+    protected sessionId: string;
 
     /**
      * Constructor
      * @param {Environment} e
      * @param {WebhookNest} nest
-     * @param handleRequest
      */
-    constructor(e: Environment, nest: WebhookNest, handleRequest?: any) {
+    constructor(e: Environment, nest: WebhookNest) {
         this.e = e;
         this.nest = nest;
-        this.handleRequest = handleRequest;
+        this.sessionId = shortid.generate();
     }
 
-    /**
-     * Get the custom handleRequest function.
-     * @returns {any}
-     */
-    public getCustomHandleRequest() {
-        return this.handleRequest;
+
+    public getSessionId() {
+        return this.sessionId;
     }
+
 
     /**
      * Get the nest
@@ -50,6 +44,14 @@ export class WebhookInterface {
      */
     public addField(field: FieldOptions) {
         this.fields.push(field);
+    }
+
+    /**
+     * Overwrites fields.
+     * @param fields
+     */
+    public setFields(fields: FieldOptions[]) {
+        this.fields = fields;
     }
 
     /**
@@ -72,19 +74,13 @@ export class WebhookInterface {
         // console.log(jobs as JobsInterface[]);
 
         return {
+            sessionId: this.sessionId,
             fields: this.fields,
             jobs: jobsArray,
             steps: this.getSteps()
         };
     }
 
-    /**
-     * Get the nest path.
-     * @returns {string}
-     */
-    public getPath() {
-        return this.nest.getPath();
-    }
 
     /**
      * Adds pending jobs to the interfaces job list.
@@ -121,5 +117,9 @@ export class WebhookInterface {
      */
     public getSteps() {
         return this.steps;
+    }
+
+    public setSteps(steps: any) {
+        this.steps = steps;
     }
 }

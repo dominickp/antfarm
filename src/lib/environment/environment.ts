@@ -5,6 +5,7 @@ import {ServerRequest} from "http";
 import {ServerResponse} from "http";
 import {WebhookInterface} from "../ui/webhookInterface";
 import {Server} from "./server";
+import {InterfaceManager} from "../ui/interfaceManager";
 
 const   fs = require("fs");
 
@@ -102,11 +103,11 @@ export class Environment {
 
     /**
      * Adds a webhook interface to the webhook server.
-     * @param ui
+     * @param im
      */
-    public addWebhookInterface(ui: WebhookInterface) {
+    public addWebhookInterface(im: InterfaceManager) {
         let e = this;
-        e.server2.addWebhookInterface(ui);
+        e.server2.addWebhookInterface(im);
     }
 
     public toString() {

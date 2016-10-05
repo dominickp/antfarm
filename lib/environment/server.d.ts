@@ -1,7 +1,7 @@
 import { Environment } from "./environment";
 import { WebhookNest } from "../nest/webhookNest";
 import * as express from "express";
-import { WebhookInterface } from "../ui/webhookInterface";
+import { InterfaceManager } from "../ui/interfaceManager";
 export declare class Server {
     protected server: express.Application;
     protected e: Environment;
@@ -29,15 +29,15 @@ export declare class Server {
     protected handleHookRequest: (nest: WebhookNest, req: any, res: any, customHandler?: any) => void;
     /**
      * Adds a webhook interface to the webhook server.
-     * @param ui
+     * @param im
      */
-    addWebhookInterface(ui: WebhookInterface): void;
+    addWebhookInterface(im: InterfaceManager): void;
     /**
      * Handles request and response of the web hook interface.
-     * @param ui
+     * @param im
      * @param req
      * @param res
      * @param customHandler     Custom request handler.
      */
-    protected handleHookInterfaceRequest: (ui: WebhookInterface, req: any, res: any, customHandler?: any) => void;
+    protected handleHookInterfaceRequest: (im: InterfaceManager, req: any, res: any, customHandler?: any) => void;
 }

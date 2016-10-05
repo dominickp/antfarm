@@ -3,6 +3,7 @@ import {WebhookNest} from "../nest/webhookNest";
 import {WebhookJob} from "../job/webhookJob";
 import * as express from "express";
 import {WebhookInterface} from "../ui/webhookInterface";
+import {InterfaceManager} from "../ui/interfaceManager";
 
 const
         cors = require("cors"),
@@ -81,11 +82,13 @@ export class Server {
         let httpMethod = nest.getHttpMethod();
         let hook_path = s.config.hooks_prefix + nest.getPath();
         let hook_ui_path;
-        if (nest.getInterface()) {
-            hook_ui_path = s.config.hooks_ui_prefix + nest.getInterface().getPath();
-        }
+        let im = nest.getInterfaceManager();
 
-        s.e.log(1, `Watching webhook ${httpMethod.toUpperCase()} ${hook_ui_path}`, s);
+
+        let wi = im.getInterface();
+        hook_ui_path = s.config.hooks_ui_prefix + im.getPath();
+
+        s.e.log(1, `Watching webhook ${httpMethod.toUpperCase()} ${hook_path}`, s);
 
         s.hookRoutes.push({
             id: nest.getId(),
@@ -143,14 +146,14 @@ export class Server {
 
     /**
      * Adds a webhook interface to the webhook server.
-     * @param ui
+     * @param im
      */
-    public addWebhookInterface(ui: WebhookInterface) {
+    public addWebhookInterface(im: InterfaceManager) {
         let s = this;
-        let nest = ui.getNest();
+        let nest = im.getNest();
 
         let hook_path = s.config.hooks_prefix + nest.getPath();
-        let hook_ui_path = s.config.hooks_ui_prefix + ui.getPath();
+        let hook_ui_path = s.config.hooks_ui_prefix + im.getPath();
 
         s.e.log(1, `Watching webhook interface GET ${hook_ui_path}`, s);
 
@@ -164,27 +167,39 @@ export class Server {
 
         s.server.get(hook_ui_path,  function (req, res) {
 
-            let customHandler = ui.getCustomHandleRequest();
+            let customHandler = im.getCustomHandleRequest();
 
-            s.handleHookInterfaceRequest(ui, req, res, customHandler);
+            s.handleHookInterfaceRequest(im, req, res, customHandler);
         });
     }
 
     /**
      * Handles request and response of the web hook interface.
-     * @param ui
+     * @param im
      * @param req
      * @param res
      * @param customHandler     Custom request handler.
      */
-    protected handleHookInterfaceRequest = function(ui: WebhookInterface, req, res, customHandler?: any) {
+    protected handleHookInterfaceRequest = function(im: InterfaceManager, req, res, customHandler?: any) {
         let s = this;
+
 
         // Job arrive
         let job = new WebhookJob(s.e, req, res);
 
         // Fill in default values
         let params = job.getQueryStringValues();
+
+
+        // If session not set, return a fresh ui somehow
+        let sessionId = params["sessionId"] || job.getFormDataValue("sessionId");
+        console.log(params);
+        console.log("sessionId", sessionId);
+
+        let ui = im.getInterface(sessionId);
+
+
+
         let fields = ui.getInterface().fields;
         fields.forEach(field => {
             if (field.id in params && params[field.id] !== "undefined") {
@@ -195,7 +210,7 @@ export class Server {
         // Do steps
         ui.getSteps().forEach(function(step){
             s.e.log(1, `Running UI step "${step.name}".`, s);
-            step.callback(job);
+            step.callback(job, ui);
         });
 
         if (customHandler) {
@@ -203,6 +218,8 @@ export class Server {
         } else {
             res.json(ui.getInterface());
         }
+
+
     };
 
 

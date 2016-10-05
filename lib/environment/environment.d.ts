@@ -1,7 +1,7 @@
 import { Logger } from "./logger";
 import { WebhookNest } from "../nest/webhookNest";
-import { WebhookInterface } from "../ui/webhookInterface";
 import { Server } from "./server";
+import { InterfaceManager } from "../ui/interfaceManager";
 export declare class Environment {
     protected options: AntfarmOptions;
     protected logger: Logger;
@@ -28,9 +28,9 @@ export declare class Environment {
     addWebhook(nest: WebhookNest): void;
     /**
      * Adds a webhook interface to the webhook server.
-     * @param ui
+     * @param im
      */
-    addWebhookInterface(ui: WebhookInterface): void;
+    addWebhookInterface(im: InterfaceManager): void;
     toString(): string;
     log(type: number, message: string, actor?: any, instances?: any[]): void;
 }

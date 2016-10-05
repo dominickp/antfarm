@@ -2,11 +2,13 @@ import { Environment } from "../environment/environment";
 import { Nest } from "./nest";
 import { WebhookJob } from "../job/webhookJob";
 import { WebhookInterface } from "../ui/webhookInterface";
+import { InterfaceManager } from "../ui/interfaceManager";
 export declare class WebhookNest extends Nest {
     protected path: string;
     protected httpMethod: string;
     protected handleRequest: any;
     protected ui: WebhookInterface;
+    protected im: InterfaceManager;
     /**
      * Webhook Nest constructor
      * @param e
@@ -79,6 +81,9 @@ export declare class WebhookNest extends Nest {
      * });
      * ```
      */
-    createInterface(handleRequest: any): WebhookInterface;
-    getInterface(): WebhookInterface;
+    /**
+     *
+     * @returns {InterfaceManager}
+     */
+    getInterfaceManager(): InterfaceManager;
 }

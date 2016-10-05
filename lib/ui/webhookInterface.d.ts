@@ -6,20 +6,15 @@ export declare class WebhookInterface {
     protected e: Environment;
     protected nest: WebhookNest;
     protected checkpointNest: FolderNest;
-    protected handleRequest: any;
     protected steps: any[];
+    protected sessionId: string;
     /**
      * Constructor
      * @param {Environment} e
      * @param {WebhookNest} nest
-     * @param handleRequest
      */
-    constructor(e: Environment, nest: WebhookNest, handleRequest?: any);
-    /**
-     * Get the custom handleRequest function.
-     * @returns {any}
-     */
-    getCustomHandleRequest(): any;
+    constructor(e: Environment, nest: WebhookNest);
+    getSessionId(): string;
     /**
      * Get the nest
      * @returns {WebhookNest}
@@ -31,19 +26,20 @@ export declare class WebhookInterface {
      */
     addField(field: FieldOptions): void;
     /**
+     * Overwrites fields.
+     * @param fields
+     */
+    setFields(fields: FieldOptions[]): void;
+    /**
      * Returns the interface for transport.
      * @returns {{fields: Array}}
      */
     getInterface(): {
+        sessionId: string;
         fields: any[];
         jobs: any[];
         steps: any[];
     };
-    /**
-     * Get the nest path.
-     * @returns {string}
-     */
-    getPath(): string;
     /**
      * Adds pending jobs to the interfaces job list.
      * @param nest
@@ -61,4 +57,5 @@ export declare class WebhookInterface {
      * @returns {Array}
      */
     getSteps(): any[];
+    setSteps(steps: any): void;
 }
