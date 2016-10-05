@@ -67,6 +67,28 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A webhook interface instance, tied to a particular session.
+						Within interface steps, you can use these methods directly to alter the schema being returned to the user interface.</p>
+						<h4 id="example">Example</h4>
+						<pre><code class="lang-js"><span class="hljs-keyword">var</span> manager = webhook.getInterfaceManager();
+manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">webhookJob, webhookInterface, step</span>)</span>{
+     <span class="hljs-keyword">if</span>(webhookJob.getQueryStringValue(<span class="hljs-string">"job_number"</span>)){
+         webhookInterface.addField({
+             <span class="hljs-attr">id</span>: <span class="hljs-string">"something_else"</span>,
+             <span class="hljs-attr">name</span>: <span class="hljs-string">"Some other field"</span>,
+             <span class="hljs-attr">type</span>: <span class="hljs-string">"text"</span>,
+             <span class="hljs-attr">description</span>: <span class="hljs-string">"Thanks for adding a job number!"</span>
+         });
+         step.complete = <span class="hljs-literal">true</span>; <span class="hljs-comment">// Mark step as complete</span>
+     }
+});
+</code></pre>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -127,7 +149,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/webhookInterface.ts#L16">lib/ui/webhookInterface.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/webhookInterface.ts#L34">lib/ui/webhookInterface.ts:34</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -161,7 +183,7 @@
 					<div class="tsd-signature tsd-kind-icon">checkpoint<wbr>Nest<span class="tsd-signature-symbol">:</span> <a href="foldernest.html" class="tsd-signature-type">FolderNest</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/webhookInterface.ts#L14">lib/ui/webhookInterface.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/webhookInterface.ts#L32">lib/ui/webhookInterface.ts:32</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -171,7 +193,7 @@
 					<div class="tsd-signature tsd-kind-icon">e<span class="tsd-signature-symbol">:</span> <a href="environment.html" class="tsd-signature-type">Environment</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/webhookInterface.ts#L12">lib/ui/webhookInterface.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/webhookInterface.ts#L30">lib/ui/webhookInterface.ts:30</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -181,7 +203,7 @@
 					<div class="tsd-signature tsd-kind-icon">fields<span class="tsd-signature-symbol">:</span> <a href="../interfaces/fieldoptions.html" class="tsd-signature-type">FieldOptions</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/webhookInterface.ts#L11">lib/ui/webhookInterface.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/webhookInterface.ts#L29">lib/ui/webhookInterface.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -191,7 +213,7 @@
 					<div class="tsd-signature tsd-kind-icon">nest<span class="tsd-signature-symbol">:</span> <a href="webhooknest.html" class="tsd-signature-type">WebhookNest</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/webhookInterface.ts#L13">lib/ui/webhookInterface.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/webhookInterface.ts#L31">lib/ui/webhookInterface.ts:31</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -201,7 +223,7 @@
 					<div class="tsd-signature tsd-kind-icon">session<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/webhookInterface.ts#L16">lib/ui/webhookInterface.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/webhookInterface.ts#L34">lib/ui/webhookInterface.ts:34</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -211,7 +233,7 @@
 					<div class="tsd-signature tsd-kind-icon">steps<span class="tsd-signature-symbol">:</span> <a href="../interfaces/step.html" class="tsd-signature-type">Step</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/webhookInterface.ts#L15">lib/ui/webhookInterface.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/webhookInterface.ts#L33">lib/ui/webhookInterface.ts:33</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -228,7 +250,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/webhookInterface.ts#L49">lib/ui/webhookInterface.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/webhookInterface.ts#L69">lib/ui/webhookInterface.ts:69</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -258,7 +280,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/webhookInterface.ts#L141">lib/ui/webhookInterface.ts:141</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/webhookInterface.ts#L161">lib/ui/webhookInterface.ts:161</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -291,7 +313,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/webhookInterface.ts#L123">lib/ui/webhookInterface.ts:123</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/webhookInterface.ts#L144">lib/ui/webhookInterface.ts:144</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -321,9 +343,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/webhookInterface.ts#L87">lib/ui/webhookInterface.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/webhookInterface.ts#L111">lib/ui/webhookInterface.ts:111</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get an array of all of the fields.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/fieldoptions.html" class="tsd-signature-type">FieldOptions</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -338,7 +365,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/webhookInterface.ts#L127">lib/ui/webhookInterface.ts:127</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/webhookInterface.ts#L148">lib/ui/webhookInterface.ts:148</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -355,7 +382,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/webhookInterface.ts#L41">lib/ui/webhookInterface.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/webhookInterface.ts#L61">lib/ui/webhookInterface.ts:61</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -377,9 +404,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/webhookInterface.ts#L32">lib/ui/webhookInterface.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/webhookInterface.ts#L53">lib/ui/webhookInterface.ts:53</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Return the session id. Used to match to interface instanced within the manager.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
@@ -394,10 +426,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/webhookInterface.ts#L152">lib/ui/webhookInterface.ts:152</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/webhookInterface.ts#L173">lib/ui/webhookInterface.ts:173</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get an array of instance steps.</p>
+								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/step.html" class="tsd-signature-type">Step</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
@@ -413,7 +448,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/webhookInterface.ts#L95">lib/ui/webhookInterface.ts:95</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/webhookInterface.ts#L119">lib/ui/webhookInterface.ts:119</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -449,7 +484,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/webhookInterface.ts#L66">lib/ui/webhookInterface.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/webhookInterface.ts#L86">lib/ui/webhookInterface.ts:86</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -479,13 +514,20 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/webhookInterface.ts#L157">lib/ui/webhookInterface.ts:157</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/webhookInterface.ts#L181">lib/ui/webhookInterface.ts:181</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Overwrite the instant steps.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>steps: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>

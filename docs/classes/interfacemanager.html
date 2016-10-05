@@ -67,6 +67,22 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>The interface manager allows you to separate your interface fields for stepped user interfaces.
+						It&#39;s a factory that handles the construction and session handling of WebhookInterface instances.</p>
+						<h4 id="example">Example</h4>
+						<pre><code class="lang-js"><span class="hljs-keyword">var</span> manager = webhook.getInterfaceManager();
+manager.addField({
+     <span class="hljs-attr">id</span>: <span class="hljs-string">"job_number"</span>,
+     <span class="hljs-attr">name</span>: <span class="hljs-string">"Job Number"</span>;
+     type: <span class="hljs-string">"text"</span>
+});
+</code></pre>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -124,9 +140,11 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/interfaceManager.ts#L14">lib/ui/interfaceManager.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/interfaceManager.ts#L27">lib/ui/interfaceManager.ts:27</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
@@ -137,6 +155,11 @@
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> handleRequest: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Optional custom request handler for webhooks.</p>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="interfacemanager.html" class="tsd-signature-type">InterfaceManager</a></h4>
@@ -152,7 +175,7 @@
 					<div class="tsd-signature tsd-kind-icon">e<span class="tsd-signature-symbol">:</span> <a href="environment.html" class="tsd-signature-type">Environment</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/interfaceManager.ts#L9">lib/ui/interfaceManager.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/interfaceManager.ts#L22">lib/ui/interfaceManager.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -162,7 +185,7 @@
 					<div class="tsd-signature tsd-kind-icon">fields<span class="tsd-signature-symbol">:</span> <a href="../interfaces/fieldoptions.html" class="tsd-signature-type">FieldOptions</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/interfaceManager.ts#L11">lib/ui/interfaceManager.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/interfaceManager.ts#L24">lib/ui/interfaceManager.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -172,7 +195,7 @@
 					<div class="tsd-signature tsd-kind-icon">handle<wbr>Request<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/interfaceManager.ts#L14">lib/ui/interfaceManager.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/interfaceManager.ts#L27">lib/ui/interfaceManager.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -182,7 +205,7 @@
 					<div class="tsd-signature tsd-kind-icon">interface<wbr>Instances<span class="tsd-signature-symbol">:</span> <a href="webhookinterface.html" class="tsd-signature-type">WebhookInterface</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/interfaceManager.ts#L13">lib/ui/interfaceManager.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/interfaceManager.ts#L26">lib/ui/interfaceManager.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -192,7 +215,7 @@
 					<div class="tsd-signature tsd-kind-icon">nest<span class="tsd-signature-symbol">:</span> <a href="webhooknest.html" class="tsd-signature-type">WebhookNest</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/interfaceManager.ts#L10">lib/ui/interfaceManager.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/interfaceManager.ts#L23">lib/ui/interfaceManager.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -202,7 +225,7 @@
 					<div class="tsd-signature tsd-kind-icon">steps<span class="tsd-signature-symbol">:</span> <a href="../interfaces/step.html" class="tsd-signature-type">Step</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/interfaceManager.ts#L12">lib/ui/interfaceManager.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/interfaceManager.ts#L25">lib/ui/interfaceManager.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -219,7 +242,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/interfaceManager.ts#L55">lib/ui/interfaceManager.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/interfaceManager.ts#L72">lib/ui/interfaceManager.ts:72</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -249,12 +272,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/interfaceManager.ts#L77">lib/ui/interfaceManager.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/interfaceManager.ts#L112">lib/ui/interfaceManager.ts:112</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Adds a user interface step</p>
+									<p>Adds a user interface step.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -265,6 +288,20 @@
 								<li>
 									<h5>callback: <span class="tsd-signature-type">any</span></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>Parameters: WebhookJob, WebhookInterface, Step</p>
+										<h4 id="example">Example</h4>
+										<pre><code class="lang-js"> manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">webhookJob, webhookInterface, step</span>)</span>{
+     <span class="hljs-keyword">if</span>(webhookJob.getQueryStringValue(<span class="hljs-string">"job_number"</span>)){
+         webhookInterface.addField({
+             <span class="hljs-attr">id</span>: <span class="hljs-string">"something_else"</span>,
+             <span class="hljs-attr">name</span>: <span class="hljs-string">"Some other field"</span>,
+             <span class="hljs-attr">type</span>: <span class="hljs-string">"text"</span>,
+             <span class="hljs-attr">description</span>: <span class="hljs-string">"Thanks for adding a job number!"</span>
+         });
+         step.complete = <span class="hljs-literal">true</span>; <span class="hljs-comment">// Mark step as complete</span>
+     }
+});
+</code></pre>
 									</div>
 								</li>
 							</ul>
@@ -282,7 +319,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/interfaceManager.ts#L29">lib/ui/interfaceManager.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/interfaceManager.ts#L48">lib/ui/interfaceManager.ts:48</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -304,9 +341,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/interfaceManager.ts#L68">lib/ui/interfaceManager.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/interfaceManager.ts#L89">lib/ui/interfaceManager.ts:89</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets an array of interface fields.</p>
+								</div>
+							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/fieldoptions.html" class="tsd-signature-type">FieldOptions</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
@@ -321,12 +363,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/interfaceManager.ts#L98">lib/ui/interfaceManager.ts:98</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/interfaceManager.ts#L133">lib/ui/interfaceManager.ts:133</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Find or return a new interface instance.</p>
+									<p>Find or return a new webhook interface instance.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -349,7 +391,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/interfaceManager.ts#L37">lib/ui/interfaceManager.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/interfaceManager.ts#L56">lib/ui/interfaceManager.ts:56</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -371,7 +413,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/interfaceManager.ts#L46">lib/ui/interfaceManager.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/interfaceManager.ts#L64">lib/ui/interfaceManager.ts:64</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -393,10 +435,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/e8cb28f/src/lib/ui/interfaceManager.ts#L89">lib/ui/interfaceManager.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/233388b/src/lib/ui/interfaceManager.ts#L124">lib/ui/interfaceManager.ts:124</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get an array of user interface steps.</p>
+								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/step.html" class="tsd-signature-type">Step</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>

@@ -5,13 +5,14 @@ import * as express from "express";
 import {WebhookInterface} from "../ui/webhookInterface";
 import {InterfaceManager} from "../ui/interfaceManager";
 
-const
-        cors = require("cors"),
+const   cors = require("cors"),
         multer = require("multer"),
         path = require("path"),
         tmp = require("tmp");
 
-
+/**
+ * Webhook and logging server.
+ */
 export class Server {
 
     protected server: express.Application;
@@ -43,8 +44,6 @@ export class Server {
                     }
                 })
             });
-
-
     }
 
     /**
@@ -68,13 +67,18 @@ export class Server {
         s.server.listen(port, () => s.e.log(1, `Server up and listening on port ${port}.`, s));
     }
 
+    /**
+     * Log name
+     * @returns {string}
+     */
     public toString() {
         return "Server";
     }
 
-
-
-
+    /**
+     * Adds a webhook to the server.
+     * @param nest {WebhookNest}
+     */
     public addWebhook(nest: WebhookNest) {
         let s = this;
         let e = s.e;
@@ -83,7 +87,6 @@ export class Server {
         let hook_path = s.config.hooks_prefix + nest.getPath();
         let hook_ui_path;
         let im = nest.getInterfaceManager();
-
 
         let wi = im.getInterface();
         hook_ui_path = s.config.hooks_ui_prefix + im.getPath();
@@ -101,8 +104,6 @@ export class Server {
 
         s.server[httpMethod](hook_path, s.upload.any(), function (req, res) {
 
-            // console.log(req.body, req.files, req.file);
-
             let customHandler = nest.getCustomHandleRequest();
 
              s.handleHookRequest(nest, req, res, customHandler);
@@ -111,9 +112,9 @@ export class Server {
 
     /**
      * Handles request and response of the web hook, creates a new job, as well as calling the nest's arrive.
-     * @param nest
-     * @param req
-     * @param res
+     * @param nest {WebhookNest}
+     * @param req {express.Request}
+     * @param res {express.Response}
      * @param customHandler     Custom request handler.
      */
     protected handleHookRequest = function(nest: WebhookNest, req, res, customHandler?: any) {
@@ -140,11 +141,9 @@ export class Server {
         }
     };
 
-
-
     /**
      * Adds a webhook interface to the webhook server.
-     * @param im
+     * @param im {InterfaceManager}
      */
     public addWebhookInterface(im: InterfaceManager) {
         let s = this;
@@ -173,14 +172,13 @@ export class Server {
 
     /**
      * Handles request and response of the web hook interface.
-     * @param im
-     * @param req
-     * @param res
-     * @param customHandler     Custom request handler.
+     * @param im {InterfaceManager}
+     * @param req {express.Request}
+     * @param res {express.Response}
+     * @param customHandler             Custom request handler.
      */
     protected handleHookInterfaceRequest = function(im: InterfaceManager, req, res, customHandler?: any) {
         let s = this;
-
 
         // Job arrive
         let job = new WebhookJob(s.e, req, res);
@@ -215,10 +213,6 @@ export class Server {
         } else {
             res.json(ui.getTransportInterface());
         }
-
-
     };
-
-
 
 }

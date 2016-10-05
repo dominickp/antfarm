@@ -1,3 +1,6 @@
+/**
+ * An interface step which allows GET requests to be made against the interface itself.
+ */
 interface Step {
 
     /**

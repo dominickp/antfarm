@@ -5,7 +5,25 @@ import {FolderNest} from "../nest/folderNest";
 const   shortid     = require("shortid"),
         _           = require("lodash");
 
-
+/**
+ * A webhook interface instance, tied to a particular session.
+ * Within interface steps, you can use these methods directly to alter the schema being returned to the user interface.
+ * #### Example
+ * ```js
+ * var manager = webhook.getInterfaceManager();
+ * manager.addStep("Check job number", function(webhookJob, webhookInterface, step){
+ *      if(webhookJob.getQueryStringValue("job_number")){
+ *          webhookInterface.addField({
+ *              id: "something_else",
+ *              name: "Some other field",
+ *              type: "text",
+ *              description: "Thanks for adding a job number!"
+ *          });
+ *          step.complete = true; // Mark step as complete
+ *      }
+ * });
+ * ```
+ */
 export class WebhookInterface {
 
     protected fields: FieldOptions[];
@@ -28,11 +46,13 @@ export class WebhookInterface {
         this.fields = [];
     }
 
-
+    /**
+     * Return the session id. Used to match to interface instanced within the manager.
+     * @returns {string}
+     */
     public getSessionId() {
         return this.sessionId;
     }
-
 
     /**
      * Get the nest
@@ -84,6 +104,10 @@ export class WebhookInterface {
         this.fields = newFields;
     }
 
+    /**
+     * Get an array of all of the fields.
+     * @returns {FieldOptions[]}
+     */
     public getFields() {
         return this.fields;
     }
@@ -105,8 +129,6 @@ export class WebhookInterface {
             });
         });
 
-        // console.log(jobs as JobsInterface[]);
-
         return {
             sessionId: this.sessionId,
             fields: this.fields,
@@ -114,7 +136,6 @@ export class WebhookInterface {
             steps: this.getSteps()
         };
     }
-
 
     /**
      * Adds pending jobs to the interfaces job list.
@@ -132,7 +153,6 @@ export class WebhookInterface {
         }
     }
 
-
     /**
      * Adds a user interface step
      * @param stepName
@@ -145,15 +165,19 @@ export class WebhookInterface {
         step.complete = false;
         this.steps.push(step);
     }
+
     /**
-     *
+     * Get an array of instance steps.
      * @returns {Step[]}
      */
     public getSteps() {
         return this.steps;
     }
 
-
+    /**
+     * Overwrite the instant steps.
+     * @param steps
+     */
     public setSteps(steps: any) {
         let newSteps = [];
         steps.forEach(step => {

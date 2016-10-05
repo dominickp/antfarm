@@ -1,6 +1,25 @@
 import { Environment } from "../environment/environment";
 import { WebhookNest } from "../nest/webhookNest";
 import { FolderNest } from "../nest/folderNest";
+/**
+ * A webhook interface instance, tied to a particular session.
+ * Within interface steps, you can use these methods directly to alter the schema being returned to the user interface.
+ * #### Example
+ * ```js
+ * var manager = webhook.getInterfaceManager();
+ * manager.addStep("Check job number", function(webhookJob, webhookInterface, step){
+ *      if(webhookJob.getQueryStringValue("job_number")){
+ *          webhookInterface.addField({
+ *              id: "something_else",
+ *              name: "Some other field",
+ *              type: "text",
+ *              description: "Thanks for adding a job number!"
+ *          });
+ *          step.complete = true; // Mark step as complete
+ *      }
+ * });
+ * ```
+ */
 export declare class WebhookInterface {
     protected fields: FieldOptions[];
     protected e: Environment;
@@ -14,6 +33,10 @@ export declare class WebhookInterface {
      * @param {WebhookNest} nest
      */
     constructor(e: Environment, nest: WebhookNest);
+    /**
+     * Return the session id. Used to match to interface instanced within the manager.
+     * @returns {string}
+     */
     getSessionId(): string;
     /**
      * Get the nest
@@ -30,6 +53,10 @@ export declare class WebhookInterface {
      * @param fields
      */
     setFields(fields: FieldOptions[]): void;
+    /**
+     * Get an array of all of the fields.
+     * @returns {FieldOptions[]}
+     */
     getFields(): FieldOptions[];
     /**
      * Returns the interface for transport.
@@ -54,9 +81,13 @@ export declare class WebhookInterface {
      */
     addStep(stepName: string, callback: any): void;
     /**
-     *
+     * Get an array of instance steps.
      * @returns {Step[]}
      */
     getSteps(): Step[];
+    /**
+     * Overwrite the instant steps.
+     * @param steps
+     */
     setSteps(steps: any): void;
 }

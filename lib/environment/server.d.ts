@@ -2,6 +2,9 @@ import { Environment } from "./environment";
 import { WebhookNest } from "../nest/webhookNest";
 import * as express from "express";
 import { InterfaceManager } from "../ui/interfaceManager";
+/**
+ * Webhook and logging server.
+ */
 export declare class Server {
     protected server: express.Application;
     protected e: Environment;
@@ -17,27 +20,35 @@ export declare class Server {
      * Creates the server.
      */
     protected createServer(): void;
+    /**
+     * Log name
+     * @returns {string}
+     */
     toString(): string;
+    /**
+     * Adds a webhook to the server.
+     * @param nest {WebhookNest}
+     */
     addWebhook(nest: WebhookNest): void;
     /**
      * Handles request and response of the web hook, creates a new job, as well as calling the nest's arrive.
-     * @param nest
-     * @param req
-     * @param res
+     * @param nest {WebhookNest}
+     * @param req {express.Request}
+     * @param res {express.Response}
      * @param customHandler     Custom request handler.
      */
     protected handleHookRequest: (nest: WebhookNest, req: any, res: any, customHandler?: any) => void;
     /**
      * Adds a webhook interface to the webhook server.
-     * @param im
+     * @param im {InterfaceManager}
      */
     addWebhookInterface(im: InterfaceManager): void;
     /**
      * Handles request and response of the web hook interface.
-     * @param im
-     * @param req
-     * @param res
-     * @param customHandler     Custom request handler.
+     * @param im {InterfaceManager}
+     * @param req {express.Request}
+     * @param res {express.Response}
+     * @param customHandler             Custom request handler.
      */
     protected handleHookInterfaceRequest: (im: InterfaceManager, req: any, res: any, customHandler?: any) => void;
 }

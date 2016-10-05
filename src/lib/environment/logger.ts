@@ -2,6 +2,9 @@ const   fs = require("fs"),
         winston = require("winston"),
         _ = require("lodash");
 
+/**
+ * Logging service
+ */
 export class Logger {
 
     protected options: AntfarmOptions;
@@ -10,6 +13,10 @@ export class Logger {
 
     protected log_dir: string;
 
+    /**
+     * Valid log times
+     * @type {{0: string; 1: string; 2: string; 3: string}}
+     */
     protected log_types = {
         0: "debug",
         1: "info",
@@ -25,6 +32,11 @@ export class Logger {
         this.createLogger();
     }
 
+    /**
+     * Console formatting function.
+     * @param options
+     * @returns {string}
+     */
     protected consoleFormatter(options) {
 
         let kvString = "";
@@ -44,6 +56,9 @@ export class Logger {
                 kvString;
     };
 
+    /**
+     * Initializae logger
+     */
     protected createLogger() {
         let lg = this;
         if (this.options && this.options.log_dir) {
@@ -99,6 +114,13 @@ export class Logger {
         }
     }
 
+    /**
+     * Generates a formatted logging entry.
+     * @param entry
+     * @param actor
+     * @param instances
+     * @returns {Object}
+     */
     protected getEntry(entry: Object, actor?: any, instances = []) {
         instances.push(actor);
         if (instances) {

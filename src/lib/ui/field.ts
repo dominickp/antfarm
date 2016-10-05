@@ -1,3 +1,6 @@
+/**
+ * Interface fields which describe webhook requests for user interfaces.
+ */
 interface FieldOptions {
 
     /**
@@ -46,10 +49,8 @@ interface FieldOptions {
     description: string;
 
     /**
-     * Default value.
+     * Default or current value.
      */
     value: string;
-
-
 
 }

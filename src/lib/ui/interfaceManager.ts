@@ -4,6 +4,19 @@ import {Environment} from "../environment/environment";
 
 const _     = require("lodash");
 
+/**
+ * The interface manager allows you to separate your interface fields for stepped user interfaces.
+ * It's a factory that handles the construction and session handling of WebhookInterface instances.
+ * #### Example
+ * ```js
+ * var manager = webhook.getInterfaceManager();
+ * manager.addField({
+ *      id: "job_number",
+ *      name: "Job Number";
+ *      type: "text"
+ * });
+ * ```
+ */
 export class InterfaceManager {
 
     protected e: Environment;
@@ -13,6 +26,12 @@ export class InterfaceManager {
     protected interfaceInstances: WebhookInterface[];
     protected handleRequest: any;
 
+    /**
+     *
+     * @param e
+     * @param webhookNest
+     * @param handleRequest     Optional custom request handler for webhooks.
+     */
     constructor(e: Environment, webhookNest: WebhookNest, handleRequest?: any) {
         this.e = e;
         this.nest = webhookNest;
@@ -38,7 +57,6 @@ export class InterfaceManager {
         return this.nest;
     }
 
-
     /**
      * Get the nest path.
      * @returns {string}
@@ -46,7 +64,6 @@ export class InterfaceManager {
     public getPath() {
         return this.nest.getPath();
     }
-
 
     /**
      * Adds an interface field to the interface.
@@ -65,14 +82,32 @@ export class InterfaceManager {
         this.fields.push(field);
     }
 
+    /**
+     * Gets an array of interface fields.
+     * @returns {FieldOptions[]}
+     */
     public getFields() {
         return this.fields;
     }
 
     /**
-     * Adds a user interface step
+     * Adds a user interface step.
      * @param stepName
-     * @param callback
+     * @param callback          Parameters: WebhookJob, WebhookInterface, Step
+     * #### Example
+     * ```js
+     *  manager.addStep("Check job number", function(webhookJob, webhookInterface, step){
+     *      if(webhookJob.getQueryStringValue("job_number")){
+     *          webhookInterface.addField({
+     *              id: "something_else",
+     *              name: "Some other field",
+     *              type: "text",
+     *              description: "Thanks for adding a job number!"
+     *          });
+     *          step.complete = true; // Mark step as complete
+     *      }
+     * });
+     * ```
      */
     public addStep(stepName: string, callback: any) {
         let step = {} as Step;
@@ -83,7 +118,7 @@ export class InterfaceManager {
     }
 
     /**
-     *
+     * Get an array of user interface steps.
      * @returns {Step[]}
      */
     public getSteps() {
@@ -91,7 +126,7 @@ export class InterfaceManager {
     }
 
     /**
-     * Find or return a new interface instance.
+     * Find or return a new webhook interface instance.
      * @param sessionId
      * @returns {WebhookInterface}
      */
