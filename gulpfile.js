@@ -13,7 +13,9 @@ process.setMaxListeners(0);
 
 gulp.task("doc", function() {
     return gulp
-        .src(["./src/**/*.ts"])
+        .src([
+            "./src/**/*.ts"
+        ])
         .pipe(typedoc({
             module: "commonjs",
             target: "es5",
