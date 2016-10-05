@@ -2,11 +2,11 @@ import { Environment } from "../environment/environment";
 import { WebhookNest } from "../nest/webhookNest";
 import { FolderNest } from "../nest/folderNest";
 export declare class WebhookInterface {
-    protected fields: any[];
+    protected fields: FieldOptions[];
     protected e: Environment;
     protected nest: WebhookNest;
     protected checkpointNest: FolderNest;
-    protected steps: any[];
+    protected steps: Step[];
     protected sessionId: string;
     /**
      * Constructor
@@ -36,9 +36,9 @@ export declare class WebhookInterface {
      */
     getInterface(): {
         sessionId: string;
-        fields: any[];
+        fields: FieldOptions[];
         jobs: any[];
-        steps: any[];
+        steps: Step[];
     };
     /**
      * Adds pending jobs to the interfaces job list.
@@ -48,14 +48,14 @@ export declare class WebhookInterface {
     getJobs(): any[];
     /**
      * Adds a user interface step
-     * @param name      Name of the step
+     * @param stepName
      * @param callback
      */
-    addStep(name: string, callback: any): void;
+    addStep(stepName: string, callback: any): void;
     /**
-     * Get steps
-     * @returns {Array}
+     *
+     * @returns {Step[]}
      */
-    getSteps(): any[];
+    getSteps(): Step[];
     setSteps(steps: any): void;
 }

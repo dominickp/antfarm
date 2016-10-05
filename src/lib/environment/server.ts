@@ -205,7 +205,7 @@ export class Server {
             // Do steps
             ui.getSteps().forEach(function(step){
                 s.e.log(1, `Running UI step "${step.name}".`, s);
-                step.callback(job, ui);
+                step.callback(job, ui, step);
             });
         }
 

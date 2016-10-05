@@ -9,7 +9,7 @@ export class InterfaceManager {
     protected e: Environment;
     protected nest: WebhookNest;
     protected fields: FieldOptions[];
-    protected steps = [];
+    protected steps: Step[];
     protected interfaceInstances: WebhookInterface[];
     protected handleRequest: any;
 
@@ -18,6 +18,7 @@ export class InterfaceManager {
         this.nest = webhookNest;
         this.interfaceInstances = [];
         this.fields = [];
+        this.steps = [];
         this.handleRequest = handleRequest;
     }
 
@@ -69,16 +70,21 @@ export class InterfaceManager {
 
     /**
      * Adds a user interface step
-     * @param name      Name of the step
+     * @param stepName
      * @param callback
      */
-    public addStep(name: string, callback: any) {
-        this.steps.push({
-            name: name,
-            callback: callback
-        });
+    public addStep(stepName: string, callback: any) {
+        let step = {} as Step;
+        step.name = stepName;
+        step.callback = callback;
+        step.complete = false;
+        this.steps.push(step);
     }
 
+    /**
+     *
+     * @returns {Step[]}
+     */
     public getSteps() {
         return this.steps;
     }

@@ -8,11 +8,11 @@ const   shortid     = require("shortid"),
 
 export class WebhookInterface {
 
-    protected fields = [];
+    protected fields: FieldOptions[];
     protected e: Environment;
     protected nest: WebhookNest;
     protected checkpointNest: FolderNest;
-    protected steps = [];
+    protected steps: Step[];
     protected sessionId: string;
 
     /**
@@ -24,6 +24,8 @@ export class WebhookInterface {
         this.e = e;
         this.nest = nest;
         this.sessionId = shortid.generate();
+        this.steps = [];
+        this.fields = [];
     }
 
 
@@ -115,23 +117,24 @@ export class WebhookInterface {
 
     /**
      * Adds a user interface step
-     * @param name      Name of the step
+     * @param stepName
      * @param callback
      */
-    public addStep(name: string, callback: any) {
-        this.steps.push({
-            name: name,
-            callback: callback
-        });
+    public addStep(stepName: string, callback: any) {
+        let step = {} as Step;
+        step.name = stepName;
+        step.callback = callback;
+        step.complete = false;
+        this.steps.push(step);
     }
-
     /**
-     * Get steps
-     * @returns {Array}
+     *
+     * @returns {Step[]}
      */
     public getSteps() {
         return this.steps;
     }
+
 
     public setSteps(steps: any) {
         let newSteps = [];

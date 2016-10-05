@@ -5,7 +5,7 @@ export declare class InterfaceManager {
     protected e: Environment;
     protected nest: WebhookNest;
     protected fields: FieldOptions[];
-    protected steps: any[];
+    protected steps: Step[];
     protected interfaceInstances: WebhookInterface[];
     protected handleRequest: any;
     constructor(e: Environment, webhookNest: WebhookNest, handleRequest?: any);
@@ -32,11 +32,15 @@ export declare class InterfaceManager {
     getFields(): FieldOptions[];
     /**
      * Adds a user interface step
-     * @param name      Name of the step
+     * @param stepName
      * @param callback
      */
-    addStep(name: string, callback: any): void;
-    getSteps(): any[];
+    addStep(stepName: string, callback: any): void;
+    /**
+     *
+     * @returns {Step[]}
+     */
+    getSteps(): Step[];
     /**
      * Find or return a new interface instance.
      * @param sessionId
