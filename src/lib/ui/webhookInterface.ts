@@ -2,7 +2,9 @@ import {Environment} from "../environment/environment";
 import {WebhookNest} from "../nest/webhookNest";
 import {FolderNest} from "../nest/folderNest";
 
-const shortid   = require("shortid");
+const   shortid     = require("shortid"),
+        _           = require("lodash");
+
 
 export class WebhookInterface {
 
@@ -43,6 +45,14 @@ export class WebhookInterface {
      * @param {FieldOptions} field
      */
     public addField(field: FieldOptions) {
+        let wi = this;
+        let existingField = _.find(wi.fields, function(f) { return f.id === field.id; });
+
+        if (existingField) {
+            wi.e.log(3, `Field id "${field.id}" already exists. It cannot be added again.`, wi);
+            return false;
+        }
+
         this.fields.push(field);
     }
 

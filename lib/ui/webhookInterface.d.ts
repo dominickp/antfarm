@@ -24,7 +24,7 @@ export declare class WebhookInterface {
      * Adds an interface field to the interface.
      * @param {FieldOptions} field
      */
-    addField(field: FieldOptions): void;
+    addField(field: FieldOptions): boolean;
     /**
      * Overwrites fields with a clone.
      * @param fields

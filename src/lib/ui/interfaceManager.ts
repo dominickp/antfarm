@@ -52,6 +52,14 @@ export class InterfaceManager {
      * @param {FieldOptions} field
      */
     public addField(field: FieldOptions) {
+        let wi = this;
+        let existingField = _.find(wi.fields, function(f) { return f.id === field.id; });
+
+        if (existingField) {
+            wi.e.log(3, `Field id "${field.id}" already exists. It cannot be added again.`, wi);
+            return false;
+        }
+
         this.fields.push(field);
     }
 
@@ -91,7 +99,7 @@ export class InterfaceManager {
         if (!wi) {
             // Make new interface if not found
             wi = new WebhookInterface(im.e, im.nest);
-            console.log("fields", im.getFields());
+
             wi.setFields(im.getFields());
             wi.setSteps(im.getSteps());
 

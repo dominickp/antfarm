@@ -28,7 +28,7 @@ export declare class InterfaceManager {
      * Adds an interface field to the interface.
      * @param {FieldOptions} field
      */
-    addField(field: FieldOptions): void;
+    addField(field: FieldOptions): boolean;
     getFields(): FieldOptions[];
     /**
      * Adds a user interface step
