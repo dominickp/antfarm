@@ -30,11 +30,12 @@ export declare class WebhookInterface {
      * @param fields
      */
     setFields(fields: FieldOptions[]): void;
+    getFields(): FieldOptions[];
     /**
      * Returns the interface for transport.
      * @returns {{fields: Array}}
      */
-    getInterface(): {
+    getTransportInterface(): {
         sessionId: string;
         fields: FieldOptions[];
         jobs: any[];

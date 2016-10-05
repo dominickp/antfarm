@@ -195,7 +195,8 @@ export class Server {
 
         if (ui.getSessionId() === sessionId) {
             // Fill in default values
-            let fields = ui.getInterface().fields;
+            // let fields = ui.getInterface().fields;
+            let fields = ui.getFields();
             fields.forEach(field => {
                 if (field.id in params && params[field.id] !== "undefined") {
                     field.value = params[field.id];
@@ -212,7 +213,7 @@ export class Server {
         if (customHandler) {
             customHandler(req, res, ui);
         } else {
-            res.json(ui.getInterface());
+            res.json(ui.getTransportInterface());
         }
 
 

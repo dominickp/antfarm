@@ -38,5 +38,5 @@ interface FieldOptions {
     /**
      * Default value.
      */
-    defaultValue: string;
+    value: string;
 }

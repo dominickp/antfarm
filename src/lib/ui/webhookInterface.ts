@@ -48,6 +48,7 @@ export class WebhookInterface {
      */
     public addField(field: FieldOptions) {
         let wi = this;
+
         let existingField = _.find(wi.fields, function(f) { return f.id === field.id; });
 
         if (existingField) {
@@ -65,16 +66,33 @@ export class WebhookInterface {
     public setFields(fields: FieldOptions[]) {
         let newFields = [];
         fields.forEach(field => {
-            newFields.push(field);
+
+            // Clone field
+            let newField = {} as FieldOptions;
+            newField.description = field.description;
+            newField.id = field.id;
+            newField.value = field.value;
+            newField.required = field.required;
+            newField.max_length = field.max_length;
+            newField.tooltip = field.tooltip;
+            newField.valueList = field.valueList;
+            newField.name = field.name;
+            newField.type = field.type;
+
+            newFields.push(newField);
         });
         this.fields = newFields;
+    }
+
+    public getFields() {
+        return this.fields;
     }
 
     /**
      * Returns the interface for transport.
      * @returns {{fields: Array}}
      */
-    public getInterface() {
+    public getTransportInterface() {
 
         let jobs = this.getJobs();
         let jobsArray = [];

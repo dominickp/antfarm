@@ -54,6 +54,7 @@ export class InterfaceManager {
      */
     public addField(field: FieldOptions) {
         let wi = this;
+
         let existingField = _.find(wi.fields, function(f) { return f.id === field.id; });
 
         if (existingField) {
