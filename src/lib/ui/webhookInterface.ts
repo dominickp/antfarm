@@ -138,8 +138,12 @@ export class WebhookInterface {
 
     public setSteps(steps: any) {
         let newSteps = [];
-        steps.forEach(field => {
-            newSteps.push(field);
+        steps.forEach(step => {
+            let newStep = {} as Step;
+            newStep.name = step.name;
+            newStep.callback = step.callback;
+            newStep.complete = false;
+            newSteps.push(newStep);
         });
         this.steps = newSteps;
     }
