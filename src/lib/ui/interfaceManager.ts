@@ -91,6 +91,7 @@ export class InterfaceManager {
         if (!wi) {
             // Make new interface if not found
             wi = new WebhookInterface(im.e, im.nest);
+            console.log("fields", im.getFields());
             wi.setFields(im.getFields());
             wi.setSteps(im.getSteps());
 
@@ -99,7 +100,6 @@ export class InterfaceManager {
             } else {
                 im.e.log(0, `${im.interfaceInstances.length} interface sessions already exist.`, im);
             }
-
             im.interfaceInstances.push(wi);
         } else {
             im.e.log(0, `Restored interface session ${wi.getSessionId()}.`, im);

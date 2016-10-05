@@ -193,18 +193,21 @@ export class Server {
 
         let ui = im.getInterface(sessionId);
 
-        let fields = ui.getInterface().fields;
-        fields.forEach(field => {
-            if (field.id in params && params[field.id] !== "undefined") {
-                field.value = params[field.id];
-            }
-        });
+        if (ui.getSessionId() === sessionId) {
+            // Fill in default values
+            let fields = ui.getInterface().fields;
+            fields.forEach(field => {
+                if (field.id in params && params[field.id] !== "undefined") {
+                    field.value = params[field.id];
+                }
+            });
 
-        // Do steps
-        ui.getSteps().forEach(function(step){
-            s.e.log(1, `Running UI step "${step.name}".`, s);
-            step.callback(job, ui);
-        });
+            // Do steps
+            ui.getSteps().forEach(function(step){
+                s.e.log(1, `Running UI step "${step.name}".`, s);
+                step.callback(job, ui);
+            });
+        }
 
         if (customHandler) {
             customHandler(req, res, ui);

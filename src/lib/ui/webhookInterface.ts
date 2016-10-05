@@ -47,11 +47,15 @@ export class WebhookInterface {
     }
 
     /**
-     * Overwrites fields.
+     * Overwrites fields with a clone.
      * @param fields
      */
     public setFields(fields: FieldOptions[]) {
-        this.fields = fields;
+        let newFields = [];
+        fields.forEach(field => {
+            newFields.push(field);
+        });
+        this.fields = newFields;
     }
 
     /**
@@ -120,6 +124,10 @@ export class WebhookInterface {
     }
 
     public setSteps(steps: any) {
-        this.steps = steps;
+        let newSteps = [];
+        steps.forEach(field => {
+            newSteps.push(field);
+        });
+        this.steps = newSteps;
     }
 }
