@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Logger | Antfarm</title>
+	<title>Server | Antfarm</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,10 +57,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="logger.html">Logger</a>
+					<a href="server.html">Server</a>
 				</li>
 			</ul>
-			<h1>Class Logger</h1>
+			<h1>Class Server</h1>
 		</div>
 	</div>
 </header>
@@ -71,7 +71,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Logger</span>
+						<span class="target">Server</span>
 					</li>
 				</ul>
 			</section>
@@ -82,30 +82,34 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="logger.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="server.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="logger.html#log_dir" class="tsd-kind-icon">log_<wbr>dir</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="logger.html#logger-1" class="tsd-kind-icon">logger</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="logger.html#options" class="tsd-kind-icon">options</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="server.html#e" class="tsd-kind-icon">e</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="server.html#hookinterfaceroutes" class="tsd-kind-icon">hook<wbr>Interface<wbr>Routes</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="server.html#hookroutes" class="tsd-kind-icon">hook<wbr>Routes</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="server.html#server-1" class="tsd-kind-icon">server</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="server.html#upload" class="tsd-kind-icon">upload</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="logger.html#consoleformatter" class="tsd-kind-icon">console<wbr>Formatter</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="logger.html#createlogger" class="tsd-kind-icon">create<wbr>Logger</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="logger.html#getentry" class="tsd-kind-icon">get<wbr>Entry</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="logger.html#log" class="tsd-kind-icon">log</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="server.html#addwebhook" class="tsd-kind-icon">add<wbr>Webhook</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="server.html#addwebhookinterface" class="tsd-kind-icon">add<wbr>Webhook<wbr>Interface</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="server.html#createserver" class="tsd-kind-icon">create<wbr>Server</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="server.html#handlehookinterfacerequest" class="tsd-kind-icon">handle<wbr>Hook<wbr>Interface<wbr>Request</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="server.html#handlehookrequest" class="tsd-kind-icon">handle<wbr>Hook<wbr>Request</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="server.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-private-protected">
 							<h3>Object literals</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-object-literal tsd-parent-kind-class tsd-is-protected"><a href="logger.html#log_types" class="tsd-kind-icon">log_<wbr>types</a></li>
+								<li class="tsd-kind-object-literal tsd-parent-kind-class tsd-is-protected"><a href="server.html#config" class="tsd-kind-icon">config</a></li>
 							</ul>
 						</section>
 					</div>
@@ -117,22 +121,22 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Logger<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/antfarmoptions.html" class="tsd-signature-type">AntfarmOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="logger.html" class="tsd-signature-type">Logger</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Server<span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="environment.html" class="tsd-signature-type">Environment</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="server.html" class="tsd-signature-type">Server</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/logger.ts#L18">lib/environment/logger.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/server.ts#L26">lib/environment/server.ts:26</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/antfarmoptions.html" class="tsd-signature-type">AntfarmOptions</a></h5>
+									<h5>e: <a href="environment.html" class="tsd-signature-type">Environment</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="logger.html" class="tsd-signature-type">Logger</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="server.html" class="tsd-signature-type">Server</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -140,138 +144,103 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-					<a name="log_dir" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> log_<wbr>dir</h3>
-					<div class="tsd-signature tsd-kind-icon">log_<wbr>dir<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="e" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> e</h3>
+					<div class="tsd-signature tsd-kind-icon">e<span class="tsd-signature-symbol">:</span> <a href="environment.html" class="tsd-signature-type">Environment</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/logger.ts#L11">lib/environment/logger.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/server.ts#L18">lib/environment/server.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-					<a name="logger-1" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> logger</h3>
-					<div class="tsd-signature tsd-kind-icon">logger<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<a name="hookinterfaceroutes" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> hook<wbr>Interface<wbr>Routes</h3>
+					<div class="tsd-signature tsd-kind-icon">hook<wbr>Interface<wbr>Routes<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/logger.ts#L9">lib/environment/logger.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/server.ts#L20">lib/environment/server.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-					<a name="options" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> options</h3>
-					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <a href="../interfaces/antfarmoptions.html" class="tsd-signature-type">AntfarmOptions</a></div>
+					<a name="hookroutes" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> hook<wbr>Routes</h3>
+					<div class="tsd-signature tsd-kind-icon">hook<wbr>Routes<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/logger.ts#L7">lib/environment/logger.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/server.ts#L19">lib/environment/server.ts:19</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="server-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> server</h3>
+					<div class="tsd-signature tsd-kind-icon">server<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">express.Application</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/server.ts#L17">lib/environment/server.ts:17</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="upload" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> upload</h3>
+					<div class="tsd-signature tsd-kind-icon">upload<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/server.ts#L21">lib/environment/server.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<a name="consoleformatter" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> console<wbr>Formatter</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">console<wbr>Formatter<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addwebhook" class="tsd-anchor"></a>
+					<h3>add<wbr>Webhook</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Webhook<span class="tsd-signature-symbol">(</span>nest<span class="tsd-signature-symbol">: </span><a href="webhooknest.html" class="tsd-signature-type">WebhookNest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/logger.ts#L28">lib/environment/logger.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/server.ts#L78">lib/environment/server.ts:78</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>options: <span class="tsd-signature-type">any</span></h5>
+									<h5>nest: <a href="webhooknest.html" class="tsd-signature-type">WebhookNest</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<a name="createlogger" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> create<wbr>Logger</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Logger<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/logger.ts#L47">lib/environment/logger.ts:47</a></li>
-								</ul>
-							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<a name="getentry" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Entry</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Entry<span class="tsd-signature-symbol">(</span>entry<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span>, actor<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span>, instances<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/logger.ts#L102">lib/environment/logger.ts:102</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>entry: <span class="tsd-signature-type">Object</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> actor: <span class="tsd-signature-type">any</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> instances: <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Object</span></h4>
-						</li>
-					</ul>
-				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="log" class="tsd-anchor"></a>
-					<h3>log</h3>
+					<a name="addwebhookinterface" class="tsd-anchor"></a>
+					<h3>add<wbr>Webhook<wbr>Interface</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">log<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, actor<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span>, instances<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Webhook<wbr>Interface<span class="tsd-signature-symbol">(</span>im<span class="tsd-signature-symbol">: </span><a href="interfacemanager.html" class="tsd-signature-type">InterfaceManager</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/logger.ts#L127">lib/environment/logger.ts:127</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/server.ts#L149">lib/environment/server.ts:149</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Create a log entry. Used for log files and console reporting.</p>
+									<p>Adds a webhook interface to the webhook server.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>type: <span class="tsd-signature-type">number</span></h5>
-								</li>
-								<li>
-									<h5>message: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> actor: <span class="tsd-signature-type">any</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> instances: <span class="tsd-signature-type">any</span></h5>
+									<h5>im: <a href="interfacemanager.html" class="tsd-signature-type">InterfaceManager</a></h5>
 									<div class="tsd-comment tsd-typography">
 									</div>
 								</li>
@@ -280,55 +249,158 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="createserver" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> create<wbr>Server</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Server<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/server.ts#L53">lib/environment/server.ts:53</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates the server.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="handlehookinterfacerequest" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> handle<wbr>Hook<wbr>Interface<wbr>Request</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">handle<wbr>Hook<wbr>Interface<wbr>Request<span class="tsd-signature-symbol">(</span>im<span class="tsd-signature-symbol">: </span><a href="interfacemanager.html" class="tsd-signature-type">InterfaceManager</a>, req<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, res<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, customHandler<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/server.ts#L181">lib/environment/server.ts:181</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Handles request and response of the web hook interface.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>im: <a href="interfacemanager.html" class="tsd-signature-type">InterfaceManager</a></h5>
+								</li>
+								<li>
+									<h5>req: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>res: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> customHandler: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Custom request handler.</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="handlehookrequest" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> handle<wbr>Hook<wbr>Request</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">handle<wbr>Hook<wbr>Request<span class="tsd-signature-symbol">(</span>nest<span class="tsd-signature-symbol">: </span><a href="webhooknest.html" class="tsd-signature-type">WebhookNest</a>, req<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, res<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, customHandler<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/server.ts#L119">lib/environment/server.ts:119</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Handles request and response of the web hook, creates a new job, as well as calling the nest&#39;s arrive.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>nest: <a href="webhooknest.html" class="tsd-signature-type">WebhookNest</a></h5>
+								</li>
+								<li>
+									<h5>req: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5>res: <span class="tsd-signature-type">any</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> customHandler: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Custom request handler.</p>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="tostring" class="tsd-anchor"></a>
+					<h3>to<wbr>String</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">to<wbr>String<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/server.ts#L71">lib/environment/server.ts:71</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
 				<h2>Object literals</h2>
 				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-class tsd-is-protected">
-					<a name="log_types" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> log_<wbr>types</h3>
-					<div class="tsd-signature tsd-kind-icon">log_<wbr>types<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<a name="config" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> config</h3>
+					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/logger.ts#L13">lib/environment/logger.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/server.ts#L23">lib/environment/server.ts:23</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="log_types.0" class="tsd-anchor"></a>
-						<h3>0</h3>
-						<div class="tsd-signature tsd-kind-icon">0<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;debug&quot;</span></div>
+						<a name="config.hooks_prefix" class="tsd-anchor"></a>
+						<h3>hooks_<wbr>prefix</h3>
+						<div class="tsd-signature tsd-kind-icon">hooks_<wbr>prefix<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/hooks&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/logger.ts#L14">lib/environment/logger.ts:14</a></li>
+								<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/server.ts#L24">lib/environment/server.ts:24</a></li>
 							</ul>
 						</aside>
 					</section>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="log_types.1" class="tsd-anchor"></a>
-						<h3>1</h3>
-						<div class="tsd-signature tsd-kind-icon">1<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;info&quot;</span></div>
+						<a name="config.hooks_ui_prefix" class="tsd-anchor"></a>
+						<h3>hooks_<wbr>ui_<wbr>prefix</h3>
+						<div class="tsd-signature tsd-kind-icon">hooks_<wbr>ui_<wbr>prefix<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/hooks-ui&quot;</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/logger.ts#L15">lib/environment/logger.ts:15</a></li>
-							</ul>
-						</aside>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="log_types.2" class="tsd-anchor"></a>
-						<h3>2</h3>
-						<div class="tsd-signature tsd-kind-icon">2<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;warning&quot;</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/logger.ts#L16">lib/environment/logger.ts:16</a></li>
-							</ul>
-						</aside>
-					</section>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="log_types.3" class="tsd-anchor"></a>
-						<h3>3</h3>
-						<div class="tsd-signature tsd-kind-icon">3<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;error&quot;</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/logger.ts#L17">lib/environment/logger.ts:17</a></li>
+								<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/environment/server.ts#L25">lib/environment/server.ts:25</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -381,48 +453,60 @@
 					<li class=" tsd-kind-class">
 						<a href="lifeevent.html" class="tsd-kind-icon">Life<wbr>Event</a>
 					</li>
+					<li class=" tsd-kind-class">
+						<a href="logger.html" class="tsd-kind-icon">Logger</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="nest.html" class="tsd-kind-icon">Nest</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="logger.html" class="tsd-kind-icon">Logger</a>
+						<a href="server.html" class="tsd-kind-icon">Server</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="logger.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="server.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="logger.html#log_dir" class="tsd-kind-icon">log_<wbr>dir</a>
+								<a href="server.html#e" class="tsd-kind-icon">e</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="logger.html#logger-1" class="tsd-kind-icon">logger</a>
+								<a href="server.html#hookinterfaceroutes" class="tsd-kind-icon">hook<wbr>Interface<wbr>Routes</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="logger.html#options" class="tsd-kind-icon">options</a>
+								<a href="server.html#hookroutes" class="tsd-kind-icon">hook<wbr>Routes</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-								<a href="logger.html#consoleformatter" class="tsd-kind-icon">console<wbr>Formatter</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="server.html#server-1" class="tsd-kind-icon">server</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-								<a href="logger.html#createlogger" class="tsd-kind-icon">create<wbr>Logger</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-								<a href="logger.html#getentry" class="tsd-kind-icon">get<wbr>Entry</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="server.html#upload" class="tsd-kind-icon">upload</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="logger.html#log" class="tsd-kind-icon">log</a>
+								<a href="server.html#addwebhook" class="tsd-kind-icon">add<wbr>Webhook</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="server.html#addwebhookinterface" class="tsd-kind-icon">add<wbr>Webhook<wbr>Interface</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="server.html#createserver" class="tsd-kind-icon">create<wbr>Server</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="server.html#handlehookinterfacerequest" class="tsd-kind-icon">handle<wbr>Hook<wbr>Interface<wbr>Request</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="server.html#handlehookrequest" class="tsd-kind-icon">handle<wbr>Hook<wbr>Request</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="server.html#tostring" class="tsd-kind-icon">to<wbr>String</a>
 							</li>
 							<li class=" tsd-kind-object-literal tsd-parent-kind-class tsd-is-protected">
-								<a href="logger.html#log_types" class="tsd-kind-icon">log_<wbr>types</a>
+								<a href="server.html#config" class="tsd-kind-icon">config</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class">
-						<a href="nest.html" class="tsd-kind-icon">Nest</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="server.html" class="tsd-kind-icon">Server</a>
-					</li>
 					<li class=" tsd-kind-class">
 						<a href="tunnel.html" class="tsd-kind-icon">Tunnel</a>
 					</li>

@@ -1,7 +1,5 @@
 import {Environment} from "../environment/environment";
 import {Job} from "./job";
-import {ServerRequest} from "http";
-import {ServerResponse} from "http";
 import {FileJob} from "./fileJob";
 import express = require("express");
 

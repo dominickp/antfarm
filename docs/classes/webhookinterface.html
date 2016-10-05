@@ -91,20 +91,24 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="webhookinterface.html#checkpointnest" class="tsd-kind-icon">checkpoint<wbr>Nest</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="webhookinterface.html#e" class="tsd-kind-icon">e</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="webhookinterface.html#fields" class="tsd-kind-icon">fields</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="webhookinterface.html#handlerequest" class="tsd-kind-icon">handle<wbr>Request</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="webhookinterface.html#nest" class="tsd-kind-icon">nest</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="webhookinterface.html#sessionid" class="tsd-kind-icon">session<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="webhookinterface.html#steps" class="tsd-kind-icon">steps</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#addfield" class="tsd-kind-icon">add<wbr>Field</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#addstep" class="tsd-kind-icon">add<wbr>Step</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#checknest" class="tsd-kind-icon">check<wbr>Nest</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#getcustomhandlerequest" class="tsd-kind-icon">get<wbr>Custom<wbr>Handle<wbr>Request</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#getinterface" class="tsd-kind-icon">get<wbr>Interface</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#getjobs" class="tsd-kind-icon">get<wbr>Jobs</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#getnest" class="tsd-kind-icon">get<wbr>Nest</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#getpath" class="tsd-kind-icon">get<wbr>Path</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#getsessionid" class="tsd-kind-icon">get<wbr>Session<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#getsteps" class="tsd-kind-icon">get<wbr>Steps</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#setfields" class="tsd-kind-icon">set<wbr>Fields</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#setsteps" class="tsd-kind-icon">set<wbr>Steps</a></li>
 							</ul>
 						</section>
 					</div>
@@ -116,13 +120,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Webhook<wbr>Interface<span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="environment.html" class="tsd-signature-type">Environment</a>, nest<span class="tsd-signature-symbol">: </span><a href="webhooknest.html" class="tsd-signature-type">WebhookNest</a>, handleRequest<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="webhookinterface.html" class="tsd-signature-type">WebhookInterface</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Webhook<wbr>Interface<span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="environment.html" class="tsd-signature-type">Environment</a>, nest<span class="tsd-signature-symbol">: </span><a href="webhooknest.html" class="tsd-signature-type">WebhookNest</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="webhookinterface.html" class="tsd-signature-type">WebhookInterface</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ea6b40d/src/lib/ui/webhookInterface.ts#L15">lib/ui/webhookInterface.ts:15</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/ui/webhookInterface.ts#L14">lib/ui/webhookInterface.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -137,9 +141,6 @@
 								</li>
 								<li>
 									<h5>nest: <a href="webhooknest.html" class="tsd-signature-type">WebhookNest</a></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> handleRequest: <span class="tsd-signature-type">any</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 										</div>
@@ -159,7 +160,7 @@
 					<div class="tsd-signature tsd-kind-icon">checkpoint<wbr>Nest<span class="tsd-signature-symbol">:</span> <a href="foldernest.html" class="tsd-signature-type">FolderNest</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ea6b40d/src/lib/ui/webhookInterface.ts#L13">lib/ui/webhookInterface.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/ui/webhookInterface.ts#L12">lib/ui/webhookInterface.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -169,7 +170,7 @@
 					<div class="tsd-signature tsd-kind-icon">e<span class="tsd-signature-symbol">:</span> <a href="environment.html" class="tsd-signature-type">Environment</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ea6b40d/src/lib/ui/webhookInterface.ts#L9">lib/ui/webhookInterface.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/ui/webhookInterface.ts#L10">lib/ui/webhookInterface.ts:10</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -179,17 +180,7 @@
 					<div class="tsd-signature tsd-kind-icon">fields<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ea6b40d/src/lib/ui/webhookInterface.ts#L7">lib/ui/webhookInterface.ts:7</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-					<a name="handlerequest" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> handle<wbr>Request</h3>
-					<div class="tsd-signature tsd-kind-icon">handle<wbr>Request<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ea6b40d/src/lib/ui/webhookInterface.ts#L15">lib/ui/webhookInterface.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/ui/webhookInterface.ts#L9">lib/ui/webhookInterface.ts:9</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -199,7 +190,27 @@
 					<div class="tsd-signature tsd-kind-icon">nest<span class="tsd-signature-symbol">:</span> <a href="webhooknest.html" class="tsd-signature-type">WebhookNest</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ea6b40d/src/lib/ui/webhookInterface.ts#L11">lib/ui/webhookInterface.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/ui/webhookInterface.ts#L11">lib/ui/webhookInterface.ts:11</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="sessionid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> session<wbr>Id</h3>
+					<div class="tsd-signature tsd-kind-icon">session<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/ui/webhookInterface.ts#L14">lib/ui/webhookInterface.ts:14</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="steps" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> steps</h3>
+					<div class="tsd-signature tsd-kind-icon">steps<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/ui/webhookInterface.ts#L13">lib/ui/webhookInterface.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -216,7 +227,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ea6b40d/src/lib/ui/webhookInterface.ts#L49">lib/ui/webhookInterface.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/ui/webhookInterface.ts#L45">lib/ui/webhookInterface.ts:45</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -237,6 +248,42 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addstep" class="tsd-anchor"></a>
+					<h3>add<wbr>Step</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Step<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/ui/webhookInterface.ts#L111">lib/ui/webhookInterface.ts:111</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds a user interface step</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Name of the step</p>
+									</div>
+								</li>
+								<li>
+									<h5>callback: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="checknest" class="tsd-anchor"></a>
 					<h3>check<wbr>Nest</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -246,7 +293,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ea6b40d/src/lib/ui/webhookInterface.ts#L90">lib/ui/webhookInterface.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/ui/webhookInterface.ts#L93">lib/ui/webhookInterface.ts:93</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -267,28 +314,6 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getcustomhandlerequest" class="tsd-anchor"></a>
-					<h3>get<wbr>Custom<wbr>Handle<wbr>Request</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Custom<wbr>Handle<wbr>Request<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ea6b40d/src/lib/ui/webhookInterface.ts#L33">lib/ui/webhookInterface.ts:33</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Get the custom handleRequest function.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="getinterface" class="tsd-anchor"></a>
 					<h3>get<wbr>Interface</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -298,7 +323,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ea6b40d/src/lib/ui/webhookInterface.ts#L57">lib/ui/webhookInterface.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/ui/webhookInterface.ts#L65">lib/ui/webhookInterface.ts:65</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -314,6 +339,12 @@
 								<li class="tsd-parameter">
 									<h5>jobs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
+								<li class="tsd-parameter">
+									<h5>session<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li class="tsd-parameter">
+									<h5>steps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								</li>
 							</ul>
 						</li>
 					</ul>
@@ -328,7 +359,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ea6b40d/src/lib/ui/webhookInterface.ts#L94">lib/ui/webhookInterface.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/ui/webhookInterface.ts#L97">lib/ui/webhookInterface.ts:97</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -345,7 +376,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ea6b40d/src/lib/ui/webhookInterface.ts#L41">lib/ui/webhookInterface.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/ui/webhookInterface.ts#L37">lib/ui/webhookInterface.ts:37</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -358,24 +389,94 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getpath" class="tsd-anchor"></a>
-					<h3>get<wbr>Path</h3>
+					<a name="getsessionid" class="tsd-anchor"></a>
+					<h3>get<wbr>Session<wbr>Id</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Path<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Session<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ea6b40d/src/lib/ui/webhookInterface.ts#L82">lib/ui/webhookInterface.ts:82</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/ui/webhookInterface.ts#L28">lib/ui/webhookInterface.ts:28</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getsteps" class="tsd-anchor"></a>
+					<h3>get<wbr>Steps</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Steps<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/ui/webhookInterface.ts#L122">lib/ui/webhookInterface.ts:122</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Get the nest path.</p>
+									<p>Get steps</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setfields" class="tsd-anchor"></a>
+					<h3>set<wbr>Fields</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Fields<span class="tsd-signature-symbol">(</span>fields<span class="tsd-signature-symbol">: </span><a href="../interfaces/fieldoptions.html" class="tsd-signature-type">FieldOptions</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/ui/webhookInterface.ts#L53">lib/ui/webhookInterface.ts:53</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Overwrites fields with a clone.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>fields: <a href="../interfaces/fieldoptions.html" class="tsd-signature-type">FieldOptions</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setsteps" class="tsd-anchor"></a>
+					<h3>set<wbr>Steps</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Steps<span class="tsd-signature-symbol">(</span>steps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/b6f9cd2/src/lib/ui/webhookInterface.ts#L126">lib/ui/webhookInterface.ts:126</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>steps: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -419,6 +520,9 @@
 						<a href="ftpnest.html" class="tsd-kind-icon">Ftp<wbr>Nest</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="interfacemanager.html" class="tsd-kind-icon">Interface<wbr>Manager</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="job.html" class="tsd-kind-icon">Job</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -429,6 +533,9 @@
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="nest.html" class="tsd-kind-icon">Nest</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="server.html" class="tsd-kind-icon">Server</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="tunnel.html" class="tsd-kind-icon">Tunnel</a>
@@ -451,19 +558,22 @@
 								<a href="webhookinterface.html#fields" class="tsd-kind-icon">fields</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="webhookinterface.html#handlerequest" class="tsd-kind-icon">handle<wbr>Request</a>
+								<a href="webhookinterface.html#nest" class="tsd-kind-icon">nest</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="webhookinterface.html#nest" class="tsd-kind-icon">nest</a>
+								<a href="webhookinterface.html#sessionid" class="tsd-kind-icon">session<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="webhookinterface.html#steps" class="tsd-kind-icon">steps</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="webhookinterface.html#addfield" class="tsd-kind-icon">add<wbr>Field</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="webhookinterface.html#checknest" class="tsd-kind-icon">check<wbr>Nest</a>
+								<a href="webhookinterface.html#addstep" class="tsd-kind-icon">add<wbr>Step</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="webhookinterface.html#getcustomhandlerequest" class="tsd-kind-icon">get<wbr>Custom<wbr>Handle<wbr>Request</a>
+								<a href="webhookinterface.html#checknest" class="tsd-kind-icon">check<wbr>Nest</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="webhookinterface.html#getinterface" class="tsd-kind-icon">get<wbr>Interface</a>
@@ -475,7 +585,16 @@
 								<a href="webhookinterface.html#getnest" class="tsd-kind-icon">get<wbr>Nest</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="webhookinterface.html#getpath" class="tsd-kind-icon">get<wbr>Path</a>
+								<a href="webhookinterface.html#getsessionid" class="tsd-kind-icon">get<wbr>Session<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="webhookinterface.html#getsteps" class="tsd-kind-icon">get<wbr>Steps</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="webhookinterface.html#setfields" class="tsd-kind-icon">set<wbr>Fields</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="webhookinterface.html#setsteps" class="tsd-kind-icon">set<wbr>Steps</a>
 							</li>
 						</ul>
 					</li>
@@ -497,19 +616,16 @@
 						<a href="../globals.html#easyftp" class="tsd-kind-icon">Easy<wbr>Ftp</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#router" class="tsd-kind-icon">Router</a>
-					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#_" class="tsd-kind-icon">_</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#async" class="tsd-kind-icon">async</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#fileextension" class="tsd-kind-icon">file<wbr>Extension</a>
+						<a href="../globals.html#cors" class="tsd-kind-icon">cors</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
-						<a href="../globals.html#finalhandler" class="tsd-kind-icon">finalhandler</a>
+						<a href="../globals.html#fileextension" class="tsd-kind-icon">file<wbr>Extension</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#fs" class="tsd-kind-icon">fs</a>
@@ -527,10 +643,16 @@
 						<a href="../globals.html#mm" class="tsd-kind-icon">mm</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#multer" class="tsd-kind-icon">multer</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#node_path" class="tsd-kind-icon">node_<wbr>path</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#node_watch" class="tsd-kind-icon">node_<wbr>watch</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="../globals.html#path" class="tsd-kind-icon">path</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="../globals.html#path_mod" class="tsd-kind-icon">path_<wbr>mod</a>
