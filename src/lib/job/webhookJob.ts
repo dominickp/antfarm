@@ -122,11 +122,13 @@ export class WebhookJob extends Job {
         let files = wh.getRequest().files;
         let jobs = [];
 
-        files.forEach(function(file){
-            let job = new FileJob(wh.e, file.path);
-            job.rename(file.originalname);
-            jobs.push(job);
-        });
+        if (files) {
+            files.forEach(function(file){
+                let job = new FileJob(wh.e, file.path);
+                job.rename(file.originalname);
+                jobs.push(job);
+            });
+        }
 
         return jobs;
     }
@@ -151,7 +153,11 @@ export class WebhookJob extends Job {
         let wh = this;
         let formData = wh.getFormDataValues();
 
-        return formData[key];
+        if (formData && key in formData) {
+            return formData[key];
+        } else {
+            return false;
+        }
     }
 
     /**
