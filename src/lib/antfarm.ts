@@ -1,18 +1,13 @@
 import tunnel = require("./tunnel/tunnel");
 import nest = require("./nest/nest");
 import folderNest = require("./nest/folderNest");
-// import Ftp = require('./nest/ftp');
 import job = require("./job/job");
-
 import {Tunnel} from "./tunnel/tunnel";
-import {Nest} from "./nest/nest";
 import {FtpNest} from "./nest/ftpNest";
 import {FolderNest} from "./nest/folderNest";
-import {Job} from "./job/job";
 import {Environment} from "./environment/environment";
 import {WebhookNest} from "./nest/webhookNest";
 import {AutoFolderNest} from "./nest/autoFolderNest";
-
 
 /**
  * Expose `Antfarm`.

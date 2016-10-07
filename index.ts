@@ -1,3 +1,3 @@
-import Antfarm = require("./lib/antfarm");
+import Antfarm = require("./src/lib/antfarm");
 
 module.exports = Antfarm;
