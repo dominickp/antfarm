@@ -60,7 +60,7 @@ export class InterfaceManager {
     public setMetadata(metadata: InterfaceMetadata) {
         if (_.has(metadata, "interfaceProperties") && metadata.interfaceProperties.constructor === Array) {
         } else {
-            this.metadata.interfaceProperties = [];
+            metadata.interfaceProperties = [];
         }
         this.metadata = metadata;
     }
