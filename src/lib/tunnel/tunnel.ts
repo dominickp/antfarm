@@ -2,6 +2,8 @@ import { FolderNest } from "../nest/folderNest";
 import { Nest } from "../nest/nest";
 import { Job } from "../job/job";
 import { Environment } from "../environment/environment";
+import {WebhookNest} from "../nest/webhookNest";
+import {FtpNest} from "../nest/ftpNest";
 
 const   async = require("async"),
         mm = require("micromatch");
@@ -60,7 +62,11 @@ export class Tunnel {
         return this.run_sync_list;
     }
 
-    public watch(nest: FolderNest) {
+    /**
+     * Instructs the tunnel to watch a nest for new jobs.
+     * @param nest
+     */
+    public watch(nest: FolderNest | WebhookNest | FtpNest) {
         nest.register(this);
         nest.load();
         nest.watch();

@@ -2,6 +2,8 @@ import { FolderNest } from "../nest/folderNest";
 import { Nest } from "../nest/nest";
 import { Job } from "../job/job";
 import { Environment } from "../environment/environment";
+import { WebhookNest } from "../nest/webhookNest";
+import { FtpNest } from "../nest/ftpNest";
 /**
  * Tunnels are runnable work flow units that can watch nests.
  */
@@ -25,7 +27,11 @@ export declare class Tunnel {
     getNests(): Nest[];
     getRunList(): any[];
     getRunSyncList(): any[];
-    watch(nest: FolderNest): void;
+    /**
+     * Instructs the tunnel to watch a nest for new jobs.
+     * @param nest
+     */
+    watch(nest: FolderNest | WebhookNest | FtpNest): void;
     arrive(job: Job, nest?: Nest): void;
     /**
      * Run program logic asynchronously.
