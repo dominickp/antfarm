@@ -50,7 +50,13 @@ export class WebhookInterface {
         this.sessionId = shortid.generate();
         this.steps = [];
         this.fields = [];
-        this.metadata = {} as InterfaceMetadata;
+        this.initMetadata();
+    }
+
+    protected initMetadata() {
+        this.metadata = {
+            interfaceProperties: []
+        } as InterfaceMetadata;
     }
 
     public getMetadata() {
@@ -58,6 +64,10 @@ export class WebhookInterface {
     }
 
     public setMetadata(metadata: InterfaceMetadata) {
+        if (_.has(metadata, "interfaceProperties") && metadata.interfaceProperties.constructor === Array) {
+        } else {
+            this.metadata.interfaceProperties = [];
+        }
         this.metadata = metadata;
     }
 

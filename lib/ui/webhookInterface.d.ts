@@ -38,6 +38,7 @@ export declare class WebhookInterface {
      * @param {WebhookNest} nest
      */
     constructor(e: Environment, nest: WebhookNest);
+    protected initMetadata(): void;
     getMetadata(): InterfaceMetadata;
     setMetadata(metadata: InterfaceMetadata): void;
     setDescription(description: string): void;
