@@ -14,7 +14,7 @@ import {AntfarmOptions} from "./environment/options";
  * Expose `Antfarm`.
  */
 
-class Antfarm {
+export class Antfarm {
 
     protected e: Environment;
 
