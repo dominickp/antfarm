@@ -1,3 +1,4 @@
+import { AntfarmOptions } from "./options";
 /**
  * Logging service
  */

@@ -1,6 +1,8 @@
 import {Environment} from "../environment/environment";
 import {WebhookNest} from "../nest/webhookNest";
 import {FolderNest} from "../nest/folderNest";
+import {FieldOptions} from "./field";
+import {Step} from "./step";
 
 const   shortid     = require("shortid"),
         _           = require("lodash");

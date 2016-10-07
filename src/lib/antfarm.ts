@@ -8,6 +8,7 @@ import {FolderNest} from "./nest/folderNest";
 import {Environment} from "./environment/environment";
 import {WebhookNest} from "./nest/webhookNest";
 import {AutoFolderNest} from "./nest/autoFolderNest";
+import {AntfarmOptions} from "./environment/options";
 
 /**
  * Expose `Antfarm`.

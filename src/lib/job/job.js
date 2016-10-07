@@ -133,4 +133,3 @@ var Job = (function () {
     return Job;
 }());
 exports.Job = Job;
-//# sourceMappingURL=job.js.map

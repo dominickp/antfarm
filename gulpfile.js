@@ -47,8 +47,11 @@ var tsProject = ts.createProject(
     {
         declaration: true,
         noExternalResolve: true,
-        module:'commonjs'
-    }
+        module:'commonjs',
+        suppressImplicitAnyIndexErrors: false,
+        noEmitOnError: false
+    },
+    ts.reporter.longReporter()
 );
 
 /**
@@ -129,6 +132,7 @@ gulp.task('build', function() {
     var tsResult = gulp.src([
         './src/index.ts',
         './src/**/*.ts',
+
         './devtypes/**/*.ts',
     ])
         .pipe(ts(tsProject));

@@ -18,4 +18,3 @@ var FtpFileJob = (function (_super) {
     return FtpFileJob;
 }(fileJob_1.FileJob));
 exports.FtpFileJob = FtpFileJob;
-//# sourceMappingURL=ftpFileJob.js.map

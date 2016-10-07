@@ -32,4 +32,3 @@ var Nest = (function () {
     return Nest;
 }());
 exports.Nest = Nest;
-//# sourceMappingURL=nest.js.map

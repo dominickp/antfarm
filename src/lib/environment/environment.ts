@@ -4,6 +4,7 @@ import {WebhookNest} from "../nest/webhookNest";
 import {WebhookInterface} from "../ui/webhookInterface";
 import {Server} from "./server";
 import {InterfaceManager} from "../ui/interfaceManager";
+import {AntfarmOptions} from "./options";
 
 const   fs = require("fs");
 

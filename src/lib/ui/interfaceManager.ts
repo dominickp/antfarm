@@ -1,6 +1,8 @@
 import {WebhookNest} from "../nest/webhookNest";
 import {WebhookInterface} from "./webhookInterface";
 import {Environment} from "../environment/environment";
+import {FieldOptions} from "./field";
+import {Step} from "./step";
 
 const _     = require("lodash");
 

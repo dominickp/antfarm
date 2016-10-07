@@ -1,3 +1,5 @@
+import {AntfarmOptions} from "./options";
+
 const   fs = require("fs"),
         winston = require("winston"),
         _ = require("lodash");

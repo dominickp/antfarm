@@ -100,4 +100,3 @@ var Environment = (function () {
     return Environment;
 }());
 exports.Environment = Environment;
-//# sourceMappingURL=environment.js.map

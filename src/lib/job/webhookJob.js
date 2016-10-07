@@ -166,4 +166,3 @@ var WebhookJob = (function (_super) {
     return WebhookJob;
 }(job_1.Job));
 exports.WebhookJob = WebhookJob;
-//# sourceMappingURL=webhookJob.js.map

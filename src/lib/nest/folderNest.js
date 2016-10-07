@@ -120,4 +120,3 @@ var FolderNest = (function (_super) {
     return FolderNest;
 }(nest_1.Nest));
 exports.FolderNest = FolderNest;
-//# sourceMappingURL=folderNest.js.map

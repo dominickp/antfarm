@@ -107,4 +107,3 @@ var FtpNest = (function (_super) {
     return FtpNest;
 }(nest_1.Nest));
 exports.FtpNest = FtpNest;
-//# sourceMappingURL=ftpNest.js.map

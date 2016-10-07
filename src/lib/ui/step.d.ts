@@ -1,7 +1,7 @@
 /**
  * An interface step which allows GET requests to be made against the interface itself.
  */
-interface Step {
+export interface Step {
     /**
      * The human-readable step name.
      */

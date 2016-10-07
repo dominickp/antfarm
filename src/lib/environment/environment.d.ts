@@ -2,6 +2,7 @@ import { Logger } from "./logger";
 import { WebhookNest } from "../nest/webhookNest";
 import { Server } from "./server";
 import { InterfaceManager } from "../ui/interfaceManager";
+import { AntfarmOptions } from "./options";
 export declare class Environment {
     protected options: AntfarmOptions;
     protected logger: Logger;
