@@ -38,6 +38,7 @@ export declare class WebhookInterface {
      * @param {WebhookNest} nest
      */
     constructor(e: Environment, nest: WebhookNest);
+    getMetadata(): InterfaceMetadata;
     setMetadata(metadata: InterfaceMetadata): void;
     setDescription(description: string): void;
     setTooltip(tooltip: string): void;
@@ -77,6 +78,7 @@ export declare class WebhookInterface {
         fields: FieldOptions[];
         jobs: any[];
         steps: Step[];
+        metadata: InterfaceMetadata;
     };
     /**
      * Adds pending jobs to the interfaces job list.

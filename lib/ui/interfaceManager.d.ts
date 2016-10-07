@@ -33,6 +33,7 @@ export declare class InterfaceManager {
      * @param handleRequest     Optional custom request handler for webhooks.
      */
     constructor(e: Environment, webhookNest: WebhookNest, handleRequest?: any);
+    getMetadata(): InterfaceMetadata;
     setMetadata(metadata: InterfaceMetadata): void;
     setDescription(description: string): void;
     setTooltip(tooltip: string): void;
