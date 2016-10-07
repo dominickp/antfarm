@@ -7,7 +7,8 @@ import {InterfaceManager} from "../ui/interfaceManager";
 const   cors = require("cors"),
         multer = require("multer"),
         path = require("path"),
-        tmp = require("tmp");
+        tmp = require("tmp"),
+        async = require("async");
 
 /**
  * Webhook and logging server.
@@ -201,17 +202,39 @@ export class Server {
             });
 
             // Do steps
-            ui.getSteps().forEach(function(step){
-                s.e.log(1, `Running UI step "${step.name}".`, s);
-                step.callback(job, ui, step);
+            // NEEDS TO BE ASYNCHRONOUS, HAVE A DONE CALBACK
+            // ui.getSteps().forEach(function(step){
+            //     s.e.log(0, `Running UI step "${step.name}".`, s);
+            //     step.callback(job, ui, step);
+            // });
+
+            async.each(ui.getSteps(), (step, cb) => {
+                s.e.log(0, `Running UI step "${step.name}".`, s);
+                step.callback(job, ui, step, () => {
+                    cb();
+                });
+            }, (err) => {
+                if (err) {
+                    s.e.log(3, `Error running UI steps. ${err}`, s);
+                } else {
+                    s.e.log(0, `Done running all UI steps.`, s);
+                }
+
+                if (customHandler) {
+                    customHandler(req, res, ui);
+                } else {
+                    res.json(ui.getTransportInterface());
+                }
+
             });
+        } else {
+            if (customHandler) {
+                customHandler(req, res, ui);
+            } else {
+                res.json(ui.getTransportInterface());
+            }
         }
 
-        if (customHandler) {
-            customHandler(req, res, ui);
-        } else {
-            res.json(ui.getTransportInterface());
-        }
     };
 
 }

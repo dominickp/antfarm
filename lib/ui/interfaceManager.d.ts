@@ -58,10 +58,10 @@ export declare class InterfaceManager {
     /**
      * Adds a user interface step.
      * @param stepName
-     * @param callback          Parameters: WebhookJob, WebhookInterface, Step
+     * @param callback          Parameters: WebhookJob, WebhookInterface, Step, Done callback
      * #### Example
      * ```js
-     *  manager.addStep("Check job number", function(webhookJob, webhookInterface, step){
+     *  manager.addStep("Check job number", function(webhookJob, webhookInterface, step, done){
      *      if(webhookJob.getQueryStringValue("job_number")){
      *          webhookInterface.addField({
      *              id: "something_else",
@@ -70,6 +70,7 @@ export declare class InterfaceManager {
      *              description: "Thanks for adding a job number!"
      *          });
      *          step.complete = true; // Mark step as complete
+     *          done(); // Callback to do next step or send response if complete
      *      }
      * });
      * ```
