@@ -3,6 +3,8 @@ import { WebhookInterface } from "./webhookInterface";
 import { Environment } from "../environment/environment";
 import { FieldOptions } from "./field";
 import { Step } from "./step";
+import { InterfaceMetadata } from "./interfaceMetadata";
+import { InterfaceProperty } from "./InterfaceProperty";
 /**
  * The interface manager allows you to separate your interface fields for stepped user interfaces.
  * It's a factory that handles the construction and session handling of WebhookInterface instances.
@@ -23,6 +25,7 @@ export declare class InterfaceManager {
     protected steps: Step[];
     protected interfaceInstances: WebhookInterface[];
     protected handleRequest: any;
+    protected metadata: InterfaceMetadata;
     /**
      *
      * @param e
@@ -30,6 +33,11 @@ export declare class InterfaceManager {
      * @param handleRequest     Optional custom request handler for webhooks.
      */
     constructor(e: Environment, webhookNest: WebhookNest, handleRequest?: any);
+    setMetadata(metadata: InterfaceMetadata): void;
+    setDescription(description: string): void;
+    setTooltip(tooltip: string): void;
+    addInterfaceProperty(property: InterfaceProperty): void;
+    setInterfaceProperties(properties: InterfaceProperty[]): void;
     /**
      * Get the custom handleRequest function.
      * @returns {any}

@@ -3,6 +3,8 @@ import { WebhookNest } from "../nest/webhookNest";
 import { FolderNest } from "../nest/folderNest";
 import { FieldOptions } from "./field";
 import { Step } from "./step";
+import { InterfaceMetadata } from "./interfaceMetadata";
+import { InterfaceProperty } from "./InterfaceProperty";
 /**
  * A webhook interface instance, tied to a particular session.
  * Within interface steps, you can use these methods directly to alter the schema being returned to the user interface.
@@ -29,12 +31,18 @@ export declare class WebhookInterface {
     protected checkpointNest: FolderNest;
     protected steps: Step[];
     protected sessionId: string;
+    protected metadata: InterfaceMetadata;
     /**
      * Constructor
      * @param {Environment} e
      * @param {WebhookNest} nest
      */
     constructor(e: Environment, nest: WebhookNest);
+    setMetadata(metadata: InterfaceMetadata): void;
+    setDescription(description: string): void;
+    setTooltip(tooltip: string): void;
+    addInterfaceProperty(property: InterfaceProperty): void;
+    setInterfaceProperties(properties: InterfaceProperty[]): void;
     /**
      * Return the session id. Used to match to interface instanced within the manager.
      * @returns {string}

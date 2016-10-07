@@ -3,6 +3,8 @@ import {WebhookNest} from "../nest/webhookNest";
 import {FolderNest} from "../nest/folderNest";
 import {FieldOptions} from "./field";
 import {Step} from "./step";
+import {InterfaceMetadata} from "./interfaceMetadata";
+import {InterfaceProperty} from "./InterfaceProperty";
 
 const   shortid     = require("shortid"),
         _           = require("lodash");
@@ -34,6 +36,8 @@ export class WebhookInterface {
     protected checkpointNest: FolderNest;
     protected steps: Step[];
     protected sessionId: string;
+    protected metadata: InterfaceMetadata;
+
 
     /**
      * Constructor
@@ -46,6 +50,27 @@ export class WebhookInterface {
         this.sessionId = shortid.generate();
         this.steps = [];
         this.fields = [];
+        this.metadata = {} as InterfaceMetadata;
+    }
+
+    public setMetadata(metadata: InterfaceMetadata) {
+        this.metadata = metadata;
+    }
+
+    public setDescription(description: string) {
+        this.metadata.description = description;
+    }
+
+    public setTooltip(tooltip: string) {
+        this.metadata.tooltip = tooltip;
+    }
+
+    public addInterfaceProperty(property: InterfaceProperty) {
+        this.metadata.interfaceProperties.push(property);
+    }
+
+    public setInterfaceProperties(properties: InterfaceProperty[]) {
+        this.metadata.interfaceProperties = properties;
     }
 
     /**

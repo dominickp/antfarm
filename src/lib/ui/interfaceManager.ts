@@ -3,6 +3,8 @@ import {WebhookInterface} from "./webhookInterface";
 import {Environment} from "../environment/environment";
 import {FieldOptions} from "./field";
 import {Step} from "./step";
+import {InterfaceMetadata} from "./interfaceMetadata";
+import {InterfaceProperty} from "./InterfaceProperty";
 
 const _     = require("lodash");
 
@@ -27,6 +29,7 @@ export class InterfaceManager {
     protected steps: Step[];
     protected interfaceInstances: WebhookInterface[];
     protected handleRequest: any;
+    protected metadata: InterfaceMetadata;
 
     /**
      *
@@ -41,6 +44,27 @@ export class InterfaceManager {
         this.fields = [];
         this.steps = [];
         this.handleRequest = handleRequest;
+        this.metadata = {} as InterfaceMetadata;
+    }
+
+    public setMetadata(metadata: InterfaceMetadata) {
+        this.metadata = metadata;
+    }
+
+    public setDescription(description: string) {
+        this.metadata.description = description;
+    }
+
+    public setTooltip(tooltip: string) {
+        this.metadata.tooltip = tooltip;
+    }
+
+    public addInterfaceProperty(property: InterfaceProperty) {
+        this.metadata.interfaceProperties.push(property);
+    }
+
+    public setInterfaceProperties(properties: InterfaceProperty[]) {
+        this.metadata.interfaceProperties = properties;
     }
 
     /**
