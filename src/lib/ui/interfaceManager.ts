@@ -47,6 +47,10 @@ export class InterfaceManager {
         this.metadata = {} as InterfaceMetadata;
     }
 
+    public getMetadata() {
+        return this.metadata;
+    }
+
     public setMetadata(metadata: InterfaceMetadata) {
         this.metadata = metadata;
     }
@@ -171,6 +175,7 @@ export class InterfaceManager {
 
             wi.setFields(im.getFields());
             wi.setSteps(im.getSteps());
+            wi.setMetadata(im.getMetadata());
 
             if (im.interfaceInstances.length === 0) {
                 im.e.addWebhookInterface(this);
