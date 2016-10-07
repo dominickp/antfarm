@@ -53,6 +53,10 @@ export class WebhookInterface {
         this.metadata = {} as InterfaceMetadata;
     }
 
+    public getMetadata() {
+        return this.metadata;
+    }
+
     public setMetadata(metadata: InterfaceMetadata) {
         this.metadata = metadata;
     }
@@ -160,7 +164,8 @@ export class WebhookInterface {
             sessionId: this.sessionId,
             fields: this.fields,
             jobs: jobsArray,
-            steps: this.getSteps()
+            steps: this.getSteps(),
+            metadata: this.getMetadata()
         };
     }
 
