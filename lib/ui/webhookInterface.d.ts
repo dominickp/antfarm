@@ -1,6 +1,8 @@
 import { Environment } from "../environment/environment";
 import { WebhookNest } from "../nest/webhookNest";
 import { FolderNest } from "../nest/folderNest";
+import { FieldOptions } from "./field";
+import { Step } from "./step";
 /**
  * A webhook interface instance, tied to a particular session.
  * Within interface steps, you can use these methods directly to alter the schema being returned to the user interface.

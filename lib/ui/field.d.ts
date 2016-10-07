@@ -1,7 +1,7 @@
 /**
  * Interface fields which describe webhook requests for user interfaces.
  */
-interface FieldOptions {
+export interface FieldOptions {
     /**
      * The query string ID of the field.
      */

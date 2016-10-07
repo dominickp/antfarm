@@ -11,21 +11,21 @@ var gulp = require('gulp'),
 
 process.setMaxListeners(0);
 
-gulp.task("doc", function() {
-    return gulp
-        .src([
-            "./src/**/*.ts"
-        ])
-        .pipe(typedoc({
-            module: "commonjs",
-            target: "es5",
-            out: "./docs/",
-            name: "Antfarm",
-            ignoreCompilerErrors: false,
-            includeDeclarations: false,
-            mode: "file"
-        }));
-});
+// gulp.task("doc", function() {
+//     return gulp
+//         .src([
+//             "./src/**/*.ts"
+//         ])
+//         .pipe(typedoc({
+//             module: "commonjs",
+//             target: "es5",
+//             out: "./docs/",
+//             name: "Antfarm",
+//             ignoreCompilerErrors: false,
+//             includeDeclarations: false,
+//             mode: "file"
+//         }));
+// });
 
 gulp.task("tslint", function() {
     gulp.src([
@@ -51,7 +51,7 @@ var tsProject = ts.createProject(
         suppressImplicitAnyIndexErrors: false,
         noEmitOnError: false
     },
-    ts.reporter.longReporter()
+    ts.reporter.defaultReporter()
 );
 
 /**

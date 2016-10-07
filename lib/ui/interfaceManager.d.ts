@@ -1,6 +1,8 @@
 import { WebhookNest } from "../nest/webhookNest";
 import { WebhookInterface } from "./webhookInterface";
 import { Environment } from "../environment/environment";
+import { FieldOptions } from "./field";
+import { Step } from "./step";
 /**
  * The interface manager allows you to separate your interface fields for stepped user interfaces.
  * It's a factory that handles the construction and session handling of WebhookInterface instances.

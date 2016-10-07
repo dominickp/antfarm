@@ -2,7 +2,6 @@ import {Environment} from "./environment";
 import {WebhookNest} from "../nest/webhookNest";
 import {WebhookJob} from "../job/webhookJob";
 import * as express from "express";
-import {WebhookInterface} from "../ui/webhookInterface";
 import {InterfaceManager} from "../ui/interfaceManager";
 
 const   cors = require("cors"),
