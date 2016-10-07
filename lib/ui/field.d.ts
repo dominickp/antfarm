@@ -29,17 +29,17 @@ export interface FieldOptions {
     /**
      * Acceptable options
      */
-    valueList: any[];
+    valueList?: any[];
     /**
      * Tooltip to show more details on hover.
      */
-    tooltip: string;
+    tooltip?: string;
     /**
      * Description to display near the form field.
      */
-    description: string;
+    description?: string;
     /**
      * Default or current value.
      */
-    value: string;
+    value?: string;
 }

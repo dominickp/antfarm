@@ -33,6 +33,6 @@ export interface AntfarmOptions {
     /**
      * Auto managed folder path.
      */
-    auto_managed_folder_directory: string;
+    auto_managed_folder_directory?: string;
 
 }
