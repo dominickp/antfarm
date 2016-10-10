@@ -91,6 +91,8 @@ export declare class InterfaceManager {
      * @returns {Step[]}
      */
     getSteps(): Step[];
+    protected addInterfaceInstance(wi: WebhookInterface): void;
+    protected removeInterfaceInstance(wi: WebhookInterface): void;
     /**
      * Find or return a new webhook interface instance.
      * @param sessionId

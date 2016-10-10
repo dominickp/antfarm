@@ -7,7 +7,8 @@ import {InterfaceMetadata} from "./interfaceMetadata";
 import {InterfaceProperty} from "./InterfaceProperty";
 
 const   shortid     = require("shortid"),
-        _           = require("lodash");
+        _           = require("lodash"),
+        clone       = require("clone");
 
 /**
  * A webhook interface instance, tied to a particular session.
@@ -38,7 +39,6 @@ export class WebhookInterface {
     protected sessionId: string;
     protected metadata: InterfaceMetadata;
 
-
     /**
      * Constructor
      * @param {Environment} e
@@ -68,14 +68,7 @@ export class WebhookInterface {
      * @param metadata
      */
     public setMetadata(metadata: InterfaceMetadata) {
-
-        let clonedMetadata = {
-            description: metadata.description,
-            tooltip: metadata.tooltip,
-            interfaceProperties: metadata.interfaceProperties
-        } as InterfaceMetadata;
-
-
+        let clonedMetadata = clone(metadata);
         // let clonedMetadata = _.clone(metadata) as InterfaceMetadata;
         if (_.has(clonedMetadata, "interfaceProperties") && clonedMetadata.interfaceProperties.constructor === Array) {
         } else {
@@ -93,11 +86,11 @@ export class WebhookInterface {
     }
 
     public addInterfaceProperty(property: InterfaceProperty) {
-        this.metadata.interfaceProperties.push(_.clone(property));
+        this.metadata.interfaceProperties.push(clone(property));
     }
 
     public setInterfaceProperties(properties: InterfaceProperty[]) {
-        this.metadata.interfaceProperties = _.clone(properties);
+        this.metadata.interfaceProperties = clone(properties);
     }
 
     /**
@@ -138,24 +131,7 @@ export class WebhookInterface {
      * @param fields
      */
     public setFields(fields: FieldOptions[]) {
-        let newFields = [];
-        fields.forEach(field => {
-
-            // Clone field
-            let newField = {} as FieldOptions;
-            newField.description = field.description;
-            newField.id = field.id;
-            newField.value = field.value;
-            newField.required = field.required;
-            newField.max_length = field.max_length;
-            newField.tooltip = field.tooltip;
-            newField.valueList = field.valueList;
-            newField.name = field.name;
-            newField.type = field.type;
-
-            newFields.push(newField);
-        });
-        this.fields = newFields;
+        this.fields = clone(fields);
     }
 
     /**
@@ -234,14 +210,6 @@ export class WebhookInterface {
      * @param steps
      */
     public setSteps(steps: any) {
-        let newSteps = [];
-        steps.forEach(step => {
-            let newStep = {} as Step;
-            newStep.name = step.name;
-            newStep.callback = step.callback;
-            newStep.complete = false;
-            newSteps.push(newStep);
-        });
-        this.steps = newSteps;
+        this.steps = clone(steps);
     }
 }

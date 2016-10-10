@@ -6,7 +6,8 @@ import {Step} from "./step";
 import {InterfaceMetadata} from "./interfaceMetadata";
 import {InterfaceProperty} from "./InterfaceProperty";
 
-const _     = require("lodash");
+const   _           = require("lodash"),
+        clone       = require("clone");
 
 /**
  * The interface manager allows you to separate your interface fields for stepped user interfaces.
@@ -58,11 +59,14 @@ export class InterfaceManager {
     }
 
     public setMetadata(metadata: InterfaceMetadata) {
-        if (_.has(metadata, "interfaceProperties") && metadata.interfaceProperties.constructor === Array) {
+
+        let clonedMetadata = clone(metadata);
+
+        if (_.has(clonedMetadata, "interfaceProperties") && typeof (clonedMetadata.interfaceProperties) !== "undefined" && clonedMetadata.interfaceProperties.constructor === Array) {
         } else {
-            metadata.interfaceProperties = [];
+            clonedMetadata.interfaceProperties = [];
         }
-        this.metadata = metadata;
+        this.metadata = clonedMetadata;
     }
 
     public setDescription(description: string) {
@@ -166,6 +170,32 @@ export class InterfaceManager {
         return this.steps;
     }
 
+    protected addInterfaceInstance(wi: WebhookInterface) {
+        let im = this;
+        im.interfaceInstances.push(wi);
+
+        // Destruct
+        let sessionExpiration = (im.e.getOptions().webhook_interface_session_timeout * 60000) || 300000;
+
+        setTimeout(() => {
+            im.removeInterfaceInstance(wi);
+        }, sessionExpiration);
+
+    }
+
+    protected removeInterfaceInstance(wi: WebhookInterface) {
+        let im = this;
+        let removeSuccess = _.remove(this.interfaceInstances, (i) => {
+            return i.getSessionId() === wi.getSessionId();
+        });
+
+        if (removeSuccess) {
+            im.e.log(0, `Removed webhook interface session ${wi.getSessionId()}`, im);
+        } else {
+            im.e.log(3, `Unable to remove webhook interface session ${wi.getSessionId()}`, im);
+        }
+    };
+
     /**
      * Find or return a new webhook interface instance.
      * @param sessionId
@@ -192,7 +222,7 @@ export class InterfaceManager {
             } else {
                 im.e.log(0, `${im.interfaceInstances.length} interface sessions already exist.`, im);
             }
-            im.interfaceInstances.push(wi);
+            im.addInterfaceInstance(wi);
         } else {
             im.e.log(0, `Restored interface session ${wi.getSessionId()}.`, im);
         }

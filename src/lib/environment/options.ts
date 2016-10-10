@@ -35,4 +35,9 @@ export interface AntfarmOptions {
      */
     auto_managed_folder_directory?: string;
 
+    /**
+     * Webhook interface session timeout in minutes.
+     */
+    webhook_interface_session_timeout: number;
+
 }
