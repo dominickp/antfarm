@@ -83,4 +83,14 @@ export declare class WebhookJob extends Job {
      * @param callback
      */
     getDataAsString(callback: any): void;
+    /**
+     * Returns an array of parameters from both the query string and form-data.
+     */
+    getParameters(): any;
+    /**
+     * Returns a parameter from both the query string and form-data.
+     * @param key
+     * @returns {any}
+     */
+    getParameter(key: string): any;
 }

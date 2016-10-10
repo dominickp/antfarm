@@ -7,7 +7,8 @@ const   fs = require("fs"),
         tmp = require("tmp"),
         url = require("url"),
         multer = require("multer"),
-        path = require("path");
+        path = require("path"),
+        _ = require("lodash");
 
 export class WebhookJob extends Job {
 
@@ -185,15 +186,23 @@ export class WebhookJob extends Job {
     /**
      * Returns an array of parameters from both the query string and form-data.
      */
-    public getParams() {
-
+    public getParameters() {
+        let wh = this;
+        return _.merge(wh.getQueryStringValues(), wh.getFormDataValues());
     }
 
     /**
      * Returns a parameter from both the query string and form-data.
+     * @param key
+     * @returns {any}
      */
-    public getParam() {
-
+    public getParameter(key: string) {
+        let wh = this;
+        if (_.has(wh.getParameters(), key)) {
+            return wh.getParameters()[key];
+        } else {
+            return false;
+        }
     }
 
 }
