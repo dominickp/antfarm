@@ -113,6 +113,7 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="webhookinterface.html#checkpointnest" class="tsd-kind-icon">checkpoint<wbr>Nest</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="webhookinterface.html#e" class="tsd-kind-icon">e</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="webhookinterface.html#fields" class="tsd-kind-icon">fields</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="webhookinterface.html#metadata" class="tsd-kind-icon">metadata</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="webhookinterface.html#nest" class="tsd-kind-icon">nest</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="webhookinterface.html#sessionid" class="tsd-kind-icon">session<wbr>Id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="webhookinterface.html#steps" class="tsd-kind-icon">steps</a></li>
@@ -122,16 +123,23 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#addfield" class="tsd-kind-icon">add<wbr>Field</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#addinterfaceproperty" class="tsd-kind-icon">add<wbr>Interface<wbr>Property</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#addstep" class="tsd-kind-icon">add<wbr>Step</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#checknest" class="tsd-kind-icon">check<wbr>Nest</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#getfields" class="tsd-kind-icon">get<wbr>Fields</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#getjobs" class="tsd-kind-icon">get<wbr>Jobs</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#getmetadata" class="tsd-kind-icon">get<wbr>Metadata</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#getnest" class="tsd-kind-icon">get<wbr>Nest</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#getsessionid" class="tsd-kind-icon">get<wbr>Session<wbr>Id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#getsteps" class="tsd-kind-icon">get<wbr>Steps</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#gettransportinterface" class="tsd-kind-icon">get<wbr>Transport<wbr>Interface</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="webhookinterface.html#initmetadata" class="tsd-kind-icon">init<wbr>Metadata</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#setdescription" class="tsd-kind-icon">set<wbr>Description</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#setfields" class="tsd-kind-icon">set<wbr>Fields</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#setinterfaceproperties" class="tsd-kind-icon">set<wbr>Interface<wbr>Properties</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#setmetadata" class="tsd-kind-icon">set<wbr>Metadata</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#setsteps" class="tsd-kind-icon">set<wbr>Steps</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="webhookinterface.html#settooltip" class="tsd-kind-icon">set<wbr>Tooltip</a></li>
 							</ul>
 						</section>
 					</div>
@@ -149,7 +157,7 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/webhookInterface.ts#L36">lib/ui/webhookInterface.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L40">lib/ui/webhookInterface.ts:40</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -183,7 +191,7 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 					<div class="tsd-signature tsd-kind-icon">checkpoint<wbr>Nest<span class="tsd-signature-symbol">:</span> <a href="foldernest.html" class="tsd-signature-type">FolderNest</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/webhookInterface.ts#L34">lib/ui/webhookInterface.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L37">lib/ui/webhookInterface.ts:37</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -193,7 +201,7 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 					<div class="tsd-signature tsd-kind-icon">e<span class="tsd-signature-symbol">:</span> <a href="environment.html" class="tsd-signature-type">Environment</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/webhookInterface.ts#L32">lib/ui/webhookInterface.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L35">lib/ui/webhookInterface.ts:35</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -203,7 +211,17 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 					<div class="tsd-signature tsd-kind-icon">fields<span class="tsd-signature-symbol">:</span> <a href="../interfaces/fieldoptions.html" class="tsd-signature-type">FieldOptions</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/webhookInterface.ts#L31">lib/ui/webhookInterface.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L34">lib/ui/webhookInterface.ts:34</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="metadata" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> metadata</h3>
+					<div class="tsd-signature tsd-kind-icon">metadata<span class="tsd-signature-symbol">:</span> <a href="../interfaces/interfacemetadata.html" class="tsd-signature-type">InterfaceMetadata</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L40">lib/ui/webhookInterface.ts:40</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -213,7 +231,7 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 					<div class="tsd-signature tsd-kind-icon">nest<span class="tsd-signature-symbol">:</span> <a href="webhooknest.html" class="tsd-signature-type">WebhookNest</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/webhookInterface.ts#L33">lib/ui/webhookInterface.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L36">lib/ui/webhookInterface.ts:36</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -223,17 +241,17 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 					<div class="tsd-signature tsd-kind-icon">session<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/webhookInterface.ts#L36">lib/ui/webhookInterface.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L39">lib/ui/webhookInterface.ts:39</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="steps" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> steps</h3>
-					<div class="tsd-signature tsd-kind-icon">steps<span class="tsd-signature-symbol">:</span> <a href="../interfaces/step.html" class="tsd-signature-type">Step</a><span class="tsd-signature-symbol">[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">steps<span class="tsd-signature-symbol">:</span> <a href="step.html" class="tsd-signature-type">Step</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/webhookInterface.ts#L35">lib/ui/webhookInterface.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L38">lib/ui/webhookInterface.ts:38</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -250,7 +268,7 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/webhookInterface.ts#L71">lib/ui/webhookInterface.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L116">lib/ui/webhookInterface.ts:116</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -271,6 +289,29 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addinterfaceproperty" class="tsd-anchor"></a>
+					<h3>add<wbr>Interface<wbr>Property</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Interface<wbr>Property<span class="tsd-signature-symbol">(</span>property<span class="tsd-signature-symbol">: </span><a href="../interfaces/interfaceproperty.html" class="tsd-signature-type">InterfaceProperty</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L88">lib/ui/webhookInterface.ts:88</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>property: <a href="../interfaces/interfaceproperty.html" class="tsd-signature-type">InterfaceProperty</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="addstep" class="tsd-anchor"></a>
 					<h3>add<wbr>Step</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -280,7 +321,7 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/webhookInterface.ts#L163">lib/ui/webhookInterface.ts:163</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L192">lib/ui/webhookInterface.ts:192</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -313,7 +354,7 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/webhookInterface.ts#L146">lib/ui/webhookInterface.ts:146</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L175">lib/ui/webhookInterface.ts:175</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -343,7 +384,7 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/webhookInterface.ts#L113">lib/ui/webhookInterface.ts:113</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L141">lib/ui/webhookInterface.ts:141</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -365,10 +406,27 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/webhookInterface.ts#L150">lib/ui/webhookInterface.ts:150</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L179">lib/ui/webhookInterface.ts:179</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getmetadata" class="tsd-anchor"></a>
+					<h3>get<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Metadata<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/interfacemetadata.html" class="tsd-signature-type">InterfaceMetadata</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L62">lib/ui/webhookInterface.ts:62</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/interfacemetadata.html" class="tsd-signature-type">InterfaceMetadata</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -382,7 +440,7 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/webhookInterface.ts#L63">lib/ui/webhookInterface.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L108">lib/ui/webhookInterface.ts:108</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -404,7 +462,7 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/webhookInterface.ts#L55">lib/ui/webhookInterface.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L100">lib/ui/webhookInterface.ts:100</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -420,13 +478,13 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 					<a name="getsteps" class="tsd-anchor"></a>
 					<h3>get<wbr>Steps</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Steps<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/step.html" class="tsd-signature-type">Step</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Steps<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="step.html" class="tsd-signature-type">Step</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/webhookInterface.ts#L175">lib/ui/webhookInterface.ts:175</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L204">lib/ui/webhookInterface.ts:204</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -434,7 +492,7 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 									<p>Get an array of instance steps.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/step.html" class="tsd-signature-type">Step</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="step.html" class="tsd-signature-type">Step</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -448,7 +506,7 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/webhookInterface.ts#L121">lib/ui/webhookInterface.ts:121</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L149">lib/ui/webhookInterface.ts:149</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -465,12 +523,55 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 									<h5>jobs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 								<li class="tsd-parameter">
+									<h5>metadata<span class="tsd-signature-symbol">: </span><a href="../interfaces/interfacemetadata.html" class="tsd-signature-type">InterfaceMetadata</a></h5>
+								</li>
+								<li class="tsd-parameter">
 									<h5>session<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li class="tsd-parameter">
-									<h5>steps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/step.html" class="tsd-signature-type">Step</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>steps<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="step.html" class="tsd-signature-type">Step</a><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="initmetadata" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> init<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">init<wbr>Metadata<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L56">lib/ui/webhookInterface.ts:56</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setdescription" class="tsd-anchor"></a>
+					<h3>set<wbr>Description</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Description<span class="tsd-signature-symbol">(</span>description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L80">lib/ui/webhookInterface.ts:80</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>description: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -484,7 +585,7 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/webhookInterface.ts#L88">lib/ui/webhookInterface.ts:88</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L133">lib/ui/webhookInterface.ts:133</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -505,6 +606,59 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setinterfaceproperties" class="tsd-anchor"></a>
+					<h3>set<wbr>Interface<wbr>Properties</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Interface<wbr>Properties<span class="tsd-signature-symbol">(</span>properties<span class="tsd-signature-symbol">: </span><a href="../interfaces/interfaceproperty.html" class="tsd-signature-type">InterfaceProperty</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L92">lib/ui/webhookInterface.ts:92</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>properties: <a href="../interfaces/interfaceproperty.html" class="tsd-signature-type">InterfaceProperty</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setmetadata" class="tsd-anchor"></a>
+					<h3>set<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Metadata<span class="tsd-signature-symbol">(</span>metadata<span class="tsd-signature-symbol">: </span><a href="../interfaces/interfacemetadata.html" class="tsd-signature-type">InterfaceMetadata</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L70">lib/ui/webhookInterface.ts:70</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets a cloned instance of metadata.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>metadata: <a href="../interfaces/interfacemetadata.html" class="tsd-signature-type">InterfaceMetadata</a></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="setsteps" class="tsd-anchor"></a>
 					<h3>set<wbr>Steps</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -514,7 +668,7 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/webhookInterface.ts#L183">lib/ui/webhookInterface.ts:183</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L212">lib/ui/webhookInterface.ts:212</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -528,6 +682,29 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 									<h5>steps: <span class="tsd-signature-type">any</span></h5>
 									<div class="tsd-comment tsd-typography">
 									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="settooltip" class="tsd-anchor"></a>
+					<h3>set<wbr>Tooltip</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Tooltip<span class="tsd-signature-symbol">(</span>tooltip<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/webhookInterface.ts#L84">lib/ui/webhookInterface.ts:84</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>tooltip: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -564,6 +741,9 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 								<a href="webhookinterface.html#fields" class="tsd-kind-icon">fields</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="webhookinterface.html#metadata" class="tsd-kind-icon">metadata</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 								<a href="webhookinterface.html#nest" class="tsd-kind-icon">nest</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
@@ -574,6 +754,9 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="webhookinterface.html#addfield" class="tsd-kind-icon">add<wbr>Field</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="webhookinterface.html#addinterfaceproperty" class="tsd-kind-icon">add<wbr>Interface<wbr>Property</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="webhookinterface.html#addstep" class="tsd-kind-icon">add<wbr>Step</a>
@@ -588,6 +771,9 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 								<a href="webhookinterface.html#getjobs" class="tsd-kind-icon">get<wbr>Jobs</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="webhookinterface.html#getmetadata" class="tsd-kind-icon">get<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="webhookinterface.html#getnest" class="tsd-kind-icon">get<wbr>Nest</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -599,11 +785,26 @@ manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="webhookinterface.html#gettransportinterface" class="tsd-kind-icon">get<wbr>Transport<wbr>Interface</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="webhookinterface.html#initmetadata" class="tsd-kind-icon">init<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="webhookinterface.html#setdescription" class="tsd-kind-icon">set<wbr>Description</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="webhookinterface.html#setfields" class="tsd-kind-icon">set<wbr>Fields</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="webhookinterface.html#setinterfaceproperties" class="tsd-kind-icon">set<wbr>Interface<wbr>Properties</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="webhookinterface.html#setmetadata" class="tsd-kind-icon">set<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="webhookinterface.html#setsteps" class="tsd-kind-icon">set<wbr>Steps</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="webhookinterface.html#settooltip" class="tsd-kind-icon">set<wbr>Tooltip</a>
 							</li>
 						</ul>
 					</li>

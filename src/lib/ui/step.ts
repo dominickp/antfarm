@@ -11,17 +11,17 @@ export class Step {
     /**
      * Flag if step is complete or not
      */
-    public complete?: boolean;
+    public complete: boolean;
 
     /**
      * Callback function to run on step execution.
      */
-    public callback?: any;
+    public callback: any;
 
     /**
      * Step validation error.
      */
-    public failure?: string;
+    public failure: string;
 
     /**
      * Set complete and wipe out any failure

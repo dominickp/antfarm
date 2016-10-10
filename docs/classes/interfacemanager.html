@@ -108,6 +108,7 @@ manager.addField({
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="interfacemanager.html#fields" class="tsd-kind-icon">fields</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="interfacemanager.html#handlerequest" class="tsd-kind-icon">handle<wbr>Request</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="interfacemanager.html#interfaceinstances" class="tsd-kind-icon">interface<wbr>Instances</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="interfacemanager.html#metadata" class="tsd-kind-icon">metadata</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="interfacemanager.html#nest" class="tsd-kind-icon">nest</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="interfacemanager.html#steps" class="tsd-kind-icon">steps</a></li>
 							</ul>
@@ -116,13 +117,22 @@ manager.addField({
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interfacemanager.html#addfield" class="tsd-kind-icon">add<wbr>Field</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="interfacemanager.html#addinterfaceinstance" class="tsd-kind-icon">add<wbr>Interface<wbr>Instance</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interfacemanager.html#addinterfaceproperty" class="tsd-kind-icon">add<wbr>Interface<wbr>Property</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interfacemanager.html#addstep" class="tsd-kind-icon">add<wbr>Step</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interfacemanager.html#getcustomhandlerequest" class="tsd-kind-icon">get<wbr>Custom<wbr>Handle<wbr>Request</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interfacemanager.html#getfields" class="tsd-kind-icon">get<wbr>Fields</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interfacemanager.html#getinterface" class="tsd-kind-icon">get<wbr>Interface</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interfacemanager.html#getmetadata" class="tsd-kind-icon">get<wbr>Metadata</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interfacemanager.html#getnest" class="tsd-kind-icon">get<wbr>Nest</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interfacemanager.html#getpath" class="tsd-kind-icon">get<wbr>Path</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interfacemanager.html#getsteps" class="tsd-kind-icon">get<wbr>Steps</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="interfacemanager.html#initmetadata" class="tsd-kind-icon">init<wbr>Metadata</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="interfacemanager.html#removeinterfaceinstance" class="tsd-kind-icon">remove<wbr>Interface<wbr>Instance</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interfacemanager.html#setdescription" class="tsd-kind-icon">set<wbr>Description</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interfacemanager.html#setinterfaceproperties" class="tsd-kind-icon">set<wbr>Interface<wbr>Properties</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interfacemanager.html#setmetadata" class="tsd-kind-icon">set<wbr>Metadata</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="interfacemanager.html#settooltip" class="tsd-kind-icon">set<wbr>Tooltip</a></li>
 							</ul>
 						</section>
 					</div>
@@ -140,7 +150,7 @@ manager.addField({
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/interfaceManager.ts#L29">lib/ui/interfaceManager.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L33">lib/ui/interfaceManager.ts:33</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -175,7 +185,7 @@ manager.addField({
 					<div class="tsd-signature tsd-kind-icon">e<span class="tsd-signature-symbol">:</span> <a href="environment.html" class="tsd-signature-type">Environment</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/interfaceManager.ts#L24">lib/ui/interfaceManager.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L27">lib/ui/interfaceManager.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -185,7 +195,7 @@ manager.addField({
 					<div class="tsd-signature tsd-kind-icon">fields<span class="tsd-signature-symbol">:</span> <a href="../interfaces/fieldoptions.html" class="tsd-signature-type">FieldOptions</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/interfaceManager.ts#L26">lib/ui/interfaceManager.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L29">lib/ui/interfaceManager.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -195,7 +205,7 @@ manager.addField({
 					<div class="tsd-signature tsd-kind-icon">handle<wbr>Request<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/interfaceManager.ts#L29">lib/ui/interfaceManager.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L32">lib/ui/interfaceManager.ts:32</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -205,7 +215,17 @@ manager.addField({
 					<div class="tsd-signature tsd-kind-icon">interface<wbr>Instances<span class="tsd-signature-symbol">:</span> <a href="webhookinterface.html" class="tsd-signature-type">WebhookInterface</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/interfaceManager.ts#L28">lib/ui/interfaceManager.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L31">lib/ui/interfaceManager.ts:31</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="metadata" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> metadata</h3>
+					<div class="tsd-signature tsd-kind-icon">metadata<span class="tsd-signature-symbol">:</span> <a href="../interfaces/interfacemetadata.html" class="tsd-signature-type">InterfaceMetadata</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L33">lib/ui/interfaceManager.ts:33</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -215,17 +235,17 @@ manager.addField({
 					<div class="tsd-signature tsd-kind-icon">nest<span class="tsd-signature-symbol">:</span> <a href="webhooknest.html" class="tsd-signature-type">WebhookNest</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/interfaceManager.ts#L25">lib/ui/interfaceManager.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L28">lib/ui/interfaceManager.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 					<a name="steps" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> steps</h3>
-					<div class="tsd-signature tsd-kind-icon">steps<span class="tsd-signature-symbol">:</span> <a href="../interfaces/step.html" class="tsd-signature-type">Step</a><span class="tsd-signature-symbol">[]</span></div>
+					<div class="tsd-signature tsd-kind-icon">steps<span class="tsd-signature-symbol">:</span> <a href="step.html" class="tsd-signature-type">Step</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/interfaceManager.ts#L27">lib/ui/interfaceManager.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L30">lib/ui/interfaceManager.ts:30</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -242,7 +262,7 @@ manager.addField({
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/interfaceManager.ts#L74">lib/ui/interfaceManager.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L116">lib/ui/interfaceManager.ts:116</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -262,6 +282,52 @@ manager.addField({
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="addinterfaceinstance" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> add<wbr>Interface<wbr>Instance</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Interface<wbr>Instance<span class="tsd-signature-symbol">(</span>wi<span class="tsd-signature-symbol">: </span><a href="webhookinterface.html" class="tsd-signature-type">WebhookInterface</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L173">lib/ui/interfaceManager.ts:173</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>wi: <a href="webhookinterface.html" class="tsd-signature-type">WebhookInterface</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="addinterfaceproperty" class="tsd-anchor"></a>
+					<h3>add<wbr>Interface<wbr>Property</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">add<wbr>Interface<wbr>Property<span class="tsd-signature-symbol">(</span>property<span class="tsd-signature-symbol">: </span><a href="../interfaces/interfaceproperty.html" class="tsd-signature-type">InterfaceProperty</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L80">lib/ui/interfaceManager.ts:80</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>property: <a href="../interfaces/interfaceproperty.html" class="tsd-signature-type">InterfaceProperty</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="addstep" class="tsd-anchor"></a>
 					<h3>add<wbr>Step</h3>
@@ -272,7 +338,7 @@ manager.addField({
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/interfaceManager.ts#L114">lib/ui/interfaceManager.ts:114</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L157">lib/ui/interfaceManager.ts:157</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -288,9 +354,9 @@ manager.addField({
 								<li>
 									<h5>callback: <span class="tsd-signature-type">any</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>Parameters: WebhookJob, WebhookInterface, Step</p>
+										<p>Parameters: WebhookJob, WebhookInterface, Step, Done callback</p>
 										<h4 id="example">Example</h4>
-										<pre><code class="lang-js"> manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">webhookJob, webhookInterface, step</span>)</span>{
+										<pre><code class="lang-js"> manager.addStep(<span class="hljs-string">"Check job number"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">webhookJob, webhookInterface, step, done</span>)</span>{
      <span class="hljs-keyword">if</span>(webhookJob.getQueryStringValue(<span class="hljs-string">"job_number"</span>)){
          webhookInterface.addField({
              <span class="hljs-attr">id</span>: <span class="hljs-string">"something_else"</span>,
@@ -299,6 +365,7 @@ manager.addField({
              <span class="hljs-attr">description</span>: <span class="hljs-string">"Thanks for adding a job number!"</span>
          });
          step.complete = <span class="hljs-literal">true</span>; <span class="hljs-comment">// Mark step as complete</span>
+         done(); <span class="hljs-comment">// Callback to do next step or send response if complete</span>
      }
 });
 </code></pre>
@@ -319,7 +386,7 @@ manager.addField({
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/interfaceManager.ts#L50">lib/ui/interfaceManager.ts:50</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L92">lib/ui/interfaceManager.ts:92</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -341,7 +408,7 @@ manager.addField({
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/interfaceManager.ts#L91">lib/ui/interfaceManager.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L133">lib/ui/interfaceManager.ts:133</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -363,7 +430,7 @@ manager.addField({
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/interfaceManager.ts#L135">lib/ui/interfaceManager.ts:135</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L204">lib/ui/interfaceManager.ts:204</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -382,6 +449,23 @@ manager.addField({
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getmetadata" class="tsd-anchor"></a>
+					<h3>get<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Metadata<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/interfacemetadata.html" class="tsd-signature-type">InterfaceMetadata</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L57">lib/ui/interfaceManager.ts:57</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/interfacemetadata.html" class="tsd-signature-type">InterfaceMetadata</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="getnest" class="tsd-anchor"></a>
 					<h3>get<wbr>Nest</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -391,7 +475,7 @@ manager.addField({
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/interfaceManager.ts#L58">lib/ui/interfaceManager.ts:58</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L100">lib/ui/interfaceManager.ts:100</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -413,7 +497,7 @@ manager.addField({
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/interfaceManager.ts#L66">lib/ui/interfaceManager.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L108">lib/ui/interfaceManager.ts:108</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -429,13 +513,13 @@ manager.addField({
 					<a name="getsteps" class="tsd-anchor"></a>
 					<h3>get<wbr>Steps</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Steps<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/step.html" class="tsd-signature-type">Step</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Steps<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="step.html" class="tsd-signature-type">Step</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/6612797/src/lib/ui/interfaceManager.ts#L126">lib/ui/interfaceManager.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L169">lib/ui/interfaceManager.ts:169</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -443,7 +527,139 @@ manager.addField({
 									<p>Get an array of user interface steps.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/step.html" class="tsd-signature-type">Step</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="step.html" class="tsd-signature-type">Step</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="initmetadata" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> init<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">init<wbr>Metadata<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L51">lib/ui/interfaceManager.ts:51</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="removeinterfaceinstance" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> remove<wbr>Interface<wbr>Instance</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Interface<wbr>Instance<span class="tsd-signature-symbol">(</span>wi<span class="tsd-signature-symbol">: </span><a href="webhookinterface.html" class="tsd-signature-type">WebhookInterface</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L186">lib/ui/interfaceManager.ts:186</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>wi: <a href="webhookinterface.html" class="tsd-signature-type">WebhookInterface</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setdescription" class="tsd-anchor"></a>
+					<h3>set<wbr>Description</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Description<span class="tsd-signature-symbol">(</span>description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L72">lib/ui/interfaceManager.ts:72</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>description: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setinterfaceproperties" class="tsd-anchor"></a>
+					<h3>set<wbr>Interface<wbr>Properties</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Interface<wbr>Properties<span class="tsd-signature-symbol">(</span>properties<span class="tsd-signature-symbol">: </span><a href="../interfaces/interfaceproperty.html" class="tsd-signature-type">InterfaceProperty</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L84">lib/ui/interfaceManager.ts:84</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>properties: <a href="../interfaces/interfaceproperty.html" class="tsd-signature-type">InterfaceProperty</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setmetadata" class="tsd-anchor"></a>
+					<h3>set<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Metadata<span class="tsd-signature-symbol">(</span>metadata<span class="tsd-signature-symbol">: </span><a href="../interfaces/interfacemetadata.html" class="tsd-signature-type">InterfaceMetadata</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L61">lib/ui/interfaceManager.ts:61</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>metadata: <a href="../interfaces/interfacemetadata.html" class="tsd-signature-type">InterfaceMetadata</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="settooltip" class="tsd-anchor"></a>
+					<h3>set<wbr>Tooltip</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Tooltip<span class="tsd-signature-symbol">(</span>tooltip<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/ui/interfaceManager.ts#L76">lib/ui/interfaceManager.ts:76</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>tooltip: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -480,6 +696,9 @@ manager.addField({
 								<a href="interfacemanager.html#interfaceinstances" class="tsd-kind-icon">interface<wbr>Instances</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="interfacemanager.html#metadata" class="tsd-kind-icon">metadata</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 								<a href="interfacemanager.html#nest" class="tsd-kind-icon">nest</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
@@ -487,6 +706,12 @@ manager.addField({
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="interfacemanager.html#addfield" class="tsd-kind-icon">add<wbr>Field</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="interfacemanager.html#addinterfaceinstance" class="tsd-kind-icon">add<wbr>Interface<wbr>Instance</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="interfacemanager.html#addinterfaceproperty" class="tsd-kind-icon">add<wbr>Interface<wbr>Property</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="interfacemanager.html#addstep" class="tsd-kind-icon">add<wbr>Step</a>
@@ -501,6 +726,9 @@ manager.addField({
 								<a href="interfacemanager.html#getinterface" class="tsd-kind-icon">get<wbr>Interface</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="interfacemanager.html#getmetadata" class="tsd-kind-icon">get<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="interfacemanager.html#getnest" class="tsd-kind-icon">get<wbr>Nest</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -508,6 +736,24 @@ manager.addField({
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="interfacemanager.html#getsteps" class="tsd-kind-icon">get<wbr>Steps</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="interfacemanager.html#initmetadata" class="tsd-kind-icon">init<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="interfacemanager.html#removeinterfaceinstance" class="tsd-kind-icon">remove<wbr>Interface<wbr>Instance</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="interfacemanager.html#setdescription" class="tsd-kind-icon">set<wbr>Description</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="interfacemanager.html#setinterfaceproperties" class="tsd-kind-icon">set<wbr>Interface<wbr>Properties</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="interfacemanager.html#setmetadata" class="tsd-kind-icon">set<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="interfacemanager.html#settooltip" class="tsd-kind-icon">set<wbr>Tooltip</a>
 							</li>
 						</ul>
 					</li>
