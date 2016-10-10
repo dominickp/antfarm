@@ -44,18 +44,6 @@ export declare class WebhookJob extends Job {
      */
     getQueryStringValues(): any;
     /**
-     * Gets a FileJob from the request body with a temporary file name.
-     * The callback will be given the job as its parameter.
-     * #### Example
-     * ```js
-     *  webhookJob.getDataAsFileJob(function(fileJob){
-     *      fileJob.rename("myfile.zip");
-     *      fileJob.move(af.createFolderNest("/var/out/webhook"));
-     *  });
-     * ```
-     * @returns {any}
-     */
-    /**
      * Returns FileJobs made from files sent via FormData to the webhook.
      * @returns {FileJob[]}
      */

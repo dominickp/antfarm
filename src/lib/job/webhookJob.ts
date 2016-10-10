@@ -6,7 +6,6 @@ import express = require("express");
 const   fs = require("fs"),
         tmp = require("tmp"),
         url = require("url"),
-        multer = require("multer"),
         path = require("path"),
         _ = require("lodash");
 
@@ -75,42 +74,6 @@ export class WebhookJob extends Job {
         let url_parts = url.parse(wh.getRequest().url, true);
         return url_parts.query;
     }
-
-    /**
-     * Gets a FileJob from the request body with a temporary file name.
-     * The callback will be given the job as its parameter.
-     * #### Example
-     * ```js
-     *  webhookJob.getDataAsFileJob(function(fileJob){
-     *      fileJob.rename("myfile.zip");
-     *      fileJob.move(af.createFolderNest("/var/out/webhook"));
-     *  });
-     * ```
-     * @returns {any}
-     */
-    // public getDataAsFileJob(callback: any) {
-    //     let wh = this;
-    //     let req = wh.getRequest();
-    //     let res = wh.getResponse();
-    //     let data = [];
-    //
-    //
-    //     console.log("ctype", req.headers);
-    //
-    //     req.on("data", function(chunk) {
-    //         data.push(chunk);
-    //     });
-    //     req.on("end", function() {
-    //         let buffer = Buffer.concat(data);
-    //
-    //         let filePath = tmp.tmpNameSync();
-    //         fs.writeFileSync(filePath, buffer);
-    //
-    //         let fileJob = new FileJob(wh.e, filePath);
-    //
-    //         callback(fileJob);
-    //     });
-    // }
 
     /**
      * Returns FileJobs made from files sent via FormData to the webhook.
