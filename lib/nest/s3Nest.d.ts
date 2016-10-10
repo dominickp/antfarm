@@ -40,11 +40,23 @@ export declare class S3Nest extends Nest {
      * @param key
      */
     protected deleteObject(key: any): void;
+    /**
+     * Watch an S3 bucket.
+     */
     watch(): void;
     /**
      * Nest arrival
      * @param job
      */
     arrive(job: FileJob): void;
-    take(): void;
+    /**
+     * Upload a file to an S3 bucket.
+     */
+    take(job: FileJob, callback?: any): void;
+    /**
+     * Upload file to S3
+     * @param job
+     * @param callback
+     */
+    protected uploadFile(job: FileJob, callback: any): void;
 }

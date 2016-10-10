@@ -5,7 +5,8 @@ import {S3FileJob} from "../job/s3FileJob";
 
 const   AWS = require("aws-sdk"),
         _ = require("lodash"),
-        async = require("async");
+        async = require("async"),
+        fs = require("fs");
 
 export class S3Nest extends Nest {
 
@@ -37,6 +38,8 @@ export class S3Nest extends Nest {
         sn.checkEvery = checkEvery;
         sn.checkEveryMs = checkEvery * 60000;
         sn.allowCreation = allowCreation;
+
+        sn.verifyBucket();
     }
 
 
@@ -80,7 +83,7 @@ export class S3Nest extends Nest {
 
         sn.s3.headBucket(params, (err, data) => {
             if (err) {
-                sn.e.log(3, `headBucket error: ${err}`, sn);
+                sn.e.log(2, `headBucket error: ${err}`, sn);
                 callback(false);
             } else {
                 // if (_.isEmpty(data)) {
@@ -131,7 +134,6 @@ export class S3Nest extends Nest {
 
     public load() {
         let sn = this;
-        sn.verifyBucket();
 
         let params = {
             Bucket: sn.bucket, /* required */
@@ -166,10 +168,11 @@ export class S3Nest extends Nest {
                     file.on("close", function(){
                         // Delete object
                         sn.deleteObject(object.Key);
+
+                        sn.arrive(job);
+                        done();
                     });
 
-                    sn.arrive(job);
-                    done();
 
                 }, err => {
                     if (err) {
@@ -200,6 +203,9 @@ export class S3Nest extends Nest {
 
     }
 
+    /**
+     * Watch an S3 bucket.
+     */
     public watch() {
         let sn = this;
 
@@ -223,8 +229,47 @@ export class S3Nest extends Nest {
         super.arrive(job);
     }
 
-    public take() {
+    /**
+     * Upload a file to an S3 bucket.
+     */
+    public take(job: FileJob, callback?: any) {
+        let sn = this;
 
+        try {
+
+            sn.uploadFile(job, () => {
+                callback();
+            });
+
+        } catch (e) {
+            sn.e.log(3, "Take upload error, " + e, sn);
+        }
+
+    }
+
+    /**
+     * Upload file to S3
+     * @param job
+     * @param callback
+     */
+    protected uploadFile(job: FileJob, callback: any) {
+        let sn = this;
+        let body = fs.createReadStream(job.getPath());
+        let params = {
+            Bucket: sn.bucket,
+            Key: sn.keyPrefix + job.getName(),
+            Body: body
+        };
+        sn.s3.upload(params).
+        on("httpUploadProgress", function(evt) {
+            sn.e.log(0, `Uploading "${evt.key}", part ${evt.part}`, sn);
+        }).
+        send(function(err, data) {
+            if (err) {
+                sn.e.log(3, `S3 upload error: ${err}`, sn);
+            }
+            callback(data);
+        });
     }
 
 }

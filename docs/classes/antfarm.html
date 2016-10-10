@@ -104,6 +104,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="antfarm.html#createautofoldernest" class="tsd-kind-icon">create<wbr>Auto<wbr>Folder<wbr>Nest</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="antfarm.html#createfoldernest" class="tsd-kind-icon">create<wbr>Folder<wbr>Nest</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="antfarm.html#createftpnest" class="tsd-kind-icon">create<wbr>Ftp<wbr>Nest</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="antfarm.html#creates3nest" class="tsd-kind-icon">create<wbr>S3Nest</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="antfarm.html#createtunnel" class="tsd-kind-icon">create<wbr>Tunnel</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="antfarm.html#createwebhooknest" class="tsd-kind-icon">create<wbr>Webhook<wbr>Nest</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="antfarm.html#loaddir" class="tsd-kind-icon">load<wbr>Dir</a></li>
@@ -125,7 +126,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/antfarm.ts#L19">lib/antfarm.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/3694e1b/src/lib/antfarm.ts#L20">lib/antfarm.ts:20</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -157,7 +158,7 @@
 					<div class="tsd-signature tsd-kind-icon">e<span class="tsd-signature-symbol">:</span> <a href="environment.html" class="tsd-signature-type">Environment</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/antfarm.ts#L19">lib/antfarm.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/3694e1b/src/lib/antfarm.ts#L20">lib/antfarm.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -174,7 +175,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/antfarm.ts#L69">lib/antfarm.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/3694e1b/src/lib/antfarm.ts#L70">lib/antfarm.ts:70</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -213,7 +214,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/antfarm.ts#L49">lib/antfarm.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/3694e1b/src/lib/antfarm.ts#L50">lib/antfarm.ts:50</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -250,7 +251,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/antfarm.ts#L82">lib/antfarm.ts:82</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/3694e1b/src/lib/antfarm.ts#L83">lib/antfarm.ts:83</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -296,6 +297,43 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="creates3nest" class="tsd-anchor"></a>
+					<h3>create<wbr>S3Nest</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>S3Nest<span class="tsd-signature-symbol">(</span>bucket<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, keyPrefix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, checkEvery<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, allowCreation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="s3nest.html" class="tsd-signature-type">S3Nest</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/3694e1b/src/lib/antfarm.ts#L95">lib/antfarm.ts:95</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Factory method to create and return an S3 nest.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>bucket: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> keyPrefix: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> checkEvery: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;5</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> allowCreation: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="s3nest.html" class="tsd-signature-type">S3Nest</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="createtunnel" class="tsd-anchor"></a>
 					<h3>create<wbr>Tunnel</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -305,7 +343,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/antfarm.ts#L39">lib/antfarm.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/3694e1b/src/lib/antfarm.ts#L40">lib/antfarm.ts:40</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -333,7 +371,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/antfarm.ts#L110">lib/antfarm.ts:110</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/3694e1b/src/lib/antfarm.ts#L123">lib/antfarm.ts:123</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -389,7 +427,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/antfarm.ts#L118">lib/antfarm.ts:118</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/3694e1b/src/lib/antfarm.ts#L131">lib/antfarm.ts:131</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -420,7 +458,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/86e2179/src/lib/antfarm.ts#L30">lib/antfarm.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/3694e1b/src/lib/antfarm.ts#L31">lib/antfarm.ts:31</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -458,6 +496,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="antfarm.html#createftpnest" class="tsd-kind-icon">create<wbr>Ftp<wbr>Nest</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="antfarm.html#creates3nest" class="tsd-kind-icon">create<wbr>S3Nest</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="antfarm.html#createtunnel" class="tsd-kind-icon">create<wbr>Tunnel</a>
