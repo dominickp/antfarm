@@ -1,25 +1,39 @@
 /**
  * An interface step which allows GET requests to be made against the interface itself.
  */
-export interface Step {
+export class Step {
 
     /**
      * The human-readable step name.
      */
-    name: string;
+    public name: string;
 
     /**
      * Flag if step is complete or not
      */
-    complete?: boolean;
+    public complete?: boolean;
 
     /**
      * Callback function to run on step execution.
      */
-    callback?: any;
+    public callback?: any;
 
     /**
      * Step validation error.
      */
-    failure?: string;
+    public failure?: string;
+
+    /**
+     * Set complete and wipe out any failure
+     * @param complete
+     */
+    public setComplete(complete: boolean) {
+        let s = this;
+        if (complete === true) {
+            s.complete = true;
+            s.failure = null;
+        } else {
+            s.complete = false;
+        }
+    }
 }

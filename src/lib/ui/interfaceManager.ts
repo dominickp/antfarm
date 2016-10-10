@@ -155,7 +155,7 @@ export class InterfaceManager {
      * ```
      */
     public addStep(stepName: string, callback: any) {
-        let step = {} as Step;
+        let step = new Step();
         step.name = stepName;
         step.callback = callback;
         step.complete = false;
