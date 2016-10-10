@@ -7,6 +7,7 @@ export declare class S3Nest extends Nest {
     protected bucket: string;
     protected keyPrefix: string;
     protected checkEvery: number;
+    protected checkEveryMs: number;
     protected allowCreation: boolean;
     /**
      * Constructor

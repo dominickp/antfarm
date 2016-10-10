@@ -1,9 +1,11 @@
 import { Nest } from "./nest";
 import { FileJob } from "./../job/fileJob";
 import { Environment } from "../environment/environment";
+import {S3FileJob} from "../job/s3FileJob";
 
 const   AWS = require("aws-sdk"),
-        _ = require("lodash");
+        _ = require("lodash"),
+        async = require("async");
 
 export class S3Nest extends Nest {
 
@@ -12,6 +14,7 @@ export class S3Nest extends Nest {
     protected bucket: string;
     protected keyPrefix: string;
     protected checkEvery: number;
+    protected checkEveryMs: number;
     protected allowCreation: boolean;
 
     /**
@@ -32,6 +35,7 @@ export class S3Nest extends Nest {
         sn.bucket = bucket;
         sn.keyPrefix = keyPrefix;
         sn.checkEvery = checkEvery;
+        sn.checkEveryMs = checkEvery * 60000;
         sn.allowCreation = allowCreation;
     }
 
@@ -78,14 +82,17 @@ export class S3Nest extends Nest {
                 sn.e.log(3, `headBucket error: ${err}`, sn);
                 callback(false);
             } else {
-                if (_.isEmpty(data)) {
-                    sn.e.log(2, `headBucket empty response`, sn);
-                    callback(true);
-                } else {
-                    sn.e.log(0, `headBucket success: ${data}`, sn);
-                    console.log(data);
-                    callback(true);
-                }
+                // if (_.isEmpty(data)) {
+                //     sn.e.log(2, `headBucket empty response`, sn);
+                //     callback(true);
+                // } else {
+                //     sn.e.log(0, `headBucket success: ${data}`, sn);
+                //     console.log(data);
+                //     callback(true);
+                // }
+                sn.e.log(0, `headBucket success: ${data}`, sn);
+                console.log(data);
+                callback(true);
             }
         });
     }
@@ -126,9 +133,63 @@ export class S3Nest extends Nest {
     public load() {
         let sn = this;
         sn.verifyBucket();
+
+        let params = {
+            Bucket: sn.bucket, /* required */
+            // ContinuationToken: 'STRING_VALUE',
+            // Delimiter: 'STRING_VALUE',
+            // EncodingType: 'url',
+            // FetchOwner: true || false,
+            // MaxKeys: 0,
+            Prefix: this.keyPrefix
+        };
+
+        sn.s3.listObjectsV2(params, (err, data) => {
+            if (err) {
+                sn.e.log(3, `listObjectsV2: ${err}`, sn);
+            } else {
+                let contents = data.Contents;
+                sn.e.log(0, `listObjectsV2: ${contents.length} objects found.`, sn);
+                // console.log(contents);
+
+                // Download each file found
+                async.eachSeries(contents, (object, done) => {
+
+                    // Create temp file
+                    sn.e.log(1, `S3 found file "${object.Key}".`, sn);
+                    let job = new S3FileJob(sn.e, object.Key);
+
+                    // Download and pipe to file
+                    let params = {Bucket: sn.bucket, Key: object.Key};
+                    let file = require("fs").createWriteStream(job.getPath());
+                    sn.s3.getObject(params).createReadStream().pipe(file);
+
+                    sn.arrive(job);
+                    done();
+
+                }, err => {
+                    if (err) {
+                        sn.e.log(3, `Async series download error: "${err}".`, sn);
+                    }
+                    sn.e.log(0, `Completed ${contents.length} synchronous download(s).`, sn);
+                });
+
+            }
+        });
     }
 
     public watch() {
+        let sn = this;
+
+        sn.e.log(1, "Watching S3 bucket.", sn);
+
+        let count = 0;
+
+        setInterval(function() {
+            count++;
+            sn.e.log(1, `Re-checking S3 bucket, attempt ${count}.`, sn);
+            sn.load();
+        }, sn.checkEveryMs, count);
 
     }
 
