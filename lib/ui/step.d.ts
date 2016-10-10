@@ -9,15 +9,15 @@ export declare class Step {
     /**
      * Flag if step is complete or not
      */
-    complete?: boolean;
+    complete: boolean;
     /**
      * Callback function to run on step execution.
      */
-    callback?: any;
+    callback: any;
     /**
      * Step validation error.
      */
-    failure?: string;
+    failure: string;
     /**
      * Set complete and wipe out any failure
      * @param complete

@@ -9,6 +9,7 @@ import {Environment} from "./environment/environment";
 import {WebhookNest} from "./nest/webhookNest";
 import {AutoFolderNest} from "./nest/autoFolderNest";
 import {AntfarmOptions} from "./environment/options";
+import {S3Nest} from "./nest/s3Nest";
 
 /**
  * Expose `Antfarm`.
@@ -81,6 +82,18 @@ export class Antfarm {
      */
     public createFtpNest(host: string, port = 21, username = "", password = "", checkEvery = 10) {
         return new FtpNest(this.e, host, port, username, password, checkEvery);
+    }
+
+    /**
+     * Factory method to create and return an S3 nest.
+     * @param bucket
+     * @param keyPrefix
+     * @param checkEvery
+     * @param allowCreation
+     * @returns {S3Nest}
+     */
+    public createS3Nest(bucket: string, keyPrefix?: string, checkEvery: number = 5, allowCreation: boolean = false) {
+        return new S3Nest(this.e, bucket, keyPrefix, checkEvery, allowCreation);
     }
 
     /**

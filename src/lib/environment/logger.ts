@@ -22,7 +22,7 @@ export class Logger {
     protected log_types = {
         0: "debug",
         1: "info",
-        2: "warning",
+        2: "warn",
         3: "error"
     };
 

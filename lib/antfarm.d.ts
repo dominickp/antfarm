@@ -5,6 +5,7 @@ import { Environment } from "./environment/environment";
 import { WebhookNest } from "./nest/webhookNest";
 import { AutoFolderNest } from "./nest/autoFolderNest";
 import { AntfarmOptions } from "./environment/options";
+import { S3Nest } from "./nest/s3Nest";
 /**
  * Expose `Antfarm`.
  */
@@ -56,6 +57,15 @@ export declare class Antfarm {
      * @returns {FtpNest}
      */
     createFtpNest(host: string, port?: number, username?: string, password?: string, checkEvery?: number): FtpNest;
+    /**
+     * Factory method to create and return an S3 nest.
+     * @param bucket
+     * @param keyPrefix
+     * @param checkEvery
+     * @param allowCreation
+     * @returns {S3Nest}
+     */
+    createS3Nest(bucket: string, keyPrefix?: string, checkEvery?: number, allowCreation?: boolean): S3Nest;
     /**
      * Factory method which returns a WebhookNest.
      * @param path              The path which is generated in the webhook's route. You can supply a string or array of strings.
