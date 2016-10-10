@@ -182,4 +182,18 @@ export class WebhookJob extends Job {
         });
     }
 
+    /**
+     * Returns an array of parameters from both the query string and form-data.
+     */
+    public getParams() {
+
+    }
+
+    /**
+     * Returns a parameter from both the query string and form-data.
+     */
+    public getParam() {
+
+    }
+
 }
