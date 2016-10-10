@@ -63,12 +63,25 @@ export class WebhookInterface {
         return this.metadata;
     }
 
+    /**
+     * Sets a cloned instance of metadata.
+     * @param metadata
+     */
     public setMetadata(metadata: InterfaceMetadata) {
-        if (_.has(metadata, "interfaceProperties") && metadata.interfaceProperties.constructor === Array) {
+
+        let clonedMetadata = {
+            description: metadata.description,
+            tooltip: metadata.tooltip,
+            interfaceProperties: metadata.interfaceProperties
+        } as InterfaceMetadata;
+
+
+        // let clonedMetadata = _.clone(metadata) as InterfaceMetadata;
+        if (_.has(clonedMetadata, "interfaceProperties") && clonedMetadata.interfaceProperties.constructor === Array) {
         } else {
-            metadata.interfaceProperties = [];
+            clonedMetadata.interfaceProperties = [];
         }
-        this.metadata = metadata;
+        this.metadata = clonedMetadata;
     }
 
     public setDescription(description: string) {
@@ -80,11 +93,11 @@ export class WebhookInterface {
     }
 
     public addInterfaceProperty(property: InterfaceProperty) {
-        this.metadata.interfaceProperties.push(property);
+        this.metadata.interfaceProperties.push(_.clone(property));
     }
 
     public setInterfaceProperties(properties: InterfaceProperty[]) {
-        this.metadata.interfaceProperties = properties;
+        this.metadata.interfaceProperties = _.clone(properties);
     }
 
     /**

@@ -40,6 +40,10 @@ export declare class WebhookInterface {
     constructor(e: Environment, nest: WebhookNest);
     protected initMetadata(): void;
     getMetadata(): InterfaceMetadata;
+    /**
+     * Sets a cloned instance of metadata.
+     * @param metadata
+     */
     setMetadata(metadata: InterfaceMetadata): void;
     setDescription(description: string): void;
     setTooltip(tooltip: string): void;
