@@ -39,6 +39,7 @@ export class S3Nest extends Nest {
         sn.allowCreation = allowCreation;
     }
 
+
     /**
      * Set hard-coded AWS credentials.
      * @param accessKeyId
@@ -91,7 +92,6 @@ export class S3Nest extends Nest {
                 //     callback(true);
                 // }
                 sn.e.log(0, `headBucket success: ${data}`, sn);
-                console.log(data);
                 callback(true);
             }
         });
@@ -122,7 +122,6 @@ export class S3Nest extends Nest {
                     callback(false);
                 } else {
                     sn.e.log(0, `createBucket success: ${data}`, sn);
-                    console.log(data);
                     callback(true);
                 }
             }
@@ -164,6 +163,11 @@ export class S3Nest extends Nest {
                     let file = require("fs").createWriteStream(job.getPath());
                     sn.s3.getObject(params).createReadStream().pipe(file);
 
+                    file.on("close", function(){
+                        // Delete object
+                        sn.deleteObject(object.Key);
+                    });
+
                     sn.arrive(job);
                     done();
 
@@ -176,6 +180,24 @@ export class S3Nest extends Nest {
 
             }
         });
+    }
+
+    /**
+     * Removes an object from an S3 bucket.
+     * @param key
+     */
+    protected deleteObject(key) {
+        let sn = this;
+        let params = {
+            Bucket: sn.bucket, /* required */
+            Key: key /* required */
+        };
+        sn.s3.deleteObject(params, function(err) {
+            if (err) {
+                sn.e.log(3, `S3 delete object error ${err}`, sn);
+            }
+        });
+
     }
 
     public watch() {

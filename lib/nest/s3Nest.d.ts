@@ -35,6 +35,11 @@ export declare class S3Nest extends Nest {
     protected headBucket(callback: any): void;
     protected createBucket(callback: any): void;
     load(): void;
+    /**
+     * Removes an object from an S3 bucket.
+     * @param key
+     */
+    protected deleteObject(key: any): void;
     watch(): void;
     /**
      * Nest arrival
