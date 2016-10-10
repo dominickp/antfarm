@@ -18,4 +18,8 @@ export interface Step {
      */
     callback?: any;
 
+    /**
+     * Step validation error.
+     */
+    failure?: string;
 }

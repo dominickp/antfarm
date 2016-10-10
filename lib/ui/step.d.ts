@@ -14,4 +14,8 @@ export interface Step {
      * Callback function to run on step execution.
      */
     callback?: any;
+    /**
+     * Step validation error.
+     */
+    failure?: string;
 }
