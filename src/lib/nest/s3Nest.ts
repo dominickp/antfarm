@@ -94,7 +94,7 @@ export class S3Nest extends Nest {
                 //     console.log(data);
                 //     callback(true);
                 // }
-                sn.e.log(0, `headBucket success: ${data}`, sn);
+                sn.e.log(0, `Bucket "${sn.bucket}" is available.`, sn);
                 callback(true);
             }
         });
@@ -142,7 +142,7 @@ export class S3Nest extends Nest {
             // EncodingType: 'url',
             // FetchOwner: true || false,
             // MaxKeys: 0,
-            Prefix: this.keyPrefix
+            Prefix: sn.keyPrefix
         };
 
         sn.s3.listObjectsV2(params, (err, data) => {
@@ -150,37 +150,40 @@ export class S3Nest extends Nest {
                 sn.e.log(3, `listObjectsV2: ${err}`, sn);
             } else {
                 let contents = data.Contents;
-                sn.e.log(0, `listObjectsV2: ${contents.length} objects found.`, sn);
-                // console.log(contents);
 
                 // Download each file found
-                async.eachSeries(contents, (object, done) => {
+                if (contents.length > 0) {
+                    sn.e.log(0, `Found ${contents.length} objects in "${sn.bucket}/${sn.keyPrefix}".`, sn);
 
-                    // Create temp file
-                    sn.e.log(1, `S3 found file "${object.Key}".`, sn);
-                    let job = new S3FileJob(sn.e, object.Key);
+                    async.eachSeries(contents, (object, done) => {
 
-                    // Download and pipe to file
-                    let params = {Bucket: sn.bucket, Key: object.Key};
-                    let file = require("fs").createWriteStream(job.getPath());
-                    sn.s3.getObject(params).createReadStream().pipe(file);
+                        // Create temp file
+                        sn.e.log(1, `S3 found file "${object.Key}".`, sn);
+                        let job = new S3FileJob(sn.e, object.Key);
 
-                    file.on("close", function(){
-                        // Delete object
-                        sn.deleteObject(object.Key);
+                        // Download and pipe to file
+                        let params = {Bucket: sn.bucket, Key: object.Key};
+                        let file = require("fs").createWriteStream(job.getPath());
+                        sn.s3.getObject(params).createReadStream().pipe(file);
 
-                        sn.arrive(job);
-                        done();
+                        sn.e.log(1, `Downloading "${object.Key}".`, sn);
+
+                        file.on("close", function () {
+                            // Delete object
+                            sn.deleteObject(object.Key);
+
+                            sn.arrive(job);
+                            done();
+                        });
+
+
+                    }, err => {
+                        if (err) {
+                            sn.e.log(3, `Async series download error: "${err}".`, sn);
+                        }
+                        sn.e.log(0, `Completed ${contents.length} synchronous download(s).`, sn);
                     });
-
-
-                }, err => {
-                    if (err) {
-                        sn.e.log(3, `Async series download error: "${err}".`, sn);
-                    }
-                    sn.e.log(0, `Completed ${contents.length} synchronous download(s).`, sn);
-                });
-
+                }
             }
         });
     }
@@ -209,16 +212,19 @@ export class S3Nest extends Nest {
     public watch() {
         let sn = this;
 
-        sn.e.log(1, "Watching S3 bucket.", sn);
+        if (sn.checkEvery === 0) {
+            sn.e.log(3, "Cannot watch this bucket. Check every (minutes) set to 0.", sn);
+        } else {
+            sn.e.log(1, "Watching S3 bucket.", sn);
 
-        let count = 0;
+            let count = 0;
 
-        setInterval(function() {
-            count++;
-            sn.e.log(1, `Re-checking S3 bucket, attempt ${count}.`, sn);
-            sn.load();
-        }, sn.checkEveryMs, count);
-
+            setInterval(function() {
+                count++;
+                sn.e.log(1, `Re-checking S3 bucket, attempt ${count}.`, sn);
+                sn.load();
+            }, sn.checkEveryMs, count);
+        }
     }
 
     /**
@@ -248,6 +254,28 @@ export class S3Nest extends Nest {
     }
 
     /**
+     * Calculate the percent remaining from the httpUploadProgress event values.
+     * @param total
+     * @param loaded
+     * @param part
+     * @returns {number}
+     */
+    private calculateRemaining(total: number, loaded: number, part?: number) {
+        let sn = this;
+        if (!isNaN(total) && !isNaN(loaded)) {
+            let percentRemaining = Math.round(( loaded / total) * 100);
+            if (isNaN(percentRemaining) || percentRemaining > 100) {
+                sn.e.log(3, `Error calculating percent remaining: ${percentRemaining} (${typeof percentRemaining}), total: ${total}, loaded: ${loaded}.`, sn);
+                return 0;
+            } else {
+                return percentRemaining;
+            }
+        } else {
+            return 0;
+        }
+    }
+
+    /**
      * Upload file to S3
      * @param job
      * @param callback
@@ -260,9 +288,12 @@ export class S3Nest extends Nest {
             Key: sn.keyPrefix + job.getName(),
             Body: body
         };
+        let percentUploaded = 0;
         sn.s3.upload(params).
         on("httpUploadProgress", function(evt) {
-            sn.e.log(0, `Uploading "${evt.key}", part ${evt.part}`, sn);
+            // console.log("evt", evt);
+            percentUploaded = sn.calculateRemaining(evt.total, evt.loaded, evt.part);
+            sn.e.log(0, `Uploading "${evt.key}" - ${percentUploaded}%`, sn);
         }).
         send(function(err, data) {
             if (err) {

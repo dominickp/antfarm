@@ -54,6 +54,14 @@ export declare class S3Nest extends Nest {
      */
     take(job: FileJob, callback?: any): void;
     /**
+     * Calculate the percent remaining from the httpUploadProgress event values.
+     * @param total
+     * @param loaded
+     * @param part
+     * @returns {number}
+     */
+    private calculateRemaining(total, loaded, part?);
+    /**
      * Upload file to S3
      * @param job
      * @param callback
