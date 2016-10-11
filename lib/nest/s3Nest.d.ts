@@ -63,8 +63,8 @@ export declare class S3Nest extends Nest {
     private calculateRemaining(total, loaded, part?);
     /**
      * Upload file to S3
-     * @param job
-     * @param callback
+     * @param job {FileJob}     FileJob to be uploaded.
+     * @param callback          Callback includes the S3FileJob parameter.
      */
     protected uploadFile(job: FileJob, callback: any): void;
 }

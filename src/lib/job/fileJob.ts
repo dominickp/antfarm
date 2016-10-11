@@ -123,11 +123,11 @@ export class FileJob extends Job {
         let fj = this;
 
         try {
-            destinationNest.take(fj, function(new_path){
-                fj.setPath(new_path);
+            destinationNest.take(fj, function(newJob){
+                // fj.setPath(new_path);
                 fj.e.log(1, `Job "${fj.getBasename()}" was moved to Nest "${destinationNest.name}".`, fj);
                 if (callback) {
-                    callback();
+                    callback(newJob);
                 }
             });
         } catch (e) {

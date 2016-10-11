@@ -243,8 +243,8 @@ export class S3Nest extends Nest {
 
         try {
 
-            sn.uploadFile(job, () => {
-                callback();
+            sn.uploadFile(job, (s3Job: S3FileJob) => {
+                callback(s3Job);
             });
 
         } catch (e) {
@@ -277,8 +277,8 @@ export class S3Nest extends Nest {
 
     /**
      * Upload file to S3
-     * @param job
-     * @param callback
+     * @param job {FileJob}     FileJob to be uploaded.
+     * @param callback          Callback includes the S3FileJob parameter.
      */
     protected uploadFile(job: FileJob, callback: any) {
         let sn = this;
@@ -299,7 +299,16 @@ export class S3Nest extends Nest {
             if (err) {
                 sn.e.log(3, `S3 upload error: ${err}`, sn);
             }
-            callback(data);
+
+            // Change job type to a S3FileJob
+            let s3Job = job as S3FileJob;
+            s3Job.setLocallyAvailable(false);
+            s3Job.setPath(data.Location);
+            s3Job.bucket = data.Bucket;
+            s3Job.key = data.Key;
+            s3Job.eTag = data.ETag;
+
+            callback(s3Job);
         });
     }
 

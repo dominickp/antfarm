@@ -125,7 +125,7 @@ export class FolderNest extends Nest {
         fs.renameSync(job.getPath(), new_path);
         job.setPath(new_path);
 
-        callback(new_path);
+        callback(job);
     }
 
     /**

@@ -1,6 +1,6 @@
 import { Nest } from "./nest";
 import { FileJob } from "./../job/fileJob";
-import { FtpFileJob } from "./../job/ftpFileJob";
+import {FtpFileJob, FtpFileJob} from "./../job/ftpFileJob";
 
 const   EasyFtp = require("easy-ftp"),
         tmp = require("tmp"),
@@ -127,7 +127,11 @@ export class FtpNest extends Nest {
 
                 fs.unlinkSync(job.getPath());
                 ftp_client.close();
-                callback();
+
+                let ftpJob = job as FtpFileJob;
+                ftpJob.setLocallyAvailable(false);
+
+                callback(ftpJob);
             });
         } catch (e) {
             ftp.e.log(3, "Take upload error, " + e, ftp);
