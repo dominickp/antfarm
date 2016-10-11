@@ -71,8 +71,18 @@ export declare class FileJob extends Job {
     isFile(): boolean;
     /**
      * Moves a file to a nest. This is an asynchronous method which provides a callback on completion.
-     * @param destinationNest
-     * @param callback
+     * @param destinationNest       The nest object the job will be sent to.
+     * @param callback              The callback provides the updated instance of the job. Depending on the nest it was sent to, it may have been cast to a new job type. This is helpful in case you need the remote path to the job once it has been uploaded to S3, for example.
+     * #### Example
+     * ```js
+     * tunnel.run((job, nest) => {
+     *      console.log("Found job " + job.getName());
+     *      job.move(my_s3_bucket, (s3_job) => {
+     *          // Uploaded
+     *          console.log("Uploaded to " + s3_job.getPath());
+     *      });
+ *      });
+     * ```
      */
     move(destinationNest: any, callback: any): void;
     /**

@@ -1,6 +1,6 @@
 import { Nest } from "./nest";
 import { FileJob } from "./../job/fileJob";
-import {FtpFileJob, FtpFileJob} from "./../job/ftpFileJob";
+import { FtpFileJob } from "./../job/ftpFileJob";
 
 const   EasyFtp = require("easy-ftp"),
         tmp = require("tmp"),
