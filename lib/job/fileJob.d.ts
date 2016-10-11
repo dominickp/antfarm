@@ -81,7 +81,7 @@ export declare class FileJob extends Job {
      *          // Uploaded
      *          console.log("Uploaded to " + s3_job.getPath());
      *      });
- *      });
+     * });
      * ```
      */
     move(destinationNest: any, callback: any): void;

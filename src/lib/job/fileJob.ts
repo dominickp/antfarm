@@ -125,7 +125,7 @@ export class FileJob extends Job {
      *          // Uploaded
      *          console.log("Uploaded to " + s3_job.getPath());
      *      });
- *      });
+     * });
      * ```
      */
     public move(destinationNest, callback) {
