@@ -96,4 +96,12 @@ export declare class Antfarm {
      * @param directory     Path to the workflow modules.
      */
     loadDir(directory: string): void;
+    /**
+     * Log messages into the antfarm logger.
+     * @param type
+     * @param message
+     * @param actor
+     * @param instances
+     */
+    log(type: number, message: string, actor?: any, instances?: any[]): void;
 }

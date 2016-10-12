@@ -148,6 +148,18 @@ export class Antfarm {
 
         af.e.log(1, `Loaded ${loaded_counter} workflows.`, af);
     }
+
+    /**
+     * Log messages into the antfarm logger.
+     * @param type
+     * @param message
+     * @param actor
+     * @param instances
+     */
+    public log(type: number, message: string, actor?: any, instances = []) {
+        let af = this;
+        af.e.log(type, message, actor, instances);
+    }
 }
 
 module.exports = Antfarm;
