@@ -9,6 +9,7 @@ export declare class WebhookNest extends Nest {
     protected handleRequest: any;
     protected ui: WebhookInterface;
     protected im: InterfaceManager;
+    protected _holdResponse: boolean;
     /**
      * Webhook Nest constructor
      * @param e
@@ -17,6 +18,34 @@ export declare class WebhookNest extends Nest {
      * @param handleRequest     Custom request handler function.
      */
     constructor(e: Environment, path: string | string[], httpMethod: string, handleRequest?: any);
+    /**
+     * Get the holdResponse flag.
+     * @returns {boolean}
+     */
+    /**
+     * Set hold response flag. This allows you to run tunnel logic and send the response after completion.
+     * You must call _releaseResponse_ later if you use this.
+     * @param holdResponse
+     */
+    holdResponse: boolean;
+    /**
+     * Releases the webhook response when tunnel run logic is complete.
+     * @param job {WebhookJob}      The webhook job that triggered the webhook nest.
+     * @param message {string}      The optional response message, if not using a custom request handler.
+     * #### Example
+     * ```js
+     * var webhook = af.createWebhookNest(["jobs", "submit"], "post");
+     * webhook.holdResponse = true; // Keeps the response from being sent immediately
+     * var tunnel = af.createTunnel("Dwight's test tunnel");
+     * tunnel.watch(webhook);
+     * tunnel.run(function(job, nest){
+     *      setTimeout(function(){
+     *          nest.releaseResponse(job, "Worked!"); // Sends response
+     *      }, 1500); // After 1.5 seconds
+     * });
+     * ```
+     */
+    releaseResponse(job: WebhookJob, message?: string): void;
     /**
      * Get the custom handleRequest function.
      * @returns {any}

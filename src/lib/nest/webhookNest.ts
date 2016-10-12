@@ -10,14 +10,11 @@ const   http = require("http");
 export class WebhookNest extends Nest {
 
     protected path: string;
-
     protected httpMethod: string;
-
     protected handleRequest: any;
-
     protected ui: WebhookInterface;
-
     protected im: InterfaceManager;
+    protected _holdResponse: boolean;
 
     /**
      * Webhook Nest constructor
@@ -36,6 +33,50 @@ export class WebhookNest extends Nest {
         }
 
         this.im = new InterfaceManager(this.e, this);
+        this._holdResponse = false;
+    }
+
+    /**
+     * Set hold response flag. This allows you to run tunnel logic and send the response after completion.
+     * You must call _releaseResponse_ later if you use this.
+     * @param holdResponse
+     */
+    public set holdResponse(holdResponse: boolean) {
+        this._holdResponse = holdResponse;
+    }
+
+    /**
+     * Get the holdResponse flag.
+     * @returns {boolean}
+     */
+    public get holdResponse() {
+        return this._holdResponse;
+    }
+
+    /**
+     * Releases the webhook response when tunnel run logic is complete.
+     * @param job {WebhookJob}      The webhook job that triggered the webhook nest.
+     * @param message {string}      The optional response message, if not using a custom request handler.
+     * #### Example
+     * ```js
+     * var webhook = af.createWebhookNest(["jobs", "submit"], "post");
+     * webhook.holdResponse = true; // Keeps the response from being sent immediately
+     * var tunnel = af.createTunnel("Dwight's test tunnel");
+     * tunnel.watch(webhook);
+     * tunnel.run(function(job, nest){
+     *      setTimeout(function(){
+     *          nest.releaseResponse(job, "Worked!"); // Sends response
+     *      }, 1500); // After 1.5 seconds
+     * });
+     * ```
+     */
+    public releaseResponse(job: WebhookJob, message?: string) {
+        let wn = this;
+        if (wn.holdResponse === false) {
+            wn.e.log(3, `Nest responses must be held to release a response.`, wn);
+        } else {
+            wn.e.server.sendHookResponse(false, job, wn, job.getRequest(), job.getResponse(), wn.getCustomHandleRequest(), message);
+        }
     }
 
     /**

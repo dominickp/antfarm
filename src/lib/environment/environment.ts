@@ -12,7 +12,7 @@ export class Environment {
 
     protected options: AntfarmOptions;
     protected logger: Logger;
-    protected server: Server;
+    protected _server: Server;
     protected hookRoutes = [];
     protected hookInterfaceRoutes = [];
 
@@ -87,7 +87,11 @@ export class Environment {
 
     protected createServer() {
         let server = new Server(this);
-        this.server = server;
+        this._server = server;
+    }
+
+    public get server() {
+        return this._server;
     }
 
     /**

@@ -1,5 +1,6 @@
 import { Environment } from "./environment";
 import { WebhookNest } from "../nest/webhookNest";
+import { WebhookJob } from "../job/webhookJob";
 import * as express from "express";
 import { InterfaceManager } from "../ui/interfaceManager";
 /**
@@ -37,7 +38,18 @@ export declare class Server {
      * @param res {express.Response}
      * @param customHandler     Custom request handler.
      */
-    protected handleHookRequest: (nest: WebhookNest, req: any, res: any, customHandler?: any) => void;
+    protected handleHookRequest(nest: WebhookNest, req: any, res: any, customHandler?: any): void;
+    /**
+     * Sends the actual hook response.
+     * @param holdResponse      Flag to bypass sending now for held responses.
+     * @param job               Webhook job
+     * @param nest              Webhook nest
+     * @param req
+     * @param res
+     * @param customHandler
+     * @param message
+     */
+    sendHookResponse(holdResponse: boolean, job: WebhookJob, nest: WebhookNest, req: any, res: any, customHandler?: any, message?: string): void;
     /**
      * Adds a webhook interface to the webhook server.
      * @param im {InterfaceManager}

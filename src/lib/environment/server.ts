@@ -117,18 +117,35 @@ export class Server {
      * @param res {express.Response}
      * @param customHandler     Custom request handler.
      */
-    protected handleHookRequest = function(nest: WebhookNest, req, res, customHandler?: any) {
+    protected handleHookRequest (nest: WebhookNest, req, res, customHandler?: any) {
         let s = this;
 
         // Job arrive
         let job = new WebhookJob(s.e, req, res);
         nest.arrive(job);
 
-        if (customHandler) {
+        s.sendHookResponse(nest.holdResponse, job, nest, req, res, customHandler);
+
+    };
+
+    /**
+     * Sends the actual hook response.
+     * @param holdResponse      Flag to bypass sending now for held responses.
+     * @param job               Webhook job
+     * @param nest              Webhook nest
+     * @param req
+     * @param res
+     * @param customHandler
+     * @param message
+     */
+    public sendHookResponse (holdResponse: boolean, job: WebhookJob, nest: WebhookNest, req, res, customHandler?: any, message?: string) {
+        if (holdResponse === true) {
+            // do nothing
+        } else if (customHandler) {
             customHandler(req, res, job, nest);
         } else {
             let response = {
-                message: `Job ${job.getId()} was created!`,
+                message: message || `Job ${job.getId()} was created!`,
                 job: {
                     id: job.getId(),
                     name: job.getName()
@@ -139,7 +156,7 @@ export class Server {
             };
             res.json(response);
         }
-    };
+    }
 
     /**
      * Adds a webhook interface to the webhook server.

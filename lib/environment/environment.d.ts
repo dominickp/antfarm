@@ -6,7 +6,7 @@ import { AntfarmOptions } from "./options";
 export declare class Environment {
     protected options: AntfarmOptions;
     protected logger: Logger;
-    protected server: Server;
+    protected _server: Server;
     protected hookRoutes: any[];
     protected hookInterfaceRoutes: any[];
     constructor(options: AntfarmOptions);
@@ -21,6 +21,7 @@ export declare class Environment {
      * Creates the server.
      */
     protected createServer(): void;
+    readonly server: Server;
     /**
      * Adds a webhook to the webhook server.
      * @param nest
