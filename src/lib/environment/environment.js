@@ -67,7 +67,7 @@ var Environment = (function () {
     // }
     Environment.prototype.createServer = function () {
         var server = new server_1.Server(this);
-        this.server2 = server;
+        this.server = server;
     };
     /**
      * Adds a webhook to the webhook server.
@@ -75,7 +75,7 @@ var Environment = (function () {
      */
     Environment.prototype.addWebhook = function (nest) {
         var e = this;
-        e.server2.addWebhook(nest);
+        e.server.addWebhook(nest);
     };
     /**
      * Adds a webhook interface to the webhook server.
@@ -83,7 +83,7 @@ var Environment = (function () {
      */
     Environment.prototype.addWebhookInterface = function (im) {
         var e = this;
-        e.server2.addWebhookInterface(im);
+        e.server.addWebhookInterface(im);
     };
     Environment.prototype.toString = function () {
         return "Environment";

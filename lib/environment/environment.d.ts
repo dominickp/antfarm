@@ -6,8 +6,7 @@ import { AntfarmOptions } from "./options";
 export declare class Environment {
     protected options: AntfarmOptions;
     protected logger: Logger;
-    protected server: any;
-    protected server2: Server;
+    protected server: Server;
     protected hookRoutes: any[];
     protected hookInterfaceRoutes: any[];
     constructor(options: AntfarmOptions);

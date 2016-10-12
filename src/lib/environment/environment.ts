@@ -12,8 +12,7 @@ export class Environment {
 
     protected options: AntfarmOptions;
     protected logger: Logger;
-    protected server;
-    protected server2: Server;
+    protected server: Server;
     protected hookRoutes = [];
     protected hookInterfaceRoutes = [];
 
@@ -88,7 +87,7 @@ export class Environment {
 
     protected createServer() {
         let server = new Server(this);
-        this.server2 = server;
+        this.server = server;
     }
 
     /**
@@ -97,7 +96,7 @@ export class Environment {
      */
     public addWebhook(nest: WebhookNest) {
         let e = this;
-        e.server2.addWebhook(nest);
+        e.server.addWebhook(nest);
     }
 
     /**
@@ -106,7 +105,7 @@ export class Environment {
      */
     public addWebhookInterface(im: InterfaceManager) {
         let e = this;
-        e.server2.addWebhookInterface(im);
+        e.server.addWebhookInterface(im);
     }
 
     public toString() {
