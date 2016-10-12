@@ -1,6 +1,6 @@
 {
   "name": "antfarm",
-  "version": "1.1.31",
+  "version": "1.1.32",
   "description": "File automation framework for ants.",
   "main": "index.js",
   "directories": {
