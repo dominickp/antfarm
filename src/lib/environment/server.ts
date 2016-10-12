@@ -142,8 +142,10 @@ export class Server {
         if (holdResponse === true) {
             // do nothing
         } else if (customHandler) {
+            job.responseSent = true;
             customHandler(req, res, job, nest);
         } else {
+            job.responseSent = true;
             let response = {
                 message: message || `Job ${job.getId()} was created!`,
                 job: {

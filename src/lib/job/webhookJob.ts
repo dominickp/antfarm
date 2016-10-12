@@ -13,6 +13,7 @@ export class WebhookJob extends Job {
 
     protected request;
     protected response;
+    protected _responseSent: boolean;
 
     /**
      * WebhookJob constructor
@@ -24,6 +25,15 @@ export class WebhookJob extends Job {
         super(e, "Webhook Job");
         this.request = request;
         this.response = response;
+        this._responseSent = false;
+    }
+
+    public set responseSent(sent: boolean) {
+        this._responseSent = sent;
+    }
+
+    public get responseSent() {
+        return this._responseSent;
     }
 
     /**

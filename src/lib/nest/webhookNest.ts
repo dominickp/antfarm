@@ -74,6 +74,8 @@ export class WebhookNest extends Nest {
         let wn = this;
         if (wn.holdResponse === false) {
             wn.e.log(3, `Nest responses must be held to release a response.`, wn);
+        } else if (job.responseSent === true) {
+            wn.e.log(0, `Nest responses was already sent. Skipping.`, wn);
         } else {
             wn.e.server.sendHookResponse(false, job, wn, job.getRequest(), job.getResponse(), wn.getCustomHandleRequest(), message);
         }

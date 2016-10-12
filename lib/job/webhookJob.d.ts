@@ -3,6 +3,7 @@ import { Job } from "./job";
 export declare class WebhookJob extends Job {
     protected request: any;
     protected response: any;
+    protected _responseSent: boolean;
     /**
      * WebhookJob constructor
      * @param e
@@ -10,6 +11,7 @@ export declare class WebhookJob extends Job {
      * @param response
      */
     constructor(e: Environment, request: any, response: any);
+    responseSent: boolean;
     /**
      * Get the HTTP response object.
      * @returns {ClientResponse}
