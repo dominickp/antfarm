@@ -117,15 +117,22 @@ export class Tunnel {
     protected executeRunSync(job: Job, nest: Nest) {
         let tn = this;
 
+        let breakFailure = false;
+        let successfulRuns = 0;
+
         async.eachSeries(tn.run_sync_list, function (run, callback) {
-            run(job, nest, function(){
-                callback();
-            });
+            if (breakFailure === false) {
+                run(job, nest, function(){
+                    successfulRuns++;
+                    callback();
+                });
+            }
         }, function (err) {
             if (err) {
+                breakFailure = true;
                 tn.executeFail(job, nest, err);
             }
-            tn.e.log(0, `Completed ${tn.getRunSyncList().length} synchronous run list(s).`, tn, [job, nest]);
+            tn.e.log(0, `Completed ${successfulRuns}/${tn.getRunSyncList().length} synchronous run list(s).`, tn, [job, nest]);
         });
     }
 
