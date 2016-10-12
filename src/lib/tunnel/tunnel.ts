@@ -120,14 +120,14 @@ export class Tunnel {
         let breakFailure = false;
         let successfulRuns = 0;
 
-        async.eachSeries(tn.run_sync_list, function (run, callback) {
+        async.eachSeries(tn.run_sync_list, (run, doNextRun) => {
             if (breakFailure === false) {
-                run(job, nest, function(){
+                run(job, nest, () => {
                     successfulRuns++;
-                    callback();
+                    doNextRun();
                 });
             }
-        }, function (err) {
+        }, (err) => {
             if (err) {
                 breakFailure = true;
                 tn.executeFail(job, nest, err);

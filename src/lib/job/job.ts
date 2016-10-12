@@ -141,10 +141,11 @@ export abstract class Job {
      * @param reason
      */
     public fail(reason: string) {
-        if (!this.tunnel) {
-            this.e.log(3, `Job "${this.getName()}" failed before tunnel was set.`, this);
+        let j = this;
+        if (!j.tunnel) {
+            j.e.log(3, `Job "${j.getName()}" failed before tunnel was set.`, j);
         }
-        this.tunnel.executeFail(this, this.nest, reason);
+        j.tunnel.executeFail(j, j.getNest(), reason);
     }
 
     /**
