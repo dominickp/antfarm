@@ -38,8 +38,6 @@ export class Server {
                 destination: tmpDir,
                 storage: multer.diskStorage({
                     filename: function (req, file, cb) {
-                        console.log(req.headers);
-
                         cb(null, file.fieldname + "-" + Date.now());
                     }
                 })
