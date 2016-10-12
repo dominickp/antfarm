@@ -103,15 +103,18 @@ export class Tunnel {
 
     protected executeRun(job: Job, nest: Nest) {
         let tn = this;
-        this.run_list.forEach(function(callback){
-            try {
-                callback(job, nest);
-            } catch (e) {
-                // Fail if an error is thrown
-                tn.executeFail(job, nest, e);
-            }
 
-        });
+        if (tn.run_list.length > 0) {
+            tn.run_list.forEach((callback) => {
+                try {
+                    callback(job, nest);
+                } catch (e) {
+                    // Fail if an error is thrown
+                    tn.executeFail(job, nest, e);
+                }
+
+            });
+        }
     }
 
     protected executeRunSync(job: Job, nest: Nest) {
@@ -120,25 +123,28 @@ export class Tunnel {
         let breakFailure = false;
         let successfulRuns = 0;
 
-        async.eachSeries(tn.run_sync_list, (run, doNextRun) => {
-            if (breakFailure === false) {
-                run(job, nest, () => {
-                    successfulRuns++;
-                    doNextRun();
-                });
-            }
-        }, (err) => {
-            if (err) {
-                breakFailure = true;
-                tn.executeFail(job, nest, err);
-            }
-            tn.e.log(0, `Completed ${successfulRuns}/${tn.getRunSyncList().length} synchronous run list(s).`, tn, [job, nest]);
-        });
+        if (tn.run_sync_list.length > 0) {
+            async.eachSeries(tn.run_sync_list, (run, doNextRun) => {
+                if (breakFailure === false) {
+                    run(job, nest, () => {
+                        successfulRuns++;
+                        doNextRun();
+                    });
+                }
+            }, (err) => {
+                if (err) {
+                    breakFailure = true;
+                    tn.executeFail(job, nest, err);
+                }
+                tn.e.log(0, `Completed ${successfulRuns}/${tn.getRunSyncList().length} synchronous run list(s).`, tn, [job, nest]);
+            });
+        }
     }
 
     public executeFail(job: Job, nest: Nest, reason: string) {
-        this.e.log(3, `Failed for reason "${reason}".`, this, [job, nest]);
-        this.run_fail(job, nest, reason);
+        let tn = this;
+        tn.e.log(3, `Failed for reason "${reason}".`, tn, [job, nest]);
+        tn.run_fail(job, nest, reason);
     }
 
     /**

@@ -41,8 +41,10 @@ export abstract class Nest {
     }
 
     public arrive(job: Job) {
-        this.e.log(1, `Job "${job.getName()}" arrived in Nest "${this.name}".`, this);
-        job.setTunnel(this.tunnel);
-        this.tunnel.arrive(job, this);
+        let ns = this;
+        ns.e.log(1, `Job "${job.getName()}" arrived in Nest "${ns.name}".`, ns);
+        job.setTunnel(ns.tunnel);
+        job.setNest(ns);
+        ns.tunnel.arrive(job, ns);
     }
 }

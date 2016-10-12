@@ -142,9 +142,13 @@ export abstract class Job {
      */
     public fail(reason: string) {
         let j = this;
-        if (!j.tunnel) {
+        if (!j.getTunnel()) {
             j.e.log(3, `Job "${j.getName()}" failed before tunnel was set.`, j);
         }
+        if (!j.getNest()) {
+            j.e.log(3, `Job "${j.getName()}" does not have a nest.`, j);
+        }
+
         j.tunnel.executeFail(j, j.getNest(), reason);
     }
 
