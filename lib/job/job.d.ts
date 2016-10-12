@@ -93,4 +93,8 @@ export declare abstract class Job {
      * @param tunnel
      */
     transfer(tunnel: Tunnel): void;
+    /**
+     * Move function error.
+     */
+    move(destinationNest: any, callback: any): void;
 }

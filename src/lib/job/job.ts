@@ -161,4 +161,12 @@ export abstract class Job {
         job.createLifeEvent("transfer", oldTunnel.getName(), tunnel.getName());
     }
 
+
+    /**
+     * Move function error.
+     */
+    public move(destinationNest, callback) {
+        throw "This type of job cannot be moved.";
+    }
+
 }
