@@ -130,6 +130,21 @@ export class WebhookInterface {
      * Get an existing field from the interface to modify its properties.
      * @param fieldId
      * @returns {FieldOptions}
+     * #### Example
+     * ```js
+     * im.addStep("Check job number", function(webhookJob, webhookInterface, step, done) {
+     *      if(webhookJob.getParameter("job_number").length == 6) {
+     *          // Make job number read only
+     *          var jobNumberField = webhookInterface.getField("job_number");
+     *          jobNumberField.readonly = true;
+     *          // Complete step
+     *          webhookInterface.completeStep(step);
+     *      } else {
+     *          step.failure = "Job number was not 6 characters.";
+     *      }
+     *      done();
+     * });
+     * ```
      */
     public getField(fieldId: string) {
         let wi = this;
