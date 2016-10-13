@@ -198,6 +198,30 @@ export class WebhookInterface {
     }
 
     /**
+     * Mark a step as complete and remove it from the interface.
+     * @param step
+     */
+    public completeStep(step: Step): boolean {
+        let wi = this;
+        let steps = wi.getSteps();
+        let matchedIndex = _.findIndex(steps, (s) => { return s.name === step.name; });
+        if (steps[matchedIndex]) {
+            wi.steps.splice(matchedIndex, 1);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Alias of completeStep.
+     * @param step
+     */
+    public removeStep(step: Step) {
+        this.completeStep(step);
+    }
+
+    /**
      * Get an array of instance steps.
      * @returns {Step[]}
      */

@@ -98,6 +98,16 @@ export declare class WebhookInterface {
      */
     addStep(stepName: string, callback: any): void;
     /**
+     * Mark a step as complete and remove it from the interface.
+     * @param step
+     */
+    completeStep(step: Step): boolean;
+    /**
+     * Alias of completeStep.
+     * @param step
+     */
+    removeStep(step: Step): void;
+    /**
      * Get an array of instance steps.
      * @returns {Step[]}
      */
