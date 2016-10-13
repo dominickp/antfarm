@@ -127,6 +127,16 @@ export class WebhookInterface {
     }
 
     /**
+     * Get an existing field from the interface to modify its properties.
+     * @param fieldId
+     * @returns {FieldOptions}
+     */
+    public getField(fieldId: string) {
+        let wi = this;
+        return _.find(wi.fields, function(f) { return f.id === fieldId; });
+    }
+
+    /**
      * Overwrites fields with a clone.
      * @param fields
      */
@@ -199,7 +209,7 @@ export class WebhookInterface {
 
     /**
      * Mark a step as complete and remove it from the interface.
-     * @param step
+     * @param step {Step}
      */
     public completeStep(step: Step): boolean {
         let wi = this;
@@ -215,7 +225,7 @@ export class WebhookInterface {
 
     /**
      * Alias of completeStep.
-     * @param step
+     * @param step {Step}
      */
     public removeStep(step: Step) {
         this.completeStep(step);

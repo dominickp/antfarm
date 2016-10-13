@@ -65,6 +65,12 @@ export declare class WebhookInterface {
      */
     addField(field: FieldOptions): boolean;
     /**
+     * Get an existing field from the interface to modify its properties.
+     * @param fieldId
+     * @returns {FieldOptions}
+     */
+    getField(fieldId: string): any;
+    /**
      * Overwrites fields with a clone.
      * @param fields
      */
@@ -99,12 +105,12 @@ export declare class WebhookInterface {
     addStep(stepName: string, callback: any): void;
     /**
      * Mark a step as complete and remove it from the interface.
-     * @param step
+     * @param step {Step}
      */
     completeStep(step: Step): boolean;
     /**
      * Alias of completeStep.
-     * @param step
+     * @param step {Step}
      */
     removeStep(step: Step): void;
     /**

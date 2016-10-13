@@ -53,4 +53,8 @@ export interface FieldOptions {
      */
     value?: string;
 
+    /**
+     * Read-only
+     */
+    readOnly?: boolean;
 }

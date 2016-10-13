@@ -42,4 +42,8 @@ export interface FieldOptions {
      * Default or current value.
      */
     value?: string;
+    /**
+     * Read-only
+     */
+    readOnly?: boolean;
 }
