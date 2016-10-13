@@ -286,7 +286,8 @@ export class S3Nest extends Nest {
         let params = {
             Bucket: sn.bucket,
             Key: sn.keyPrefix + job.getName(),
-            Body: body
+            Body: body,
+            ACL: "public-read"
         };
         let percentUploaded = 0;
         sn.s3.upload(params).
