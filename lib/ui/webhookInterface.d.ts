@@ -5,6 +5,8 @@ import { FieldOptions } from "./field";
 import { Step } from "./step";
 import { InterfaceMetadata } from "./interfaceMetadata";
 import { InterfaceProperty } from "./InterfaceProperty";
+import { FileJob } from "../job/fileJob";
+import { FolderJob } from "../job/folderJob";
 /**
  * A webhook interface instance, tied to a particular session.
  * Within interface steps, you can use these methods directly to alter the schema being returned to the user interface.
@@ -107,11 +109,15 @@ export declare class WebhookInterface {
         metadata: InterfaceMetadata;
     };
     /**
-     * Adds pending jobs to the interfaces job list.
+     * Returns checked jobs.
+     * @returns {(FileJob|FolderJob)[]}
+     */
+    getJobs(): (FileJob | FolderJob)[];
+    /**
+     * Sets the checkpoint nest.
      * @param nest
      */
-    checkNest(nest: FolderNest): void;
-    getJobs(): any[];
+    setCheckpointNest(nest: FolderNest): void;
     /**
      * Adds a user interface step
      * @param stepName

@@ -218,7 +218,7 @@ export class InterfaceManager {
             wi.setFields(im.getFields());
             wi.setSteps(im.getSteps());
             wi.setMetadata(im.getMetadata());
-            wi.checkNest(im.checkpointNest);
+            wi.setCheckpointNest(im.checkpointNest);
 
             if (im.interfaceInstances.length === 0) {
                 im.e.addWebhookInterface(this);
@@ -239,5 +239,6 @@ export class InterfaceManager {
      */
     public checkNest(nest: FolderNest) {
         this.checkpointNest = nest;
+        nest.watchHold();
     }
 }

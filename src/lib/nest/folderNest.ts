@@ -18,6 +18,7 @@ export class FolderNest extends Nest {
 
     protected path: string;
     protected allowCreate: boolean;
+    protected heldJobs: (FileJob|FolderJob)[];
 
     constructor(e: Environment, path?: string, allowCreate?: boolean) {
         let nest_name = path_mod.basename(path);
@@ -26,6 +27,7 @@ export class FolderNest extends Nest {
         this.allowCreate = allowCreate;
         this.checkDirectorySync(path);
         this.path = path;
+        this.heldJobs = [];
     }
 
     /**
@@ -90,31 +92,54 @@ export class FolderNest extends Nest {
 
     /**
      * Initial load of the contents of the directory.
+     * @param hold {boolean}    Optional flag to hold jobs found.
      */
-    public load(): void {
+    public load(hold: boolean = false): void {
         let fl = this;
         fs.readdir(fl.path, (err, items) => {
             items = items.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
 
             items.forEach((filename) => {
                 let filepath = fl.path + path_mod.sep + filename;
-                fl.createJob(filepath); // Arrives as well
+                let job;
+                if (hold === false) {
+                    fl.createJob(filepath, true); // Arrives as well
+                } else {
+                    job = fl.createJob(filepath, false);
+                    fl.holdJob(job);
+                }
             });
         });
     }
 
     /**
      * Watches the folder.
+     * @param hold {boolean}    Optional flag to hold jobs found.
      */
-    public watch(): void {
+    public watch(hold: boolean = false): void {
         let fl = this;
         let watch_options = {
             recursive: false
         };
 
         node_watch(fl.path, watch_options, function (filepath) {
-            let job = fl.createJob(filepath); // Arrives as well
+            let job;
+            if (hold === false) {
+                job = fl.createJob(filepath, true); // Arrives as well
+            } else {
+                job = fl.createJob(filepath, false);
+                fl.holdJob(job);
+            }
         });
+    }
+
+    /**
+     * Watches and holds jobs found.
+     */
+    public watchHold(): void {
+        let fl = this;
+        fl.load(true);
+        fl.watch(true);
     }
 
     /**
@@ -142,6 +167,7 @@ export class FolderNest extends Nest {
 
     /**
      * Loads jobs that have piled up in the nest if it was not watched.
+     * No longer used.
      * @returns {Array}     Array of jobs
      */
     public getUnwatchedJobs() {
@@ -155,9 +181,26 @@ export class FolderNest extends Nest {
             let filepath = fl.path + path_mod.sep + filename;
             let job = fl.createJob(filepath, false);
             jobs.push(job);
+            // fl.holdJob(job);
         });
 
         return jobs;
+    }
+
+    /**
+     * Returns all held jobs.
+     * @returns {(FileJob|FolderJob)[]}
+     */
+    public getHeldJobs() {
+        return this.heldJobs;
+    }
+
+    /**
+     * Adds job to array of held jobs.
+     * @param job
+     */
+    protected holdJob(job: (FileJob|FolderJob)) {
+        this.heldJobs.push(job);
     }
 
     // Need to fix the fact that new jobs are created every time. That means the ID is different and it isn't predictable.

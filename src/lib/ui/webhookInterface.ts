@@ -5,6 +5,8 @@ import {FieldOptions} from "./field";
 import {Step} from "./step";
 import {InterfaceMetadata} from "./interfaceMetadata";
 import {InterfaceProperty} from "./InterfaceProperty";
+import {FileJob} from "../job/fileJob";
+import {FolderJob} from "../job/folderJob";
 
 const   shortid     = require("shortid"),
         _           = require("lodash"),
@@ -194,24 +196,24 @@ export class WebhookInterface {
     }
 
     /**
-     * Adds pending jobs to the interfaces job list.
-     * @param nest
-     */
-    public checkNest(nest: FolderNest) {
-        this.checkpointNest = nest;
-    }
-
-    /**
      * Returns checked jobs.
-     * @returns {Array}
+     * @returns {(FileJob|FolderJob)[]}
      */
     public getJobs() {
         let wi = this;
         if (wi.checkpointNest) {
-            return wi.checkpointNest.getUnwatchedJobs();
+            return wi.checkpointNest.getHeldJobs();
         } else {
             return [];
         }
+    }
+
+    /**
+     * Sets the checkpoint nest.
+     * @param nest
+     */
+    public setCheckpointNest(nest: FolderNest) {
+        this.checkpointNest = nest;
     }
 
     /**
