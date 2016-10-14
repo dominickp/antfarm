@@ -64,5 +64,5 @@ export declare class FolderNest extends Nest {
      * @param job
      */
     protected holdJob(job: (FileJob | FolderJob)): void;
-    getJob(jobId: string): void;
+    getJob(jobId: string): any;
 }

@@ -8,7 +8,8 @@ const   node_watch = require("node-watch"),
         fs = require("fs"),
         path_mod = require("path"),
         tmp = require("tmp"),
-        mkdirp = require("mkdirp");
+        mkdirp = require("mkdirp"),
+        _ = require("lodash");
 
 /**
  * A folder nest is a nest which contains a backing folder at a specific path. If the folder does not exist,
@@ -205,6 +206,12 @@ export class FolderNest extends Nest {
 
     // Need to fix the fact that new jobs are created every time. That means the ID is different and it isn't predictable.
     public getJob(jobId: string) {
-
+        let f = this;
+        let job = _.find(f.getHeldJobs(), (j) => j.getId() === jobId );
+        
+        if (!job) {
+            f.e.log(3, `Job ID ${jobId} could not be found in the ${f.getHeldJobs().length} pending held jobs.`, f);
+        }
+        return job;
     }
 }
