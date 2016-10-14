@@ -97,6 +97,7 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="environment.html#_server" class="tsd-kind-icon">_server</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="environment.html#emailer" class="tsd-kind-icon">emailer</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="environment.html#hookinterfaceroutes" class="tsd-kind-icon">hook<wbr>Interface<wbr>Routes</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="environment.html#hookroutes" class="tsd-kind-icon">hook<wbr>Routes</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="environment.html#logger" class="tsd-kind-icon">logger</a></li>
@@ -114,8 +115,10 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="environment.html#addwebhook" class="tsd-kind-icon">add<wbr>Webhook</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="environment.html#addwebhookinterface" class="tsd-kind-icon">add<wbr>Webhook<wbr>Interface</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="environment.html#createemailer" class="tsd-kind-icon">create<wbr>Emailer</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="environment.html#createserver" class="tsd-kind-icon">create<wbr>Server</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="environment.html#getautomanagedfolderdirectory" class="tsd-kind-icon">get<wbr>Auto<wbr>Managed<wbr>Folder<wbr>Directory</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="environment.html#getemailer" class="tsd-kind-icon">get<wbr>Emailer</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="environment.html#getoptions" class="tsd-kind-icon">get<wbr>Options</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="environment.html#log" class="tsd-kind-icon">log</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="environment.html#setoptions" class="tsd-kind-icon">set<wbr>Options</a></li>
@@ -137,7 +140,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/environment/environment.ts#L19">lib/environment/environment.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/environment/environment.ts#L21">lib/environment/environment.ts:21</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -159,7 +162,17 @@
 					<div class="tsd-signature tsd-kind-icon">_server<span class="tsd-signature-symbol">:</span> <a href="server.html" class="tsd-signature-type">Server</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/environment/environment.ts#L17">lib/environment/environment.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/environment/environment.ts#L18">lib/environment/environment.ts:18</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="emailer" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> emailer</h3>
+					<div class="tsd-signature tsd-kind-icon">emailer<span class="tsd-signature-symbol">:</span> <a href="emailer.html" class="tsd-signature-type">Emailer</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/environment/environment.ts#L19">lib/environment/environment.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -169,7 +182,7 @@
 					<div class="tsd-signature tsd-kind-icon">hook<wbr>Interface<wbr>Routes<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/environment/environment.ts#L19">lib/environment/environment.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/environment/environment.ts#L21">lib/environment/environment.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -179,7 +192,7 @@
 					<div class="tsd-signature tsd-kind-icon">hook<wbr>Routes<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/environment/environment.ts#L18">lib/environment/environment.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/environment/environment.ts#L20">lib/environment/environment.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -189,7 +202,7 @@
 					<div class="tsd-signature tsd-kind-icon">logger<span class="tsd-signature-symbol">:</span> <a href="logger.html" class="tsd-signature-type">Logger</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/environment/environment.ts#L16">lib/environment/environment.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/environment/environment.ts#L17">lib/environment/environment.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -199,7 +212,7 @@
 					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <a href="../interfaces/antfarmoptions.html" class="tsd-signature-type">AntfarmOptions</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/environment/environment.ts#L15">lib/environment/environment.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/environment/environment.ts#L16">lib/environment/environment.ts:16</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -216,7 +229,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/environment/environment.ts#L75">lib/environment/environment.ts:75</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/environment/environment.ts#L90">lib/environment/environment.ts:90</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -241,7 +254,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/environment/environment.ts#L83">lib/environment/environment.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/environment/environment.ts#L98">lib/environment/environment.ts:98</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -271,7 +284,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/environment/environment.ts#L92">lib/environment/environment.ts:92</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/environment/environment.ts#L107">lib/environment/environment.ts:107</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -292,6 +305,23 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="createemailer" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> create<wbr>Emailer</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Emailer<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/environment/environment.ts#L54">lib/environment/environment.ts:54</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 					<a name="createserver" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagProtected">Protected</span> create<wbr>Server</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
@@ -301,7 +331,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/environment/environment.ts#L67">lib/environment/environment.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/environment/environment.ts#L82">lib/environment/environment.ts:82</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -323,7 +353,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/environment/environment.ts#L60">lib/environment/environment.ts:60</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/environment/environment.ts#L75">lib/environment/environment.ts:75</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -332,6 +362,23 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getemailer" class="tsd-anchor"></a>
+					<h3>get<wbr>Emailer</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Emailer<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="emailer.html" class="tsd-signature-type">Emailer</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/environment/environment.ts#L59">lib/environment/environment.ts:59</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="emailer.html" class="tsd-signature-type">Emailer</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -345,7 +392,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/environment/environment.ts#L52">lib/environment/environment.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/environment/environment.ts#L67">lib/environment/environment.ts:67</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -367,7 +414,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/environment/environment.ts#L112">lib/environment/environment.ts:112</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/environment/environment.ts#L127">lib/environment/environment.ts:127</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -419,7 +466,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/environment/environment.ts#L30">lib/environment/environment.ts:30</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/environment/environment.ts#L32">lib/environment/environment.ts:32</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -449,7 +496,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/environment/environment.ts#L97">lib/environment/environment.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/environment/environment.ts#L112">lib/environment/environment.ts:112</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -480,6 +527,9 @@
 								<a href="environment.html#_server" class="tsd-kind-icon">_server</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="environment.html#emailer" class="tsd-kind-icon">emailer</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 								<a href="environment.html#hookinterfaceroutes" class="tsd-kind-icon">hook<wbr>Interface<wbr>Routes</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
@@ -501,10 +551,16 @@
 								<a href="environment.html#addwebhookinterface" class="tsd-kind-icon">add<wbr>Webhook<wbr>Interface</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="environment.html#createemailer" class="tsd-kind-icon">create<wbr>Emailer</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="environment.html#createserver" class="tsd-kind-icon">create<wbr>Server</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="environment.html#getautomanagedfolderdirectory" class="tsd-kind-icon">get<wbr>Auto<wbr>Managed<wbr>Folder<wbr>Directory</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="environment.html#getemailer" class="tsd-kind-icon">get<wbr>Emailer</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="environment.html#getoptions" class="tsd-kind-icon">get<wbr>Options</a>
