@@ -205,7 +205,7 @@ export class FolderNest extends Nest {
     }
 
     // Need to fix the fact that new jobs are created every time. That means the ID is different and it isn't predictable.
-    public getJob(jobId: string) {
+    public getHeldJob(jobId: string) {
         let f = this;
         let job = _.find(f.getHeldJobs(), (j) => j.getId() === jobId );
 
