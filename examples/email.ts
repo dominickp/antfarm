@@ -1,11 +1,18 @@
 import {EmailOptions} from "../src/lib/environment/emailOptions";
+import {AntfarmOptions} from "../src/lib/environment/options";
 const Antfarm = require("../lib/antfarm"),
 
     options = {
         port: 8081,
         log_out_level: "debug",
-        auto_managed_folder_directory: "./examples/auto-managed"
-    },
+        auto_managed_folder_directory: "./examples/auto-managed",
+        email_credentials: {
+            username: "noreply@shawmutdelivers.com",
+            password: ">%!-v^S^V*LAfY2drF",
+            service: "Gmail",
+            transportMethod: "SMTP"
+        }
+    } as AntfarmOptions,
 
     af = new Antfarm(options);
 

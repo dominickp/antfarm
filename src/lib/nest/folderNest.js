@@ -7,7 +7,11 @@ var __extends = (this && this.__extends) || function (d, b) {
 var nest_1 = require("./nest");
 var fileJob_1 = require("./../job/fileJob");
 var folderJob_1 = require("./../job/folderJob");
-var node_watch = require("node-watch"), fs = require("fs"), path_mod = require("path"), tmp = require("tmp"), mkdirp = require("mkdirp");
+var node_watch = require("node-watch"), fs = require("fs"), path_mod = require("path"), tmp = require("tmp"), mkdirp = require("mkdirp"), _ = require("lodash");
+/**
+ * A folder nest is a nest which contains a backing folder at a specific path. If the folder does not exist,
+ * antfarm can optionally create it.
+ */
 var FolderNest = (function (_super) {
     __extends(FolderNest, _super);
     function FolderNest(e, path, allowCreate) {
@@ -16,6 +20,7 @@ var FolderNest = (function (_super) {
         this.allowCreate = allowCreate;
         this.checkDirectorySync(path);
         this.path = path;
+        this.heldJobs = [];
     }
     /**
      * Check if the path for the backing folder is created. If not, optionally create it.
@@ -36,6 +41,12 @@ var FolderNest = (function (_super) {
             }
         }
     };
+    /**
+     * Function that creates and arrives new jobs. Can produce file or folder jobs.
+     * @param path
+     * @param arrive
+     * @returns {FolderJob|FileJob}
+     */
     FolderNest.prototype.createJob = function (path, arrive) {
         if (arrive === void 0) { arrive = true; }
         var fl = this;
@@ -71,38 +82,79 @@ var FolderNest = (function (_super) {
         }
         return job;
     };
-    FolderNest.prototype.load = function () {
+    /**
+     * Initial load of the contents of the directory.
+     * @param hold {boolean}    Optional flag to hold jobs found.
+     */
+    FolderNest.prototype.load = function (hold) {
+        if (hold === void 0) { hold = false; }
         var fl = this;
         fs.readdir(fl.path, function (err, items) {
             items = items.filter(function (item) { return !(/(^|\/)\.[^\/\.]/g).test(item); });
             items.forEach(function (filename) {
                 var filepath = fl.path + path_mod.sep + filename;
-                fl.createJob(filepath); // Arrives as well
+                var job;
+                if (hold === false) {
+                    fl.createJob(filepath, true); // Arrives as well
+                }
+                else {
+                    job = fl.createJob(filepath, false);
+                    fl.holdJob(job);
+                }
             });
         });
     };
-    FolderNest.prototype.watch = function () {
+    /**
+     * Watches the folder.
+     * @param hold {boolean}    Optional flag to hold jobs found.
+     */
+    FolderNest.prototype.watch = function (hold) {
+        if (hold === void 0) { hold = false; }
         var fl = this;
         var watch_options = {
             recursive: false
         };
         node_watch(fl.path, watch_options, function (filepath) {
-            // Verify file still exists, node-watch fires on any change, even delete
-            var job = fl.createJob(filepath); // Arrives as well
+            var job;
+            if (hold === false) {
+                job = fl.createJob(filepath, true); // Arrives as well
+            }
+            else {
+                job = fl.createJob(filepath, false);
+                fl.holdJob(job);
+            }
         });
     };
+    /**
+     * Watches and holds jobs found.
+     */
+    FolderNest.prototype.watchHold = function () {
+        var fl = this;
+        fl.load(true);
+        fl.watch(true);
+    };
+    /**
+     * Arrive function that calls the super.
+     * @param job
+     */
     FolderNest.prototype.arrive = function (job) {
         _super.prototype.arrive.call(this, job);
     };
+    /**
+     * Picks up a job from another nest.
+     * @param job
+     * @param callback      Callback is given the job in its parameter.
+     */
     FolderNest.prototype.take = function (job, callback) {
         // the other nest that this is taking from should provide a temporary location or local path of the job
         var new_path = this.path + "/" + job.getBasename();
         fs.renameSync(job.getPath(), new_path);
         job.setPath(new_path);
-        callback(new_path);
+        callback(job);
     };
     /**
      * Loads jobs that have piled up in the nest if it was not watched.
+     * No longer used.
      * @returns {Array}     Array of jobs
      */
     FolderNest.prototype.getUnwatchedJobs = function () {
@@ -114,9 +166,64 @@ var FolderNest = (function (_super) {
             var filepath = fl.path + path_mod.sep + filename;
             var job = fl.createJob(filepath, false);
             jobs.push(job);
+            // fl.holdJob(job);
         });
         return jobs;
+    };
+    /**
+     * Returns all held jobs.
+     * @returns {(FileJob|FolderJob)[]}
+     */
+    FolderNest.prototype.getHeldJobs = function () {
+        return this.heldJobs;
+    };
+    /**
+     * Adds job to array of held jobs.
+     * @param job
+     */
+    FolderNest.prototype.holdJob = function (job) {
+        this.heldJobs.push(job);
+    };
+    /**
+     * Get a held job with a job id. Removes it from the held job queue,
+     * so you should move it out of the folder after using this.
+     * @param jobId
+     * @returns {FileJob|FolderJob}
+     * #### Example
+     * ```js
+     * var tunnel = af.createTunnel("Checkpoint example");
+     * var webhook = af.createWebhookNest(["test", "example"], "get");
+     * var holding_folder = af.createAutoFolderNest(["test", "checkpoint"]);
+     *
+     * var im = webhook.getInterfaceManager();
+     *
+     * // Watch for jobs, hold, and provide to the interface.
+     * im.checkNest(holding_folder);
+     * tunnel.watch(webhook);
+     *
+     * tunnel.run(function(job, nest){
+     *      // Get the job_id from the webhook request
+     *      var job_id = job.getParameter("job_id");
+     *      // Get the held job from the holding folder
+     *      var checkpoint_job = holding_folder.getHeldJob(job_id);
+     *      // Move somewhere else
+     *      checkpoint_job.move(af.createAutoFolderNest(["test", "outfolder"]));
+     * });
+     * ```
+     */
+    FolderNest.prototype.getHeldJob = function (jobId) {
+        var f = this;
+        var job = _.find(f.getHeldJobs(), function (j) { return j.getId() === jobId; });
+        var jobIndex = _.findIndex(f.getHeldJobs(), function (j) { return j.getId() === jobId; });
+        if (!job) {
+            f.e.log(3, "Job ID " + jobId + " could not be found in the " + f.getHeldJobs().length + " pending held jobs.", f);
+        }
+        else {
+            f.heldJobs.splice(jobIndex, 1);
+        }
+        return job;
     };
     return FolderNest;
 }(nest_1.Nest));
 exports.FolderNest = FolderNest;
+//# sourceMappingURL=folderNest.js.map

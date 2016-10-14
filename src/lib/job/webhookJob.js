@@ -6,7 +6,10 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var job_1 = require("./job");
 var fileJob_1 = require("./fileJob");
-var fs = require("fs"), tmp = require("tmp"), url = require("url"), multer = require("multer"), path = require("path");
+var fs = require("fs"), tmp = require("tmp"), url = require("url"), path = require("path"), _ = require("lodash");
+/**
+ * A job that is triggered when a webhook receives a request.
+ */
 var WebhookJob = (function (_super) {
     __extends(WebhookJob, _super);
     /**
@@ -19,7 +22,26 @@ var WebhookJob = (function (_super) {
         _super.call(this, e, "Webhook Job");
         this.request = request;
         this.response = response;
+        this._responseSent = false;
     }
+    Object.defineProperty(WebhookJob.prototype, "responseSent", {
+        /**
+         * Get if the response to the webhook was already sent or not.
+         * @returns {boolean}
+         */
+        get: function () {
+            return this._responseSent;
+        },
+        /**
+         * Set if the response to the webhook was already sent or not.
+         * @param sent
+         */
+        set: function (sent) {
+            this._responseSent = sent;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**
      * Get the HTTP response object.
      * @returns {ClientResponse}
@@ -65,41 +87,6 @@ var WebhookJob = (function (_super) {
         var url_parts = url.parse(wh.getRequest().url, true);
         return url_parts.query;
     };
-    /**
-     * Gets a FileJob from the request body with a temporary file name.
-     * The callback will be given the job as its parameter.
-     * #### Example
-     * ```js
-     *  webhookJob.getDataAsFileJob(function(fileJob){
-     *      fileJob.rename("myfile.zip");
-     *      fileJob.move(af.createFolderNest("/var/out/webhook"));
-     *  });
-     * ```
-     * @returns {any}
-     */
-    // public getDataAsFileJob(callback: any) {
-    //     let wh = this;
-    //     let req = wh.getRequest();
-    //     let res = wh.getResponse();
-    //     let data = [];
-    //
-    //
-    //     console.log("ctype", req.headers);
-    //
-    //     req.on("data", function(chunk) {
-    //         data.push(chunk);
-    //     });
-    //     req.on("end", function() {
-    //         let buffer = Buffer.concat(data);
-    //
-    //         let filePath = tmp.tmpNameSync();
-    //         fs.writeFileSync(filePath, buffer);
-    //
-    //         let fileJob = new FileJob(wh.e, filePath);
-    //
-    //         callback(fileJob);
-    //     });
-    // }
     /**
      * Returns FileJobs made from files sent via FormData to the webhook.
      * @returns {FileJob[]}
@@ -163,6 +150,28 @@ var WebhookJob = (function (_super) {
             callback(data);
         });
     };
+    /**
+     * Returns an array of parameters from both the query string and form-data.
+     */
+    WebhookJob.prototype.getParameters = function () {
+        var wh = this;
+        return _.merge(wh.getQueryStringValues(), wh.getFormDataValues());
+    };
+    /**
+     * Returns a parameter from both the query string and form-data.
+     * @param key
+     * @returns {any}
+     */
+    WebhookJob.prototype.getParameter = function (key) {
+        var wh = this;
+        if (_.has(wh.getParameters(), key)) {
+            return wh.getParameters()[key];
+        }
+        else {
+            return false;
+        }
+    };
     return WebhookJob;
 }(job_1.Job));
 exports.WebhookJob = WebhookJob;
+//# sourceMappingURL=webhookJob.js.map

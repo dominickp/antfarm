@@ -181,11 +181,8 @@ export abstract class Job {
     public email(emailOptions: EmailOptions) {
         let job = this;
         let emailer = job.e.getEmailer();
-        // NEEDS TO BE FIXED
-        console.log(emailOptions);
 
-
-        // return emailer.sendMail(emailOptions);
+        emailer.sendMail(emailOptions);
 
     }
 

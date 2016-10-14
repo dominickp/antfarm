@@ -113,10 +113,14 @@ var Job = (function () {
      * @param reason
      */
     Job.prototype.fail = function (reason) {
-        if (!this.tunnel) {
-            this.e.log(3, "Job \"" + this.getName() + "\" failed before tunnel was set.", this);
+        var j = this;
+        if (!j.getTunnel()) {
+            j.e.log(3, "Job \"" + j.getName() + "\" failed before tunnel was set.", j);
         }
-        this.tunnel.executeFail(this, this.nest, reason);
+        if (!j.getNest()) {
+            j.e.log(3, "Job \"" + j.getName() + "\" does not have a nest.", j);
+        }
+        j.tunnel.executeFail(j, j.getNest(), reason);
     };
     /**
      * Transfer a job to another tunnel directly.
@@ -130,6 +134,23 @@ var Job = (function () {
         job.e.log(1, "Transferred to Tunnel \"" + tunnel.getName() + "\".", job, [oldTunnel]);
         job.createLifeEvent("transfer", oldTunnel.getName(), tunnel.getName());
     };
+    /**
+     * Move function error.
+     */
+    Job.prototype.move = function (destinationNest, callback) {
+        throw "This type of job cannot be moved.";
+    };
+    /**
+     * Sends an email.
+     */
+    Job.prototype.email = function (emailOptions) {
+        var job = this;
+        var emailer = job.e.getEmailer();
+        // NEEDS TO BE FIXED
+        console.log(emailOptions);
+        emailer.sendMail(emailOptions);
+    };
     return Job;
 }());
 exports.Job = Job;
+//# sourceMappingURL=job.js.map

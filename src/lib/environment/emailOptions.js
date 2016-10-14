@@ -5,3 +5,4 @@ var EmailOptions = (function () {
     return EmailOptions;
 }());
 exports.EmailOptions = EmailOptions;
+//# sourceMappingURL=emailOptions.js.map

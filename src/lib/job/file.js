@@ -95,3 +95,4 @@ var File = (function () {
     return File;
 }());
 exports.File = File;
+//# sourceMappingURL=file.js.map

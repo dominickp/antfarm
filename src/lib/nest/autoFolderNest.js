@@ -45,3 +45,4 @@ var AutoFolderNest = (function (_super) {
     return AutoFolderNest;
 }(folderNest_1.FolderNest));
 exports.AutoFolderNest = AutoFolderNest;
+//# sourceMappingURL=autoFolderNest.js.map

@@ -12,7 +12,7 @@ var Logger = (function () {
         this.log_types = {
             0: "debug",
             1: "info",
-            2: "warning",
+            2: "warn",
             3: "error"
         };
         winston.emitErrs = true;
@@ -40,7 +40,7 @@ var Logger = (function () {
     };
     ;
     /**
-     * Initializae logger
+     * Initialize logger
      */
     Logger.prototype.createLogger = function () {
         var lg = this;
@@ -142,3 +142,4 @@ var Logger = (function () {
     return Logger;
 }());
 exports.Logger = Logger;
+//# sourceMappingURL=logger.js.map
