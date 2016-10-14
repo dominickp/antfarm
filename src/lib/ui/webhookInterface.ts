@@ -174,8 +174,8 @@ export class WebhookInterface {
      * @returns {{fields: Array}}
      */
     public getTransportInterface() {
-
-        let jobs = this.getJobs();
+        let wi = this;
+        let jobs = wi.getJobs();
         let jobsArray = [];
 
         jobs.forEach((job) => {
@@ -187,11 +187,11 @@ export class WebhookInterface {
         });
 
         return {
-            sessionId: this.sessionId,
-            fields: this.fields,
-            jobs: jobsArray,
-            steps: this.getSteps(),
-            metadata: this.getMetadata()
+            sessionId: wi.sessionId,
+            fields: wi.fields,
+            heldJobs: jobsArray,
+            steps: wi.getSteps(),
+            metadata: wi.getMetadata()
         };
     }
 

@@ -104,7 +104,7 @@ export declare class WebhookInterface {
     getTransportInterface(): {
         sessionId: string;
         fields: FieldOptions[];
-        jobs: any[];
+        heldJobs: any[];
         steps: Step[];
         metadata: InterfaceMetadata;
     };
