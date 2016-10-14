@@ -3,6 +3,6 @@ export declare class EmailOptions {
     to: string | string[];
     cc: string | string[];
     bcc: string | string[];
-    templatePath?: string;
-    body?: string;
+    templatePath: string;
+    body: string;
 }
