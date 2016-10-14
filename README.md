@@ -15,18 +15,18 @@ $ npm install antfarm
 ```
 
 ```js
-var Antfarm = require('antfarm'),
-   af = new Antfarm();
+const   Antfarm = require('antfarm'),
+        af = new Antfarm();
    
-var hotfolder_a = af.createFolderNest("/var/hotfolders/a");
-var pdf_folder = af.createFolderNest("/var/out/pdf");
-var other_folder = af.createFolderNest("/var/out/others");
+let hotfolder_a = af.createFolderNest("/var/hotfolders/a");
+let pdf_folder = af.createFolderNest("/var/out/pdf");
+let other_folder = af.createFolderNest("/var/out/others");
 
-var tunnel = af.createTunnel("Simple pdf sorting workflow");
+let tunnel = af.createTunnel("Simple pdf sorting workflow");
 
 tunnel.watch(hotfolder_a);
 
-tunnel.run(function(job, nest){
+tunnel.run((job, nest) => {
     if(job.getExtension() == "pdf"){
         job.move(pdf_folder);
     } else {
