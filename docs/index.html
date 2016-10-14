@@ -75,18 +75,18 @@
 				<h2 id="usage">Usage</h2>
 				<pre><code class="lang-sh">$ npm install antfarm
 </code></pre>
-				<pre><code class="lang-js"><span class="hljs-keyword">var</span> Antfarm = <span class="hljs-built_in">require</span>(<span class="hljs-string">'antfarm'</span>),
-   af = <span class="hljs-keyword">new</span> Antfarm();
+				<pre><code class="lang-js"><span class="hljs-keyword">const</span>   Antfarm = <span class="hljs-built_in">require</span>(<span class="hljs-string">'antfarm'</span>),
+        af = <span class="hljs-keyword">new</span> Antfarm();
 
-<span class="hljs-keyword">var</span> hotfolder_a = af.createFolderNest(<span class="hljs-string">"/var/hotfolders/a"</span>);
-<span class="hljs-keyword">var</span> pdf_folder = af.createFolderNest(<span class="hljs-string">"/var/out/pdf"</span>);
-<span class="hljs-keyword">var</span> other_folder = af.createFolderNest(<span class="hljs-string">"/var/out/others"</span>);
+<span class="hljs-keyword">let</span> hotfolder_a = af.createFolderNest(<span class="hljs-string">"/var/hotfolders/a"</span>);
+<span class="hljs-keyword">let</span> pdf_folder = af.createFolderNest(<span class="hljs-string">"/var/out/pdf"</span>);
+<span class="hljs-keyword">let</span> other_folder = af.createFolderNest(<span class="hljs-string">"/var/out/others"</span>);
 
-<span class="hljs-keyword">var</span> tunnel = af.createTunnel(<span class="hljs-string">"Simple pdf sorting workflow"</span>);
+<span class="hljs-keyword">let</span> tunnel = af.createTunnel(<span class="hljs-string">"Simple pdf sorting workflow"</span>);
 
 tunnel.watch(hotfolder_a);
 
-tunnel.run(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest</span>)</span>{
+tunnel.run(<span class="hljs-function">(<span class="hljs-params">job, nest</span>) =&gt;</span> {
     <span class="hljs-keyword">if</span>(job.getExtension() == <span class="hljs-string">"pdf"</span>){
         job.move(pdf_folder);
     } <span class="hljs-keyword">else</span> {
