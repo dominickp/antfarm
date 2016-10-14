@@ -9,6 +9,9 @@ const   fs = require("fs"),
         path = require("path"),
         _ = require("lodash");
 
+/**
+ * A job that is triggered when a webhook receives a request.
+ */
 export class WebhookJob extends Job {
 
     protected request;
@@ -28,10 +31,18 @@ export class WebhookJob extends Job {
         this._responseSent = false;
     }
 
+    /**
+     * Set if the response to the webhook was already sent or not.
+     * @param sent
+     */
     public set responseSent(sent: boolean) {
         this._responseSent = sent;
     }
 
+    /**
+     * Get if the response to the webhook was already sent or not.
+     * @returns {boolean}
+     */
     public get responseSent() {
         return this._responseSent;
     }

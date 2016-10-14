@@ -28,9 +28,7 @@ export class Logger {
 
     constructor(options?: AntfarmOptions) {
         winston.emitErrs = true;
-
         this.options = options;
-
         this.createLogger();
     }
 
@@ -59,7 +57,7 @@ export class Logger {
     };
 
     /**
-     * Initializae logger
+     * Initialize logger
      */
     protected createLogger() {
         let lg = this;

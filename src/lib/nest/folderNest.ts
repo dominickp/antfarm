@@ -10,21 +10,21 @@ const   node_watch = require("node-watch"),
         tmp = require("tmp"),
         mkdirp = require("mkdirp");
 
+/**
+ * A folder nest is a nest which contains a backing folder at a specific path. If the folder does not exist,
+ * antfarm can optionally create it.
+ */
 export class FolderNest extends Nest {
 
     protected path: string;
     protected allowCreate: boolean;
 
     constructor(e: Environment, path?: string, allowCreate?: boolean) {
-
         let nest_name = path_mod.basename(path);
-
         super(e, nest_name);
 
         this.allowCreate = allowCreate;
-
         this.checkDirectorySync(path);
-
         this.path = path;
     }
 
@@ -46,6 +46,12 @@ export class FolderNest extends Nest {
         }
     }
 
+    /**
+     * Function that creates and arrives new jobs. Can produce file or folder jobs.
+     * @param path
+     * @param arrive
+     * @returns {FolderJob|FileJob}
+     */
     protected createJob(path: string, arrive = true) {
 
         let fl = this;
@@ -82,44 +88,50 @@ export class FolderNest extends Nest {
         return job;
     }
 
-    public load() {
-
+    /**
+     * Initial load of the contents of the directory.
+     */
+    public load(): void {
         let fl = this;
-        fs.readdir(fl.path, function(err, items) {
+        fs.readdir(fl.path, (err, items) => {
             items = items.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
 
-            items.forEach(function(filename){
-
+            items.forEach((filename) => {
                 let filepath = fl.path + path_mod.sep + filename;
-
                 fl.createJob(filepath); // Arrives as well
             });
         });
     }
 
-    public watch() {
-
+    /**
+     * Watches the folder.
+     */
+    public watch(): void {
         let fl = this;
-
         let watch_options = {
             recursive: false
         };
 
         node_watch(fl.path, watch_options, function (filepath) {
-
-            // Verify file still exists, node-watch fires on any change, even delete
             let job = fl.createJob(filepath); // Arrives as well
         });
     }
 
+    /**
+     * Arrive function that calls the super.
+     * @param job
+     */
     public arrive(job: FileJob) {
         super.arrive(job);
     }
 
+    /**
+     * Picks up a job from another nest.
+     * @param job
+     * @param callback      Callback is given the job in its parameter.
+     */
     public take(job: FileJob, callback: any) {
-
         // the other nest that this is taking from should provide a temporary location or local path of the job
-
         let new_path = `${this.path}/${job.getBasename()}`;
 
         fs.renameSync(job.getPath(), new_path);
@@ -146,6 +158,5 @@ export class FolderNest extends Nest {
         });
 
         return jobs;
-
     }
 }

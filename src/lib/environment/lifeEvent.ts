@@ -1,11 +1,11 @@
+/**
+ * The LifeEvent class provides a lifecycle that can be provided to debug job failures.
+ */
 export class LifeEvent {
 
     protected date: Date;
-
     protected verb: string;
-
     protected start: string;
-
     protected finish: string;
 
     constructor(verb, start, finish) {

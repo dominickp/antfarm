@@ -1,3 +1,6 @@
+/**
+ * Global antfarm options.
+ */
 export interface AntfarmOptions {
     /**
      * The directory for logs to be saved.

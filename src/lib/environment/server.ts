@@ -210,7 +210,6 @@ export class Server {
 
         if (ui.getSessionId() === sessionId) {
             // Fill in default values
-            // let fields = ui.getInterface().fields;
             let fields = ui.getFields();
             fields.forEach(field => {
                 if (field.id in params && params[field.id] !== "undefined") {
@@ -219,12 +218,6 @@ export class Server {
             });
 
             // Do steps
-            // NEEDS TO BE ASYNCHRONOUS, HAVE A DONE CALBACK
-            // ui.getSteps().forEach(function(step){
-            //     s.e.log(0, `Running UI step "${step.name}".`, s);
-            //     step.callback(job, ui, step);
-            // });
-
             async.each(ui.getSteps(), (step, cb) => {
                 s.e.log(0, `Running UI step "${step.name}".`, s);
                 step.callback(job, ui, step, () => {
@@ -253,5 +246,4 @@ export class Server {
         }
 
     };
-
 }

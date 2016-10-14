@@ -2,8 +2,7 @@ import {FileJob} from "./fileJob";
 import {File} from "./file";
 import {Environment} from "./../environment/environment";
 
-const   tmp = require("tmp"),
-        fs = require("fs");
+const   tmp = require("tmp");
 
 export class FtpFileJob extends FileJob {
 

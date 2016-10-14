@@ -13,17 +13,11 @@ const   async = require("async"),
 export class Tunnel {
 
     protected name: string;
-
     protected nests: Nest[];
-
     protected run_list: any[];
-
     protected run_sync_list: any[];
-
     protected run_fail: any;
-
     protected e: Environment;
-
     protected job_counter: number;
 
     protected match_obj = {
@@ -97,10 +91,19 @@ export class Tunnel {
         this.run_sync_list.push(callback);
     }
 
+    /**
+     * Failed jobs runner.
+     * @param callback
+     */
     public fail(callback) {
         this.run_fail = callback;
     }
 
+    /**
+     * Asynchronous run event.
+     * @param job
+     * @param nest
+     */
     protected executeRun(job: Job, nest: Nest) {
         let tn = this;
 
@@ -112,11 +115,15 @@ export class Tunnel {
                     // Fail if an error is thrown
                     tn.executeFail(job, nest, e);
                 }
-
             });
         }
     }
 
+    /**
+     * Synchronous run event.
+     * @param job
+     * @param nest
+     */
     protected executeRunSync(job: Job, nest: Nest) {
         let tn = this;
 
@@ -141,6 +148,12 @@ export class Tunnel {
         }
     }
 
+    /**
+     * Fail run event.
+     * @param job
+     * @param nest
+     * @param reason
+     */
     public executeFail(job: Job, nest: Nest, reason: string) {
         let tn = this;
         tn.e.log(3, `Failed for reason "${reason}".`, tn, [job, nest]);

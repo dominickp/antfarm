@@ -1,5 +1,8 @@
 import { Environment } from "../environment/environment";
 import { Job } from "./job";
+/**
+ * A job that is triggered when a webhook receives a request.
+ */
 export declare class WebhookJob extends Job {
     protected request: any;
     protected response: any;
@@ -11,6 +14,14 @@ export declare class WebhookJob extends Job {
      * @param response
      */
     constructor(e: Environment, request: any, response: any);
+    /**
+     * Get if the response to the webhook was already sent or not.
+     * @returns {boolean}
+     */
+    /**
+     * Set if the response to the webhook was already sent or not.
+     * @param sent
+     */
     responseSent: boolean;
     /**
      * Get the HTTP response object.

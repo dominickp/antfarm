@@ -43,9 +43,29 @@ export declare class Tunnel {
      * @param callback
      */
     runSync(callback: any): void;
+    /**
+     * Failed jobs runner.
+     * @param callback
+     */
     fail(callback: any): void;
+    /**
+     * Asynchronous run event.
+     * @param job
+     * @param nest
+     */
     protected executeRun(job: Job, nest: Nest): void;
+    /**
+     * Synchronous run event.
+     * @param job
+     * @param nest
+     */
     protected executeRunSync(job: Job, nest: Nest): void;
+    /**
+     * Fail run event.
+     * @param job
+     * @param nest
+     * @param reason
+     */
     executeFail(job: Job, nest: Nest, reason: string): void;
     /**
      * Interface for matching two or more files together based on an array of glob filename patterns.

@@ -14,7 +14,6 @@ import {S3Nest} from "./nest/s3Nest";
 /**
  * Expose `Antfarm`.
  */
-
 export class Antfarm {
 
     protected e: Environment;
