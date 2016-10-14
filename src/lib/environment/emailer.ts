@@ -1,4 +1,5 @@
 
+import {EmailOptions} from "./emailOptions";
 /**
  * Emailing service
  */
@@ -9,4 +10,10 @@ export class Emailer {
     constructor() {
 
     }
+
+    public sendMail(options: EmailOptions) {
+
+    }
+
+
 }

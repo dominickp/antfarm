@@ -101,5 +101,5 @@ export declare abstract class Job {
     /**
      * Sends an email.
      */
-    email(emailOptions: EmailOptions): any;
+    email(emailOptions: EmailOptions): void;
 }
