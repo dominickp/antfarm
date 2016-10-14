@@ -176,7 +176,7 @@ export class WebhookInterface {
         let jobs = this.getJobs();
         let jobsArray = [];
 
-        jobs.forEach(function(job){
+        jobs.forEach((job) => {
             jobsArray.push({
                 id: job.getId(),
                 name: job.getName(),
@@ -201,9 +201,14 @@ export class WebhookInterface {
         this.checkpointNest = nest;
     }
 
+    /**
+     * Returns checked jobs.
+     * @returns {Array}
+     */
     public getJobs() {
-        if (this.checkpointNest) {
-            return this.checkpointNest.getUnwatchedJobs();
+        let wi = this;
+        if (wi.checkpointNest) {
+            return wi.checkpointNest.getUnwatchedJobs();
         } else {
             return [];
         }

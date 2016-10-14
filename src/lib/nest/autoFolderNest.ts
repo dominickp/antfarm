@@ -22,12 +22,12 @@ export class AutoFolderNest extends FolderNest {
          * Creates the hierarchy string used for the auto managed path.
          * @param hierarchy
          */
-        let getHierarchyString = function(hierarchy: string|string[]) {
+        let getHierarchyString = (hierarchy: string|string[]) => {
             let hierarchyString = "";
             if (typeof(hierarchy) === "string") {
                 hierarchyString = encodeURIComponent(hierarchy.toString());
             } else if (hierarchy instanceof Array) {
-                hierarchy.forEach(function(pi){
+                hierarchy.forEach((pi) => {
                     hierarchyString += "/" + encodeURIComponent(pi);
                 });
             } else {
