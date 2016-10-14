@@ -45,6 +45,10 @@ export class Antfarm {
      * @param path          Path of the folder.
      * @param allowCreate   Optional boolean flag to allow creation of folder if it does not exist.
      * @returns {FolderNest}
+     * #### Example
+     * ```js
+     * var out_folder = af.createFolderNest("/Users/dominick/Desktop/My Folder/");
+     * ```
      */
     public createFolderNest(path?: string, allowCreate = false) {
         return new FolderNest(this.e, path, allowCreate);
@@ -78,6 +82,11 @@ export class Antfarm {
      * @param password      FTP account password.
      * @param checkEvery    Frequency of re-checking FTP in minutes.
      * @returns {FtpNest}
+     * #### Example
+     * ```js
+     * // Check FTP directory every 2 minutes
+     * var my_ftp = af.createFtpNest("ftp.example.com", 21, "", "", 2);
+     * ```
      */
     public createFtpNest(host: string, port = 21, username = "", password = "", checkEvery = 10) {
         return new FtpNest(this.e, host, port, username, password, checkEvery);
@@ -90,6 +99,9 @@ export class Antfarm {
      * @param checkEvery
      * @param allowCreation
      * @returns {S3Nest}
+     * ```js
+     * var bucket = af.createS3Nest("my-bucket-name", "", 1, true);
+     * ```
      */
     public createS3Nest(bucket: string, keyPrefix?: string, checkEvery: number = 5, allowCreation: boolean = false) {
         return new S3Nest(this.e, bucket, keyPrefix, checkEvery, allowCreation);
@@ -126,6 +138,10 @@ export class Antfarm {
     /**
      * Load an entire directory of workflow modules.
      * @param directory     Path to the workflow modules.
+     * #### Example
+     * ```js
+     * af.loadDir("./workflows");
+     * ```
      */
     public loadDir(directory: string) {
         let af = this;
@@ -150,10 +166,14 @@ export class Antfarm {
 
     /**
      * Log messages into the antfarm logger.
-     * @param type
-     * @param message
-     * @param actor
-     * @param instances
+     * @param type {number}         The log level. 0 = debug, 1 = info, 2 = warning, 3 = error
+     * @param message {string}       Log message.
+     * @param actor  {any}           Instance which triggers the action being logged.
+     * @param instances {any[]}      Array of of other involved instances.
+     * #### Example
+     * ```js
+     * job.e.log(1, `Transferred to Tunnel "${tunnel.getName()}".`, job, [oldTunnel]);
+     * ```
      */
     public log(type: number, message: string, actor?: any, instances = []) {
         let af = this;
