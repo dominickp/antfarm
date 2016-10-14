@@ -64,5 +64,32 @@ export declare class FolderNest extends Nest {
      * @param job
      */
     protected holdJob(job: (FileJob | FolderJob)): void;
-    getJob(jobId: string): any;
+    /**
+     * Get a held job with a job id. Removes it from the held job queue,
+     * so you should move it out of the folder after using this.
+     * @param jobId
+     * @returns {FileJob|FolderJob}
+     * #### Example
+     * ```js
+     * var tunnel = af.createTunnel("Checkpoint example");
+     * var webhook = af.createWebhookNest(["test", "example"], "get");
+     * var holding_folder = af.createAutoFolderNest(["test", "checkpoint"]);
+     *
+     * var im = webhook.getInterfaceManager();
+     *
+     * // Watch for jobs, hold, and provide to the interface.
+     * im.checkNest(holding_folder);
+     * tunnel.watch(webhook);
+     *
+     * tunnel.run(function(job, nest){
+     *      // Get the job_id from the webhook request
+     *      var job_id = job.getParameter("job_id");
+     *      // Get the held job from the holding folder
+     *      var checkpoint_job = holding_folder.getHeldJob(job_id);
+     *      // Move somewhere else
+     *      checkpoint_job.move(af.createAutoFolderNest(["test", "outfolder"]));
+     * });
+     * ```
+     */
+    getHeldJob(jobId: string): any;
 }
