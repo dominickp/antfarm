@@ -3,6 +3,10 @@ import { WebhookNest } from "../nest/webhookNest";
 import { Server } from "./server";
 import { InterfaceManager } from "../ui/interfaceManager";
 import { AntfarmOptions } from "./options";
+/**
+ * The environment class controls all aspects of the antfarm environment, like options, logging,
+ * and constructing globally referenced objects.
+ */
 export declare class Environment {
     protected options: AntfarmOptions;
     protected logger: Logger;
@@ -10,17 +14,29 @@ export declare class Environment {
     protected hookRoutes: any[];
     protected hookInterfaceRoutes: any[];
     constructor(options: AntfarmOptions);
+    /**
+     * Sets the options and creates other environmental objects if necessary.
+     * @param options
+     */
     protected setOptions(options: AntfarmOptions): void;
     /**
      * Get the Antfarm options.
      * @returns {AntfarmOptions}
      */
     getOptions(): AntfarmOptions;
+    /**
+     * Return the auto managed folder directory, if set.
+     * @returns {string}
+     */
     getAutoManagedFolderDirectory(): string;
     /**
      * Creates the server.
      */
     protected createServer(): void;
+    /**
+     * Get the server instance.
+     * @returns {Server}
+     */
     readonly server: Server;
     /**
      * Adds a webhook to the webhook server.
@@ -33,5 +49,16 @@ export declare class Environment {
      */
     addWebhookInterface(im: InterfaceManager): void;
     toString(): string;
+    /**
+     * Adds a log entry to the Logger instance.
+     * @param type {number}
+     * @param message {string}       Log message.
+     * @param actor  {any}           Instance which triggers the action being logged.
+     * @param instances {any[]}      Array of of other involved instances.
+     * #### Example
+     * ```js
+     * job.e.log(1, `Transferred to Tunnel "${tunnel.getName()}".`, job, [oldTunnel]);
+     * ```
+     */
     log(type: number, message: string, actor?: any, instances?: any[]): void;
 }

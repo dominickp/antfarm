@@ -1,13 +1,15 @@
 import {Logger} from "./logger";
-import {WebhookJob} from "../job/webhookJob";
 import {WebhookNest} from "../nest/webhookNest";
-import {WebhookInterface} from "../ui/webhookInterface";
 import {Server} from "./server";
 import {InterfaceManager} from "../ui/interfaceManager";
 import {AntfarmOptions} from "./options";
 
 const   fs = require("fs");
 
+/**
+ * The environment class controls all aspects of the antfarm environment, like options, logging,
+ * and constructing globally referenced objects.
+ */
 export class Environment {
 
     protected options: AntfarmOptions;
@@ -17,12 +19,14 @@ export class Environment {
     protected hookInterfaceRoutes = [];
 
     constructor(options: AntfarmOptions) {
-
         this.logger = new Logger(options);
-
         this.setOptions(options);
     }
 
+    /**
+     * Sets the options and creates other environmental objects if necessary.
+     * @param options
+     */
     protected setOptions(options: AntfarmOptions) {
         let e = this;
 
@@ -49,6 +53,10 @@ export class Environment {
         return this.options;
     }
 
+    /**
+     * Return the auto managed folder directory, if set.
+     * @returns {string}
+     */
     public getAutoManagedFolderDirectory() {
         return this.options.auto_managed_folder_directory;
     }
@@ -56,40 +64,14 @@ export class Environment {
     /**
      * Creates the server.
      */
-    // protected createServer() {
-    //     let e = this;
-    //     e.server = http.createServer(function(request, response) {
-    //         try {
-    //             response.setHeader("Access-Control-Allow-Headers", "Content-Type,Accept");
-    //             response.setHeader("Access-Control-Allow-Origin", "*");
-    //             e.router(request, response, finalhandler(request, response));
-    //         } catch (err) {
-    //             e.log(3, err, e);
-    //         }
-    //     });
-    //
-    //     e.server.listen(e.options.port, function(){
-    //         // Callback triggered when server is successfully listening. Hurray!
-    //         e.log(1, "Server listening on: http://localhost:" +  e.options.port, e);
-    //     });
-    //
-    //     e.router.get("/hooks", function (req, res) {
-    //         res.setHeader("Content-Type", "application/json; charset=utf-8");
-    //         res.setHeader("Access-Control-Allow-Origin", "*");
-    //         res.end(JSON.stringify(e.hookRoutes));
-    //     });
-    //     e.router.get("/hooks-ui", function (req, res) {
-    //         res.setHeader("Content-Type", "application/json; charset=utf-8");
-    //         res.setHeader("Access-Control-Allow-Origin", "*");
-    //         res.end(JSON.stringify(e.hookInterfaceRoutes));
-    //     });
-    // }
-
     protected createServer() {
-        let server = new Server(this);
-        this._server = server;
+        this._server = new Server(this);
     }
 
+    /**
+     * Get the server instance.
+     * @returns {Server}
+     */
     public get server() {
         return this._server;
     }
@@ -116,12 +98,18 @@ export class Environment {
         return "Environment";
     }
 
+    /**
+     * Adds a log entry to the Logger instance.
+     * @param type {number}
+     * @param message {string}       Log message.
+     * @param actor  {any}           Instance which triggers the action being logged.
+     * @param instances {any[]}      Array of of other involved instances.
+     * #### Example
+     * ```js
+     * job.e.log(1, `Transferred to Tunnel "${tunnel.getName()}".`, job, [oldTunnel]);
+     * ```
+     */
     public log(type: number, message: string, actor?: any, instances = []) {
-        // try {
-        //     this.logger.log(type, message, actor, instances);
-        // } catch (e) {
-        //     console.log(e);
-        // }
         this.logger.log(type, message, actor, instances);
     }
 }
