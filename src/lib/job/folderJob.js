@@ -165,3 +165,4 @@ var FolderJob = (function (_super) {
     return FolderJob;
 }(job_1.Job));
 exports.FolderJob = FolderJob;
+//# sourceMappingURL=folderJob.js.map

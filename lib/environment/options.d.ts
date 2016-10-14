@@ -1,3 +1,4 @@
+import { EmailCredentials } from "./emailCredentials";
 /**
  * Global antfarm options.
  */
@@ -37,9 +38,5 @@ export interface AntfarmOptions {
     /**
      * Service nameif not using a hostname. Acceptable options: gmail.
      */
-    email_service?: string;
-    email_hostname?: string;
-    email_port: number;
-    email_username: string;
-    email_password: string;
+    email_credentials: EmailCredentials;
 }

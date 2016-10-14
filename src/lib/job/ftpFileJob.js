@@ -5,7 +5,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var fileJob_1 = require("./fileJob");
-var tmp = require("tmp"), fs = require("fs");
+var tmp = require("tmp");
 var FtpFileJob = (function (_super) {
     __extends(FtpFileJob, _super);
     function FtpFileJob(e, basename) {
@@ -18,3 +18,4 @@ var FtpFileJob = (function (_super) {
     return FtpFileJob;
 }(fileJob_1.FileJob));
 exports.FtpFileJob = FtpFileJob;
+//# sourceMappingURL=ftpFileJob.js.map

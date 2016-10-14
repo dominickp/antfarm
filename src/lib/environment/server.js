@@ -1,7 +1,7 @@
 "use strict";
 var webhookJob_1 = require("../job/webhookJob");
 var express = require("express");
-var cors = require("cors"), multer = require("multer"), path = require("path"), tmp = require("tmp");
+var cors = require("cors"), multer = require("multer"), path = require("path"), tmp = require("tmp"), async = require("async");
 /**
  * Webhook and logging server.
  */
@@ -12,35 +12,6 @@ var Server = (function () {
         this.config = {
             hooks_prefix: "/hooks",
             hooks_ui_prefix: "/hooks-ui"
-        };
-        /**
-         * Handles request and response of the web hook, creates a new job, as well as calling the nest's arrive.
-         * @param nest {WebhookNest}
-         * @param req {express.Request}
-         * @param res {express.Response}
-         * @param customHandler     Custom request handler.
-         */
-        this.handleHookRequest = function (nest, req, res, customHandler) {
-            var s = this;
-            // Job arrive
-            var job = new webhookJob_1.WebhookJob(s.e, req, res);
-            nest.arrive(job);
-            if (customHandler) {
-                customHandler(req, res, job, nest);
-            }
-            else {
-                var response = {
-                    message: "Job " + job.getId() + " was created!",
-                    job: {
-                        id: job.getId(),
-                        name: job.getName()
-                    },
-                    nest: {
-                        name: nest.getName()
-                    }
-                };
-                res.json(response);
-            }
         };
         /**
          * Handles request and response of the web hook interface.
@@ -60,7 +31,6 @@ var Server = (function () {
             var ui = im.getInterface(sessionId);
             if (ui.getSessionId() === sessionId) {
                 // Fill in default values
-                // let fields = ui.getInterface().fields;
                 var fields = ui.getFields();
                 fields.forEach(function (field) {
                     if (field.id in params && params[field.id] !== "undefined") {
@@ -68,16 +38,33 @@ var Server = (function () {
                     }
                 });
                 // Do steps
-                ui.getSteps().forEach(function (step) {
-                    s.e.log(1, "Running UI step \"" + step.name + "\".", s);
-                    step.callback(job, ui, step);
+                async.each(ui.getSteps(), function (step, cb) {
+                    s.e.log(0, "Running UI step \"" + step.name + "\".", s);
+                    step.callback(job, ui, step, function () {
+                        cb();
+                    });
+                }, function (err) {
+                    if (err) {
+                        s.e.log(3, "Error running UI steps. " + err, s);
+                    }
+                    else {
+                        s.e.log(0, "Done running all UI steps.", s);
+                    }
+                    if (customHandler) {
+                        customHandler(req, res, ui);
+                    }
+                    else {
+                        res.json(ui.getTransportInterface());
+                    }
                 });
             }
-            if (customHandler) {
-                customHandler(req, res, ui);
-            }
             else {
-                res.json(ui.getTransportInterface());
+                if (customHandler) {
+                    customHandler(req, res, ui);
+                }
+                else {
+                    res.json(ui.getTransportInterface());
+                }
             }
         };
         this.e = e;
@@ -89,7 +76,6 @@ var Server = (function () {
             destination: tmpDir,
             storage: multer.diskStorage({
                 filename: function (req, file, cb) {
-                    console.log(req.headers);
                     cb(null, file.fieldname + "-" + Date.now());
                 }
             })
@@ -109,6 +95,10 @@ var Server = (function () {
         s.server.get(s.config.hooks_ui_prefix, function (req, res) {
             res.json(s.hookInterfaceRoutes);
         });
+        // Prevent duplicate listening for tests
+        // if (!module.parent) {
+        //     s.server.listen(port, () => s.e.log(1, `Server up and listening on port ${port}.`, s));
+        // }
         s.server.listen(port, function () { return s.e.log(1, "Server up and listening on port " + port + ".", s); });
     };
     /**
@@ -146,6 +136,53 @@ var Server = (function () {
         });
     };
     /**
+     * Handles request and response of the web hook, creates a new job, as well as calling the nest's arrive.
+     * @param nest {WebhookNest}
+     * @param req {express.Request}
+     * @param res {express.Response}
+     * @param customHandler     Custom request handler.
+     */
+    Server.prototype.handleHookRequest = function (nest, req, res, customHandler) {
+        var s = this;
+        // Job arrive
+        var job = new webhookJob_1.WebhookJob(s.e, req, res);
+        nest.arrive(job);
+        s.sendHookResponse(nest.holdResponse, job, nest, req, res, customHandler);
+    };
+    ;
+    /**
+     * Sends the actual hook response.
+     * @param holdResponse      Flag to bypass sending now for held responses.
+     * @param job               Webhook job
+     * @param nest              Webhook nest
+     * @param req
+     * @param res
+     * @param customHandler
+     * @param message
+     */
+    Server.prototype.sendHookResponse = function (holdResponse, job, nest, req, res, customHandler, message) {
+        if (holdResponse === true) {
+        }
+        else if (customHandler) {
+            job.responseSent = true;
+            customHandler(req, res, job, nest);
+        }
+        else {
+            job.responseSent = true;
+            var response = {
+                message: message || "Job " + job.getId() + " was created!",
+                job: {
+                    id: job.getId(),
+                    name: job.getName()
+                },
+                nest: {
+                    name: nest.getName()
+                }
+            };
+            res.json(response);
+        }
+    };
+    /**
      * Adds a webhook interface to the webhook server.
      * @param im {InterfaceManager}
      */
@@ -169,3 +206,4 @@ var Server = (function () {
     return Server;
 }());
 exports.Server = Server;
+//# sourceMappingURL=server.js.map

@@ -33,6 +33,10 @@ var Tunnel = (function () {
     Tunnel.prototype.getRunSyncList = function () {
         return this.run_sync_list;
     };
+    /**
+     * Instructs the tunnel to watch a nest for new jobs.
+     * @param nest
+     */
     Tunnel.prototype.watch = function (nest) {
         nest.register(this);
         nest.load();
@@ -60,37 +64,68 @@ var Tunnel = (function () {
     Tunnel.prototype.runSync = function (callback) {
         this.run_sync_list.push(callback);
     };
+    /**
+     * Failed jobs runner.
+     * @param callback
+     */
     Tunnel.prototype.fail = function (callback) {
         this.run_fail = callback;
     };
+    /**
+     * Asynchronous run event.
+     * @param job
+     * @param nest
+     */
     Tunnel.prototype.executeRun = function (job, nest) {
         var tn = this;
-        this.run_list.forEach(function (callback) {
-            try {
-                callback(job, nest);
-            }
-            catch (e) {
-                // Fail if an error is thrown
-                tn.executeFail(job, nest, e);
-            }
-        });
+        if (tn.run_list.length > 0) {
+            tn.run_list.forEach(function (callback) {
+                try {
+                    callback(job, nest);
+                }
+                catch (e) {
+                    // Fail if an error is thrown
+                    tn.executeFail(job, nest, e);
+                }
+            });
+        }
     };
+    /**
+     * Synchronous run event.
+     * @param job
+     * @param nest
+     */
     Tunnel.prototype.executeRunSync = function (job, nest) {
         var tn = this;
-        async.eachSeries(tn.run_sync_list, function (run, callback) {
-            run(job, nest, function () {
-                callback();
+        var breakFailure = false;
+        var successfulRuns = 0;
+        if (tn.run_sync_list.length > 0) {
+            async.eachSeries(tn.run_sync_list, function (run, doNextRun) {
+                if (breakFailure === false) {
+                    run(job, nest, function () {
+                        successfulRuns++;
+                        doNextRun();
+                    });
+                }
+            }, function (err) {
+                if (err) {
+                    breakFailure = true;
+                    tn.executeFail(job, nest, err);
+                }
+                tn.e.log(0, "Completed " + successfulRuns + "/" + tn.getRunSyncList().length + " synchronous run list(s).", tn, [job, nest]);
             });
-        }, function (err) {
-            if (err) {
-                tn.executeFail(job, nest, err);
-            }
-            tn.e.log(0, "Completed " + tn.getRunSyncList().length + " synchronous run list(s).", tn, [job, nest]);
-        });
+        }
     };
+    /**
+     * Fail run event.
+     * @param job
+     * @param nest
+     * @param reason
+     */
     Tunnel.prototype.executeFail = function (job, nest, reason) {
-        this.e.log(3, "Failed for reason \"" + reason + "\".", this, [job, nest]);
-        this.run_fail(job, nest, reason);
+        var tn = this;
+        tn.e.log(3, "Failed for reason \"" + reason + "\".", tn, [job, nest]);
+        tn.run_fail(job, nest, reason);
     };
     /**
      * Interface for matching two or more files together based on an array of glob filename patterns.
@@ -163,3 +198,4 @@ var Tunnel = (function () {
     return Tunnel;
 }());
 exports.Tunnel = Tunnel;
+//# sourceMappingURL=tunnel.js.map

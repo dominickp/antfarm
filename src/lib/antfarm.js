@@ -5,6 +5,7 @@ var folderNest_1 = require("./nest/folderNest");
 var environment_1 = require("./environment/environment");
 var webhookNest_1 = require("./nest/webhookNest");
 var autoFolderNest_1 = require("./nest/autoFolderNest");
+var s3Nest_1 = require("./nest/s3Nest");
 /**
  * Expose `Antfarm`.
  */
@@ -33,6 +34,10 @@ var Antfarm = (function () {
      * @param path          Path of the folder.
      * @param allowCreate   Optional boolean flag to allow creation of folder if it does not exist.
      * @returns {FolderNest}
+     * #### Example
+     * ```js
+     * var out_folder = af.createFolderNest("/Users/dominick/Desktop/My Folder/");
+     * ```
      */
     Antfarm.prototype.createFolderNest = function (path, allowCreate) {
         if (allowCreate === void 0) { allowCreate = false; }
@@ -65,6 +70,11 @@ var Antfarm = (function () {
      * @param password      FTP account password.
      * @param checkEvery    Frequency of re-checking FTP in minutes.
      * @returns {FtpNest}
+     * #### Example
+     * ```js
+     * // Check FTP directory every 2 minutes
+     * var my_ftp = af.createFtpNest("ftp.example.com", 21, "", "", 2);
+     * ```
      */
     Antfarm.prototype.createFtpNest = function (host, port, username, password, checkEvery) {
         if (port === void 0) { port = 21; }
@@ -72,6 +82,22 @@ var Antfarm = (function () {
         if (password === void 0) { password = ""; }
         if (checkEvery === void 0) { checkEvery = 10; }
         return new ftpNest_1.FtpNest(this.e, host, port, username, password, checkEvery);
+    };
+    /**
+     * Factory method to create and return an S3 nest.
+     * @param bucket
+     * @param keyPrefix
+     * @param checkEvery
+     * @param allowCreation
+     * @returns {S3Nest}
+     * ```js
+     * var bucket = af.createS3Nest("my-bucket-name", "", 1, true);
+     * ```
+     */
+    Antfarm.prototype.createS3Nest = function (bucket, keyPrefix, checkEvery, allowCreation) {
+        if (checkEvery === void 0) { checkEvery = 5; }
+        if (allowCreation === void 0) { allowCreation = false; }
+        return new s3Nest_1.S3Nest(this.e, bucket, keyPrefix, checkEvery, allowCreation);
     };
     /**
      * Factory method which returns a WebhookNest.
@@ -104,6 +130,10 @@ var Antfarm = (function () {
     /**
      * Load an entire directory of workflow modules.
      * @param directory     Path to the workflow modules.
+     * #### Example
+     * ```js
+     * af.loadDir("./workflows");
+     * ```
      */
     Antfarm.prototype.loadDir = function (directory) {
         var af = this;
@@ -124,6 +154,24 @@ var Antfarm = (function () {
         }
         af.e.log(1, "Loaded " + loaded_counter + " workflows.", af);
     };
+    /**
+     * Log messages into the antfarm logger.
+     * @param type {number}         The log level. 0 = debug, 1 = info, 2 = warning, 3 = error
+     * @param message {string}       Log message.
+     * @param actor  {any}           Instance which triggers the action being logged.
+     * @param instances {any[]}      Array of of other involved instances.
+     * #### Example
+     * ```js
+     * job.e.log(1, `Transferred to Tunnel "${tunnel.getName()}".`, job, [oldTunnel]);
+     * ```
+     */
+    Antfarm.prototype.log = function (type, message, actor, instances) {
+        if (instances === void 0) { instances = []; }
+        var af = this;
+        af.e.log(type, message, actor, instances);
+    };
     return Antfarm;
 }());
+exports.Antfarm = Antfarm;
 module.exports = Antfarm;
+//# sourceMappingURL=antfarm.js.map

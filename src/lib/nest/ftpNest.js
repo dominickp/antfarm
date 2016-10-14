@@ -97,7 +97,9 @@ var FtpNest = (function (_super) {
                 }
                 fs.unlinkSync(job.getPath());
                 ftp_client_2.close();
-                callback();
+                var ftpJob = job;
+                ftpJob.setLocallyAvailable(false);
+                callback(ftpJob);
             });
         }
         catch (e) {
@@ -107,3 +109,4 @@ var FtpNest = (function (_super) {
     return FtpNest;
 }(nest_1.Nest));
 exports.FtpNest = FtpNest;
+//# sourceMappingURL=ftpNest.js.map
