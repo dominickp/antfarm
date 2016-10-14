@@ -39,7 +39,7 @@ export class S3FileJob extends FileJob {
      * Set remote key.
      * @param key
      */
-    set key(key: string) {
+    public set key(key: string) {
         this._key = key;
     }
 
@@ -47,7 +47,7 @@ export class S3FileJob extends FileJob {
      * Get remote key
      * @returns {string}
      */
-    get key() {
+    public get key() {
         return this._key;
     }
 
@@ -55,7 +55,7 @@ export class S3FileJob extends FileJob {
      * Set remote ETag
      * @param eTag
      */
-    set eTag(eTag: string) {
+    public set eTag(eTag: string) {
         this._eTag = eTag;
     }
 
@@ -63,7 +63,7 @@ export class S3FileJob extends FileJob {
      * Get remote ETag
      * @returns {string}
      */
-    get eTag() {
+    public get eTag() {
         return this._eTag;
     }
 

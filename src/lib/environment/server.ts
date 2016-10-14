@@ -62,7 +62,10 @@ export class Server {
             res.json(s.hookInterfaceRoutes);
         });
 
-        s.server.listen(port, () => s.e.log(1, `Server up and listening on port ${port}.`, s));
+        // Prevent duplicate listening for tests
+        if (!module.parent) {
+            s.server.listen(port, () => s.e.log(1, `Server up and listening on port ${port}.`, s));
+        }
     }
 
     /**
