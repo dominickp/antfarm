@@ -8,7 +8,7 @@ const Antfarm = require("../lib/antfarm"),
         auto_managed_folder_directory: "./examples/auto-managed",
         email_credentials: {
             username: "noreply@shawmutdelivers.com",
-            password: ">%!-v^S^V*LAfY2drF",
+            password: "",
             service: "Gmail",
             transportMethod: "SMTP"
         }
