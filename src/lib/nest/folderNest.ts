@@ -208,7 +208,7 @@ export class FolderNest extends Nest {
     public getJob(jobId: string) {
         let f = this;
         let job = _.find(f.getHeldJobs(), (j) => j.getId() === jobId );
-        
+
         if (!job) {
             f.e.log(3, `Job ID ${jobId} could not be found in the ${f.getHeldJobs().length} pending held jobs.`, f);
         }

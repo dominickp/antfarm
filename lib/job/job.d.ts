@@ -2,6 +2,7 @@ import { Tunnel } from "../tunnel/tunnel";
 import { Nest } from "../nest/nest";
 import { Environment } from "../environment/environment";
 import { LifeEvent } from "../environment/lifeEvent";
+import { EmailOptions } from "../environment/emailOptions";
 export declare abstract class Job {
     protected name: string;
     protected tunnel: Tunnel;
@@ -97,4 +98,8 @@ export declare abstract class Job {
      * Move function error.
      */
     move(destinationNest: any, callback: any): void;
+    /**
+     * Sends an email.
+     */
+    email(emailOptions: EmailOptions): any;
 }

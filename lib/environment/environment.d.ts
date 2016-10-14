@@ -3,6 +3,7 @@ import { WebhookNest } from "../nest/webhookNest";
 import { Server } from "./server";
 import { InterfaceManager } from "../ui/interfaceManager";
 import { AntfarmOptions } from "./options";
+import { Emailer } from "./emailer";
 /**
  * The environment class controls all aspects of the antfarm environment, like options, logging,
  * and constructing globally referenced objects.
@@ -11,6 +12,7 @@ export declare class Environment {
     protected options: AntfarmOptions;
     protected logger: Logger;
     protected _server: Server;
+    protected emailer: Emailer;
     protected hookRoutes: any[];
     protected hookInterfaceRoutes: any[];
     constructor(options: AntfarmOptions);
@@ -19,6 +21,8 @@ export declare class Environment {
      * @param options
      */
     protected setOptions(options: AntfarmOptions): void;
+    protected createEmailer(): void;
+    getEmailer(): Emailer;
     /**
      * Get the Antfarm options.
      * @returns {AntfarmOptions}

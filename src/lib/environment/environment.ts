@@ -3,6 +3,7 @@ import {WebhookNest} from "../nest/webhookNest";
 import {Server} from "./server";
 import {InterfaceManager} from "../ui/interfaceManager";
 import {AntfarmOptions} from "./options";
+import {Emailer} from "./emailer";
 
 const   fs = require("fs");
 
@@ -15,6 +16,7 @@ export class Environment {
     protected options: AntfarmOptions;
     protected logger: Logger;
     protected _server: Server;
+    protected emailer: Emailer;
     protected hookRoutes = [];
     protected hookInterfaceRoutes = [];
 
@@ -41,8 +43,21 @@ export class Environment {
         this.options = options;
 
         if (options.port) {
-            this.createServer();
+            e.createServer();
         }
+
+        if (options.email_port) {
+            e.createEmailer();
+        }
+    }
+
+    protected createEmailer() {
+        // Get options needed and pass to emailer
+        this.emailer = new Emailer();
+    }
+
+    public getEmailer() {
+        return this.emailer;
     }
 
     /**

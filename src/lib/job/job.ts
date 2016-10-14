@@ -2,6 +2,7 @@ import { Tunnel } from "../tunnel/tunnel";
 import { Nest } from "../nest/nest";
 import {Environment} from "../environment/environment";
 import {LifeEvent} from "../environment/lifeEvent";
+import {EmailOptions} from "../environment/emailOptions";
 
 const shortid = require("shortid");
 
@@ -172,6 +173,17 @@ export abstract class Job {
      */
     public move(destinationNest, callback) {
         throw "This type of job cannot be moved.";
+    }
+
+    /**
+     * Sends an email.
+     */
+    public email(emailOptions: EmailOptions) {
+        let job = this;
+        let emailer = job.e.getEmailer();
+        // NEEDS TO BE FIXED
+        return emailer.sendMail(EmailOptions);
+
     }
 
 }
