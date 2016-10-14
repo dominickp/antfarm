@@ -108,6 +108,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="foldernest.html#allowcreate" class="tsd-kind-icon">allow<wbr>Create</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="foldernest.html#e" class="tsd-kind-icon">e</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="foldernest.html#heldjobs" class="tsd-kind-icon">held<wbr>Jobs</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="foldernest.html#id" class="tsd-kind-icon">id</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="foldernest.html#name" class="tsd-kind-icon">name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="foldernest.html#path" class="tsd-kind-icon">path</a></li>
@@ -120,15 +121,19 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="foldernest.html#arrive" class="tsd-kind-icon">arrive</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="foldernest.html#checkdirectorysync" class="tsd-kind-icon">check<wbr>Directory<wbr>Sync</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="foldernest.html#createjob" class="tsd-kind-icon">create<wbr>Job</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="foldernest.html#getheldjob" class="tsd-kind-icon">get<wbr>Held<wbr>Job</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="foldernest.html#getheldjobs" class="tsd-kind-icon">get<wbr>Held<wbr>Jobs</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="foldernest.html#getid" class="tsd-kind-icon">get<wbr>Id</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="foldernest.html#getname" class="tsd-kind-icon">get<wbr>Name</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="foldernest.html#gettunnel" class="tsd-kind-icon">get<wbr>Tunnel</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="foldernest.html#getunwatchedjobs" class="tsd-kind-icon">get<wbr>Unwatched<wbr>Jobs</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="foldernest.html#holdjob" class="tsd-kind-icon">hold<wbr>Job</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="foldernest.html#load" class="tsd-kind-icon">load</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="foldernest.html#register" class="tsd-kind-icon">register</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="foldernest.html#take" class="tsd-kind-icon">take</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="foldernest.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="foldernest.html#watch" class="tsd-kind-icon">watch</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="foldernest.html#watchhold" class="tsd-kind-icon">watch<wbr>Hold</a></li>
 							</ul>
 						</section>
 					</div>
@@ -147,7 +152,7 @@
 							<aside class="tsd-sources">
 								<p>Overwrites <a href="nest.html">Nest</a>.<a href="nest.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/nest/folderNest.ts#L20">lib/nest/folderNest.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/folderNest.ts#L22">lib/nest/folderNest.ts:22</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -175,7 +180,7 @@
 					<div class="tsd-signature tsd-kind-icon">allow<wbr>Create<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/nest/folderNest.ts#L20">lib/nest/folderNest.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/folderNest.ts#L21">lib/nest/folderNest.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -186,7 +191,17 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="nest.html">Nest</a>.<a href="nest.html#e">e</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/nest/nest.ts#L15">lib/nest/nest.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/nest.ts#L15">lib/nest/nest.ts:15</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="heldjobs" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> held<wbr>Jobs</h3>
+					<div class="tsd-signature tsd-kind-icon">held<wbr>Jobs<span class="tsd-signature-symbol">:</span> <a href="filejob.html" class="tsd-signature-type">FileJob</a><span class="tsd-signature-symbol"> | </span><a href="folderjob.html" class="tsd-signature-type">FolderJob</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/folderNest.ts#L22">lib/nest/folderNest.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -197,7 +212,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="nest.html">Nest</a>.<a href="nest.html#id">id</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/nest/nest.ts#L12">lib/nest/nest.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/nest.ts#L12">lib/nest/nest.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -208,7 +223,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="nest.html">Nest</a>.<a href="nest.html#name">name</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/nest/nest.ts#L13">lib/nest/nest.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/nest.ts#L13">lib/nest/nest.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -218,7 +233,7 @@
 					<div class="tsd-signature tsd-kind-icon">path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/nest/folderNest.ts#L19">lib/nest/folderNest.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/folderNest.ts#L20">lib/nest/folderNest.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -229,7 +244,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="nest.html">Nest</a>.<a href="nest.html#tunnel">tunnel</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/nest/nest.ts#L14">lib/nest/nest.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/nest.ts#L14">lib/nest/nest.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -247,7 +262,7 @@
 							<aside class="tsd-sources">
 								<p>Overwrites <a href="nest.html">Nest</a>.<a href="nest.html#arrive">arrive</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/nest/folderNest.ts#L124">lib/nest/folderNest.ts:124</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/folderNest.ts#L150">lib/nest/folderNest.ts:150</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -277,7 +292,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/nest/folderNest.ts#L35">lib/nest/folderNest.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/folderNest.ts#L38">lib/nest/folderNest.ts:38</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -307,7 +322,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/nest/folderNest.ts#L55">lib/nest/folderNest.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/folderNest.ts#L58">lib/nest/folderNest.ts:58</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -328,6 +343,77 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getheldjob" class="tsd-anchor"></a>
+					<h3>get<wbr>Held<wbr>Job</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Held<wbr>Job<span class="tsd-signature-symbol">(</span>jobId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/folderNest.ts#L234">lib/nest/folderNest.ts:234</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get a held job with a job id. Removes it from the held job queue,
+									so you should move it out of the folder after using this.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>jobId: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<h4 id="example">Example</h4>
+							<pre><code class="lang-js"><span class="hljs-keyword">var</span> tunnel = af.createTunnel(<span class="hljs-string">"Checkpoint example"</span>);
+<span class="hljs-keyword">var</span> webhook = af.createWebhookNest([<span class="hljs-string">"test"</span>, <span class="hljs-string">"example"</span>], <span class="hljs-string">"get"</span>);
+<span class="hljs-keyword">var</span> holding_folder = af.createAutoFolderNest([<span class="hljs-string">"test"</span>, <span class="hljs-string">"checkpoint"</span>]);
+
+<span class="hljs-keyword">var</span> im = webhook.getInterfaceManager();
+
+<span class="hljs-comment">// Watch for jobs, hold, and provide to the interface.</span>
+im.checkNest(holding_folder);
+tunnel.watch(webhook);
+
+tunnel.run(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">job, nest</span>)</span>{
+     <span class="hljs-comment">// Get the job_id from the webhook request</span>
+     <span class="hljs-keyword">var</span> job_id = job.getParameter(<span class="hljs-string">"job_id"</span>);
+     <span class="hljs-comment">// Get the held job from the holding folder</span>
+     <span class="hljs-keyword">var</span> checkpoint_job = holding_folder.getHeldJob(job_id);
+     <span class="hljs-comment">// Move somewhere else</span>
+     checkpoint_job.move(af.createAutoFolderNest([<span class="hljs-string">"test"</span>, <span class="hljs-string">"outfolder"</span>]));
+});
+</code></pre>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="getheldjobs" class="tsd-anchor"></a>
+					<h3>get<wbr>Held<wbr>Jobs</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Held<wbr>Jobs<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="filejob.html" class="tsd-signature-type">FileJob</a><span class="tsd-signature-symbol"> | </span><a href="folderjob.html" class="tsd-signature-type">FolderJob</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/folderNest.ts#L195">lib/nest/folderNest.ts:195</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns all held jobs.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="filejob.html" class="tsd-signature-type">FileJob</a><span class="tsd-signature-symbol"> | </span><a href="folderjob.html" class="tsd-signature-type">FolderJob</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 					<a name="getid" class="tsd-anchor"></a>
 					<h3>get<wbr>Id</h3>
@@ -339,7 +425,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="nest.html">Nest</a>.<a href="nest.html#getid">getId</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/nest/nest.ts#L23">lib/nest/nest.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/nest.ts#L23">lib/nest/nest.ts:23</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -357,7 +443,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="nest.html">Nest</a>.<a href="nest.html#getname">getName</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/nest/nest.ts#L31">lib/nest/nest.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/nest.ts#L31">lib/nest/nest.ts:31</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -375,7 +461,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="nest.html">Nest</a>.<a href="nest.html#gettunnel">getTunnel</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/nest/nest.ts#L35">lib/nest/nest.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/nest.ts#L35">lib/nest/nest.ts:35</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="tunnel.html" class="tsd-signature-type">Tunnel</a></h4>
@@ -392,12 +478,13 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/nest/folderNest.ts#L147">lib/nest/folderNest.ts:147</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/folderNest.ts#L174">lib/nest/folderNest.ts:174</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Loads jobs that have piled up in the nest if it was not watched.</p>
+									<p>Loads jobs that have piled up in the nest if it was not watched.
+									No longer used.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -405,17 +492,47 @@
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="load" class="tsd-anchor"></a>
-					<h3>load</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">load<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="holdjob" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> hold<wbr>Job</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">hold<wbr>Job<span class="tsd-signature-symbol">(</span>job<span class="tsd-signature-symbol">: </span><a href="filejob.html" class="tsd-signature-type">FileJob</a><span class="tsd-signature-symbol"> | </span><a href="folderjob.html" class="tsd-signature-type">FolderJob</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/nest/folderNest.ts#L94">lib/nest/folderNest.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/folderNest.ts#L203">lib/nest/folderNest.ts:203</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Adds job to array of held jobs.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>job: <a href="filejob.html" class="tsd-signature-type">FileJob</a><span class="tsd-signature-symbol"> | </span><a href="folderjob.html" class="tsd-signature-type">FolderJob</a></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="load" class="tsd-anchor"></a>
+					<h3>load</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">load<span class="tsd-signature-symbol">(</span>hold<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/folderNest.ts#L98">lib/nest/folderNest.ts:98</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -423,6 +540,15 @@
 									<p>Initial load of the contents of the directory.</p>
 								</div>
 							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> hold: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Optional flag to hold jobs found.</p>
+									</div>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -438,7 +564,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="nest.html">Nest</a>.<a href="nest.html#register">register</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/nest/nest.ts#L39">lib/nest/nest.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/nest.ts#L39">lib/nest/nest.ts:39</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -461,7 +587,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/nest/folderNest.ts#L133">lib/nest/folderNest.ts:133</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/folderNest.ts#L159">lib/nest/folderNest.ts:159</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -496,7 +622,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="nest.html">Nest</a>.<a href="nest.html#tostring">toString</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/nest/nest.ts#L27">lib/nest/nest.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/nest.ts#L27">lib/nest/nest.ts:27</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -507,18 +633,49 @@
 					<a name="watch" class="tsd-anchor"></a>
 					<h3>watch</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">watch<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">watch<span class="tsd-signature-symbol">(</span>hold<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/0968a73/src/lib/nest/folderNest.ts#L109">lib/nest/folderNest.ts:109</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/folderNest.ts#L120">lib/nest/folderNest.ts:120</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Watches the folder.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> hold: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Optional flag to hold jobs found.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="watchhold" class="tsd-anchor"></a>
+					<h3>watch<wbr>Hold</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">watch<wbr>Hold<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/4d9d8a6/src/lib/nest/folderNest.ts#L140">lib/nest/folderNest.ts:140</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Watches and holds jobs found.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -551,6 +708,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 								<a href="foldernest.html#e" class="tsd-kind-icon">e</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="foldernest.html#heldjobs" class="tsd-kind-icon">held<wbr>Jobs</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 								<a href="foldernest.html#id" class="tsd-kind-icon">id</a>
 							</li>
@@ -572,6 +732,12 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="foldernest.html#createjob" class="tsd-kind-icon">create<wbr>Job</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="foldernest.html#getheldjob" class="tsd-kind-icon">get<wbr>Held<wbr>Job</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="foldernest.html#getheldjobs" class="tsd-kind-icon">get<wbr>Held<wbr>Jobs</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
 								<a href="foldernest.html#getid" class="tsd-kind-icon">get<wbr>Id</a>
 							</li>
@@ -583,6 +749,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="foldernest.html#getunwatchedjobs" class="tsd-kind-icon">get<wbr>Unwatched<wbr>Jobs</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="foldernest.html#holdjob" class="tsd-kind-icon">hold<wbr>Job</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="foldernest.html#load" class="tsd-kind-icon">load</a>
@@ -598,6 +767,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="foldernest.html#watch" class="tsd-kind-icon">watch</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="foldernest.html#watchhold" class="tsd-kind-icon">watch<wbr>Hold</a>
 							</li>
 						</ul>
 					</li>
