@@ -5,6 +5,7 @@ import {FieldOptions} from "./field";
 import {Step} from "./step";
 import {InterfaceMetadata} from "./interfaceMetadata";
 import {InterfaceProperty} from "./InterfaceProperty";
+import {FolderNest} from "../nest/folderNest";
 
 const   _           = require("lodash"),
         clone       = require("clone");
@@ -31,6 +32,7 @@ export class InterfaceManager {
     protected interfaceInstances: WebhookInterface[];
     protected handleRequest: any;
     protected metadata: InterfaceMetadata;
+    protected checkpointNest: FolderNest;
 
     /**
      *
@@ -216,6 +218,7 @@ export class InterfaceManager {
             wi.setFields(im.getFields());
             wi.setSteps(im.getSteps());
             wi.setMetadata(im.getMetadata());
+            wi.checkNest(im.checkpointNest);
 
             if (im.interfaceInstances.length === 0) {
                 im.e.addWebhookInterface(this);
@@ -228,5 +231,13 @@ export class InterfaceManager {
         }
 
         return wi;
+    }
+
+    /**
+     * Adds pending jobs to the interfaces job list.
+     * @param nest
+     */
+    public checkNest(nest: FolderNest) {
+        this.checkpointNest = nest;
     }
 }

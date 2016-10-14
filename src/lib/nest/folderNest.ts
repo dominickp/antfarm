@@ -151,12 +151,17 @@ export class FolderNest extends Nest {
 
         let items = fileArray.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
 
-        items.forEach(function(filename){
+        items.forEach((filename) => {
             let filepath = fl.path + path_mod.sep + filename;
             let job = fl.createJob(filepath, false);
             jobs.push(job);
         });
 
         return jobs;
+    }
+
+    // Need to fix the fact that new jobs are created every time. That means the ID is different and it isn't predictable.
+    public getJob(jobId: string) {
+
     }
 }

@@ -45,4 +45,5 @@ export declare class FolderNest extends Nest {
      * @returns {Array}     Array of jobs
      */
     getUnwatchedJobs(): any[];
+    getJob(jobId: string): void;
 }

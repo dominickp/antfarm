@@ -51,7 +51,7 @@ export declare class Environment {
     toString(): string;
     /**
      * Adds a log entry to the Logger instance.
-     * @param type {number}
+     * @param type {number}          The log level. 0 = debug, 1 = info, 2 = warning, 3 = error
      * @param message {string}       Log message.
      * @param actor  {any}           Instance which triggers the action being logged.
      * @param instances {any[]}      Array of of other involved instances.

@@ -63,9 +63,10 @@ export class Server {
         });
 
         // Prevent duplicate listening for tests
-        if (!module.parent) {
-            s.server.listen(port, () => s.e.log(1, `Server up and listening on port ${port}.`, s));
-        }
+        // if (!module.parent) {
+        //     s.server.listen(port, () => s.e.log(1, `Server up and listening on port ${port}.`, s));
+        // }
+        s.server.listen(port, () => s.e.log(1, `Server up and listening on port ${port}.`, s));
     }
 
     /**

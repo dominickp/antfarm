@@ -5,6 +5,7 @@ import { FieldOptions } from "./field";
 import { Step } from "./step";
 import { InterfaceMetadata } from "./interfaceMetadata";
 import { InterfaceProperty } from "./InterfaceProperty";
+import { FolderNest } from "../nest/folderNest";
 /**
  * The interface manager allows you to separate your interface fields for stepped user interfaces.
  * It's a factory that handles the construction and session handling of WebhookInterface instances.
@@ -26,6 +27,7 @@ export declare class InterfaceManager {
     protected interfaceInstances: WebhookInterface[];
     protected handleRequest: any;
     protected metadata: InterfaceMetadata;
+    protected checkpointNest: FolderNest;
     /**
      *
      * @param e
@@ -99,4 +101,9 @@ export declare class InterfaceManager {
      * @returns {WebhookInterface}
      */
     getInterface(sessionId?: string): any;
+    /**
+     * Adds pending jobs to the interfaces job list.
+     * @param nest
+     */
+    checkNest(nest: FolderNest): void;
 }
