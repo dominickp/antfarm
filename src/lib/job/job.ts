@@ -183,7 +183,6 @@ export abstract class Job {
         let emailer = job.e.getEmailer();
 
         emailer.sendMail(emailOptions);
-
     }
 
 }

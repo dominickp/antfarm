@@ -8,7 +8,7 @@ export class EmailOptions {
 
     public bcc: string|string[];
 
-    public templatePath: string;
+    public template: string;
 
     public body: string;
 

@@ -32,13 +32,13 @@ var Environment = (function () {
         if (options.port) {
             e.createServer();
         }
-        if (options.email_port) {
-            e.createEmailer();
-        }
+        // if (options.email_port) {
+        //     e.createEmailer();
+        // }
     };
     Environment.prototype.createEmailer = function () {
         // Get options needed and pass to emailer
-        this.emailer = new emailer_1.Emailer();
+        this.emailer = new emailer_1.Emailer(credentials, EmailCredentials);
     };
     Environment.prototype.getEmailer = function () {
         return this.emailer;
