@@ -27,7 +27,7 @@ build/Release
 node_modules
 
 example/
-
+email-templates/
 
 # Created by https://www.gitignore.io/api/webstorm,node
 

@@ -146,8 +146,6 @@ var Job = (function () {
     Job.prototype.email = function (emailOptions) {
         var job = this;
         var emailer = job.e.getEmailer();
-        // NEEDS TO BE FIXED
-        console.log(emailOptions);
         emailer.sendMail(emailOptions);
     };
     return Job;

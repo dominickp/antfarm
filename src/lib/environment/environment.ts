@@ -4,6 +4,7 @@ import {Server} from "./server";
 import {InterfaceManager} from "../ui/interfaceManager";
 import {AntfarmOptions} from "./options";
 import {Emailer} from "./emailer";
+import {EmailCredentials} from "./emailCredentials";
 
 const   fs = require("fs");
 
@@ -46,14 +47,15 @@ export class Environment {
             e.createServer();
         }
 
-        if (options.email_port) {
+        if (options.email_credentials) {
             e.createEmailer();
         }
     }
 
     protected createEmailer() {
         // Get options needed and pass to emailer
-        this.emailer = new Emailer();
+        let credentials = this.options.email_credentials;
+        this.emailer = new Emailer(credentials);
     }
 
     public getEmailer() {

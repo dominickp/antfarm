@@ -36,7 +36,7 @@
     "mkdirp": "^0.5.1",
     "multer": "^1.2.0",
     "node-watch": "^0.4.0",
-    "nodemailer": "^2.6.4",
+    "nodemailer": "0.7.1",
     "pkginfo": "^0.4.0",
     "require-dir-all": "^0.4.9",
     "shortid": "^2.2.6",

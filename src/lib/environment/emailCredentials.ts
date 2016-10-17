@@ -1,4 +1,4 @@
-export interface EmailCredentials{
+export interface EmailCredentials {
     username: string;
     password: string;
     service: string;

@@ -9,36 +9,37 @@ const   nodemailer = require("nodemailer"),
  */
 export class Emailer {
 
-    protected port: number;
     protected connection: any;
+    protected credentials: any;
 
-    constructor(options: EmailCredentials) {
-        this.connection = email.createTransport(options.transportMethod, {
-            service: options.service,  // sets automatically host, port and connection security settings
+    constructor(credentials: EmailCredentials) {
+        this.credentials = credentials;
+        console.log(this.credentials);
+        console.log(credentials.service);
+        this.connection = nodemailer.createTransport(credentials.transportMethod, {
+            service: credentials.service,  // sets automatically host, port and connection security settings
             auth: {
-                user: options.username,
-                pass: options.password
+                user: credentials.username,
+                pass: credentials.password
             }
         });
     }
 
     public sendMail(options: EmailOptions) {
         let ms = this;
-        let emailTemplate = options.templatePath;
-
-        ms.compileJade(emailTemplate, variableData, function (html) {
+        let variableData;
+        ms.compileJade(options.template, variableData, function (html) {
             ms.connection.sendMail({
-                from: "", // sender address.  Must be the same as authenticated user if using Gmail.
+                from: ms.credentials.username, // sender address.  Must be the same as authenticated user if using Gmail.
                 to: options.to, // receiver
                 subject: options.subject, // subject
                 html: html // body
             }, function(error, response) {
-                if(error) {
+                if (error) {
                     console.log(error);
                 }else {
                     console.log("Message sent: " + response.message);
                 }
-
             });
             ms.connection.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
         });
@@ -53,12 +54,12 @@ export class Emailer {
     private compileJade(filePath: string, data: any, callback: any): void {
         filePath = process.cwd() + "/email-templates" + filePath;
         jade.renderFile(filePath, data, function (err, compiledTemplate) {
-            if(err){
+            if (err) {
                 console.log(err);
-            }else{
+            }else {
                 callback(compiledTemplate);
             }
-        })
+        });
 
     }
 
