@@ -100,6 +100,44 @@ export declare abstract class Job {
     move(destinationNest: any, callback: any): void;
     /**
      * Sends an email.
+     * @param emailOptions      Email options
+     * #### Sending pug template email example
+     * ```js
+     * // my_tunnel.js
+     * tunnel.run(function (job, nest) {
+     *      job.email({
+     *          subject: "Test email from pug template",
+     *          to: "john.smith@example.com",
+     *          template: "./template_files/my_email.pug"
+     *      });
+     * });
+     * ```
+     *
+     * ```js
+     * // template_files/my_email.pug
+     * h1="Example email!"
+     * p="Got job ID " + job.getId()
+     * ```
+     * #### Sending plain-text email
+     * ```js
+     * tunnel.run(function (job, nest) {
+     *      job.email({
+     *          subject: "Test email with hard-coded plain-text",
+     *          to: "john.smith@example.com",
+     *          text: "My email body!"
+     *      });
+     * });
+     * ```
+     * #### Sending html email
+     * ```js
+     * tunnel.run(function (job, nest) {
+     *      job.email({
+     *          subject: "Test email with hard-coded html",
+     *          to: "john.smith@example.com",
+     *          html: "<h1>My email body!</h1>"
+     *      });
+     * });
+     * ```
      */
     email(emailOptions: EmailOptions): void;
 }
