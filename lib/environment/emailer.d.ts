@@ -15,6 +15,11 @@ export declare class Emailer {
      */
     sendMail(options: EmailOptions): void;
     /**
+     * Send an email with nodemailer.
+     * @param nodemailerOptions
+     */
+    protected executeSend(nodemailerOptions: any): void;
+    /**
      * This finds and compiles a path to a jade template and returns HTML in the callback.
      * @param filePath {string}     The path to the file.
      * @param data {object}    Used for passing variables to jade template

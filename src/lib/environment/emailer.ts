@@ -32,33 +32,52 @@ export class Emailer {
      * Collects options a executes nodemailer.
      * @param options {EmailOptions}
      */
-    public sendMail(options: EmailOptions) {
+    public sendMail(options: EmailOptions): void {
         let ms = this;
         let variableData;
 
-        if (options.template) {
+        // Initialize nodemailer options
+        let nodemailerOptions = {
+            to: options.to,
+            cc: options.cc,
+            bcc: options.bcc,
+            subject: options.subject,
+            html: null,
+            text: null
+        };
 
+        // Get email body and execute
+        if (options.template) {
+            ms.compileJade(options.template, variableData, (html) => {
+                nodemailerOptions.html = html;
+                ms.executeSend(nodemailerOptions);
+            });
         } else if (options.html) {
+            nodemailerOptions.html = options.html;
+            ms.executeSend(nodemailerOptions);
         } else if (options.text) {
+            nodemailerOptions.text = options.text;
+            ms.executeSend(nodemailerOptions);
         } else {
             ms.e.log(3, `Error sending mail. Template or email body not set in email options.`, ms);
         }
 
-        ms.compileJade(options.template, variableData, function (html) {
-            ms.connection.sendMail({
-                from: ms.credentials.username, // sender address.  Must be the same as authenticated user if using Gmail.
-                to: options.to, // receiver
-                subject: options.subject, // subject
-                html: html // body
-            }, function(error, response) {
-                if (error) {
-                    ms.e.log(3, `nodemailer sending error: ${error}`, ms);
-                } else {
-                    ms.e.log(0, `nodemailer sent email`, ms);
-                }
-            });
-            ms.connection.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
+    }
+
+    /**
+     * Send an email with nodemailer.
+     * @param nodemailerOptions
+     */
+    protected executeSend(nodemailerOptions: any) {
+        let ms = this;
+        ms.connection.sendMail(nodemailerOptions, (nmError, nmResponse) => {
+            if (nmError) {
+                ms.e.log(3, `nodemailer sending error: ${nmError}`, ms);
+            } else {
+                ms.e.log(0, `Email sent. ${nmResponse.message}`, ms);
+            }
         });
+        ms.connection.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
     }
 
     /**
