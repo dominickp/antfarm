@@ -98,18 +98,20 @@ export class FolderNest extends Nest {
     public load(hold: boolean = false): void {
         let fl = this;
         fs.readdir(fl.path, (err, items) => {
-            items = items.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
+            if (items) {
+                items = items.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
 
-            items.forEach((filename) => {
-                let filepath = fl.path + path_mod.sep + filename;
-                let job;
-                if (hold === false) {
-                    fl.createJob(filepath, true); // Arrives as well
-                } else {
-                    job = fl.createJob(filepath, false);
-                    fl.holdJob(job);
-                }
-            });
+                items.forEach((filename) => {
+                    let filepath = fl.path + path_mod.sep + filename;
+                    let job;
+                    if (hold === false) {
+                        fl.createJob(filepath, true); // Arrives as well
+                    } else {
+                        job = fl.createJob(filepath, false);
+                        fl.holdJob(job);
+                    }
+                });
+            }
         });
     }
 
