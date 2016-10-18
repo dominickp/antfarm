@@ -34,9 +34,9 @@ export interface AntfarmOptions {
     /**
      * Webhook interface session timeout in minutes.
      */
-    webhook_interface_session_timeout: number;
+    webhook_interface_session_timeout?: number;
     /**
      * Service nameif not using a hostname. Acceptable options: gmail.
      */
-    email_credentials: EmailCredentials;
+    email_credentials?: EmailCredentials;
 }
