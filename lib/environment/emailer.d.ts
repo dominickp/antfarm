@@ -1,12 +1,14 @@
 import { EmailOptions } from "./emailOptions";
 import { EmailCredentials } from "./emailCredentials";
+import { Environment } from "./environment";
 /**
  * Emailing service
  */
 export declare class Emailer {
+    protected e: Environment;
     protected connection: any;
     protected credentials: any;
-    constructor(credentials: EmailCredentials);
+    constructor(e: Environment, credentials: EmailCredentials);
     sendMail(options: EmailOptions): void;
     /**
      * This finds and compiles a path to a jade template and returns HTML in the callback.

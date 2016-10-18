@@ -41,7 +41,7 @@ export declare class Environment {
      * Get the server instance.
      * @returns {Server}
      */
-    server: Server;
+    readonly server: Server;
     /**
      * Adds a webhook to the webhook server.
      * @param nest

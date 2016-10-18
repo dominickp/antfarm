@@ -1,6 +1,7 @@
-
 import {EmailOptions} from "./emailOptions";
 import {EmailCredentials} from "./emailCredentials";
+import {Environment} from "./environment";
+
 const   nodemailer = require("nodemailer"),
         jade = require("jade");
 
@@ -9,13 +10,15 @@ const   nodemailer = require("nodemailer"),
  */
 export class Emailer {
 
+    protected e: Environment;
     protected connection: any;
     protected credentials: any;
 
-    constructor(credentials: EmailCredentials) {
+    constructor(e: Environment, credentials: EmailCredentials) {
+        this.e = e;
         this.credentials = credentials;
-        console.log(this.credentials);
-        console.log(credentials.service);
+        // console.log(this.credentials);
+        // console.log(credentials.service);
         this.connection = nodemailer.createTransport(credentials.transportMethod, {
             service: credentials.service,  // sets automatically host, port and connection security settings
             auth: {
@@ -37,8 +40,9 @@ export class Emailer {
             }, function(error, response) {
                 if (error) {
                     console.log(error);
-                }else {
-                    console.log("Message sent: " + response.message);
+                    ms.e.log(3, `nodemailer sending error: ${error}`, ms);
+                } else {
+                    ms.e.log(0, `nodemailer sent email`, ms);
                 }
             });
             ms.connection.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
@@ -52,16 +56,16 @@ export class Emailer {
      * @param callback     returns the complied jade template as html
      */
     private compileJade(filePath: string, data: any, callback: any): void {
+        let ms = this;
         filePath = process.cwd() + "/email-templates" + filePath;
-        jade.renderFile(filePath, data, function (err, compiledTemplate) {
+        jade.renderFile(filePath, data, (err, compiledTemplate) => {
             if (err) {
-                console.log(err);
-            }else {
+                ms.e.log(3, `pug rendering error: ${err}`, ms);
+            } else {
                 callback(compiledTemplate);
             }
         });
 
     }
-
-
+    
 }

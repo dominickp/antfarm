@@ -53,9 +53,10 @@ export class Environment {
     }
 
     protected createEmailer() {
+        let e = this;
         // Get options needed and pass to emailer
-        let credentials = this.options.email_credentials;
-        this.emailer = new Emailer(credentials);
+        let credentials = e.options.email_credentials;
+        e.emailer = new Emailer(e, credentials);
     }
 
     public getEmailer() {
