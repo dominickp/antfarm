@@ -39,7 +39,6 @@ export class Emailer {
                 html: html // body
             }, function(error, response) {
                 if (error) {
-                    console.log(error);
                     ms.e.log(3, `nodemailer sending error: ${error}`, ms);
                 } else {
                     ms.e.log(0, `nodemailer sent email`, ms);
