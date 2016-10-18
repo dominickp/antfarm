@@ -28,9 +28,22 @@ export class Emailer {
         });
     }
 
+    /**
+     * Collects options a executes nodemailer.
+     * @param options {EmailOptions}
+     */
     public sendMail(options: EmailOptions) {
         let ms = this;
         let variableData;
+
+        if (options.template) {
+
+        } else if (options.html) {
+        } else if (options.text) {
+        } else {
+            ms.e.log(3, `Error sending mail. Template or email body not set in email options.`, ms);
+        }
+
         ms.compileJade(options.template, variableData, function (html) {
             ms.connection.sendMail({
                 from: ms.credentials.username, // sender address.  Must be the same as authenticated user if using Gmail.
@@ -56,7 +69,7 @@ export class Emailer {
      */
     private compileJade(filePath: string, data: any, callback: any): void {
         let ms = this;
-        filePath = process.cwd() + "/email-templates" + filePath;
+        // filePath = process.cwd() + "/email-templates" + filePath;
         jade.renderFile(filePath, data, (err, compiledTemplate) => {
             if (err) {
                 ms.e.log(3, `pug rendering error: ${err}`, ms);

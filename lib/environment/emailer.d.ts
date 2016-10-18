@@ -9,6 +9,10 @@ export declare class Emailer {
     protected connection: any;
     protected credentials: any;
     constructor(e: Environment, credentials: EmailCredentials);
+    /**
+     * Collects options a executes nodemailer.
+     * @param options {EmailOptions}
+     */
     sendMail(options: EmailOptions): void;
     /**
      * This finds and compiles a path to a jade template and returns HTML in the callback.

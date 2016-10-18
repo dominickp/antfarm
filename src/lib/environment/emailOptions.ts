@@ -4,12 +4,23 @@ export class EmailOptions {
 
     public to: string|string[];
 
-    public cc: string|string[];
+    public cc?: string|string[];
 
-    public bcc: string|string[];
+    public bcc?: string|string[];
 
-    public template: string;
+    /**
+     * A path to a Pug template file.
+     */
+    public template?: string;
 
-    public body: string;
+    /**
+     * Email body as HTML.
+     */
+    public html?: string;
+
+    /**
+     * Email body as plain-text.
+     */
+    public text?: string;
 
 }
