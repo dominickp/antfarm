@@ -52,6 +52,9 @@ export class Environment {
         }
     }
 
+    /**
+     * Creates an Emailer object to send emails.
+     */
     protected createEmailer() {
         let e = this;
         // Get options needed and pass to emailer

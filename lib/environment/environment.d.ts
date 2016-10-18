@@ -21,6 +21,9 @@ export declare class Environment {
      * @param options
      */
     protected setOptions(options: AntfarmOptions): void;
+    /**
+     * Creates an Emailer object to send emails.
+     */
     protected createEmailer(): void;
     getEmailer(): Emailer;
     /**
