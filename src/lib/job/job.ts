@@ -3,8 +3,10 @@ import { Nest } from "../nest/nest";
 import {Environment} from "../environment/environment";
 import {LifeEvent} from "../environment/lifeEvent";
 import {EmailOptions} from "../environment/emailOptions";
+import {JobProperty} from "./jobProperty";
 
-const shortid = require("shortid");
+const   shortid = require("shortid"),
+        _ = require("lodash");
 
 export abstract class Job {
 
@@ -15,6 +17,7 @@ export abstract class Job {
     protected locallyAvailable: boolean;
     protected lifeCycle: LifeEvent[];
     protected id: string;
+    protected properties;
 
     /**
      * Job constructor
@@ -22,13 +25,15 @@ export abstract class Job {
      * @param name
      */
     constructor(e: Environment, name: string) {
-        this.e = e;
-        this.id = shortid.generate();
-        this.name = name;
-        this.lifeCycle = [];
+        let j = this;
+        j.e = e;
+        j.id = shortid.generate();
+        j.name = name;
+        j.lifeCycle = [];
+        j.properties = {};
 
-        this.createLifeEvent("created", null, name);
-        this.e.log(1, `New Job "${name}" created.`, this);
+        j.createLifeEvent("created", null, name);
+        j.e.log(1, `New Job "${name}" created.`, j);
     }
 
     /**
@@ -221,6 +226,71 @@ export abstract class Job {
         let emailer = job.e.getEmailer();
 
         emailer.sendMail(emailOptions, job);
+    }
+
+    /**
+     * Attach job specific data to the job instance.
+     * #### Example
+     * ```js
+     * job.setPropertyValue("My Job Number", 123456);
+     *
+     * console.log(job.getPropertyValue("My Job Number"));
+     * // 123456
+     * ```
+     * @param key
+     * @param value
+     */
+    public setPropertyValue(key: string, value: any) {
+        let job = this;
+        let prop = new JobProperty(key, value);
+
+        job.properties[key] = prop;
+        job.e.log(1, `Property "${key}" added to job properties.`, job);
+    }
+
+
+    /**
+     * Get the entire job property object.
+     * @param key
+     * @returns {JobProperty}
+     */
+    public getProperty(key: string) {
+        return this.properties[key] as JobProperty;
+    }
+
+    /**
+     * Get the value of a property if it has been previously set.
+     * @param key
+     * @returns {any}
+     */
+    public getPropertyValue(key: string) {
+        let job = this;
+        if (job.properties[key]) {
+            return job.properties[key].value;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Get the type of a property.
+     * #### Example
+     * ```js
+     * job.setPropertyValue("My Job Number", 123456);
+     *
+     * console.log(job.getPropertyType("My Job Number"));
+     * // "number"
+     * ```
+     * @param key
+     * @returns {string}
+     */
+    public getPropertyType(key: string) {
+        let job = this;
+        if (job.properties[key]) {
+            return job.properties[key].getType();
+        } else {
+            return null;
+        }
     }
 
 }

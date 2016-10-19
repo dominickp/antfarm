@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Emailer | Antfarm</title>
+	<title>JobProperty | Antfarm</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -57,28 +57,21 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="emailer.html">Emailer</a>
+					<a href="jobproperty.html">JobProperty</a>
 				</li>
 			</ul>
-			<h1>Class Emailer</h1>
+			<h1>Class JobProperty</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Emailing service</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Emailer</span>
+						<span class="target">JobProperty</span>
 					</li>
 				</ul>
 			</section>
@@ -89,23 +82,24 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="emailer.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="jobproperty.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="emailer.html#credentials" class="tsd-kind-icon">credentials</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="emailer.html#e" class="tsd-kind-icon">e</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="emailer.html#nodemailertransport" class="tsd-kind-icon">nodemailer<wbr>Transport</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="jobproperty.html#key" class="tsd-kind-icon">key</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="jobproperty.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="jobproperty.html#value" class="tsd-kind-icon">value</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="emailer.html#compilejade" class="tsd-kind-icon">compile<wbr>Jade</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="emailer.html#executesend" class="tsd-kind-icon">execute<wbr>Send</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="emailer.html#sendmail" class="tsd-kind-icon">send<wbr>Mail</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="jobproperty.html#gettype" class="tsd-kind-icon">get<wbr>Type</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="jobproperty.html#getvalue" class="tsd-kind-icon">get<wbr>Value</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="jobproperty.html#resolvetype" class="tsd-kind-icon">resolve<wbr>Type</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="jobproperty.html#setvalue" class="tsd-kind-icon">set<wbr>Value</a></li>
 							</ul>
 						</section>
 					</div>
@@ -117,25 +111,25 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Emailer<span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="environment.html" class="tsd-signature-type">Environment</a>, credentials<span class="tsd-signature-symbol">: </span><a href="../interfaces/emailcredentials.html" class="tsd-signature-type">EmailCredentials</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="emailer.html" class="tsd-signature-type">Emailer</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Job<wbr>Property<span class="tsd-signature-symbol">(</span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="jobproperty.html" class="tsd-signature-type">JobProperty</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/67065bb/src/lib/environment/emailer.ts#L17">lib/environment/emailer.ts:17</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/67065bb/src/lib/job/jobProperty.ts#L5">lib/job/jobProperty.ts:5</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>e: <a href="environment.html" class="tsd-signature-type">Environment</a></h5>
+									<h5>key: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5>credentials: <a href="../interfaces/emailcredentials.html" class="tsd-signature-type">EmailCredentials</a></h5>
+									<h5>value: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="emailer.html" class="tsd-signature-type">Emailer</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="jobproperty.html" class="tsd-signature-type">JobProperty</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -143,136 +137,106 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-					<a name="credentials" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> credentials</h3>
-					<div class="tsd-signature tsd-kind-icon">credentials<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<a name="key" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> key</h3>
+					<div class="tsd-signature tsd-kind-icon">key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/67065bb/src/lib/environment/emailer.ts#L17">lib/environment/emailer.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/67065bb/src/lib/job/jobProperty.ts#L3">lib/job/jobProperty.ts:3</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-					<a name="e" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> e</h3>
-					<div class="tsd-signature tsd-kind-icon">e<span class="tsd-signature-symbol">:</span> <a href="environment.html" class="tsd-signature-type">Environment</a></div>
+					<a name="type" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> type</h3>
+					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/67065bb/src/lib/environment/emailer.ts#L15">lib/environment/emailer.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/67065bb/src/lib/job/jobProperty.ts#L5">lib/job/jobProperty.ts:5</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-					<a name="nodemailertransport" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> nodemailer<wbr>Transport</h3>
-					<div class="tsd-signature tsd-kind-icon">nodemailer<wbr>Transport<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Transporter</span></div>
+					<a name="value" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> value</h3>
+					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/67065bb/src/lib/environment/emailer.ts#L16">lib/environment/emailer.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/67065bb/src/lib/job/jobProperty.ts#L4">lib/job/jobProperty.ts:4</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<a name="compilejade" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> compile<wbr>Jade</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">compile<wbr>Jade<span class="tsd-signature-symbol">(</span>filePath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, job<span class="tsd-signature-symbol">: </span><a href="job.html" class="tsd-signature-type">Job</a>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="gettype" class="tsd-anchor"></a>
+					<h3>get<wbr>Type</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Type<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/67065bb/src/lib/environment/emailer.ts#L91">lib/environment/emailer.ts:91</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/67065bb/src/lib/job/jobProperty.ts#L27">lib/job/jobProperty.ts:27</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>This finds and compiles a path to a jade template and returns HTML in the callback.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>filePath: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The path to the file.</p>
-									</div>
-								</li>
-								<li>
-									<h5>job: <a href="job.html" class="tsd-signature-type">Job</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The job object which is passed into Jade.</p>
-									</div>
-								</li>
-								<li>
-									<h5>callback: <span class="tsd-signature-type">any</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>returns the complied jade template as html</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<a name="executesend" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> execute<wbr>Send</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-						<li class="tsd-signature tsd-kind-icon">execute<wbr>Send<span class="tsd-signature-symbol">(</span>nodemailerOptions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/67065bb/src/lib/environment/emailer.ts#L73">lib/environment/emailer.ts:73</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Send an email with nodemailer.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>nodemailerOptions: <span class="tsd-signature-type">any</span></h5>
-									<div class="tsd-comment tsd-typography">
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="sendmail" class="tsd-anchor"></a>
-					<h3>send<wbr>Mail</h3>
+					<a name="getvalue" class="tsd-anchor"></a>
+					<h3>get<wbr>Value</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">send<wbr>Mail<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="emailoptions.html" class="tsd-signature-type">EmailOptions</a>, job<span class="tsd-signature-symbol">?: </span><a href="job.html" class="tsd-signature-type">Job</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Value<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/67065bb/src/lib/environment/emailer.ts#L38">lib/environment/emailer.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/67065bb/src/lib/job/jobProperty.ts#L23">lib/job/jobProperty.ts:23</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Collects options a executes nodemailer.</p>
-								</div>
-							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="resolvetype" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> resolve<wbr>Type</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">resolve<wbr>Type<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/67065bb/src/lib/job/jobProperty.ts#L18">lib/job/jobProperty.ts:18</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="setvalue" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> set<wbr>Value</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Value<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/67065bb/src/lib/job/jobProperty.ts#L13">lib/job/jobProperty.ts:13</a></li>
+								</ul>
+							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>options: <a href="emailoptions.html" class="tsd-signature-type">EmailOptions</a></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> job: <a href="job.html" class="tsd-signature-type">Job</a></h5>
+									<h5>value: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -294,28 +258,31 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="emailer.html" class="tsd-kind-icon">Emailer</a>
+						<a href="jobproperty.html" class="tsd-kind-icon">Job<wbr>Property</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="emailer.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="jobproperty.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="emailer.html#credentials" class="tsd-kind-icon">credentials</a>
+								<a href="jobproperty.html#key" class="tsd-kind-icon">key</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="emailer.html#e" class="tsd-kind-icon">e</a>
+								<a href="jobproperty.html#type" class="tsd-kind-icon">type</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="emailer.html#nodemailertransport" class="tsd-kind-icon">nodemailer<wbr>Transport</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-								<a href="emailer.html#compilejade" class="tsd-kind-icon">compile<wbr>Jade</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-								<a href="emailer.html#executesend" class="tsd-kind-icon">execute<wbr>Send</a>
+								<a href="jobproperty.html#value" class="tsd-kind-icon">value</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="emailer.html#sendmail" class="tsd-kind-icon">send<wbr>Mail</a>
+								<a href="jobproperty.html#gettype" class="tsd-kind-icon">get<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="jobproperty.html#getvalue" class="tsd-kind-icon">get<wbr>Value</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="jobproperty.html#resolvetype" class="tsd-kind-icon">resolve<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="jobproperty.html#setvalue" class="tsd-kind-icon">set<wbr>Value</a>
 							</li>
 						</ul>
 					</li>

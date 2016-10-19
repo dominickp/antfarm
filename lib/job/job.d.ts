@@ -3,6 +3,7 @@ import { Nest } from "../nest/nest";
 import { Environment } from "../environment/environment";
 import { LifeEvent } from "../environment/lifeEvent";
 import { EmailOptions } from "../environment/emailOptions";
+import { JobProperty } from "./jobProperty";
 export declare abstract class Job {
     protected name: string;
     protected tunnel: Tunnel;
@@ -11,6 +12,7 @@ export declare abstract class Job {
     protected locallyAvailable: boolean;
     protected lifeCycle: LifeEvent[];
     protected id: string;
+    protected properties: any;
     /**
      * Job constructor
      * @param e
@@ -140,4 +142,42 @@ export declare abstract class Job {
      * ```
      */
     email(emailOptions: EmailOptions): void;
+    /**
+     * Attach job specific data to the job instance.
+     * #### Example
+     * ```js
+     * job.setPropertyValue("My Job Number", 123456);
+     *
+     * console.log(job.getPropertyValue("My Job Number"));
+     * // 123456
+     * ```
+     * @param key
+     * @param value
+     */
+    setPropertyValue(key: string, value: any): void;
+    /**
+     * Get the entire job property object.
+     * @param key
+     * @returns {JobProperty}
+     */
+    getProperty(key: string): JobProperty;
+    /**
+     * Get the value of a property if it has been previously set.
+     * @param key
+     * @returns {any}
+     */
+    getPropertyValue(key: string): any;
+    /**
+     * Get the type of a property.
+     * #### Example
+     * ```js
+     * job.setPropertyValue("My Job Number", 123456);
+     *
+     * console.log(job.getPropertyType("My Job Number"));
+     * // "number"
+     * ```
+     * @param key
+     * @returns {string}
+     */
+    getPropertyType(key: string): any;
 }
