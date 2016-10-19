@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/dominickp/antfarm#readme",
   "dependencies": {
-    "@types/nodemailer": "^1.3.32",
     "async": "^2.0.1",
     "aws-sdk": "^2.6.7",
     "clone": "^2.0.0",
@@ -47,6 +46,7 @@
   "devDependencies": {
     "@types/express": "^4.0.33",
     "@types/node": "^6.0.45",
+    "@types/nodemailer": "^1.3.32",
     "@types/shortid": "0.0.28",
     "chai": "^3.5.0",
     "gulp": "^3.9.1",
