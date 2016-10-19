@@ -13,21 +13,28 @@ var gulp = require('gulp'),
 
 process.setMaxListeners(0);
 
-// gulp.task("doc", function() {
-//     return gulp
-//         .src([
-//             "./src/**/*.ts"
-//         ])
-//         .pipe(typedoc({
-//             module: "commonjs",
-//             target: "es5",
-//             out: "./docs/",
-//             name: "Antfarm",
-//             ignoreCompilerErrors: false,
-//             includeDeclarations: false,
-//             mode: "file"
-//         }));
-// });
+
+/* ---------------- Typedoc ---------------- */
+
+gulp.task("doc", function() {
+    return gulp
+        .src([
+            "./src/**/*.ts"
+        ])
+        .pipe(typedoc({
+            module: "commonjs",
+            target: "es5",
+            out: "./docs/",
+            name: "Antfarm",
+            ignoreCompilerErrors: false,
+            includeDeclarations: false,
+            mode: "file"
+        }));
+});
+
+gulp.task('docs', ['doc']);
+
+/* ---------------- Tslint ---------------- */
 
 gulp.task("tslint", function() {
     gulp.src([
@@ -43,20 +50,30 @@ gulp.task("tslint", function() {
             bell: true
         }));
 });
-//
-// var tsProject = ts.createProject(
-//     'tsconfig.json',
-//     {
-//         declaration: true,
-//         noExternalResolve: true,
-//         module:'commonjs',
-//         suppressImplicitAnyIndexErrors: false,
-//         noEmitOnError: false
-//     },
-//     ts.reporter.defaultReporter()
-// );
+
+
+/* ---------------- Typescript ---------------- */
 
 var tsProject = ts.createProject('tsconfig.json');
+
+gulp.task('build', function() {
+    var tsResult = gulp.src([
+        './src/index.ts',
+        './src/**/*.ts',
+        './devtypes/**/*.ts',
+    ])
+        .pipe(tsProject());
+    // .pipe(ts(tsProject));
+    // tsResult.dts.pipe(gulp.dest('./'));
+    // return tsResult.js.pipe(gulp.dest('./'));
+
+    return merge([ // Merge the two output streams, so this task is finished when the IO of both operations is done.
+        tsResult.dts.pipe(gulp.dest('./')),
+        tsResult.js.pipe(gulp.dest('./'))
+    ]);
+});
+
+/* ---------------- Mocha ---------------- */
 
 /**
  * handleMochaError
@@ -83,6 +100,8 @@ gulp.task('test', function() {
         .pipe(mocha({reporter: 'nyan'})
         .on("error", handleError));
 });
+
+/* ---------------- Travis ---------------- */
 
 gulp.task('test-travis', function (cb) {
     var mochaErr;
@@ -132,22 +151,14 @@ gulp.task('coveralls-travis', function () {
         .pipe(coveralls());
 });
 
-gulp.task('build', function() {
-    var tsResult = gulp.src([
-        './src/index.ts',
-        './src/**/*.ts',
-        './devtypes/**/*.ts',
-    ])
-        .pipe(tsProject());
-        // .pipe(ts(tsProject));
-    // tsResult.dts.pipe(gulp.dest('./'));
-    // return tsResult.js.pipe(gulp.dest('./'));
-
-    return merge([ // Merge the two output streams, so this task is finished when the IO of both operations is done.
-        tsResult.dts.pipe(gulp.dest('./')),
-        tsResult.js.pipe(gulp.dest('./'))
-    ]);
+gulp.task('travis', function(callback) {
+    runSequence(
+        'build',
+        'test-travis',
+        callback);
 });
+
+/* ---------------- Build ---------------- */
 
 gulp.task('build-test', function(callback) {
     runSequence(
@@ -158,17 +169,9 @@ gulp.task('build-test', function(callback) {
         callback);
 });
 
-gulp.task('travis', function(callback) {
-    runSequence(
-        'build',
-        'test-travis',
-        callback);
-});
-
 gulp.task('watch', function(){
     gulp.watch('src/**/*.ts', ["build-test"]);
     gulp.watch('test/**/*.js', ["test"]);
 });
-
 
 gulp.task('default', ['build-test', 'watch']);
