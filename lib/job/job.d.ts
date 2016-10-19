@@ -145,12 +145,14 @@ export declare abstract class Job {
     /**
      * Attach job specific data to the job instance.
      * #### Example
+     *
      * ```js
      * job.setPropertyValue("My Job Number", 123456);
      *
      * console.log(job.getPropertyValue("My Job Number"));
      * // 123456
      * ```
+     *
      * @param key
      * @param value
      */
@@ -170,12 +172,14 @@ export declare abstract class Job {
     /**
      * Get the type of a property.
      * #### Example
+     *
      * ```js
      * job.setPropertyValue("My Job Number", 123456);
      *
      * console.log(job.getPropertyType("My Job Number"));
      * // "number"
      * ```
+     *
      * @param key
      * @returns {string}
      */
