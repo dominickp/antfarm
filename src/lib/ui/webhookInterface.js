@@ -228,4 +228,3 @@ var WebhookInterface = (function () {
     return WebhookInterface;
 }());
 exports.WebhookInterface = WebhookInterface;
-//# sourceMappingURL=webhookInterface.js.map

@@ -18,4 +18,3 @@ var LifeEvent = (function () {
     return LifeEvent;
 }());
 exports.LifeEvent = LifeEvent;
-//# sourceMappingURL=lifeEvent.js.map

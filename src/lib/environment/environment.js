@@ -32,13 +32,18 @@ var Environment = (function () {
         if (options.port) {
             e.createServer();
         }
-        // if (options.email_port) {
-        //     e.createEmailer();
-        // }
+        if (options.email_credentials) {
+            e.createEmailer();
+        }
     };
+    /**
+     * Creates an Emailer object to send emails.
+     */
     Environment.prototype.createEmailer = function () {
+        var e = this;
         // Get options needed and pass to emailer
-        this.emailer = new emailer_1.Emailer(credentials, EmailCredentials);
+        var credentials = e.options.email_credentials;
+        e.emailer = new emailer_1.Emailer(e, credentials);
     };
     Environment.prototype.getEmailer = function () {
         return this.emailer;
@@ -111,4 +116,3 @@ var Environment = (function () {
     return Environment;
 }());
 exports.Environment = Environment;
-//# sourceMappingURL=environment.js.map

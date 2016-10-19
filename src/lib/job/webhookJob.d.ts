@@ -1,8 +1,12 @@
 import { Environment } from "../environment/environment";
 import { Job } from "./job";
+/**
+ * A job that is triggered when a webhook receives a request.
+ */
 export declare class WebhookJob extends Job {
     protected request: any;
     protected response: any;
+    protected _responseSent: boolean;
     /**
      * WebhookJob constructor
      * @param e
@@ -10,6 +14,15 @@ export declare class WebhookJob extends Job {
      * @param response
      */
     constructor(e: Environment, request: any, response: any);
+    /**
+     * Get if the response to the webhook was already sent or not.
+     * @returns {boolean}
+     */
+    /**
+     * Set if the response to the webhook was already sent or not.
+     * @param sent
+     */
+    responseSent: boolean;
     /**
      * Get the HTTP response object.
      * @returns {ClientResponse}
@@ -44,18 +57,6 @@ export declare class WebhookJob extends Job {
      */
     getQueryStringValues(): any;
     /**
-     * Gets a FileJob from the request body with a temporary file name.
-     * The callback will be given the job as its parameter.
-     * #### Example
-     * ```js
-     *  webhookJob.getDataAsFileJob(function(fileJob){
-     *      fileJob.rename("myfile.zip");
-     *      fileJob.move(af.createFolderNest("/var/out/webhook"));
-     *  });
-     * ```
-     * @returns {any}
-     */
-    /**
      * Returns FileJobs made from files sent via FormData to the webhook.
      * @returns {FileJob[]}
      */
@@ -83,4 +84,14 @@ export declare class WebhookJob extends Job {
      * @param callback
      */
     getDataAsString(callback: any): void;
+    /**
+     * Returns an array of parameters from both the query string and form-data.
+     */
+    getParameters(): any;
+    /**
+     * Returns a parameter from both the query string and form-data.
+     * @param key
+     * @returns {any}
+     */
+    getParameter(key: string): any;
 }

@@ -72,4 +72,3 @@ var S3FileJob = (function (_super) {
     return S3FileJob;
 }(fileJob_1.FileJob));
 exports.S3FileJob = S3FileJob;
-//# sourceMappingURL=s3FileJob.js.map

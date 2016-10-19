@@ -174,4 +174,3 @@ var Antfarm = (function () {
 }());
 exports.Antfarm = Antfarm;
 module.exports = Antfarm;
-//# sourceMappingURL=antfarm.js.map

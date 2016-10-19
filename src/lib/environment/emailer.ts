@@ -2,9 +2,10 @@ import {EmailOptions} from "./emailOptions";
 import {EmailCredentials} from "./emailCredentials";
 import {Environment} from "./environment";
 import {Job} from "../job/job";
+import {Transporter, SendMailOptions} from "nodemailer";
 
 const   nodemailer = require("nodemailer"),
-        jade = require("jade");
+        pug = require("pug");
 
 /**
  * Emailing service
@@ -12,16 +13,16 @@ const   nodemailer = require("nodemailer"),
 export class Emailer {
 
     protected e: Environment;
-    protected connection: any;
+    protected nodemailerTransport: Transporter;
     protected credentials: any;
 
     constructor(e: Environment, credentials: EmailCredentials) {
         this.e = e;
         this.credentials = credentials;
-        // console.log(this.credentials);
-        // console.log(credentials.service);
-        this.connection = nodemailer.createTransport(credentials.transportMethod, {
-            service: credentials.service,  // sets automatically host, port and connection security settings
+
+
+        this.nodemailerTransport = nodemailer.createTransport(credentials.transportMethod, {
+            service: credentials.service,  // sets automatically host, port and nodemailerTransport security settings
             auth: {
                 user: credentials.username,
                 pass: credentials.password
@@ -45,7 +46,7 @@ export class Emailer {
             subject: options.subject,
             html: null,
             text: null
-        };
+        } as SendMailOptions;
 
         // Get email body and execute
         if (options.template) {
@@ -71,14 +72,14 @@ export class Emailer {
      */
     protected executeSend(nodemailerOptions: any) {
         let ms = this;
-        ms.connection.sendMail(nodemailerOptions, (nmError, nmResponse) => {
+        ms.nodemailerTransport.sendMail(nodemailerOptions, (nmError, nmResponse) => {
             if (nmError) {
                 ms.e.log(3, `nodemailer sending error: ${nmError}`, ms);
             } else {
-                ms.e.log(0, `Email sent. ${nmResponse.message}`, ms);
+                ms.e.log(0, `Email sent. ${nmResponse.messageId}`, ms);
             }
         });
-        ms.connection.close(); // shut down the connection pool, no more messages.  Comment this line out to continue sending emails.
+        ms.nodemailerTransport.close();
     }
 
     /**
@@ -89,7 +90,7 @@ export class Emailer {
      */
     protected compileJade(filePath: string, job: Job, callback: any): void {
         let ms = this;
-        jade.renderFile(filePath, {job: job}, (err, compiledTemplate) => {
+        pug.renderFile(filePath, {job: job}, (err, compiledTemplate) => {
             if (err) {
                 ms.e.log(3, `pug rendering error: ${err}`, ms);
             } else {

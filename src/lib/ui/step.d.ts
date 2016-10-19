@@ -1,7 +1,7 @@
 /**
  * An interface step which allows GET requests to be made against the interface itself.
  */
-export interface Step {
+export declare class Step {
     /**
      * The human-readable step name.
      */
@@ -9,9 +9,18 @@ export interface Step {
     /**
      * Flag if step is complete or not
      */
-    complete?: boolean;
+    complete: boolean;
     /**
      * Callback function to run on step execution.
      */
-    callback?: any;
+    callback: any;
+    /**
+     * Step validation error.
+     */
+    failure: string;
+    /**
+     * Set complete and wipe out any failure
+     * @param complete
+     */
+    setComplete(complete: boolean): void;
 }

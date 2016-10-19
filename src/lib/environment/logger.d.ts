@@ -24,7 +24,7 @@ export declare class Logger {
      */
     protected consoleFormatter(options: any): string;
     /**
-     * Initializae logger
+     * Initialize logger
      */
     protected createLogger(): void;
     /**

@@ -87,7 +87,7 @@ var S3Nest = (function (_super) {
     S3Nest.prototype.createBucket = function (callback) {
         var sn = this;
         var params = {
-            Bucket: sn.bucket,
+            Bucket: sn.bucket
         };
         sn.s3.createBucket(params, function (err, data) {
             if (err) {
@@ -267,4 +267,3 @@ var S3Nest = (function (_super) {
     return S3Nest;
 }(nest_1.Nest));
 exports.S3Nest = S3Nest;
-//# sourceMappingURL=s3Nest.js.map

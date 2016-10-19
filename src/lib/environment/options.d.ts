@@ -1,3 +1,7 @@
+import { EmailCredentials } from "./emailCredentials";
+/**
+ * Global antfarm options.
+ */
 export interface AntfarmOptions {
     /**
      * The directory for logs to be saved.
@@ -26,5 +30,13 @@ export interface AntfarmOptions {
     /**
      * Auto managed folder path.
      */
-    auto_managed_folder_directory: string;
+    auto_managed_folder_directory?: string;
+    /**
+     * Webhook interface session timeout in minutes.
+     */
+    webhook_interface_session_timeout?: number;
+    /**
+     * Service nameif not using a hostname. Acceptable options: gmail.
+     */
+    email_credentials?: EmailCredentials;
 }

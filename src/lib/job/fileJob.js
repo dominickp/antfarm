@@ -147,4 +147,3 @@ var FileJob = (function (_super) {
     return FileJob;
 }(job_1.Job));
 exports.FileJob = FileJob;
-//# sourceMappingURL=fileJob.js.map

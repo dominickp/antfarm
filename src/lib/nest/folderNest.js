@@ -90,18 +90,20 @@ var FolderNest = (function (_super) {
         if (hold === void 0) { hold = false; }
         var fl = this;
         fs.readdir(fl.path, function (err, items) {
-            items = items.filter(function (item) { return !(/(^|\/)\.[^\/\.]/g).test(item); });
-            items.forEach(function (filename) {
-                var filepath = fl.path + path_mod.sep + filename;
-                var job;
-                if (hold === false) {
-                    fl.createJob(filepath, true); // Arrives as well
-                }
-                else {
-                    job = fl.createJob(filepath, false);
-                    fl.holdJob(job);
-                }
-            });
+            if (items) {
+                items = items.filter(function (item) { return !(/(^|\/)\.[^\/\.]/g).test(item); });
+                items.forEach(function (filename) {
+                    var filepath = fl.path + path_mod.sep + filename;
+                    var job;
+                    if (hold === false) {
+                        fl.createJob(filepath, true); // Arrives as well
+                    }
+                    else {
+                        job = fl.createJob(filepath, false);
+                        fl.holdJob(job);
+                    }
+                });
+            }
         });
     };
     /**
@@ -226,4 +228,3 @@ var FolderNest = (function (_super) {
     return FolderNest;
 }(nest_1.Nest));
 exports.FolderNest = FolderNest;
-//# sourceMappingURL=folderNest.js.map

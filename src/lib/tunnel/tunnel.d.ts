@@ -2,6 +2,8 @@ import { FolderNest } from "../nest/folderNest";
 import { Nest } from "../nest/nest";
 import { Job } from "../job/job";
 import { Environment } from "../environment/environment";
+import { WebhookNest } from "../nest/webhookNest";
+import { FtpNest } from "../nest/ftpNest";
 /**
  * Tunnels are runnable work flow units that can watch nests.
  */
@@ -25,7 +27,11 @@ export declare class Tunnel {
     getNests(): Nest[];
     getRunList(): any[];
     getRunSyncList(): any[];
-    watch(nest: FolderNest): void;
+    /**
+     * Instructs the tunnel to watch a nest for new jobs.
+     * @param nest
+     */
+    watch(nest: FolderNest | WebhookNest | FtpNest): void;
     arrive(job: Job, nest?: Nest): void;
     /**
      * Run program logic asynchronously.
@@ -37,9 +43,29 @@ export declare class Tunnel {
      * @param callback
      */
     runSync(callback: any): void;
+    /**
+     * Failed jobs runner.
+     * @param callback
+     */
     fail(callback: any): void;
+    /**
+     * Asynchronous run event.
+     * @param job
+     * @param nest
+     */
     protected executeRun(job: Job, nest: Nest): void;
+    /**
+     * Synchronous run event.
+     * @param job
+     * @param nest
+     */
     protected executeRunSync(job: Job, nest: Nest): void;
+    /**
+     * Fail run event.
+     * @param job
+     * @param nest
+     * @param reason
+     */
     executeFail(job: Job, nest: Nest, reason: string): void;
     /**
      * Interface for matching two or more files together based on an array of glob filename patterns.

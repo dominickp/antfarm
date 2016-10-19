@@ -3,25 +3,48 @@ import { WebhookNest } from "../nest/webhookNest";
 import { Server } from "./server";
 import { InterfaceManager } from "../ui/interfaceManager";
 import { AntfarmOptions } from "./options";
+import { Emailer } from "./emailer";
+/**
+ * The environment class controls all aspects of the antfarm environment, like options, logging,
+ * and constructing globally referenced objects.
+ */
 export declare class Environment {
     protected options: AntfarmOptions;
     protected logger: Logger;
-    protected server: any;
-    protected server2: Server;
+    protected _server: Server;
+    protected emailer: Emailer;
     protected hookRoutes: any[];
     protected hookInterfaceRoutes: any[];
     constructor(options: AntfarmOptions);
+    /**
+     * Sets the options and creates other environmental objects if necessary.
+     * @param options
+     */
     protected setOptions(options: AntfarmOptions): void;
+    /**
+     * Creates an Emailer object to send emails.
+     */
+    protected createEmailer(): void;
+    getEmailer(): Emailer;
     /**
      * Get the Antfarm options.
      * @returns {AntfarmOptions}
      */
     getOptions(): AntfarmOptions;
+    /**
+     * Return the auto managed folder directory, if set.
+     * @returns {string}
+     */
     getAutoManagedFolderDirectory(): string;
     /**
      * Creates the server.
      */
     protected createServer(): void;
+    /**
+     * Get the server instance.
+     * @returns {Server}
+     */
+    readonly server: Server;
     /**
      * Adds a webhook to the webhook server.
      * @param nest
@@ -33,5 +56,16 @@ export declare class Environment {
      */
     addWebhookInterface(im: InterfaceManager): void;
     toString(): string;
+    /**
+     * Adds a log entry to the Logger instance.
+     * @param type {number}          The log level. 0 = debug, 1 = info, 2 = warning, 3 = error
+     * @param message {string}       Log message.
+     * @param actor  {any}           Instance which triggers the action being logged.
+     * @param instances {any[]}      Array of of other involved instances.
+     * #### Example
+     * ```js
+     * job.e.log(1, `Transferred to Tunnel "${tunnel.getName()}".`, job, [oldTunnel]);
+     * ```
+     */
     log(type: number, message: string, actor?: any, instances?: any[]): void;
 }

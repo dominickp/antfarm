@@ -7,7 +7,9 @@ var gulp = require('gulp'),
     stylish = require('tslint-stylish'),
     istanbul = require('gulp-istanbul'),
     plumber = require('gulp-plumber'),
-    coveralls = require('gulp-coveralls');
+    coveralls = require('gulp-coveralls'),
+    merge = require('merge2');
+
 
 process.setMaxListeners(0);
 
@@ -41,18 +43,20 @@ gulp.task("tslint", function() {
             bell: true
         }));
 });
+//
+// var tsProject = ts.createProject(
+//     'tsconfig.json',
+//     {
+//         declaration: true,
+//         noExternalResolve: true,
+//         module:'commonjs',
+//         suppressImplicitAnyIndexErrors: false,
+//         noEmitOnError: false
+//     },
+//     ts.reporter.defaultReporter()
+// );
 
-var tsProject = ts.createProject(
-    'tsconfig.json',
-    {
-        declaration: true,
-        noExternalResolve: true,
-        module:'commonjs',
-        suppressImplicitAnyIndexErrors: false,
-        noEmitOnError: false
-    },
-    ts.reporter.defaultReporter()
-);
+var tsProject = ts.createProject('tsconfig.json');
 
 /**
  * handleMochaError
@@ -132,12 +136,17 @@ gulp.task('build', function() {
     var tsResult = gulp.src([
         './src/index.ts',
         './src/**/*.ts',
-
         './devtypes/**/*.ts',
     ])
-        .pipe(ts(tsProject));
-    tsResult.dts.pipe(gulp.dest('./'));
-    return tsResult.js.pipe(gulp.dest('./'));
+        .pipe(tsProject());
+        // .pipe(ts(tsProject));
+    // tsResult.dts.pipe(gulp.dest('./'));
+    // return tsResult.js.pipe(gulp.dest('./'));
+
+    return merge([ // Merge the two output streams, so this task is finished when the IO of both operations is done.
+        tsResult.dts.pipe(gulp.dest('./')),
+        tsResult.js.pipe(gulp.dest('./'))
+    ]);
 });
 
 gulp.task('build-test', function(callback) {

@@ -3,6 +3,10 @@ import { WebhookNest } from "../nest/webhookNest";
 import { FolderNest } from "../nest/folderNest";
 import { FieldOptions } from "./field";
 import { Step } from "./step";
+import { InterfaceMetadata } from "./interfaceMetadata";
+import { InterfaceProperty } from "./InterfaceProperty";
+import { FileJob } from "../job/fileJob";
+import { FolderJob } from "../job/folderJob";
 /**
  * A webhook interface instance, tied to a particular session.
  * Within interface steps, you can use these methods directly to alter the schema being returned to the user interface.
@@ -29,12 +33,24 @@ export declare class WebhookInterface {
     protected checkpointNest: FolderNest;
     protected steps: Step[];
     protected sessionId: string;
+    protected metadata: InterfaceMetadata;
     /**
      * Constructor
      * @param {Environment} e
      * @param {WebhookNest} nest
      */
     constructor(e: Environment, nest: WebhookNest);
+    protected initMetadata(): void;
+    getMetadata(): InterfaceMetadata;
+    /**
+     * Sets a cloned instance of metadata.
+     * @param metadata
+     */
+    setMetadata(metadata: InterfaceMetadata): void;
+    setDescription(description: string): void;
+    setTooltip(tooltip: string): void;
+    addInterfaceProperty(property: InterfaceProperty): void;
+    setInterfaceProperties(properties: InterfaceProperty[]): void;
     /**
      * Return the session id. Used to match to interface instanced within the manager.
      * @returns {string}
@@ -50,6 +66,27 @@ export declare class WebhookInterface {
      * @param {FieldOptions} field
      */
     addField(field: FieldOptions): boolean;
+    /**
+     * Get an existing field from the interface to modify its properties.
+     * @param fieldId
+     * @returns {FieldOptions}
+     * #### Example
+     * ```js
+     * im.addStep("Check job number", function(webhookJob, webhookInterface, step, done) {
+     *      if(webhookJob.getParameter("job_number").length == 6) {
+     *          // Make job number read only
+     *          var jobNumberField = webhookInterface.getField("job_number");
+     *          jobNumberField.readonly = true;
+     *          // Complete step
+     *          webhookInterface.completeStep(step);
+     *      } else {
+     *          step.failure = "Job number was not 6 characters.";
+     *      }
+     *      done();
+     * });
+     * ```
+     */
+    getField(fieldId: string): any;
     /**
      * Overwrites fields with a clone.
      * @param fields
@@ -67,21 +104,36 @@ export declare class WebhookInterface {
     getTransportInterface(): {
         sessionId: string;
         fields: FieldOptions[];
-        jobs: any[];
+        heldJobs: any[];
         steps: Step[];
+        metadata: InterfaceMetadata;
     };
     /**
-     * Adds pending jobs to the interfaces job list.
+     * Returns checked jobs.
+     * @returns {(FileJob|FolderJob)[]}
+     */
+    getJobs(): (FileJob | FolderJob)[];
+    /**
+     * Sets the checkpoint nest.
      * @param nest
      */
-    checkNest(nest: FolderNest): void;
-    getJobs(): any[];
+    setCheckpointNest(nest: FolderNest): void;
     /**
      * Adds a user interface step
      * @param stepName
      * @param callback
      */
     addStep(stepName: string, callback: any): void;
+    /**
+     * Mark a step as complete and remove it from the interface.
+     * @param step {Step}
+     */
+    completeStep(step: Step): boolean;
+    /**
+     * Alias of completeStep.
+     * @param step {Step}
+     */
+    removeStep(step: Step): void;
     /**
      * Get an array of instance steps.
      * @returns {Step[]}

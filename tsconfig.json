@@ -5,7 +5,8 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "removeComments": false,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "declaration": true
   },
   "include": [
     "src/**/*"

@@ -177,4 +177,3 @@ var WebhookNest = (function (_super) {
     return WebhookNest;
 }(nest_1.Nest));
 exports.WebhookNest = WebhookNest;
-//# sourceMappingURL=webhookNest.js.map
