@@ -14,7 +14,10 @@ xdescribe('Interface Manager', function() {
         port: 8083
     };
 
-    af = new Antfarm(options);
+
+    before(function(){
+        af = new Antfarm(options);
+    });
 
     beforeEach(function() {
         tunnel = af.createTunnel("Interface manager test tunnel");
