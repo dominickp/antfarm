@@ -1,3 +1,4 @@
+import {isArray} from "util";
 export class JobProperty {
 
     protected key: string;
@@ -17,7 +18,12 @@ export class JobProperty {
 
     protected resolveType() {
         let jp = this;
-        jp.type = typeof(jp.value);
+        let type = typeof(jp.value);
+        if (isArray(jp.value)) {
+            jp.type = "array";
+        } else {
+            jp.type = type;
+        }
     }
 
     public getValue() {

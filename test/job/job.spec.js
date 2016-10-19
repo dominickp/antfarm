@@ -136,5 +136,32 @@ describe('Job', function() {
         });
     });
 
+    describe("properties", function(){
+        it('should set and get job property values', function (done) {
+            var job_name = "MyJobFile_001.pdf";
+            tunnel.run(function(job){
+                job.setPropertyValue("JobNumber", 123456);
+                job.getPropertyValue("JobNumber").should.equal(123456);
+                done();
+            });
+            triggerNewJob(job_name);
+        });
+        it('should get property types', function (done) {
+            var job_name = "MyJobFile_001.pdf";
+            tunnel.run(function(job){
+                job.setPropertyValue("JobNumber", 123456);
+                job.getPropertyType("JobNumber").should.equal("number");
+                job.setPropertyValue("CustomerName", "My customer");
+                job.getPropertyType("CustomerName").should.equal("string");
+                job.setPropertyValue("Details", {a: 1, b: 2, c: 3});
+                job.getPropertyType("Details").should.equal("object");
+                job.setPropertyValue("Things", [1, 2, 3]);
+                job.getPropertyType("Things").should.equal("array");
+                done();
+            });
+            triggerNewJob(job_name);
+        });
+    });
+
 });
 
