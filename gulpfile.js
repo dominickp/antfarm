@@ -9,7 +9,7 @@ var gulp = require('gulp'),
     plumber = require('gulp-plumber'),
     coveralls = require('gulp-coveralls'),
     merge = require('merge2');
-
+    del = require('del');
 
 process.setMaxListeners(0);
 
@@ -71,6 +71,10 @@ gulp.task('build', function() {
         tsResult.dts.pipe(gulp.dest('./')),
         tsResult.js.pipe(gulp.dest('./'))
     ]);
+});
+
+gulp.task('clean:build', function () {
+    return del('./lib');
 });
 
 /* ---------------- Mocha ---------------- */
@@ -162,6 +166,7 @@ gulp.task('travis', function(callback) {
 
 gulp.task('build-test', function(callback) {
     runSequence(
+        'clean:build',
         'build',
         'test',
         'tslint',

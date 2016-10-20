@@ -49,6 +49,7 @@
     "@types/nodemailer": "^1.3.32",
     "@types/shortid": "0.0.28",
     "chai": "^3.5.0",
+    "del": "^2.2.2",
     "gulp": "^3.9.1",
     "gulp-coveralls": "^0.1.4",
     "gulp-istanbul": "^1.1.1",
