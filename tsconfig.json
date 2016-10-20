@@ -9,6 +9,7 @@
     "declaration": true
   },
   "include": [
+    "src/lib/job/job.ts",
     "src/**/*"
   ],
   "exclude": [

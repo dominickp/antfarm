@@ -5,6 +5,10 @@ import {LifeEvent} from "../environment/lifeEvent";
 import {EmailOptions} from "../environment/emailOptions";
 import {JobProperty} from "./jobProperty";
 
+// Handle the circular dependency by stashing the type in a variable for requiring later.
+// import * as PackedJobTypes from "./packedJob";
+// let PackedJob: typeof PackedJobTypes.PackedJob;
+
 const   shortid = require("shortid"),
         _ = require("lodash");
 
@@ -295,6 +299,15 @@ export abstract class Job {
         } else {
             return null;
         }
+    }
+
+    /**
+     * Packs the job instance and file together in a zip.
+     */
+    public getPack() {
+        let job = this;
+        let PackedJob = require("./packedJob").PackedJob;
+        return new PackedJob(job.e, "whatever");
     }
 
 }
