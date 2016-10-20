@@ -1,3 +1,5 @@
 "use strict";
 var Antfarm = require("./lib/antfarm");
 module.exports = Antfarm;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSxJQUFPLE9BQU8sV0FBVyxlQUFlLENBQUMsQ0FBQztBQUUxQyxNQUFNLENBQUMsT0FBTyxHQUFHLE9BQU8sQ0FBQyIsImZpbGUiOiJpbmRleC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBBbnRmYXJtID0gcmVxdWlyZShcIi4vbGliL2FudGZhcm1cIik7XG5cbm1vZHVsZS5leHBvcnRzID0gQW50ZmFybTsiXX0=

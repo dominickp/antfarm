@@ -8,8 +8,9 @@ var gulp = require('gulp'),
     istanbul = require('gulp-istanbul'),
     plumber = require('gulp-plumber'),
     coveralls = require('gulp-coveralls'),
-    merge = require('merge2');
-    del = require('del');
+    merge = require('merge2'),
+    del = require('del'),
+    sourcemaps = require('gulp-sourcemaps');
 
 process.setMaxListeners(0);
 
@@ -62,14 +63,13 @@ gulp.task('build', function() {
         './src/**/*.ts',
         './devtypes/**/*.ts',
     ])
+        .pipe(sourcemaps.init()) // This means sourcemaps will be generated
         .pipe(tsProject());
-    // .pipe(ts(tsProject));
-    // tsResult.dts.pipe(gulp.dest('./'));
-    // return tsResult.js.pipe(gulp.dest('./'));
 
     return merge([ // Merge the two output streams, so this task is finished when the IO of both operations is done.
         tsResult.dts.pipe(gulp.dest('./')),
-        tsResult.js.pipe(gulp.dest('./'))
+        tsResult.js.pipe(sourcemaps.write()),
+        tsResult.js.pipe(gulp.dest('./')),
     ]);
 });
 
