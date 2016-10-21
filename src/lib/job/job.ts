@@ -304,10 +304,12 @@ export abstract class Job {
     /**
      * Packs the job instance and file together in a zip.
      */
-    public getPack() {
+    public getPack(callback) {
         let job = this;
         let PackedJob = require("./packedJob").PackedJob;
-        return new PackedJob(job.e, job);
+        new PackedJob(job.e, job, (pj) => {
+            callback(pj);
+        } );
     }
 
     /**
@@ -332,6 +334,10 @@ export abstract class Job {
         }
 
         return json;
+    }
+
+    public getPath() {
+        return undefined;
     }
 
 }
