@@ -4,7 +4,7 @@ import { Job } from "./job";
 export declare class PackedJob extends FileJob {
     protected e: Environment;
     protected job: Job;
-    constructor(e: Environment, job: Job, callback: any);
+    constructor(e: Environment, job: Job);
     /**
      *
      * @returns {Job}
@@ -16,8 +16,9 @@ export declare class PackedJob extends FileJob {
      * @returns {string}
      */
     protected getJobTicket(job: Job): string;
+    protected buildZip(zip: any, callback: any): void;
     /**
      * Packs the related job on construction.
      */
-    protected pack(callback: any): void;
+    pack(done: any): void;
 }

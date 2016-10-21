@@ -12,18 +12,12 @@ export class PackedJob extends FileJob {
     protected e: Environment;
     protected job: Job;
 
-    constructor(e: Environment, job: Job, callback) {
+    constructor(e: Environment, job: Job) {
         // let job_name = job.getName();
         super(e, job.getName());
         let pj = this;
         pj.e = e;
         pj.job = job;
-
-        console.log("PACKED JOB");
-
-        pj.pack(() => {
-            callback(pj);
-        });
     }
 
     /**
@@ -55,10 +49,32 @@ export class PackedJob extends FileJob {
         return file_name;
     }
 
+    protected buildZip(zip: any, callback) {
+        // Save out zip
+        let pj = this;
+        let job = this.getJob();
+        let tmpobj = tmp.dirSync();
+        let dir = tmpobj.name;
+        let file_name = job.getName() + ".antpack.zip";
+        let file_path = dir + path.sep + file_name;
+        zip
+            .generateNodeStream({type: "nodebuffer", streamFiles: true})
+            .pipe(fs.createWriteStream(file_path))
+            .on("finish", function () {
+                // JSZip generates a readable stream with a "end" event,
+                // but is piped here in a writable stream which emits a "finish" event.
+                console.log("out.zip written.", file_path);
+
+                pj.setPath(file_path);
+                pj.setName(file_name);
+                callback();
+            });
+    }
+
     /**
      * Packs the related job on construction.
      */
-    protected pack(callback) {
+    public pack(done) {
         let pj = this;
         let job = pj.getJob();
 
@@ -71,35 +87,34 @@ export class PackedJob extends FileJob {
         // Add ticket to zip
         fs.readFile(ticketPath, function(err, data) {
             if (err) throw err;
-            zip.file("ticket.json", data);
+            zip.file("_ticket/ticket.json", data);
 
-
-            // Save out zip
-            let tmpobj = tmp.dirSync();
-            let dir = tmpobj.name;
-            let file_name = job.getName() + ".ant.zip";
-            let file_path = dir + path.sep + file_name;
-            zip
-                .generateNodeStream({type: "nodebuffer", streamFiles: true})
-                .pipe(fs.createWriteStream(file_path))
-                .on("finish", function () {
-                    // JSZip generates a readable stream with a "end" event,
-                    // but is piped here in a writable stream which emits a "finish" event.
-                    console.log("out.zip written.", file_path);
-
-                    pj.setPath(file_path);
-                    pj.setName(file_name);
-                    callback();
+            if (job.isFile()) {
+                console.log("packing", job.getPath());
+                fs.readFile(job.getPath(), function(err, data) {
+                    if (err) throw err;
+                    zip.file("_asset/" + job.getName(), data);
+                    pj.buildZip(zip, () => {
+                        done();
+                    });
                 });
+            } else if (job.isFolder()) {
+                job.getFiles().forEach(file => {
+                    fs.readFile(file.getPath(), function(err, data) {
+                        if (err) throw err;
+                        zip.file("_asset" + path.sep + job.getNameProper() + path.sep + file.getName(), data);
+                        pj.buildZip(zip, () => {
+                            done();
+                        });
+                    });
+                });
+            } else {
+                pj.buildZip(zip, () => {
+                    done();
+                });
+            }
 
         });
-
-        if (job.getPath()) {
-            console.log("packing", job.getPath());
-        }
-
-
-
 
     }
 

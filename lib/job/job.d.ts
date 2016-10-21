@@ -194,4 +194,8 @@ export declare abstract class Job {
      */
     getJSON(): any;
     getPath(): any;
+    isFile(): any;
+    isFolder(): any;
+    getFiles(): any;
+    getFile(): any;
 }

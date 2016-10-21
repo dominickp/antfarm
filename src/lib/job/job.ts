@@ -307,9 +307,10 @@ export abstract class Job {
     public getPack(callback) {
         let job = this;
         let PackedJob = require("./packedJob").PackedJob;
-        new PackedJob(job.e, job, (pj) => {
+        let pj = new PackedJob(job.e, job);
+        pj.pack(() => {
             callback(pj);
-        } );
+        });
     }
 
     /**
@@ -337,6 +338,21 @@ export abstract class Job {
     }
 
     public getPath() {
+        return undefined;
+    }
+
+    public isFile() {
+        return undefined;
+    }
+
+    public isFolder() {
+        return undefined;
+    }
+
+    public getFiles() {
+        return undefined;
+    }
+    public getFile() {
         return undefined;
     }
 
