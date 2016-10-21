@@ -63,8 +63,6 @@ export class PackedJob extends FileJob {
             .on("finish", function () {
                 // JSZip generates a readable stream with a "end" event,
                 // but is piped here in a writable stream which emits a "finish" event.
-                console.log("out.zip written.", file_path);
-
                 pj.setPath(file_path);
                 pj.setName(file_name);
                 callback();
@@ -79,8 +77,6 @@ export class PackedJob extends FileJob {
         let job = pj.getJob();
 
         let ticketPath = pj.getJobTicket(job);
-        console.log(ticketPath);
-
 
         let zip = new JSZip();
 
@@ -90,7 +86,7 @@ export class PackedJob extends FileJob {
             zip.file("_ticket/ticket.json", data);
 
             if (job.isFile()) {
-                console.log("packing", job.getPath());
+
                 fs.readFile(job.getPath(), function(err, data) {
                     if (err) throw err;
                     zip.file("_asset/" + job.getName(), data);
