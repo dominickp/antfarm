@@ -307,7 +307,31 @@ export abstract class Job {
     public getPack() {
         let job = this;
         let PackedJob = require("./packedJob").PackedJob;
-        return new PackedJob(job.e, "whatever");
+        return new PackedJob(job.e, job);
+    }
+
+    /**
+     * Get the job object as JSON with circular references removed.
+     * @returns {string}
+     */
+    public getJSON() {
+        let job = this;
+        let json;
+        let replacer = function(key, value) {
+            // Filtering out properties
+            if (key === "nest" || key === "e" || key === "tunnel") {
+                return undefined;
+            }
+            return value;
+        };
+
+        try {
+            json = JSON.stringify(job, replacer);
+        } catch (err) {
+            job.e.log(3, `getJSON stringify error: ${err}`, job);
+        }
+
+        return json;
     }
 
 }

@@ -188,4 +188,9 @@ export declare abstract class Job {
      * Packs the job instance and file together in a zip.
      */
     getPack(): any;
+    /**
+     * Get the job object as JSON with circular references removed.
+     * @returns {string}
+     */
+    getJSON(): any;
 }
