@@ -303,6 +303,14 @@ export abstract class Job {
 
     /**
      * Packs the job instance and file together in a zip.
+     * Returns a PackJob in the parameter of the callback.
+     * @param callback
+     * #### Example
+     * ```js
+     * job.getPack(function(packJob){
+     *      packJob.move(packed_folder_nest);
+     * });
+     * ```
      */
     public getPack(callback) {
         let job = this;
@@ -352,7 +360,8 @@ export abstract class Job {
     public getFiles() {
         return undefined;
     }
-    public getFile() {
+
+    public getFile(index: any) {
         return undefined;
     }
 

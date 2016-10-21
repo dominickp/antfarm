@@ -186,6 +186,14 @@ export declare abstract class Job {
     getPropertyType(key: string): any;
     /**
      * Packs the job instance and file together in a zip.
+     * Returns a PackJob in the parameter of the callback.
+     * @param callback
+     * #### Example
+     * ```js
+     * job.getPack(function(packJob){
+     *      packJob.move(packed_folder_nest);
+     * });
+     * ```
      */
     getPack(callback: any): void;
     /**
@@ -197,5 +205,5 @@ export declare abstract class Job {
     isFile(): any;
     isFolder(): any;
     getFiles(): any;
-    getFile(): any;
+    getFile(index: any): any;
 }
