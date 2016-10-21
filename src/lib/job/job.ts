@@ -22,6 +22,7 @@ export abstract class Job {
     protected lifeCycle: LifeEvent[];
     protected id: string;
     protected properties;
+    protected type: string;
 
     /**
      * Job constructor
@@ -35,6 +36,7 @@ export abstract class Job {
         j.name = name;
         j.lifeCycle = [];
         j.properties = {};
+        j.type = "base";
 
         j.createLifeEvent("created", null, name);
         j.e.log(1, `New Job "${name}" created.`, j);
@@ -307,16 +309,25 @@ export abstract class Job {
      * @param callback
      * #### Example
      * ```js
-     * job.getPack(function(packJob){
+     * job.pack(function(packJob){
      *      packJob.move(packed_folder_nest);
      * });
      * ```
      */
-    public getPack(callback) {
+    public pack(callback) {
         let job = this;
         let PackedJob = require("./packedJob").PackedJob;
         let pj = new PackedJob(job.e, job);
         pj.pack(() => {
+            callback(pj);
+        });
+    }
+
+    public unpack(callback) {
+        let job = this;
+        let PackedJob = require("./packedJob").PackedJob;
+        let pj = new PackedJob(job.e, job);
+        pj.unpack(() => {
             callback(pj);
         });
     }
@@ -362,6 +373,10 @@ export abstract class Job {
     }
 
     public getFile(index: any) {
+        return undefined;
+    }
+
+    public setPath(path: string) {
         return undefined;
     }
 

@@ -19,11 +19,9 @@ export class FolderJob extends Job {
      */
     constructor(e: Environment, path: string) {
         super(e, path);
-
+        this.type = "folder";
         this.path = path;
-
         this.files = [];
-
         this.getStatistics();
 
         // verify path leads to a valid, readable file, handle error if not

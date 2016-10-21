@@ -13,6 +13,7 @@ export class FileJob extends Job {
      */
     constructor(e: Environment, path: string) {
         super(e, path);
+        this.type = "file";
         this.file = new File(e, path);
     }
 

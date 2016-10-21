@@ -21,4 +21,5 @@ export declare class PackedJob extends FileJob {
      * Packs the related job on construction.
      */
     pack(done: any): void;
+    unpack(done: any): void;
 }

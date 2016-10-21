@@ -163,5 +163,39 @@ describe('Job', function() {
         });
     });
 
+    describe("packing", function(){
+        it('pack jobs into zips', function (done) {
+            var job_name = "MyJobFile_001.pdf";
+            tunnel.run(function(job){
+                job.pack(function(packJob){
+                    packJob.getName().should.equal(job_name+".antpack.zip");
+                    packJob.getExtension().should.equal("zip");
+                    done();
+                });
+            });
+            triggerNewJob(job_name);
+        });
+        it('should unpack file jobs and restore properties', function (done) {
+            var unpackTunnel = af.createTunnel("Unpacking tunnel");
+
+            var job_name = "MyJobFile_001.pdf";
+            tunnel.run(function(job){
+                job.pack(function(packJob){
+                    packJob.transfer(unpackTunnel);
+                });
+            });
+
+            unpackTunnel.run(function(packedJob){
+                packedJob.getName().should.equal(job_name+".antpack.zip");
+                packedJob.unpack(function(origJob){
+                    origJob.getName().should.equal(job_name);
+                    origJob.getExtension().should.equal("pdf");
+                    done();
+                });
+            });
+            triggerNewJob(job_name);
+        });
+    });
+
 });
 

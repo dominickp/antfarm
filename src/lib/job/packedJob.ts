@@ -1,11 +1,14 @@
 import {Environment} from "../environment/environment";
 import {FileJob} from "./fileJob";
 import {Job} from "./job";
+import {FolderJob} from "./folderJob";
 
 const   tmp = require("tmp"),
         fs = require("fs"),
         path = require("path"),
-        JSZip = require("jszip");
+        JSZip = require("jszip"),
+        _ = require("lodash"),
+        Reflect = require("reflect-metadata");
 
 export class PackedJob extends FileJob {
 
@@ -110,6 +113,80 @@ export class PackedJob extends FileJob {
                 });
             }
 
+        });
+
+    }
+
+
+    public unpack(done) {
+        console.log("unpacking");
+
+        let pj = this;
+        let job = pj.getJob();
+
+        fs.readFile(job.getPath(), function(err, data) {
+            if (err) throw err;
+            JSZip.loadAsync(data).then(function (zip) {
+                // ...
+
+
+                zip.folder("_ticket").forEach(function (relativePath, file){
+                    zip.file(`_ticket${path.sep}${relativePath}`).async("string")
+                        .then((content) => {
+                            try {
+                                let jobObject = JSON.parse(content);
+                                console.log("job type =>", jobObject.type, typeof jobObject);
+
+                                if (jobObject.type === "file") {
+                                    job = new FileJob(pj.e, "");
+                                } else if (jobObject.type === "folder") {
+                                    job = new FolderJob(pj.e, "");
+                                } else {
+                                    pj.e.log(3, `Cannot unpack this type of job: ${jobObject.type}`, pj);
+                                    done();
+                                }
+                            } catch (err) {
+                                pj.e.log(3, `Unpack ticket parse error: ${err}.`, pj);
+                            }
+
+
+                            let tmpobj = tmp.dirSync();
+                            let tempPath = tmpobj.name;
+
+                            if (zip.folder("_asset").length > 1) {
+                            }
+
+                            zip.folder("_asset").forEach(function (relativePath, file){
+                                // console.log("iterating over", relativePath);
+
+                                zip.file(`_asset${path.sep}${relativePath}`).async("nodebuffer")
+                                    .then((content) => {
+                                        let filePath = tempPath + path.sep + relativePath;
+                                        fs.writeFileSync(filePath, content);
+                                        if (job.isFolder()) {
+                                            console.log("gotta add file to job for folder");
+                                        } else {
+                                            job.setPath(filePath);
+                                        }
+                                    });
+
+                            }); // NEED TO CALLBACK WITH JOB WHEN DONE
+
+
+                        });
+                    // let readFile = fs.readFileSync(file.asNodeBuffer());
+
+                    // console.log("readFile", readFile);
+                });
+                //
+                // zip.folder("_asset").forEach(function (relativePath, file){
+                //     console.log("iterating over", relativePath);
+                // });
+
+
+                done();
+
+            });
         });
 
     }

@@ -13,6 +13,7 @@ export declare abstract class Job {
     protected lifeCycle: LifeEvent[];
     protected id: string;
     protected properties: any;
+    protected type: string;
     /**
      * Job constructor
      * @param e
@@ -190,12 +191,13 @@ export declare abstract class Job {
      * @param callback
      * #### Example
      * ```js
-     * job.getPack(function(packJob){
+     * job.pack(function(packJob){
      *      packJob.move(packed_folder_nest);
      * });
      * ```
      */
-    getPack(callback: any): void;
+    pack(callback: any): void;
+    unpack(callback: any): void;
     /**
      * Get the job object as JSON with circular references removed.
      * @returns {string}
@@ -206,4 +208,5 @@ export declare abstract class Job {
     isFolder(): any;
     getFiles(): any;
     getFile(index: any): any;
+    setPath(path: string): any;
 }
