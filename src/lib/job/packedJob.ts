@@ -188,9 +188,11 @@ export class PackedJob extends FileJob {
 
         if (job.isFolder()) {
             console.log("running folder");
-            pj.extractFiles(zip, false, "_asset/", (filePath, folderName) => {
-                job.setPath(filePath);
+            pj.extractFiles(zip, false, "_asset/", (folderPath, folderName) => {
+                console.log("got callback", folderName, folderPath)
+                job.setPath(folderPath);
                 job.rename(folderName);
+                console.log("DONE RESTORING");
                 callback(job);
             });
         } else if (job.isFile()) {
@@ -210,8 +212,6 @@ export class PackedJob extends FileJob {
 
         let fileNumber = 1;
 
-        console.log("original totalFiles", totalFiles);
-
         if (!totalFiles) {
             totalFiles = 0;
             zip.folder(zipPath).forEach((asset) => totalFiles++ );
@@ -225,7 +225,8 @@ export class PackedJob extends FileJob {
                 if (fileNumber > 1) {
                     pj.e.log(3, `More than 1 files found when extracting a file job.`, pj);
                 } else {
-                    let newRelPath = zipPath + path.sep + relativePath;
+
+                    let newRelPath = zipPath + relativePath;
 
                     if (asset.dir === "true") {
                         totalFiles--;
@@ -233,12 +234,13 @@ export class PackedJob extends FileJob {
                     } else {
                         console.log("EXTRACTING SINGLE");
                         zip.file(newRelPath).async("nodebuffer")
-                            .then((content) => {
-                                fileNumber++;
-                                let filePath = tempPath + path.sep + relativePath;
-                                fs.writeFileSync(filePath, content);
-                                callback(filePath, relativePath);
-                            });
+                        .then((content) => {
+                            fileNumber++;
+                            let filePath = tempPath + path.sep + relativePath;
+                            console.log("*** filepath", filePath);
+                            fs.writeFileSync(filePath, content);
+                            callback(filePath, relativePath);
+                        });
                     }
                 }
             });
@@ -249,31 +251,35 @@ export class PackedJob extends FileJob {
             zip.folder(zipPath).forEach((relativePath, asset) => {
                 let newRelPath = zipPath + relativePath;
 
+                console.log("file newRelPath", newRelPath);
+
 
                 if (asset.dir === true) {
                     totalFiles--;
 
                     console.log("dir found", totalFiles);
 
-
                     pj.extractFiles(zip, single, newRelPath, callback, totalFiles);
                 } else {
 
                     zip.file(newRelPath).async("nodebuffer")
                     .then((content) => {
-                        console.log("EXTRACTING SINGLE FROM FOLDER", totalFiles, fileNumber);
 
                         console.log(newRelPath, relativePath, typeof asset.dir);
 
 
-                        fileNumber++;
                         let filePath = tempPath + path.sep + relativePath;
                         fs.writeFileSync(filePath, content);
 
+                        console.log("Wrote out", filePath, totalFiles, fileNumber);
+
                         if (totalFiles === fileNumber) {
-                            console.log("relativePath.split(path.sep)", relativePath.split(path.sep));
-                            callback(tempPath, newRelPath.split(path.sep)[1]);
+                            let rootFolderName = newRelPath.split(path.sep)[1];
+                            console.log("Calling back, done unzipping", rootFolderName);
+                            console.log(tempPath, rootFolderName);
+                            callback(tempPath, rootFolderName);
                         }
+                        fileNumber++;
 
                     });
                 }

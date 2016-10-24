@@ -181,7 +181,13 @@ export class FolderJob extends Job {
     public rename(newName: string) {
         let fj = this;
         let new_path = fj.getDirname() + node_path.sep + newName;
-        fs.renameSync(fj.getPath(), new_path);
+
+        try {
+            fj.e.log(0, `Renaming folder to "${new_path}".`, fj);
+            fs.renameSync(fj.getPath(), new_path);
+        } catch (err) {
+            fj.e.log(3, `Rename folder error: ${err}.`, fj);
+        }
 
         fj.setPath(new_path);
     }
