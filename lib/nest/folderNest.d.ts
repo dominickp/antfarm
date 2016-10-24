@@ -24,6 +24,12 @@ export declare class FolderNest extends Nest {
      */
     protected createJob(path: string, arrive?: boolean): any;
     /**
+     * Checks whether a path starts with or contains a hidden file or a folder.
+     * @param path {string}      The path of the file that needs to be validated.
+     * returns {boolean} - `true` if the source is blacklisted and otherwise `false`.
+     */
+    protected isUnixHiddenPath(path: string): boolean;
+    /**
      * Initial load of the contents of the directory.
      * @param hold {boolean}    Optional flag to hold jobs found.
      */

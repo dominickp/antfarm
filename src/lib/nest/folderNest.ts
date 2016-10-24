@@ -92,6 +92,15 @@ export class FolderNest extends Nest {
     }
 
     /**
+     * Checks whether a path starts with or contains a hidden file or a folder.
+     * @param path {string}      The path of the file that needs to be validated.
+     * returns {boolean} - `true` if the source is blacklisted and otherwise `false`.
+     */
+    protected isUnixHiddenPath (path: string) {
+        return (/(^|\/)\.[^\/\.]/g).test(path);
+    };
+
+    /**
      * Initial load of the contents of the directory.
      * @param hold {boolean}    Optional flag to hold jobs found.
      */
@@ -126,12 +135,16 @@ export class FolderNest extends Nest {
         };
 
         node_watch(fl.path, watch_options, function (filepath) {
-            let job;
-            if (hold === false) {
-                job = fl.createJob(filepath, true); // Arrives as well
+            if (!fl.isUnixHiddenPath(filepath)) {
+                let job;
+                if (hold === false) {
+                    job = fl.createJob(filepath, true); // Arrives as well
+                } else {
+                    job = fl.createJob(filepath, false);
+                    fl.holdJob(job);
+                }
             } else {
-                job = fl.createJob(filepath, false);
-                fl.holdJob(job);
+                fl.e.log(2, `Hidden file "${filepath}" ignored.`, fl);
             }
         });
     }
