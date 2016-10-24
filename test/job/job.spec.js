@@ -163,7 +163,7 @@ describe('Job', function() {
         });
     });
 
-    describe("packing", function(){
+    xdescribe("packing", function(){
         it('pack jobs into zips', function (done) {
             var job_name = "MyJobFile_001.pdf";
             tunnel.run(function(job){

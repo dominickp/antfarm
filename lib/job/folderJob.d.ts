@@ -90,4 +90,5 @@ export declare class FolderJob extends Job {
      * @param newName
      */
     rename(newName: string): void;
+    remove(): void;
 }

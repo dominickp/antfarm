@@ -40,6 +40,7 @@ export declare abstract class Job {
      * @returns {LifeEvent[]}
      */
     getLifeCycle(): LifeEvent[];
+    setLifeCycle(events: LifeEvent[]): void;
     /**
      * Create a new life event.
      * @param verb
@@ -158,6 +159,7 @@ export declare abstract class Job {
      * @param value
      */
     setPropertyValue(key: string, value: any): void;
+    setPropertyValues(properties: Object): void;
     /**
      * Get the entire job property object.
      * @param key
@@ -209,4 +211,5 @@ export declare abstract class Job {
     getFiles(): any;
     getFile(index: any): any;
     setPath(path: string): any;
+    rename(name: string): any;
 }

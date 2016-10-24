@@ -12,6 +12,7 @@ export class File {
     protected basename: string;
     protected contentType: string;
     protected extension: string;
+    protected e: Environment;
 
     /**
      * File constructor
@@ -19,7 +20,7 @@ export class File {
      * @param path
      */
     constructor(e: Environment, path: string) {
-
+        this.e = e;
         this.path = path;
 
         this.basename = node_path.basename(this.path);
@@ -118,6 +119,21 @@ export class File {
         fs.renameSync(this.getPath(), new_path);
         this.setPath(new_path);
         this.getStatistics();
+    }
+
+    /**
+     * Deletes the local file.
+     * @returns {boolean}
+     */
+    public removeLocal() {
+        let f = this;
+        try {
+            fs.unlinkSync(f.getPath());
+            return true;
+        } catch (e) {
+            f.e.log(3, `File "${f.getPath()}" could not be deleted. ${e}`, f);
+            return false;
+        }
     }
 
 }

@@ -90,7 +90,7 @@ export class PackedJob extends FileJob {
 
             if (job.isFile()) {
 
-                fs.readFile(job.getPath(), function(err, data) {
+                fs.readFile(job.getPath(), (err, data) => {
                     if (err) throw err;
                     zip.file("_asset/" + job.getName(), data);
                     pj.buildZip(zip, () => {
@@ -117,46 +117,62 @@ export class PackedJob extends FileJob {
 
     }
 
+    protected restoreJobTicket(jsonTicket) {
+        let pj = this;
+        let jobObject, job;
+        try {
+            jobObject = JSON.parse(jsonTicket);
+            console.log("job type =>", jobObject.type, typeof jobObject);
+
+            if (jobObject.type === "file") {
+                job = new FileJob(pj.e, jobObject.basename);
+            } else if (jobObject.type === "folder") {
+                job = new FolderJob(pj.e, jobObject.basename);
+            } else {
+                pj.e.log(3, `Cannot unpack this type of job: ${jobObject.type}`, pj);
+            }
+        } catch (err) {
+            pj.e.log(3, `Unpack ticket parse error: ${err}.`, pj);
+        }
+
+        // Restore property values
+        job.setPropertyValues(jobObject.properties);
+
+        // Restore lifecycle
+        job.setLifeCycle(jobObject.lifeCycle);
+
+        return job;
+    }
 
     public unpack(done) {
-        console.log("unpacking");
+        // console.log("unpacking");
 
         let pj = this;
         let job = pj.getJob();
 
-        fs.readFile(job.getPath(), function(err, data) {
-            if (err) throw err;
-            JSZip.loadAsync(data).then(function (zip) {
-                // ...
-
-
-                zip.folder("_ticket").forEach(function (relativePath, file){
+        // Read the zip to a buffer
+        fs.readFile(job.getPath(), (err, data) => {
+            if (err) {
+                pj.e.log(3, `Unpacking readFile error: ${err}`, pj);
+            }
+            // Open the zip in JSZip
+            JSZip.loadAsync(data).then((zip) => {
+                // Restore job ticket and create job
+                zip.folder("_ticket").forEach((relativePath, file) => {
                     zip.file(`_ticket${path.sep}${relativePath}`).async("string")
                         .then((content) => {
-                            try {
-                                let jobObject = JSON.parse(content);
-                                console.log("job type =>", jobObject.type, typeof jobObject);
 
-                                if (jobObject.type === "file") {
-                                    job = new FileJob(pj.e, "");
-                                } else if (jobObject.type === "folder") {
-                                    job = new FolderJob(pj.e, "");
-                                } else {
-                                    pj.e.log(3, `Cannot unpack this type of job: ${jobObject.type}`, pj);
-                                    done();
-                                }
-                            } catch (err) {
-                                pj.e.log(3, `Unpack ticket parse error: ${err}.`, pj);
-                            }
-
+                            // Restore old job ticket
+                            job = pj.restoreJobTicket(content);
 
                             let tmpobj = tmp.dirSync();
                             let tempPath = tmpobj.name;
 
                             if (zip.folder("_asset").length > 1) {
+                                pj.e.log(2, `Restored job did not contain any file assets.`, pj, [job]);
                             }
 
-                            zip.folder("_asset").forEach(function (relativePath, file){
+                            zip.folder("_asset").forEach((relativePath, file) => {
                                 // console.log("iterating over", relativePath);
 
                                 zip.file(`_asset${path.sep}${relativePath}`).async("nodebuffer")
@@ -167,10 +183,14 @@ export class PackedJob extends FileJob {
                                             console.log("gotta add file to job for folder");
                                         } else {
                                             job.setPath(filePath);
+                                            job.rename(relativePath);
                                         }
+
+                                        done(job);
+
                                     });
 
-                            }); // NEED TO CALLBACK WITH JOB WHEN DONE
+                            });
 
 
                         });
@@ -184,7 +204,6 @@ export class PackedJob extends FileJob {
                 // });
 
 
-                done();
 
             });
         });

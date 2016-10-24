@@ -186,4 +186,11 @@ export class FolderJob extends Job {
         fj.setPath(new_path);
     }
 
+    public remove() {
+        let fj = this;
+        fj.getFiles().forEach((file) => {
+            file.removeLocal();
+        });
+    };
+
 }

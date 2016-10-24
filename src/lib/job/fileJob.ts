@@ -62,6 +62,7 @@ export class FileJob extends Job {
      * @param path
      */
     public setPath(path: string) {
+        this.e.log(0, `New path set: "${path}".`, this);
         this.file.setPath(path);
     }
 
@@ -136,7 +137,7 @@ export class FileJob extends Job {
         try {
             destinationNest.take(fj, function(newJob){
                 // fj.setPath(new_path);
-                fj.e.log(1, `Job "${fj.getBasename()}" was moved to Nest "${destinationNest.name}".`, fj);
+                fj.e.log(1, `Job "${fj.getBasename()}" was moved to Nest "${destinationNest.name}".`, fj, [fj.tunnel]);
                 if (callback) {
                     callback(newJob);
                 }
@@ -157,6 +158,13 @@ export class FileJob extends Job {
         let file = this.getFile();
         file.setName(newName);
         file.renameLocal();
+    }
+
+    /**
+     * Deletes the local file.
+     */
+    public remove() {
+        return this.file.removeLocal();
     }
 
 }

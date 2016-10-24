@@ -90,4 +90,8 @@ export declare class FileJob extends Job {
      * @param newName
      */
     rename(newName: string): void;
+    /**
+     * Deletes the local file.
+     */
+    remove(): boolean;
 }

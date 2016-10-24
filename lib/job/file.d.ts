@@ -5,6 +5,7 @@ export declare class File {
     protected basename: string;
     protected contentType: string;
     protected extension: string;
+    protected e: Environment;
     /**
      * File constructor
      * @param e
@@ -64,4 +65,9 @@ export declare class File {
      * Renames the local job file to the current name.
      */
     renameLocal(): void;
+    /**
+     * Deletes the local file.
+     * @returns {boolean}
+     */
+    removeLocal(): boolean;
 }

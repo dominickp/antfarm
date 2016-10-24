@@ -39,7 +39,7 @@ export abstract class Job {
         j.type = "base";
 
         j.createLifeEvent("created", null, name);
-        j.e.log(1, `New Job "${name}" created.`, j);
+        j.e.log(1, `New Job "${name}" created, id: ${j.id}.`, j);
     }
 
     /**
@@ -72,6 +72,10 @@ export abstract class Job {
      */
     public getLifeCycle() {
         return this.lifeCycle;
+    }
+
+    public setLifeCycle(events: LifeEvent[]) {
+        this.lifeCycle = events;
     }
 
     /**
@@ -256,6 +260,12 @@ export abstract class Job {
         job.e.log(1, `Property "${key}" added to job properties.`, job);
     }
 
+    public setPropertyValues(properties: Object) {
+        let job = this;
+        job.properties = properties;
+        job.e.log(0, `Restored ${Object.keys(job.properties).length} properties.`, job);
+    }
+
 
     /**
      * Get the entire job property object.
@@ -327,8 +337,8 @@ export abstract class Job {
         let job = this;
         let PackedJob = require("./packedJob").PackedJob;
         let pj = new PackedJob(job.e, job);
-        pj.unpack(() => {
-            callback(pj);
+        pj.unpack((unpackedJob) => {
+            callback(unpackedJob);
         });
     }
 
@@ -377,6 +387,10 @@ export abstract class Job {
     }
 
     public setPath(path: string) {
+        return undefined;
+    }
+
+    public rename(name: string) {
         return undefined;
     }
 
