@@ -189,7 +189,7 @@ export class PackedJob extends FileJob {
         if (job.isFolder()) {
             console.log("running folder");
             pj.extractFiles(zip, false, "_asset/", (folderPath, folderName) => {
-                console.log("got callback", folderName, folderPath)
+                console.log("got callback", folderName, folderPath);
                 job.setPath(folderPath);
                 job.rename(folderName);
                 console.log("DONE RESTORING");
