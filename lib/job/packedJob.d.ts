@@ -23,4 +23,6 @@ export declare class PackedJob extends FileJob {
     pack(done: any): void;
     protected restoreJobTicket(jsonTicket: any): any;
     unpack(done: any): void;
+    protected restoreFiles(job: Job, zip: any, callback: any): void;
+    protected extractFiles(zip: any, single: boolean, zipPath: string, callback: any, totalFiles?: number): void;
 }

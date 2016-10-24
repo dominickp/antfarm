@@ -160,53 +160,126 @@ export class PackedJob extends FileJob {
                 // Restore job ticket and create job
                 zip.folder("_ticket").forEach((relativePath, file) => {
                     zip.file(`_ticket${path.sep}${relativePath}`).async("string")
-                        .then((content) => {
+                    .then((content) => {
 
-                            // Restore old job ticket
-                            job = pj.restoreJobTicket(content);
+                        // Restore old job ticket
+                        job = pj.restoreJobTicket(content);
 
-                            let tmpobj = tmp.dirSync();
-                            let tempPath = tmpobj.name;
-
-                            if (zip.folder("_asset").length > 1) {
-                                pj.e.log(2, `Restored job did not contain any file assets.`, pj, [job]);
-                            }
-
-                            zip.folder("_asset").forEach((relativePath, file) => {
-                                // console.log("iterating over", relativePath);
-
-                                zip.file(`_asset${path.sep}${relativePath}`).async("nodebuffer")
-                                    .then((content) => {
-                                        let filePath = tempPath + path.sep + relativePath;
-                                        fs.writeFileSync(filePath, content);
-                                        if (job.isFolder()) {
-                                            console.log("gotta add file to job for folder");
-                                        } else {
-                                            job.setPath(filePath);
-                                            job.rename(relativePath);
-                                        }
-
-                                        done(job);
-
-                                    });
-
-                            });
-
-
+                        // Restore files
+                        pj.restoreFiles(job, zip, (job) => {
+                            done(job);
                         });
-                    // let readFile = fs.readFileSync(file.asNodeBuffer());
 
-                    // console.log("readFile", readFile);
+                    });
                 });
-                //
-                // zip.folder("_asset").forEach(function (relativePath, file){
-                //     console.log("iterating over", relativePath);
-                // });
-
-
-
             });
         });
+    }
+
+    protected restoreFiles(job: Job, zip: any, callback) {
+
+        let pj = this;
+
+
+        // Check for valid pack format
+        if (zip.folder("_asset").length > 1) {
+            pj.e.log(2, `Restored job did not contain any file assets.`, pj, [job]);
+        }
+
+        if (job.isFolder()) {
+            console.log("running folder");
+            pj.extractFiles(zip, false, "_asset/", (filePath, folderName) => {
+                job.setPath(filePath);
+                job.rename(folderName);
+                callback(job);
+            });
+        } else if (job.isFile()) {
+            pj.extractFiles(zip, true, "_asset/", (filePath, fileName) => {
+                job.setPath(filePath);
+                job.rename(fileName);
+                callback(job);
+            });
+        }
+    }
+
+    protected extractFiles(zip: any, single: boolean, zipPath: string, callback: any, totalFiles?: number) {
+        let pj = this;
+
+        let tmpobj = tmp.dirSync();
+        let tempPath = tmpobj.name;
+
+        let fileNumber = 1;
+
+        console.log("original totalFiles", totalFiles);
+
+        if (!totalFiles) {
+            totalFiles = 0;
+            zip.folder(zipPath).forEach((asset) => totalFiles++ );
+            console.log("totalFiles" + totalFiles);
+        }
+
+        if (single === true) {
+
+            zip.folder(zipPath).forEach((relativePath, asset) => {
+
+                if (fileNumber > 1) {
+                    pj.e.log(3, `More than 1 files found when extracting a file job.`, pj);
+                } else {
+                    let newRelPath = zipPath + path.sep + relativePath;
+
+                    if (asset.dir === "true") {
+                        totalFiles--;
+                        pj.extractFiles(zip, single, newRelPath, callback, totalFiles);
+                    } else {
+                        console.log("EXTRACTING SINGLE");
+                        zip.file(newRelPath).async("nodebuffer")
+                            .then((content) => {
+                                fileNumber++;
+                                let filePath = tempPath + path.sep + relativePath;
+                                fs.writeFileSync(filePath, content);
+                                callback(filePath, relativePath);
+                            });
+                    }
+                }
+            });
+
+        } else {
+            console.log("Extracting folder");
+
+            zip.folder(zipPath).forEach((relativePath, asset) => {
+                let newRelPath = zipPath + relativePath;
+
+
+                if (asset.dir === true) {
+                    totalFiles--;
+
+                    console.log("dir found", totalFiles);
+
+
+                    pj.extractFiles(zip, single, newRelPath, callback, totalFiles);
+                } else {
+
+                    zip.file(newRelPath).async("nodebuffer")
+                    .then((content) => {
+                        console.log("EXTRACTING SINGLE FROM FOLDER", totalFiles, fileNumber);
+
+                        console.log(newRelPath, relativePath, typeof asset.dir);
+
+
+                        fileNumber++;
+                        let filePath = tempPath + path.sep + relativePath;
+                        fs.writeFileSync(filePath, content);
+
+                        if (totalFiles === fileNumber) {
+                            console.log("relativePath.split(path.sep)", relativePath.split(path.sep));
+                            callback(tempPath, newRelPath.split(path.sep)[1]);
+                        }
+
+                    });
+                }
+
+            });
+        }
 
     }
 
