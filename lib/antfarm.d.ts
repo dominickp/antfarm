@@ -1,4 +1,5 @@
 import tunnel = require("./tunnel/tunnel");
+import folderNest = require("./nest/folderNest");
 import { FtpNest } from "./nest/ftpNest";
 import { Environment } from "./environment/environment";
 import { WebhookNest } from "./nest/webhookNest";
@@ -32,6 +33,7 @@ export declare class Antfarm {
      * var out_folder = af.createFolderNest("/Users/dominick/Desktop/My Folder/");
      * ```
      */
+    createFolderNest(path?: string, allowCreate?: boolean): folderNest.FolderNest;
     /**
      * Factory method which returns an AutoFolderNest. If the auto managed directory does not exist, it is created.
      * @param hierarchy     Path of the folder as a string or an array of strings as path segments.
