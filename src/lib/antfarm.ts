@@ -50,9 +50,9 @@ export class Antfarm {
      * var out_folder = af.createFolderNest("/Users/dominick/Desktop/My Folder/");
      * ```
      */
-    public createFolderNest(path?: string, allowCreate = false) {
-        return new FolderNest(this.e, path, allowCreate);
-    } 
+    // public createFolderNest(path?: string, allowCreate = false) {
+    //     return new FolderNest(this.e, path, allowCreate);
+    // } 
 
     /**
      * Factory method which returns an AutoFolderNest. If the auto managed directory does not exist, it is created.
