@@ -52,7 +52,7 @@ export class Antfarm {
      */
     public createFolderNest(path?: string, allowCreate = false) {
         return new FolderNest(this.e, path, allowCreate);
-    }
+    } 
 
     /**
      * Factory method which returns an AutoFolderNest. If the auto managed directory does not exist, it is created.
