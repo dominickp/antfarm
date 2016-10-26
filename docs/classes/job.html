@@ -107,6 +107,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="job.html#nest" class="tsd-kind-icon">nest</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="job.html#properties" class="tsd-kind-icon">properties</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="job.html#tunnel" class="tsd-kind-icon">tunnel</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="job.html#type" class="tsd-kind-icon">type</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -123,7 +124,6 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#getname" class="tsd-kind-icon">get<wbr>Name</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#getnameproper" class="tsd-kind-icon">get<wbr>Name<wbr>Proper</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#getnest" class="tsd-kind-icon">get<wbr>Nest</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#getpack" class="tsd-kind-icon">get<wbr>Pack</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#getpath" class="tsd-kind-icon">get<wbr>Path</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#getproperty" class="tsd-kind-icon">get<wbr>Property</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#getpropertytype" class="tsd-kind-icon">get<wbr>Property<wbr>Type</a></li>
@@ -133,13 +133,19 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#isfolder" class="tsd-kind-icon">is<wbr>Folder</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#islocallyavailable" class="tsd-kind-icon">is<wbr>Locally<wbr>Available</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#move" class="tsd-kind-icon">move</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#pack" class="tsd-kind-icon">pack</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#rename" class="tsd-kind-icon">rename</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#setlifecycle" class="tsd-kind-icon">set<wbr>Life<wbr>Cycle</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#setlocallyavailable" class="tsd-kind-icon">set<wbr>Locally<wbr>Available</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#setname" class="tsd-kind-icon">set<wbr>Name</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#setnest" class="tsd-kind-icon">set<wbr>Nest</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#setpath" class="tsd-kind-icon">set<wbr>Path</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#setpropertyvalue" class="tsd-kind-icon">set<wbr>Property<wbr>Value</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#setpropertyvalues" class="tsd-kind-icon">set<wbr>Property<wbr>Values</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#settunnel" class="tsd-kind-icon">set<wbr>Tunnel</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#tostring" class="tsd-kind-icon">to<wbr>String</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#transfer" class="tsd-kind-icon">transfer</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="job.html#unpack" class="tsd-kind-icon">unpack</a></li>
 							</ul>
 						</section>
 					</div>
@@ -157,7 +163,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L24">lib/job/job.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L25">lib/job/job.ts:25</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -191,7 +197,7 @@
 					<div class="tsd-signature tsd-kind-icon">e<span class="tsd-signature-symbol">:</span> <a href="environment.html" class="tsd-signature-type">Environment</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L20">lib/job/job.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L20">lib/job/job.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -201,7 +207,7 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L23">lib/job/job.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L23">lib/job/job.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -211,7 +217,7 @@
 					<div class="tsd-signature tsd-kind-icon">life<wbr>Cycle<span class="tsd-signature-symbol">:</span> <a href="lifeevent.html" class="tsd-signature-type">LifeEvent</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L22">lib/job/job.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L22">lib/job/job.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -221,7 +227,7 @@
 					<div class="tsd-signature tsd-kind-icon">locally<wbr>Available<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L21">lib/job/job.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L21">lib/job/job.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -231,7 +237,7 @@
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L17">lib/job/job.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L17">lib/job/job.ts:17</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -241,7 +247,7 @@
 					<div class="tsd-signature tsd-kind-icon">nest<span class="tsd-signature-symbol">:</span> <a href="nest.html" class="tsd-signature-type">Nest</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L19">lib/job/job.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L19">lib/job/job.ts:19</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -251,7 +257,7 @@
 					<div class="tsd-signature tsd-kind-icon">properties<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L24">lib/job/job.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L24">lib/job/job.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -261,7 +267,17 @@
 					<div class="tsd-signature tsd-kind-icon">tunnel<span class="tsd-signature-symbol">:</span> <a href="tunnel.html" class="tsd-signature-type">Tunnel</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L18">lib/job/job.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L18">lib/job/job.ts:18</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="type" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> type</h3>
+					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L25">lib/job/job.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -278,7 +294,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L81">lib/job/job.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L87">lib/job/job.ts:87</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -314,7 +330,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L228">lib/job/job.ts:228</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L234">lib/job/job.ts:234</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -377,7 +393,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L153">lib/job/job.ts:153</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L159">lib/job/job.ts:159</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -407,7 +423,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L364">lib/job/job.ts:364</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L385">lib/job/job.ts:385</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -430,7 +446,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L360">lib/job/job.ts:360</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L381">lib/job/job.ts:381</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -447,7 +463,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L105">lib/job/job.ts:105</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L111">lib/job/job.ts:111</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -469,7 +485,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L328">lib/job/job.ts:328</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L349">lib/job/job.ts:349</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -491,7 +507,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L71">lib/job/job.ts:71</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L73">lib/job/job.ts:73</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -513,7 +529,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L97">lib/job/job.ts:97</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L103">lib/job/job.ts:103</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -535,7 +551,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L113">lib/job/job.ts:113</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L119">lib/job/job.ts:119</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -557,7 +573,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L129">lib/job/job.ts:129</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L135">lib/job/job.ts:135</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -566,42 +582,6 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <a href="nest.html" class="tsd-signature-type">Nest</a></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getpack" class="tsd-anchor"></a>
-					<h3>get<wbr>Pack</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Pack<span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L315">lib/job/job.ts:315</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Packs the job instance and file together in a zip.
-									Returns a PackJob in the parameter of the callback.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>callback: <span class="tsd-signature-type">any</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<h4 id="example">Example</h4>
-										<pre><code class="lang-js">job.getPack(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">packJob</span>)</span>{
-     packJob.move(packed_folder_nest);
-});
-</code></pre>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -615,7 +595,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L348">lib/job/job.ts:348</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L369">lib/job/job.ts:369</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -632,7 +612,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L263">lib/job/job.ts:263</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L275">lib/job/job.ts:275</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -660,7 +640,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L295">lib/job/job.ts:295</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L307">lib/job/job.ts:307</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -694,7 +674,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L272">lib/job/job.ts:272</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L284">lib/job/job.ts:284</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -722,7 +702,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L145">lib/job/job.ts:145</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L151">lib/job/job.ts:151</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -744,7 +724,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L352">lib/job/job.ts:352</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L373">lib/job/job.ts:373</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -761,7 +741,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L356">lib/job/job.ts:356</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L377">lib/job/job.ts:377</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
@@ -778,7 +758,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L55">lib/job/job.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L57">lib/job/job.ts:57</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -800,7 +780,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L183">lib/job/job.ts:183</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L189">lib/job/job.ts:189</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -822,6 +802,88 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="pack" class="tsd-anchor"></a>
+					<h3>pack</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">pack<span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L327">lib/job/job.ts:327</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Packs the job instance and file together in a zip.
+									Returns a PackJob in the parameter of the callback.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>callback: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<h4 id="example">Example</h4>
+										<pre><code class="lang-js">job.pack(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">packJob</span>)</span>{
+     packJob.move(packed_folder_nest);
+});
+</code></pre>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="rename" class="tsd-anchor"></a>
+					<h3>rename</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">rename<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L393">lib/job/job.ts:393</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setlifecycle" class="tsd-anchor"></a>
+					<h3>set<wbr>Life<wbr>Cycle</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Life<wbr>Cycle<span class="tsd-signature-symbol">(</span>events<span class="tsd-signature-symbol">: </span><a href="lifeevent.html" class="tsd-signature-type">LifeEvent</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L77">lib/job/job.ts:77</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>events: <a href="lifeevent.html" class="tsd-signature-type">LifeEvent</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="setlocallyavailable" class="tsd-anchor"></a>
 					<h3>set<wbr>Locally<wbr>Available</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -831,7 +893,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L63">lib/job/job.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L65">lib/job/job.ts:65</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -861,7 +923,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L89">lib/job/job.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L95">lib/job/job.ts:95</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -891,7 +953,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L121">lib/job/job.ts:121</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L127">lib/job/job.ts:127</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -912,6 +974,29 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setpath" class="tsd-anchor"></a>
+					<h3>set<wbr>Path</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Path<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L389">lib/job/job.ts:389</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>path: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="setpropertyvalue" class="tsd-anchor"></a>
 					<h3>set<wbr>Property<wbr>Value</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -921,7 +1006,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L249">lib/job/job.ts:249</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L255">lib/job/job.ts:255</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -951,6 +1036,29 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="setpropertyvalues" class="tsd-anchor"></a>
+					<h3>set<wbr>Property<wbr>Values</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Property<wbr>Values<span class="tsd-signature-symbol">(</span>properties<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L263">lib/job/job.ts:263</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>properties: <span class="tsd-signature-type">Object</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="settunnel" class="tsd-anchor"></a>
 					<h3>set<wbr>Tunnel</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -960,7 +1068,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L137">lib/job/job.ts:137</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L143">lib/job/job.ts:143</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -990,7 +1098,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L47">lib/job/job.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L49">lib/job/job.ts:49</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1012,7 +1120,7 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/535940e/src/lib/job/job.ts#L169">lib/job/job.ts:169</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L175">lib/job/job.ts:175</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1026,6 +1134,29 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 									<h5>tunnel: <a href="tunnel.html" class="tsd-signature-type">Tunnel</a></h5>
 									<div class="tsd-comment tsd-typography">
 									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="unpack" class="tsd-anchor"></a>
+					<h3>unpack</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">unpack<span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a27ce1/src/lib/job/job.ts#L336">lib/job/job.ts:336</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>callback: <span class="tsd-signature-type">any</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1076,6 +1207,9 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 								<a href="job.html#tunnel" class="tsd-kind-icon">tunnel</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="job.html#type" class="tsd-kind-icon">type</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
 								<a href="job.html#createlifeevent" class="tsd-kind-icon">create<wbr>Life<wbr>Event</a>
 							</li>
@@ -1110,9 +1244,6 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 								<a href="job.html#getnest" class="tsd-kind-icon">get<wbr>Nest</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="job.html#getpack" class="tsd-kind-icon">get<wbr>Pack</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="job.html#getpath" class="tsd-kind-icon">get<wbr>Path</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -1140,6 +1271,15 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 								<a href="job.html#move" class="tsd-kind-icon">move</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="job.html#pack" class="tsd-kind-icon">pack</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="job.html#rename" class="tsd-kind-icon">rename</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="job.html#setlifecycle" class="tsd-kind-icon">set<wbr>Life<wbr>Cycle</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="job.html#setlocallyavailable" class="tsd-kind-icon">set<wbr>Locally<wbr>Available</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -1149,7 +1289,13 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 								<a href="job.html#setnest" class="tsd-kind-icon">set<wbr>Nest</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="job.html#setpath" class="tsd-kind-icon">set<wbr>Path</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="job.html#setpropertyvalue" class="tsd-kind-icon">set<wbr>Property<wbr>Value</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="job.html#setpropertyvalues" class="tsd-kind-icon">set<wbr>Property<wbr>Values</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="job.html#settunnel" class="tsd-kind-icon">set<wbr>Tunnel</a>
@@ -1159,6 +1305,9 @@ p=<span class="hljs-string">"Got job ID "</span> + job.getId()
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="job.html#transfer" class="tsd-kind-icon">transfer</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="job.html#unpack" class="tsd-kind-icon">unpack</a>
 							</li>
 						</ul>
 					</li>
