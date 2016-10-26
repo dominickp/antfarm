@@ -155,6 +155,7 @@ export class FileJob extends Job {
      * @param newName
      */
     public rename(newName: string) {
+        let fj = this;
         let file = this.getFile();
         file.setName(newName);
         file.renameLocal();

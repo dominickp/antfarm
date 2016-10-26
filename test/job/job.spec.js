@@ -8,7 +8,7 @@ var path = require('path');
 describe('Job', function() {
 
     var options = {
-        log_out_level: "error"
+        log_out_level: "error",
     };
     var af, tunnel, tmpDir, nest, temp_file_path;
 
@@ -23,10 +23,13 @@ describe('Job', function() {
     });
 
     beforeEach("make antfarm, tunnel, and nest", function(done) {
-        af = new Antfarm(options);
-        tunnel = af.createTunnel("Test tunnel");
 
         tmp.dir({ unsafeCleanup: true }, function(err, dir) {
+            af = new Antfarm(options);
+            tunnel = af.createTunnel("Test tunnel");
+
+            options.auto_managed_folder_directory = dir;
+
             if (err) return done(err);
             tmpDir = dir;
             setTimeout(function(){
@@ -177,11 +180,13 @@ describe('Job', function() {
         });
         it('should unpack file jobs and restore properties', function (done) {
             var unpackTunnel = af.createTunnel("Unpacking tunnel");
+            var packHolderNest = af.createAutoFolderNest("job", "packed-holding");
+            unpackTunnel.watch(packHolderNest);
 
-            var job_name = "MyJobFile_001.pdf";
+            var job_name = "MyJobFile_009.pdf";
             tunnel.run(function(job){
                 job.pack(function(packJob){
-                    packJob.transfer(unpackTunnel);
+                    packJob.move(packHolderNest);
                 });
             });
 
@@ -194,7 +199,7 @@ describe('Job', function() {
                 });
             });
             triggerNewJob(job_name);
-        });
+        }).timeout(5000);
     });
 
 });

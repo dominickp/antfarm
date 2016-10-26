@@ -175,11 +175,17 @@ export abstract class Job {
     public transfer(tunnel: Tunnel) {
         let job = this;
         let oldTunnel = this.getTunnel();
+
+        let oldTunnelName = "";
+        if (oldTunnel) {
+            oldTunnelName = oldTunnel.getName();
+        }
+
         job.setTunnel(tunnel);
         tunnel.arrive(job, null);
 
         job.e.log(1, `Transferred to Tunnel "${tunnel.getName()}".`, job, [oldTunnel]);
-        job.createLifeEvent("transfer", oldTunnel.getName(), tunnel.getName());
+        job.createLifeEvent("transfer", oldTunnelName, tunnel.getName());
     }
 
 
@@ -328,7 +334,7 @@ export abstract class Job {
         let job = this;
         let PackedJob = require("./packedJob").PackedJob;
         let pj = new PackedJob(job.e, job);
-        pj.pack(() => {
+        pj.execPack(() => {
             callback(pj);
         });
     }
@@ -337,7 +343,7 @@ export abstract class Job {
         let job = this;
         let PackedJob = require("./packedJob").PackedJob;
         let pj = new PackedJob(job.e, job);
-        pj.unpack((unpackedJob) => {
+        pj.execUnpack((unpackedJob) => {
             callback(unpackedJob);
         });
     }

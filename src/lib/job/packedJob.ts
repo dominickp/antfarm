@@ -75,7 +75,7 @@ export class PackedJob extends FileJob {
     /**
      * Packs the related job on construction.
      */
-    public pack(done) {
+    public execPack(done) {
         let pj = this;
         let job = pj.getJob();
 
@@ -122,7 +122,6 @@ export class PackedJob extends FileJob {
         let jobObject, job;
         try {
             jobObject = JSON.parse(jsonTicket);
-            console.log("job type =>", jobObject.type, typeof jobObject);
 
             if (jobObject.type === "file") {
                 job = new FileJob(pj.e, jobObject.basename);
@@ -144,7 +143,7 @@ export class PackedJob extends FileJob {
         return job;
     }
 
-    public unpack(done) {
+    public execUnpack(done) {
         // console.log("unpacking");
 
         let pj = this;
@@ -166,8 +165,8 @@ export class PackedJob extends FileJob {
                         job = pj.restoreJobTicket(content);
 
                         // Restore files
-                        pj.restoreFiles(job, zip, (job) => {
-                            done(job);
+                        pj.restoreFiles(job, zip, (unpackedJob) => {
+                            done(unpackedJob);
                         });
 
                     });
@@ -187,17 +186,15 @@ export class PackedJob extends FileJob {
         }
 
         if (job.isFolder()) {
-            console.log("running folder");
             pj.extractFiles(zip, false, "_asset/", (folderPath, folderName) => {
-                console.log("got callback", folderName, folderPath);
                 job.setPath(folderPath);
                 job.rename(folderName);
-                console.log("DONE RESTORING");
                 callback(job);
             });
         } else if (job.isFile()) {
             pj.extractFiles(zip, true, "_asset/", (filePath, fileName) => {
                 job.setPath(filePath);
+                console.log(filePath, fileName);
                 job.rename(fileName);
                 callback(job);
             });
@@ -215,7 +212,6 @@ export class PackedJob extends FileJob {
         if (!totalFiles) {
             totalFiles = 0;
             zip.folder(zipPath).forEach((asset) => totalFiles++ );
-            console.log("totalFiles" + totalFiles);
         }
 
         if (single === true) {
@@ -232,12 +228,10 @@ export class PackedJob extends FileJob {
                         totalFiles--;
                         pj.extractFiles(zip, single, newRelPath, callback, totalFiles);
                     } else {
-                        console.log("EXTRACTING SINGLE");
                         zip.file(newRelPath).async("nodebuffer")
                         .then((content) => {
                             fileNumber++;
                             let filePath = tempPath + path.sep + relativePath;
-                            console.log("*** filepath", filePath);
                             fs.writeFileSync(filePath, content);
                             callback(filePath, relativePath);
                         });
@@ -246,18 +240,11 @@ export class PackedJob extends FileJob {
             });
 
         } else {
-            console.log("Extracting folder");
-
             zip.folder(zipPath).forEach((relativePath, asset) => {
                 let newRelPath = zipPath + relativePath;
 
-                console.log("file newRelPath", newRelPath);
-
-
                 if (asset.dir === true) {
                     totalFiles--;
-
-                    console.log("dir found", totalFiles);
 
                     pj.extractFiles(zip, single, newRelPath, callback, totalFiles);
                 } else {
@@ -265,18 +252,11 @@ export class PackedJob extends FileJob {
                     zip.file(newRelPath).async("nodebuffer")
                     .then((content) => {
 
-                        console.log(newRelPath, relativePath, typeof asset.dir);
-
-
                         let filePath = tempPath + path.sep + relativePath;
                         fs.writeFileSync(filePath, content);
 
-                        console.log("Wrote out", filePath, totalFiles, fileNumber);
-
                         if (totalFiles === fileNumber) {
                             let rootFolderName = newRelPath.split(path.sep)[1];
-                            console.log("Calling back, done unzipping", rootFolderName);
-                            console.log(tempPath, rootFolderName);
                             callback(tempPath, rootFolderName);
                         }
                         fileNumber++;

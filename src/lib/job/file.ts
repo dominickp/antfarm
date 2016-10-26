@@ -23,9 +23,6 @@ export class File {
         this.e = e;
         this.path = path;
 
-        this.basename = node_path.basename(this.path);
-        this.dirname = node_path.dirname(this.path);
-
         // verify path leads to a valid, readable file, handle error if not
 
         this.getStatistics();
@@ -35,8 +32,11 @@ export class File {
      * Refresh the file statistics after a rename or modification.
      */
     protected getStatistics() {
-        this.contentType = mime.lookup(this.getPath());
-        this.extension = fileExtension(this.getPath());
+        let f = this;
+        f.contentType = mime.lookup(f.getPath());
+        f.extension = fileExtension(f.getPath());
+        f.basename = node_path.basename(f.getPath());
+        f.dirname = node_path.dirname(f.getPath());
     }
 
     /**
@@ -116,10 +116,12 @@ export class File {
      * Renames the local job file to the current name.
      */
     public renameLocal() {
-        let new_path = this.getDirname() + node_path.sep + this.getName();
-        fs.renameSync(this.getPath(), new_path);
-        this.setPath(new_path);
-        this.getStatistics();
+        let f = this;
+        let new_path = f.getDirname() + node_path.sep + f.getName();
+        fs.renameSync(f.getPath(), new_path);
+        console.log(new_path);
+        f.setPath(new_path);
+        f.getStatistics();
     }
 
     /**

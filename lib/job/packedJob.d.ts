@@ -20,9 +20,9 @@ export declare class PackedJob extends FileJob {
     /**
      * Packs the related job on construction.
      */
-    pack(done: any): void;
+    execPack(done: any): void;
     protected restoreJobTicket(jsonTicket: any): any;
-    unpack(done: any): void;
+    execUnpack(done: any): void;
     protected restoreFiles(job: Job, zip: any, callback: any): void;
     protected extractFiles(zip: any, single: boolean, zipPath: string, callback: any, totalFiles?: number): void;
 }
