@@ -85,6 +85,7 @@ export class File {
      */
     public setPath(path: string) {
         this.path = path;
+        this.getStatistics();
     }
 
     /**
