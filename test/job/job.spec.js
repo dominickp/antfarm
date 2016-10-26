@@ -167,6 +167,11 @@ describe('Job', function() {
     });
 
     describe("packing", function(){
+
+        var prop1 = 123;
+        var prop2 = { x: 567, y: 123456 };
+        var prop3 = "something";
+
         it('pack jobs into zips', function (done) {
             var job_name = "MyJobFile_001.pdf";
             tunnel.run(function(job){
@@ -178,13 +183,16 @@ describe('Job', function() {
             });
             triggerNewJob(job_name);
         });
-        it('should unpack file jobs and restore properties', function (done) {
+        it('should unpack file jobs and restore properties when moved', function (done) {
             var unpackTunnel = af.createTunnel("Unpacking tunnel");
             var packHolderNest = af.createAutoFolderNest("job", "packed-holding");
             unpackTunnel.watch(packHolderNest);
 
             var job_name = "MyJobFile_009.pdf";
             tunnel.run(function(job){
+                job.setPropertyValue("prop1", prop1);
+                job.setPropertyValue("prop2", prop2);
+                job.setPropertyValue("prop3", prop3);
                 job.pack(function(packJob){
                     packJob.move(packHolderNest);
                 });
@@ -195,11 +203,40 @@ describe('Job', function() {
                 packedJob.unpack(function(origJob){
                     origJob.getName().should.equal(job_name);
                     origJob.getExtension().should.equal("pdf");
+                    origJob.getPropertyValue("prop1").should.equal(prop1);
+                    origJob.getPropertyValue("prop2").should.deep.equal(prop2);
+                    origJob.getPropertyValue("prop3").should.equal(prop3);
                     done();
                 });
             });
             triggerNewJob(job_name);
-        }).timeout(5000);
+        });
+        it('should unpack file jobs and restore properties when transferred', function (done) {
+            var unpackTunnel = af.createTunnel("Unpacking tunnel");
+
+            var job_name = "MyJobFile_008.pdf";
+            tunnel.run(function(job){
+                job.setPropertyValue("prop1", prop1);
+                job.setPropertyValue("prop2", prop2);
+                job.setPropertyValue("prop3", prop3);
+                job.pack(function(packJob){
+                    packJob.transfer(unpackTunnel);
+                });
+            });
+
+            unpackTunnel.run(function(packedJob){
+                packedJob.getName().should.equal(job_name+".antpack.zip");
+                packedJob.unpack(function(origJob){
+                    origJob.getName().should.equal(job_name);
+                    origJob.getExtension().should.equal("pdf");
+                    origJob.getPropertyValue("prop1").should.equal(prop1);
+                    origJob.getPropertyValue("prop2").should.deep.equal(prop2);
+                    origJob.getPropertyValue("prop3").should.equal(prop3);
+                    done();
+                });
+            });
+            triggerNewJob(job_name);
+        });
     });
 
 });

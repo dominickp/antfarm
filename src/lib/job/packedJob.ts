@@ -194,7 +194,6 @@ export class PackedJob extends FileJob {
         } else if (job.isFile()) {
             pj.extractFiles(zip, true, "_asset/", (filePath, fileName) => {
                 job.setPath(filePath);
-                console.log(filePath, fileName);
                 job.rename(fileName);
                 callback(job);
             });

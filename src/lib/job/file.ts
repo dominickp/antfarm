@@ -119,7 +119,6 @@ export class File {
         let f = this;
         let new_path = f.getDirname() + node_path.sep + f.getName();
         fs.renameSync(f.getPath(), new_path);
-        console.log(new_path);
         f.setPath(new_path);
         f.getStatistics();
     }
