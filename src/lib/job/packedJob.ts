@@ -132,6 +132,7 @@ export class PackedJob extends FileJob {
             }
         } catch (err) {
             pj.e.log(3, `Unpack ticket parse error: ${err}.`, pj);
+            pj.e.log(3, `Unparsable ticket: ${jsonTicket}.`, pj);
         }
 
         // Restore property values
