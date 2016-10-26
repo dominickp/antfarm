@@ -124,9 +124,9 @@ export class PackedJob extends FileJob {
             jobObject = JSON.parse(jsonTicket);
 
             if (jobObject.type === "file") {
-                job = new FileJob(pj.e, jobObject.basename);
+                job = new FileJob(pj.e, jobObject.id);
             } else if (jobObject.type === "folder") {
-                job = new FolderJob(pj.e, jobObject.basename);
+                job = new FolderJob(pj.e, jobObject.id);
             } else {
                 pj.e.log(3, `Cannot unpack this type of job: ${jobObject.type}`, pj);
             }
