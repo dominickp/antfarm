@@ -20,14 +20,7 @@ export class Emailer {
         this.e = e;
         this.credentials = credentials;
 
-
-        this.nodemailerTransport = nodemailer.createTransport(credentials.transportMethod, {
-            service: credentials.service,  // sets automatically host, port and nodemailerTransport security settings
-            auth: {
-                user: credentials.username,
-                pass: credentials.password
-            }
-        });
+        this.nodemailerTransport = nodemailer.createTransport(this.credentials);
     }
 
     /**

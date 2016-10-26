@@ -1,6 +1,9 @@
 export interface EmailCredentials {
-    username: string;
-    password: string;
-    service: string;
-    transportMethod: string;
+    host: string;
+    port: number;
+    secure: boolean;
+    auth: {
+        user: string;
+        pass: string;
+    };
 }
