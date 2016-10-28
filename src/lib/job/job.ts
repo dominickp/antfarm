@@ -206,7 +206,7 @@ export abstract class Job {
      *      job.email({
      *          subject: "Test email from pug template",
      *          to: "john.smith@example.com",
-     *          template: "./template_files/my_email.pug"
+     *          template: __dirname + "./template_files/my_email.pug"
      *      });
      * });
      * ```
