@@ -177,7 +177,7 @@ gulp.task('build-test', function(callback) {
 });
 
 gulp.task('watch', function(){
-    gulp.watch('src/**/*.ts', ["build-test"]);
+    gulp.watch(['src/**/*.ts','!src/docs/**/*'], ["build-test"]);
     gulp.watch('test/**/*.js', ["test"]);
 });
 
