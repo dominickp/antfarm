@@ -3,6 +3,7 @@ import {WebhookNest} from "../nest/webhookNest";
 import {WebhookJob} from "../job/webhookJob";
 import * as express from "express";
 import {InterfaceManager} from "../ui/interfaceManager";
+import {Logger, LogQueryOptions} from "./logger";
 
 const   cors = require("cors"),
         multer = require("multer"),
@@ -23,7 +24,8 @@ export class Server {
 
     protected config = {
         hooks_prefix: "/hooks",
-        hooks_ui_prefix: "/hooks-ui"
+        hooks_ui_prefix: "/hooks-ui",
+        log_prefix: "/log"
     };
 
     constructor(e: Environment) {
@@ -67,6 +69,24 @@ export class Server {
         //     s.server.listen(port, () => s.e.log(1, `Server up and listening on port ${port}.`, s));
         // }
         s.server.listen(port, () => s.e.log(1, `Server up and listening on port ${port}.`, s));
+    }
+
+    public createLogServer(logger: Logger) {
+        let s = this;
+
+        let options = {
+            order: "desc",
+            fields: ["message"]
+        } as LogQueryOptions;
+
+        // Add index routes
+        s.server.get(s.config.log_prefix, (req, res) => {
+
+            logger.query(options, results => {
+                res.json(results);
+            });
+
+        });
     }
 
     /**

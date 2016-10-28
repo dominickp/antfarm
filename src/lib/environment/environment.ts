@@ -45,6 +45,7 @@ export class Environment {
 
         if (options.port) {
             e.createServer();
+            e.server.createLogServer(e.logger);
         }
 
         if (options.email_credentials) {

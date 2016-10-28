@@ -43,4 +43,13 @@ export declare class Logger {
      * @param instances
      */
     log(type: number, message: string, actor?: any, instances?: any): void;
+    query(options: LogQueryOptions, callback: any): void;
+}
+export interface LogQueryOptions {
+    from: Date | number;
+    until: Date | number;
+    limit: number;
+    start: number;
+    order: string;
+    fields: string[];
 }

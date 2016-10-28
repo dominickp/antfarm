@@ -163,4 +163,24 @@ export class Logger {
         this.logger.log(log_types[type], modified_entry);
     }
 
+
+    public query(options: LogQueryOptions, callback: any) {
+        let l = this;
+        l.logger.query(options, (err, results) => {
+            if (err) {
+                l.log(3, `Log query error: ${err}.`, l);
+            }
+            callback(results);
+        });
+    }
+
+}
+
+export interface LogQueryOptions {
+    from: Date | number;
+    until: Date | number;
+    limit: number;
+    start: number;
+    order: string;
+    fields: string[];
 }

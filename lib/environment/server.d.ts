@@ -4,6 +4,7 @@ import { WebhookNest } from "../nest/webhookNest";
 import { WebhookJob } from "../job/webhookJob";
 import * as express from "express";
 import { InterfaceManager } from "../ui/interfaceManager";
+import { Logger } from "./logger";
 /**
  * Webhook and logging server.
  */
@@ -16,12 +17,14 @@ export declare class Server {
     protected config: {
         hooks_prefix: string;
         hooks_ui_prefix: string;
+        log_prefix: string;
     };
     constructor(e: Environment);
     /**
      * Creates the server.
      */
     protected createServer(): void;
+    createLogServer(logger: Logger): void;
     /**
      * Log name
      * @returns {string}
