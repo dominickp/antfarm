@@ -26,7 +26,7 @@ gulp.task("doc", function() {
             module: "commonjs",
             target: "es5",
             out: "./docs/",
-            name: "Antfarm",
+            name: "Antfarm 🐜",
             ignoreCompilerErrors: false,
             includeDeclarations: false,
             mode: "file",
