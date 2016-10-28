@@ -339,6 +339,18 @@ export abstract class Job {
         });
     }
 
+    /**
+     * Unpacks a packed job. Returns a the original unpacked job in the parameter of the callback.
+     * @param callback
+     * #### Example
+     * ```js
+     * packedJob.unpack(function(unpackedJob){
+     *     console.log("Unpacked", unpackedJob.getName());
+     *     unpackedJob.move(unpacked_folder);
+     *     packedJob.remove();
+     * });
+     * ```
+     */
     public unpack(callback) {
         let job = this;
         let PackedJob = require("./packedJob").PackedJob;
@@ -400,4 +412,14 @@ export abstract class Job {
         return undefined;
     }
 
+    /**
+     * Add a message to the log with this job as the actor.
+     * @param level             0 = debug, 1 = info, 2, = warning, 3 = error
+     * @param message           Log message
+     * @returns {undefined}
+     */
+    public log(level: number, message: string) {
+        let job = this;
+        return job.e.log(level, message, job);
+    }
 }

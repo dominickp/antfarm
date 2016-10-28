@@ -86,7 +86,7 @@ describe('Tunnels', function() {
             });
         });
 
-        it('should be able to add nests', function() {
+        it('should be able to watch nests', function() {
             tunnel.watch(folder1);
             tunnel.getNests().length.should.be.equal(1);
 

@@ -199,6 +199,18 @@ export declare abstract class Job {
      * ```
      */
     pack(callback: any): void;
+    /**
+     * Unpacks a packed job. Returns a the original unpacked job in the parameter of the callback.
+     * @param callback
+     * #### Example
+     * ```js
+     * packedJob.unpack(function(unpackedJob){
+     *     console.log("Unpacked", unpackedJob.getName());
+     *     unpackedJob.move(unpacked_folder);
+     *     packedJob.remove();
+     * });
+     * ```
+     */
     unpack(callback: any): void;
     /**
      * Get the job object as JSON with circular references removed.
@@ -212,4 +224,11 @@ export declare abstract class Job {
     getFile(index: any): any;
     setPath(path: string): any;
     rename(name: string): any;
+    /**
+     * Add a message to the log with this job as the actor.
+     * @param level             0 = debug, 1 = info, 2, = warning, 3 = error
+     * @param message           Log message
+     * @returns {undefined}
+     */
+    log(level: number, message: string): void;
 }

@@ -92,11 +92,12 @@ describe('Job', function() {
         triggerNewJob(job_name);
     });
 
-    xit('should get whether or not it is locally available', function (done) {
+    it('should be able to write to the log', function (done) {
         var job_name = "MyJobFile_001.pdf";
         tunnel.run(function(job){
-            should.exist(job.getIsLocallyAvailable());
-            job.getIsLocallyAvailable().should.equal(true);
+            job.log(0, "Debug message");
+            job.log(1, "Info message");
+            job.log(2, "Warning message");
             done();
         });
 
