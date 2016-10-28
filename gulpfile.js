@@ -29,7 +29,9 @@ gulp.task("doc", function() {
             name: "Antfarm",
             ignoreCompilerErrors: false,
             includeDeclarations: false,
-            mode: "file"
+            mode: "file",
+            media: "./src/docs/media",
+            theme: "./src/docs/theme"
         }));
 });
 
