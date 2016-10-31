@@ -114,7 +114,7 @@ export class FtpNest extends Nest {
         let ftp = this;
 
         try {
-            let ftp_path = `/${job.getName()}`;
+            let ftp_path = `/${job.name}`;
 
             let ftp_client = ftp.getClient();
 
@@ -122,7 +122,7 @@ export class FtpNest extends Nest {
 
             ftp_client.upload(job.getPath(), ftp_path, function (err) {
                 if (err) {
-                    ftp.e.log(3, `Error uploading ${job.getName()} to FTP.`, ftp);
+                    ftp.e.log(3, `Error uploading ${job.name} to FTP.`, ftp);
                 }
 
                 fs.unlinkSync(job.getPath());

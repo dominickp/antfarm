@@ -10,14 +10,14 @@ const   shortid = require("shortid");
 export abstract class Nest {
 
     protected id: string;
-    protected name: string;
+    protected _name: string;
     protected tunnel: Tunnel;
     protected e: Environment;
 
     constructor(e: Environment, name: string) {
         this.e = e;
         this.id = shortid.generate();
-        this.name = name;
+        this._name = name;
     }
 
     public getId() {
@@ -28,8 +28,12 @@ export abstract class Nest {
         return "Nest";
     }
 
-    public getName() {
-        return this.name;
+    public get name() {
+        return this._name;
+    }
+
+    public set name(name: string) {
+        this._name = name;
     }
 
     public getTunnel() {
@@ -42,7 +46,7 @@ export abstract class Nest {
 
     public arrive(job: Job) {
         let ns = this;
-        ns.e.log(1, `Job "${job.getName()}" arrived in Nest "${ns.name}".`, ns);
+        ns.e.log(1, `Job "${job.name}" arrived in Nest "${ns.name}".`, ns);
         job.setTunnel(ns.tunnel);
         job.setNest(ns);
         ns.tunnel.arrive(job, ns);

@@ -18,7 +18,7 @@ const   _           = require("lodash"),
  * var manager = webhook.getInterfaceManager();
  * manager.addField({
  *      id: "job_number",
- *      name: "Job Number";
+ *      _name: "Job Number";
  *      type: "text"
  * });
  * ```
@@ -146,7 +146,7 @@ export class InterfaceManager {
      *      if(webhookJob.getQueryStringValue("job_number")){
      *          webhookInterface.addField({
      *              id: "something_else",
-     *              name: "Some other field",
+     *              _name: "Some other field",
      *              type: "text",
      *              description: "Thanks for adding a job number!"
      *          });

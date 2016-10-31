@@ -20,19 +20,18 @@ export declare class File {
      * Get the basename.
      * @returns {string}
      */
-    getName(): string;
     /**
-     * Set a new file name.
+     * Set a new file _name.
      * @param filename
      */
-    setName(filename: string): void;
+    name: string;
     /**
-     * Get the file name of the job without the file extension.
+     * Get the file _name of the job without the file extension.
      * @returns {string}
      */
     getNameProper(): any;
     /**
-     * Get the top level directory name.
+     * Get the top level directory _name.
      * @returns {string}
      */
     getDirname(): string;
@@ -62,7 +61,7 @@ export declare class File {
      */
     getBasename(): string;
     /**
-     * Renames the local job file to the current name.
+     * Renames the local job file to the current _name.
      */
     renameLocal(): void;
     /**

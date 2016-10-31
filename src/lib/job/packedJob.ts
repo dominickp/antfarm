@@ -16,8 +16,8 @@ export class PackedJob extends FileJob {
     protected job: Job;
 
     constructor(e: Environment, job: Job) {
-        // let job_name = job.getName();
-        super(e, job.getName());
+        // let job_name = job.name;
+        super(e, job.name);
         let pj = this;
         pj.e = e;
         pj.job = job;
@@ -58,7 +58,7 @@ export class PackedJob extends FileJob {
         let job = this.getJob();
         let tmpobj = tmp.dirSync();
         let dir = tmpobj.name;
-        let file_name = job.getName() + ".antpack.zip";
+        let file_name = job.name + ".antpack.zip";
         let file_path = dir + path.sep + file_name;
         zip
             .generateNodeStream({type: "nodebuffer", streamFiles: true})
@@ -67,7 +67,7 @@ export class PackedJob extends FileJob {
                 // JSZip generates a readable stream with a "end" event,
                 // but is piped here in a writable stream which emits a "finish" event.
                 pj.setPath(file_path);
-                pj.setName(file_name);
+                pj.name = file_name;
                 callback();
             });
     }
@@ -92,7 +92,7 @@ export class PackedJob extends FileJob {
 
                 fs.readFile(job.getPath(), (err, data) => {
                     if (err) throw err;
-                    zip.file("_asset/" + job.getName(), data);
+                    zip.file("_asset/" + job.name, data);
                     pj.buildZip(zip, () => {
                         done();
                     });
@@ -101,7 +101,7 @@ export class PackedJob extends FileJob {
                 job.getFiles().forEach(file => {
                     fs.readFile(file.getPath(), function(err, data) {
                         if (err) throw err;
-                        zip.file("_asset" + path.sep + job.getNameProper() + path.sep + file.getName(), data);
+                        zip.file("_asset" + path.sep + job.getNameProper() + path.sep + file.name, data);
                         pj.buildZip(zip, () => {
                             done();
                         });

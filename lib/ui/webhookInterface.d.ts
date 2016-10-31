@@ -17,7 +17,7 @@ import { FolderJob } from "../job/folderJob";
  *      if(webhookJob.getQueryStringValue("job_number")){
  *          webhookInterface.addField({
  *              id: "something_else",
- *              name: "Some other field",
+ *              _name: "Some other field",
  *              type: "text",
  *              description: "Thanks for adding a job number!"
  *          });

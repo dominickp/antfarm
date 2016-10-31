@@ -12,7 +12,7 @@ const   async = require("async"),
  */
 export class Tunnel {
 
-    protected name: string;
+    protected _name: string;
     protected nests: Nest[];
     protected run_list: any[];
     protected run_sync_list: any[];
@@ -30,7 +30,7 @@ export class Tunnel {
     constructor(e: Environment, theName: string) {
         this.e = e;
         this.nests = [];
-        this.name = theName;
+        this._name = theName;
         this.run_list = [];
         this.run_sync_list = [];
         this.job_counter = 0;
@@ -40,8 +40,12 @@ export class Tunnel {
         return "Tunnel";
     }
 
-    public getName() {
-        return this.name;
+    public get name() {
+        return this._name;
+    }
+
+    public set name(name: string) {
+        this._name = name;
     }
 
     public getNests() {
@@ -192,18 +196,18 @@ export class Tunnel {
             tn.e.log(0, "Executing matching process.", tn);
 
             tn.match_obj.pattern.forEach(function (pattern, i) {
-                job_pattern_match_result = mm.isMatch(job.getName(), pattern);
+                job_pattern_match_result = mm.isMatch(job.name, pattern);
                 if (job_pattern_match_result === true) {
-                    job_base = job.getName().substr(0, job.getName().indexOf(pattern.replace("*", "")));
+                    job_base = job.name.substr(0, job.name.indexOf(pattern.replace("*", "")));
                 }
             });
 
 
             tn.match_obj.queue.slice().reverse().forEach(function (qJob, qIndex, qObject) {
                 tn.match_obj.pattern.forEach(function (pattern) {
-                    qjob_pattern_match_result = mm.isMatch(qJob.getName(), pattern);
+                    qjob_pattern_match_result = mm.isMatch(qJob.name, pattern);
                     if (qjob_pattern_match_result === true) {
-                        qjob_base = qJob.getName().substr(0, qJob.getName().indexOf(pattern.replace("*", "")));
+                        qjob_base = qJob.name.substr(0, qJob.name.indexOf(pattern.replace("*", "")));
 
                         if (job_base === qjob_base) {
                             // Pull out qjob from queue

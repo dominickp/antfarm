@@ -74,7 +74,7 @@ export declare class Antfarm {
      * @param allowCreation
      * @returns {S3Nest}
      * ```js
-     * var bucket = af.createS3Nest("my-bucket-name", "", 1, true);
+     * var bucket = af.createS3Nest("my-bucket-_name", "", 1, true);
      * ```
      */
     createS3Nest(bucket: string, keyPrefix?: string, checkEvery?: number, allowCreation?: boolean): S3Nest;

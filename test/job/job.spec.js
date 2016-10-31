@@ -1,4 +1,5 @@
 var should = require('chai').should();
+var expect = require('chai').expect;
 var Job = require('./../../lib/job/job');
 var Antfarm = require("./../../lib/antfarm");
 var tmp = require('tmp');
@@ -51,17 +52,18 @@ describe('Job', function() {
         fs.writeFileSync(temp_file_path, "Some dummy data.");
     };
 
-    it('should get the job name', function (done) {
+    it('should get the job _name', function (done) {
         var job_name = "MyJobFile_001.pdf";
         tunnel.run(function(job){
-            job.getName().should.equal(job_name);
+            expect(job.name).not.to.be.undefined;
+            job.name.should.equal(job_name);
             done();
         });
 
         triggerNewJob(job_name);
     });
 
-    it('should get the job name proper', function (done) {
+    it('should get the job _name proper', function (done) {
         var job_name = "MyJobFile_001.pdf";
         tunnel.run(function(job){
             job.getNameProper().should.equal("MyJobFile_001");
@@ -108,11 +110,11 @@ describe('Job', function() {
         var tunnel2 = af.createTunnel("Another tunnel");
         var job_name = "MyJobFile_001.pdf";
         tunnel.run(function(job){
-            job.getName().should.equal("MyJobFile_001.pdf");
+            job.name.should.equal("MyJobFile_001.pdf");
             job.transfer(tunnel2);
         });
         tunnel2.run(function(job){
-            job.getName().should.equal("MyJobFile_001.pdf");
+            job.name.should.equal("MyJobFile_001.pdf");
             done();
         });
         triggerNewJob(job_name);
@@ -130,9 +132,9 @@ describe('Job', function() {
         it('should add lifecycle events', function (done) {
             var job_name = "MyJobFile_001.pdf";
             tunnel.runSync(function(job){
-                job.setName("Some other name.pdf");
+                job.name = "Some other _name.pdf";
                 job.getLifeCycle().length.should.equal(2);
-                job.setName("Some other name.pdf");
+                job.name = "Some other _name.pdf";
                 job.getLifeCycle().length.should.equal(3);
                 done();
             });
@@ -177,7 +179,7 @@ describe('Job', function() {
             var job_name = "MyJobFile_001.pdf";
             tunnel.run(function(job){
                 job.pack(function(packJob){
-                    packJob.getName().should.equal(job_name+".antpack.zip");
+                    packJob.name.should.equal(job_name+".antpack.zip");
                     packJob.getExtension().should.equal("zip");
                     done();
                 });
@@ -200,9 +202,9 @@ describe('Job', function() {
             });
 
             unpackTunnel.run(function(packedJob){
-                packedJob.getName().should.equal(job_name+".antpack.zip");
+                packedJob.name.should.equal(job_name+".antpack.zip");
                 packedJob.unpack(function(origJob){
-                    origJob.getName().should.equal(job_name);
+                    origJob.name.should.equal(job_name);
                     origJob.getExtension().should.equal("pdf");
                     origJob.getPropertyValue("prop1").should.equal(prop1);
                     origJob.getPropertyValue("prop2").should.deep.equal(prop2);
@@ -226,9 +228,9 @@ describe('Job', function() {
             });
 
             unpackTunnel.run(function(packedJob){
-                packedJob.getName().should.equal(job_name+".antpack.zip");
+                packedJob.name.should.equal(job_name+".antpack.zip");
                 packedJob.unpack(function(origJob){
-                    origJob.getName().should.equal(job_name);
+                    origJob.name.should.equal(job_name);
                     origJob.getExtension().should.equal("pdf");
                     origJob.getPropertyValue("prop1").should.equal(prop1);
                     origJob.getPropertyValue("prop2").should.deep.equal(prop2);

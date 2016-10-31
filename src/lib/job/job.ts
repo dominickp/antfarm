@@ -14,7 +14,7 @@ const   shortid = require("shortid"),
 
 export abstract class Job {
 
-    protected name: string;
+    protected _name: string;
     protected tunnel: Tunnel;
     protected nest: Nest;
     protected e: Environment;
@@ -33,7 +33,7 @@ export abstract class Job {
         let j = this;
         j.e = e;
         j.id = shortid.generate();
-        j.name = name;
+        j._name = name;
         j.lifeCycle = [];
         j.properties = {};
         j.type = "base";
@@ -43,7 +43,7 @@ export abstract class Job {
     }
 
     /**
-     * Class name for logging.
+     * Class _name for logging.
      * @returns {string}
      */
     public toString() {
@@ -89,19 +89,19 @@ export abstract class Job {
     }
 
     /**
-     * Set a new name.
+     * Set a new _name.
      * @param name
      */
-    public setName(name: string) {
-        this.name = name;
+    public set name(name: string) {
+        this._name = name;
     }
 
     /**
-     * Get the name.
+     * Get the _name.
      * @returns {string}
      */
-    public getName() {
-        return this.name;
+    public get name() {
+        return this._name;
     }
 
     /**
@@ -113,11 +113,11 @@ export abstract class Job {
     }
 
     /**
-     * Get the name proper.
+     * Get the _name proper.
      * @returns {string}
      */
     public getNameProper() {
-        return this.getName();
+        return this.name;
     }
 
     /**
@@ -159,10 +159,10 @@ export abstract class Job {
     public fail(reason: string) {
         let j = this;
         if (!j.getTunnel()) {
-            j.e.log(3, `Job "${j.getName()}" failed before tunnel was set.`, j);
+            j.e.log(3, `Job "${j.name}" failed before tunnel was set.`, j);
         }
         if (!j.getNest()) {
-            j.e.log(3, `Job "${j.getName()}" does not have a nest.`, j);
+            j.e.log(3, `Job "${j.name}" does not have a nest.`, j);
         }
 
         j.tunnel.executeFail(j, j.getNest(), reason);
@@ -178,14 +178,14 @@ export abstract class Job {
 
         let oldTunnelName = "";
         if (oldTunnel) {
-            oldTunnelName = oldTunnel.getName();
+            oldTunnelName = oldTunnel.name;
         }
 
         job.setTunnel(tunnel);
         tunnel.arrive(job, null);
 
-        job.e.log(1, `Transferred to Tunnel "${tunnel.getName()}".`, job, [oldTunnel]);
-        job.createLifeEvent("transfer", oldTunnelName, tunnel.getName());
+        job.e.log(1, `Transferred to Tunnel "${tunnel.name}".`, job, [oldTunnel]);
+        job.createLifeEvent("transfer", oldTunnelName, tunnel.name);
     }
 
 
@@ -345,7 +345,7 @@ export abstract class Job {
      * #### Example
      * ```js
      * packedJob.unpack(function(unpackedJob){
-     *     console.log("Unpacked", unpackedJob.getName());
+     *     console.log("Unpacked", unpackedJob.name);
      *     unpackedJob.move(unpacked_folder);
      *     packedJob.remove();
      * });

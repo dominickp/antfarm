@@ -19,17 +19,17 @@ export declare class FolderJob extends Job {
      */
     createFiles(callback: any): void;
     /**
-     * Gets the job name.
+     * Gets the job _name.
      * @returns {string}
      */
-    getName(): string;
+    readonly name: string;
     /**
      * Get the basename.
      * @returns {string}
      */
     getBasename(): string;
     /**
-     * Get the directory name.
+     * Get the directory _name.
      * @returns {string}
      */
     getDirname(): string;

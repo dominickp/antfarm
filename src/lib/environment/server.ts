@@ -33,7 +33,7 @@ export class Server {
         this.server = express();
         this.createServer();
 
-        // let tmpDir = tmp.dirSync().name;
+        // let tmpDir = tmp.dirSync()._name;
         let tmpDir = "./example";
 
         this.upload = multer({
@@ -90,7 +90,7 @@ export class Server {
     }
 
     /**
-     * Log name
+     * Log _name
      * @returns {string}
      */
     public toString() {
@@ -118,8 +118,8 @@ export class Server {
         s.hookRoutes.push({
             id: nest.getId(),
             path: hook_path,
-            nest: nest.getName(),
-            tunnel: nest.getTunnel().getName(),
+            nest: nest.name,
+            tunnel: nest.getTunnel().name,
             method: httpMethod,
             interface_path: hook_ui_path
         });
@@ -172,10 +172,10 @@ export class Server {
                 message: message || `Job ${job.getId()} was created!`,
                 job: {
                     id: job.getId(),
-                    name: job.getName()
+                    name: job.name
                 },
                 nest: {
-                    name: nest.getName()
+                    name: nest.name
                 }
             };
             res.json(response);
@@ -198,9 +198,9 @@ export class Server {
         this.hookInterfaceRoutes.push({
             id: nest.getId(),
             path: hook_ui_path,
-            nest: nest.getName(),
+            nest: nest.name,
             target: hook_path
-            // tunnel: nest.getTunnel().getName()
+            // tunnel: nest.getTunnel().name
         });
 
         s.server.get(hook_ui_path,  function (req, res) {

@@ -26,7 +26,7 @@ export declare class Server {
     protected createServer(): void;
     createLogServer(logger: Logger): void;
     /**
-     * Log name
+     * Log _name
      * @returns {string}
      */
     toString(): string;

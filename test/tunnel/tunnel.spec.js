@@ -40,8 +40,8 @@ describe('Tunnels', function() {
        // mock.restore();
     });
 
-    it('should get the tunnel name', function () {
-        tunnel.getName().should.equal("Test tunnel");
+    it('should get the tunnel _name', function () {
+        tunnel.name.should.equal("Test tunnel");
     });
 
     it('should add a run callback to the run list', function () {
@@ -102,7 +102,7 @@ describe('Tunnels', function() {
 
             tn.runSync(function(job){
                 obj.num++;
-                job.getName().should.equal("dummy.tmp");
+                job.name.should.equal("dummy.tmp");
             });
 
             tn.runSync(function(){

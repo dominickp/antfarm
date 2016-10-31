@@ -15,17 +15,21 @@ export declare class FileJob extends Job {
      */
     getFile(): File;
     /**
-     * Get the file name.
+     * Get the file _name.
      * @returns {string}
      */
-    getName(): string;
     /**
-     * Get the file name proper.
+     * Set a new file _name.
+     * @param filename
+     */
+    name: string;
+    /**
+     * Get the file _name proper.
      * @returns {string}
      */
     getNameProper(): any;
     /**
-     * Get the file directory name.
+     * Get the file directory _name.
      * @returns {string}
      */
     getDirname(): string;
@@ -39,11 +43,6 @@ export declare class FileJob extends Job {
      * @param path
      */
     setPath(path: string): void;
-    /**
-     * Set a new file name.
-     * @param filename
-     */
-    setName(filename: string): void;
     /**
      * Get the file content type.
      * @returns {string}
@@ -86,7 +85,7 @@ export declare class FileJob extends Job {
      */
     move(destinationNest: any, callback: any): void;
     /**
-     * Rename the job file to a new name.
+     * Rename the job file to a new _name.
      * @param newName
      */
     rename(newName: string): void;

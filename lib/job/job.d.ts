@@ -5,7 +5,7 @@ import { LifeEvent } from "../environment/lifeEvent";
 import { EmailOptions } from "../environment/emailOptions";
 import { JobProperty } from "./jobProperty";
 export declare abstract class Job {
-    protected name: string;
+    protected _name: string;
     protected tunnel: Tunnel;
     protected nest: Nest;
     protected e: Environment;
@@ -21,7 +21,7 @@ export declare abstract class Job {
      */
     constructor(e: Environment, name: string);
     /**
-     * Class name for logging.
+     * Class _name for logging.
      * @returns {string}
      */
     toString(): string;
@@ -49,22 +49,21 @@ export declare abstract class Job {
      */
     protected createLifeEvent(verb: string, start: string, finish: string): void;
     /**
-     * Set a new name.
-     * @param name
-     */
-    setName(name: string): void;
-    /**
-     * Get the name.
+     * Get the _name.
      * @returns {string}
      */
-    getName(): string;
+    /**
+     * Set a new _name.
+     * @param name
+     */
+    name: string;
     /**
      * Get the ID.
      * @returns {string}
      */
     getId(): string;
     /**
-     * Get the name proper.
+     * Get the _name proper.
      * @returns {string}
      */
     getNameProper(): string;
@@ -205,7 +204,7 @@ export declare abstract class Job {
      * #### Example
      * ```js
      * packedJob.unpack(function(unpackedJob){
-     *     console.log("Unpacked", unpackedJob.getName());
+     *     console.log("Unpacked", unpackedJob.name);
      *     unpackedJob.move(unpacked_folder);
      *     packedJob.remove();
      * });

@@ -3,7 +3,7 @@
  */
 export declare class Step {
     /**
-     * The human-readable step name.
+     * The human-readable step _name.
      */
     name: string;
     /**

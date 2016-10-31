@@ -43,20 +43,20 @@ export class File {
      * Get the basename.
      * @returns {string}
      */
-    public getName() {
+    public get name() {
         return this.basename;
     }
 
     /**
-     * Set a new file name.
+     * Set a new file _name.
      * @param filename
      */
-    public setName(filename: string) {
+    public set name(filename: string) {
         this.basename = filename;
     }
 
     /**
-     * Get the file name of the job without the file extension.
+     * Get the file _name of the job without the file extension.
      * @returns {string}
      */
     public getNameProper() {
@@ -64,7 +64,7 @@ export class File {
     }
 
     /**
-     * Get the top level directory name.
+     * Get the top level directory _name.
      * @returns {string}
      */
     public getDirname() {
@@ -113,11 +113,11 @@ export class File {
     }
 
     /**
-     * Renames the local job file to the current name.
+     * Renames the local job file to the current _name.
      */
     public renameLocal() {
         let f = this;
-        let new_path = f.getDirname() + node_path.sep + f.getName();
+        let new_path = f.getDirname() + node_path.sep + f.name;
         fs.renameSync(f.getPath(), new_path);
         f.setPath(new_path);
         f.getStatistics();

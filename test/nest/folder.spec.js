@@ -22,8 +22,8 @@ describe('Nest Folder', function() {
         it('should create a folder', function() {
             var folder = af.createFolderNest(tmpobj.name);
 
-            folder.getName().should.not.be.empty;
-            folder.getName().should.be.a('string');
+            folder.name.should.not.be.empty;
+            folder.name.should.be.a('string');
             folder.should.be.a('object');
         });
     });

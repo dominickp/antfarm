@@ -129,7 +129,7 @@ export class Logger {
                     let super_name = instance.toString();
 
                     try {
-                        entry[super_name] = instance.getName();
+                        entry[super_name] = instance.name;
                         if (super_name === "Job") entry["JobId"] = instance.getId();
                     } catch (e) {
                     }

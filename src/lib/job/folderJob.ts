@@ -53,10 +53,10 @@ export class FolderJob extends Job {
     }
 
     /**
-     * Gets the job name.
+     * Gets the job _name.
      * @returns {string}
      */
-    public getName() {
+    public get name() {
         return this.getBasename();
     }
 
@@ -69,7 +69,7 @@ export class FolderJob extends Job {
     }
 
     /**
-     * Get the directory name.
+     * Get the directory _name.
      * @returns {string}
      */
     public getDirname() {
@@ -99,7 +99,7 @@ export class FolderJob extends Job {
      */
     public addFile(file: File) {
         this.files.push(file);
-        this.e.log(0, `Adding file "${file.getName()}" to job.`, this);
+        this.e.log(0, `Adding file "${file.name}" to job.`, this);
     }
 
     /**
@@ -161,13 +161,13 @@ export class FolderJob extends Job {
         try {
             destinationNest.take(fj, function(new_path){
                 fj.setPath(new_path);
-                fj.e.log(1, `Job "${fj.getName()}" was moved to Nest "${destinationNest.name}".`, fj);
+                fj.e.log(1, `Job "${fj.name}" was moved to Nest "${destinationNest.name}".`, fj);
                 if (callback) {
                     callback();
                 }
             });
         } catch (e) {
-            fj.e.log(3, `Job "${fj.getName()}" was not moved to Nest "${destinationNest.name}". ${e}`, fj);
+            fj.e.log(3, `Job "${fj.name}" was not moved to Nest "${destinationNest.name}". ${e}`, fj);
             if (callback) {
                 callback();
             }

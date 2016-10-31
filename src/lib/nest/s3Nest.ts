@@ -285,7 +285,7 @@ export class S3Nest extends Nest {
         let body = fs.createReadStream(job.getPath());
         let params = {
             Bucket: sn.bucket,
-            Key: sn.keyPrefix + job.getName(),
+            Key: sn.keyPrefix + job.name,
             Body: body,
             ACL: "public-read"
         };

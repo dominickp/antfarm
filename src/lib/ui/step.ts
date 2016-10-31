@@ -4,7 +4,7 @@
 export class Step {
 
     /**
-     * The human-readable step name.
+     * The human-readable step _name.
      */
     public name: string;
 

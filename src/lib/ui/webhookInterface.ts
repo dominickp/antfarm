@@ -22,7 +22,7 @@ const   shortid     = require("shortid"),
  *      if(webhookJob.getQueryStringValue("job_number")){
  *          webhookInterface.addField({
  *              id: "something_else",
- *              name: "Some other field",
+ *              _name: "Some other field",
  *              type: "text",
  *              description: "Thanks for adding a job number!"
  *          });
@@ -181,7 +181,7 @@ export class WebhookInterface {
         jobs.forEach((job) => {
             jobsArray.push({
                 id: job.getId(),
-                name: job.getName(),
+                name: job.name,
                 path: job.getPath()
             });
         });

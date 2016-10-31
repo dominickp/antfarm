@@ -26,15 +26,15 @@ export class FileJob extends Job {
     }
 
     /**
-     * Get the file name.
+     * Get the file _name.
      * @returns {string}
      */
-    public getName() {
-        return this.file.getName();
+    public get name() {
+        return this.file.name;
     }
 
     /**
-     * Get the file name proper.
+     * Get the file _name proper.
      * @returns {string}
      */
     public getNameProper() {
@@ -42,7 +42,7 @@ export class FileJob extends Job {
     }
 
     /**
-     * Get the file directory name.
+     * Get the file directory _name.
      * @returns {string}
      */
     public getDirname() {
@@ -67,12 +67,12 @@ export class FileJob extends Job {
     }
 
     /**
-     * Set a new file name.
+     * Set a new file _name.
      * @param filename
      */
-    public setName(filename: string) {
-        this.createLifeEvent("set name", this.getName(), filename);
-        this.file.setName(filename);
+    public set name(filename: string) {
+        this.createLifeEvent("set _name", this.name, filename);
+        this.file.name = filename;
     }
 
     /**
@@ -151,13 +151,13 @@ export class FileJob extends Job {
     }
 
     /**
-     * Rename the job file to a new name.
+     * Rename the job file to a new _name.
      * @param newName
      */
     public rename(newName: string) {
         let fj = this;
         let file = this.getFile();
-        file.setName(newName);
+        file.name = newName;
         file.renameLocal();
     }
 

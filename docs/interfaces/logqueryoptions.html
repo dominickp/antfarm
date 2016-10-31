@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AntfarmOptions | Antfarm 🐜</title>
+	<title>LogQueryOptions | Antfarm 🐜</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -58,28 +58,21 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="antfarmoptions.html">AntfarmOptions</a>
+					<a href="logqueryoptions.html">LogQueryOptions</a>
 				</li>
 			</ul>
-			<h1>Interface AntfarmOptions</h1>
+			<h1>Interface LogQueryOptions</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Global antfarm options.</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">AntfarmOptions</span>
+						<span class="target">LogQueryOptions</span>
 					</li>
 				</ul>
 			</section>
@@ -90,15 +83,12 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="antfarmoptions.html#auto_managed_folder_directory" class="tsd-kind-icon">auto_<wbr>managed_<wbr>folder_<wbr>directory</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="antfarmoptions.html#email_credentials" class="tsd-kind-icon">email_<wbr>credentials</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="antfarmoptions.html#log_dir" class="tsd-kind-icon">log_<wbr>dir</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="antfarmoptions.html#log_file_level" class="tsd-kind-icon">log_<wbr>file_<wbr>level</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="antfarmoptions.html#log_max_files" class="tsd-kind-icon">log_<wbr>max_<wbr>files</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="antfarmoptions.html#log_max_size" class="tsd-kind-icon">log_<wbr>max_<wbr>size</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="antfarmoptions.html#log_out_level" class="tsd-kind-icon">log_<wbr>out_<wbr>level</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="antfarmoptions.html#port" class="tsd-kind-icon">port</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="antfarmoptions.html#webhook_interface_session_timeout" class="tsd-kind-icon">webhook_<wbr>interface_<wbr>session_<wbr>timeout</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="logqueryoptions.html#fields" class="tsd-kind-icon">fields</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="logqueryoptions.html#from" class="tsd-kind-icon">from</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="logqueryoptions.html#limit" class="tsd-kind-icon">limit</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="logqueryoptions.html#order" class="tsd-kind-icon">order</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="logqueryoptions.html#start" class="tsd-kind-icon">start</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="logqueryoptions.html#until" class="tsd-kind-icon">until</a></li>
 							</ul>
 						</section>
 					</div>
@@ -107,139 +97,64 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="auto_managed_folder_directory" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> auto_<wbr>managed_<wbr>folder_<wbr>directory</h3>
-					<div class="tsd-signature tsd-kind-icon">auto_<wbr>managed_<wbr>folder_<wbr>directory<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="fields" class="tsd-anchor"></a>
+					<h3>fields</h3>
+					<div class="tsd-signature tsd-kind-icon">fields<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a80a98/src/lib/environment/options.ts#L40">lib/environment/options.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a80a98/src/lib/environment/logger.ts#L185">lib/environment/logger.ts:185</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Auto managed folder path.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="email_credentials" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> email_<wbr>credentials</h3>
-					<div class="tsd-signature tsd-kind-icon">email_<wbr>credentials<span class="tsd-signature-symbol">:</span> <a href="emailcredentials.html" class="tsd-signature-type">EmailCredentials</a></div>
+					<a name="from" class="tsd-anchor"></a>
+					<h3>from</h3>
+					<div class="tsd-signature tsd-kind-icon">from<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a80a98/src/lib/environment/options.ts#L50">lib/environment/options.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a80a98/src/lib/environment/logger.ts#L180">lib/environment/logger.ts:180</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Service nameif not using a hostname. Acceptable options: gmail.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="log_dir" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> log_<wbr>dir</h3>
-					<div class="tsd-signature tsd-kind-icon">log_<wbr>dir<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="limit" class="tsd-anchor"></a>
+					<h3>limit</h3>
+					<div class="tsd-signature tsd-kind-icon">limit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a80a98/src/lib/environment/options.ts#L10">lib/environment/options.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a80a98/src/lib/environment/logger.ts#L182">lib/environment/logger.ts:182</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The directory for logs to be saved.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="log_file_level" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> log_<wbr>file_<wbr>level</h3>
-					<div class="tsd-signature tsd-kind-icon">log_<wbr>file_<wbr>level<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="order" class="tsd-anchor"></a>
+					<h3>order</h3>
+					<div class="tsd-signature tsd-kind-icon">order<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a80a98/src/lib/environment/options.ts#L25">lib/environment/options.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a80a98/src/lib/environment/logger.ts#L184">lib/environment/logger.ts:184</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Level of file logging: &quot;debug&quot;, &quot;info&quot;, &quot;warning&quot;, and &quot;error&quot;.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="log_max_files" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> log_<wbr>max_<wbr>files</h3>
-					<div class="tsd-signature tsd-kind-icon">log_<wbr>max_<wbr>files<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="start" class="tsd-anchor"></a>
+					<h3>start</h3>
+					<div class="tsd-signature tsd-kind-icon">start<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a80a98/src/lib/environment/options.ts#L20">lib/environment/options.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a80a98/src/lib/environment/logger.ts#L183">lib/environment/logger.ts:183</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Max number of files for rotating log files.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="log_max_size" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> log_<wbr>max_<wbr>size</h3>
-					<div class="tsd-signature tsd-kind-icon">log_<wbr>max_<wbr>size<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="until" class="tsd-anchor"></a>
+					<h3>until</h3>
+					<div class="tsd-signature tsd-kind-icon">until<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a80a98/src/lib/environment/options.ts#L15">lib/environment/options.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a80a98/src/lib/environment/logger.ts#L181">lib/environment/logger.ts:181</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Max file size for log files.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="log_out_level" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> log_<wbr>out_<wbr>level</h3>
-					<div class="tsd-signature tsd-kind-icon">log_<wbr>out_<wbr>level<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a80a98/src/lib/environment/options.ts#L30">lib/environment/options.ts:30</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Level of console logging: &quot;debug&quot;, &quot;info&quot;, &quot;warning&quot;, and &quot;error&quot;.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="port" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> port</h3>
-					<div class="tsd-signature tsd-kind-icon">port<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a80a98/src/lib/environment/options.ts#L35">lib/environment/options.ts:35</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Port of server for webhooks.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="webhook_interface_session_timeout" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> webhook_<wbr>interface_<wbr>session_<wbr>timeout</h3>
-					<div class="tsd-signature tsd-kind-icon">webhook_<wbr>interface_<wbr>session_<wbr>timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/2a80a98/src/lib/environment/options.ts#L45">lib/environment/options.ts:45</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Webhook interface session timeout in minutes.</p>
-						</div>
-					</div>
 				</section>
 			</section>
 		</div>
@@ -256,34 +171,25 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="antfarmoptions.html" class="tsd-kind-icon">Antfarm<wbr>Options</a>
+						<a href="logqueryoptions.html" class="tsd-kind-icon">Log<wbr>Query<wbr>Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="antfarmoptions.html#auto_managed_folder_directory" class="tsd-kind-icon">auto_<wbr>managed_<wbr>folder_<wbr>directory</a>
+								<a href="logqueryoptions.html#fields" class="tsd-kind-icon">fields</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="antfarmoptions.html#email_credentials" class="tsd-kind-icon">email_<wbr>credentials</a>
+								<a href="logqueryoptions.html#from" class="tsd-kind-icon">from</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="antfarmoptions.html#log_dir" class="tsd-kind-icon">log_<wbr>dir</a>
+								<a href="logqueryoptions.html#limit" class="tsd-kind-icon">limit</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="antfarmoptions.html#log_file_level" class="tsd-kind-icon">log_<wbr>file_<wbr>level</a>
+								<a href="logqueryoptions.html#order" class="tsd-kind-icon">order</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="antfarmoptions.html#log_max_files" class="tsd-kind-icon">log_<wbr>max_<wbr>files</a>
+								<a href="logqueryoptions.html#start" class="tsd-kind-icon">start</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="antfarmoptions.html#log_max_size" class="tsd-kind-icon">log_<wbr>max_<wbr>size</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="antfarmoptions.html#log_out_level" class="tsd-kind-icon">log_<wbr>out_<wbr>level</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="antfarmoptions.html#port" class="tsd-kind-icon">port</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="antfarmoptions.html#webhook_interface_session_timeout" class="tsd-kind-icon">webhook_<wbr>interface_<wbr>session_<wbr>timeout</a>
+								<a href="logqueryoptions.html#until" class="tsd-kind-icon">until</a>
 							</li>
 						</ul>
 					</li>

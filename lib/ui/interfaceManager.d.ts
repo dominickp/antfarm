@@ -14,7 +14,7 @@ import { FolderNest } from "../nest/folderNest";
  * var manager = webhook.getInterfaceManager();
  * manager.addField({
  *      id: "job_number",
- *      name: "Job Number";
+ *      _name: "Job Number";
  *      type: "text"
  * });
  * ```
@@ -77,7 +77,7 @@ export declare class InterfaceManager {
      *      if(webhookJob.getQueryStringValue("job_number")){
      *          webhookInterface.addField({
      *              id: "something_else",
-     *              name: "Some other field",
+     *              _name: "Some other field",
      *              type: "text",
      *              description: "Thanks for adding a job number!"
      *          });

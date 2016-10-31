@@ -78,10 +78,10 @@ export declare class WebhookNest extends Nest {
      */
     protected setHttpMethod(httpMethod: any): void;
     /**
-     * Get the name.
+     * Get the _name.
      * @returns {string}
      */
-    getName(): string;
+    readonly name: any;
     /**
      * On load, do nothing.
      */
