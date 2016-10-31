@@ -104,7 +104,7 @@ export class InterfaceManager {
     }
 
     /**
-     * Get the nest path.
+     * Get the nest _path.
      * @returns {string}
      */
     public getPath() {

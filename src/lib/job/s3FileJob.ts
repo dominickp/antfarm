@@ -6,7 +6,7 @@ const   tmp = require("tmp");
 
 export class S3FileJob extends FileJob {
 
-    protected file: File;
+    protected _file: File;
     private _bucket: string;
     private _key: string;
     private _eTag: string;
@@ -16,7 +16,7 @@ export class S3FileJob extends FileJob {
         let tmpobj = tmp.fileSync();
         super(e, tmpobj.name);
         this.rename(basename);
-        this.setLocallyAvailable(false);
+        this.locallyAvailable = false;
     }
 
     /**

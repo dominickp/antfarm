@@ -59,12 +59,12 @@ export class FtpNest extends Nest {
                     let job = new FtpFileJob(ftp.e, file.name);
 
                     // Download to the temp job location
-                    ftp_client.download(file.name, job.getPath(), function (err) {
+                    ftp_client.download(file.name, job.path, function (err) {
                         if (err) {
                             ftp.e.log(3, `Download error: "${err}".`, ftp);
                             done();
                         } else {
-                            job.setLocallyAvailable(true);
+                            job.locallyAvailable = true;
                             // Delete on success
                             ftp_client.rm(file.name, function (err) {
                                 if (err) {
@@ -120,16 +120,16 @@ export class FtpNest extends Nest {
 
             ftp_client.connect(ftp.config);
 
-            ftp_client.upload(job.getPath(), ftp_path, function (err) {
+            ftp_client.upload(job.path, ftp_path, function (err) {
                 if (err) {
                     ftp.e.log(3, `Error uploading ${job.name} to FTP.`, ftp);
                 }
 
-                fs.unlinkSync(job.getPath());
+                fs.unlinkSync(job.path);
                 ftp_client.close();
 
                 let ftpJob = job as FtpFileJob;
-                ftpJob.setLocallyAvailable(false);
+                ftpJob.locallyAvailable = false;
 
                 callback(ftpJob);
             });

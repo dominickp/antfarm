@@ -2,10 +2,10 @@ import { Environment } from "../environment/environment";
 import { Job } from "./job";
 import { File } from "./file";
 export declare class FolderJob extends Job {
-    protected path: string;
-    protected dirname: string;
-    protected basename: string;
-    protected files: File[];
+    protected _path: string;
+    protected _dirname: string;
+    protected _basename: string;
+    protected _files: File[];
     /**
      * FolderJob constructor
      * @param e
@@ -24,25 +24,24 @@ export declare class FolderJob extends Job {
      */
     readonly name: string;
     /**
-     * Get the basename.
+     * Get the _basename.
      * @returns {string}
      */
-    getBasename(): string;
+    readonly basename: string;
     /**
      * Get the directory _name.
      * @returns {string}
      */
-    getDirname(): string;
+    readonly dirname: string;
     /**
-     * Get the path.
+     * Get the _path.
      * @returns {string}
      */
-    getPath(): string;
     /**
-     * Set a new path.
+     * Set a new _path.
      * @param path
      */
-    setPath(path: string): void;
+    path: string;
     /**
      * Add a file object to the job.
      * @param file
@@ -55,12 +54,12 @@ export declare class FolderJob extends Job {
      */
     getFile(index: number): File;
     /**
-     * Get all files associated with the job.
+     * Get all _files associated with the job.
      * @returns {File[]}
      */
-    getFiles(): File[];
+    readonly files: File[];
     /**
-     * Get the number of files in this folder.
+     * Get the number of _files in this folder.
      * @returns {number}
      */
     count(): number;
@@ -68,7 +67,7 @@ export declare class FolderJob extends Job {
      * Get the extension.
      * @returns {null}
      */
-    getExtension(): any;
+    readonly extension: any;
     /**
      * Check if job is a folder.
      * @returns {boolean}

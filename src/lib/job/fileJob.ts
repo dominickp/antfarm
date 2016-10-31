@@ -4,7 +4,7 @@ import {File} from "./file";
 
 export class FileJob extends Job {
 
-    protected file: File;
+    protected _file: File;
 
     /**
      * FileJob constructor.
@@ -13,16 +13,16 @@ export class FileJob extends Job {
      */
     constructor(e: Environment, path: string) {
         super(e, path);
-        this.type = "file";
-        this.file = new File(e, path);
+        this._type = "file";
+        this._file = new File(e, path);
     }
 
     /**
      * Get the file object.
      * @returns {File}
      */
-    public getFile() {
-        return this.file;
+    public get file() {
+        return this._file;
     }
 
     /**
@@ -37,33 +37,33 @@ export class FileJob extends Job {
      * Get the file _name proper.
      * @returns {string}
      */
-    public getNameProper() {
-        return this.file.getNameProper();
+    public get nameProper() {
+        return this.file.nameProper;
     }
 
     /**
      * Get the file directory _name.
      * @returns {string}
      */
-    public getDirname() {
-        return this.file.getDirname();
+    public get dirname() {
+        return this.file.dirname;
     }
 
     /**
-     * Get the file path.
+     * Get the file _path.
      * @returns {string}
      */
-    public getPath() {
-        return this.file.getPath();
+    public get path() {
+        return this.file.path;
     }
 
     /**
-     * Set a new file path.
+     * Set a new file _path.
      * @param path
      */
-    public setPath(path: string) {
+    public set path(path: string) {
         this.e.log(0, `New path set: "${path}".`, this);
-        this.file.setPath(path);
+        this.file.path = path;
     }
 
     /**
@@ -79,24 +79,24 @@ export class FileJob extends Job {
      * Get the file content type.
      * @returns {string}
      */
-    public getContentType() {
-        return this.file.getContentType();
+    public get contentType() {
+        return this.file.contentType;
     }
 
     /**
      * Get the file extension.
      * @returns {string}
      */
-    public getExtension() {
-        return this.file.getExtension();
+    public get extension() {
+        return this.file.extension;
     }
 
     /**
-     * Get the file basename.
+     * Get the file _basename.
      * @returns {string}
      */
-    public getBasename() {
-        return this.file.getBasename();
+    public get basename() {
+        return this.file.basename;
     }
 
     /**
@@ -118,7 +118,7 @@ export class FileJob extends Job {
     /**
      * Moves a file to a nest. This is an asynchronous method which provides a callback on completion.
      * @param destinationNest       The nest object the job will be sent to.
-     * @param callback              The callback provides the updated instance of the job. Depending on the nest it was sent to, it may have been cast to a new job type. This is helpful in case you need the remote path to the job once it has been uploaded to S3, for example.
+     * @param callback              The callback provides the updated instance of the job. Depending on the nest it was sent to, it may have been cast to a new job type. This is helpful in case you need the remote _path to the job once it has been uploaded to S3, for example.
      * #### Example
      * ```js
      * tunnel.run((job, nest) => {
@@ -137,13 +137,13 @@ export class FileJob extends Job {
         try {
             destinationNest.take(fj, function(newJob){
                 // fj.setPath(new_path);
-                fj.e.log(1, `Job "${fj.getBasename()}" was moved to Nest "${destinationNest.name}".`, fj, [fj.tunnel]);
+                fj.e.log(1, `Job "${fj.basename}" was moved to Nest "${destinationNest.name}".`, fj, [fj.tunnel]);
                 if (callback) {
                     callback(newJob);
                 }
             });
         } catch (e) {
-            fj.e.log(3, `Job "${fj.getBasename()}" was not moved to Nest "${destinationNest.name}". ${e}`, fj);
+            fj.e.log(3, `Job "${fj.basename}" was not moved to Nest "${destinationNest.name}". ${e}`, fj);
             if (callback) {
                 callback();
             }
@@ -156,7 +156,7 @@ export class FileJob extends Job {
      */
     public rename(newName: string) {
         let fj = this;
-        let file = this.getFile();
+        let file = this.file;
         file.name = newName;
         file.renameLocal();
     }

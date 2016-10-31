@@ -165,7 +165,7 @@ export class Tunnel {
     }
 
     /**
-     * Interface for matching two or more files together based on an array of glob filename patterns.
+     * Interface for matching two or more _files together based on an array of glob filename patterns.
      * @param pattern
      * @param orphanMinutes
      * @param callback

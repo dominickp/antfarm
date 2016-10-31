@@ -6,11 +6,11 @@ const   node_path = require("path"),
         fs = require("fs");
 
 export class FolderJob extends Job {
-    protected path: string;
-    protected dirname: string;
-    protected basename: string;
+    protected _path: string;
+    protected _dirname: string;
+    protected _basename: string;
 
-    protected files: File[];
+    protected _files: File[];
 
     /**
      * FolderJob constructor
@@ -19,17 +19,17 @@ export class FolderJob extends Job {
      */
     constructor(e: Environment, path: string) {
         super(e, path);
-        this.type = "folder";
-        this.path = path;
-        this.files = [];
+        this._type = "folder";
+        this._path = path;
+        this._files = [];
         this.getStatistics();
 
-        // verify path leads to a valid, readable file, handle error if not
+        // verify _path leads to a valid, readable file, handle error if not
     }
 
     protected getStatistics() {
-        this.basename = node_path.basename(this.getPath());
-        this.dirname = node_path.dirname(this.getPath());
+        this._basename = node_path.basename(this.path);
+        this._dirname = node_path.dirname(this.path);
     }
 
     /**
@@ -38,7 +38,7 @@ export class FolderJob extends Job {
      */
     public createFiles(callback: any) {
         let fl = this;
-        let folder_path = this.getPath();
+        let folder_path = this.path;
         fs.readdir(folder_path, function(err, items) {
             items = items.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
 
@@ -57,39 +57,39 @@ export class FolderJob extends Job {
      * @returns {string}
      */
     public get name() {
-        return this.getBasename();
+        return this.basename;
     }
 
     /**
-     * Get the basename.
+     * Get the _basename.
      * @returns {string}
      */
-    public getBasename() {
-        return this.basename;
+    public get basename() {
+        return this._basename;
     }
 
     /**
      * Get the directory _name.
      * @returns {string}
      */
-    public getDirname() {
-        return this.dirname;
+    public get dirname() {
+        return this._dirname;
     }
 
     /**
-     * Get the path.
+     * Get the _path.
      * @returns {string}
      */
-    public getPath() {
-        return this.path;
+    public get path() {
+        return this._path;
     }
 
     /**
-     * Set a new path.
+     * Set a new _path.
      * @param path
      */
-    public setPath(path: string) {
-        this.path = path;
+    public set path(path: string) {
+        this._path = path;
         this.getStatistics();
     }
 
@@ -98,7 +98,7 @@ export class FolderJob extends Job {
      * @param file
      */
     public addFile(file: File) {
-        this.files.push(file);
+        this._files.push(file);
         this.e.log(0, `Adding file "${file.name}" to job.`, this);
     }
 
@@ -108,30 +108,30 @@ export class FolderJob extends Job {
      * @returns {File}
      */
     public getFile(index: number) {
-        return this.files[index];
+        return this._files[index];
     }
 
     /**
-     * Get all files associated with the job.
+     * Get all _files associated with the job.
      * @returns {File[]}
      */
-    public getFiles() {
-        return this.files;
+    public get files() {
+        return this._files;
     }
 
     /**
-     * Get the number of files in this folder.
+     * Get the number of _files in this folder.
      * @returns {number}
      */
     public count() {
-        return this.files.length;
+        return this._files.length;
     }
 
     /**
      * Get the extension.
      * @returns {null}
      */
-    public getExtension() {
+    public get extension() {
         return null;
     }
 
@@ -160,7 +160,7 @@ export class FolderJob extends Job {
         let fj = this;
         try {
             destinationNest.take(fj, function(new_path){
-                fj.setPath(new_path);
+                fj.path = new_path;
                 fj.e.log(1, `Job "${fj.name}" was moved to Nest "${destinationNest.name}".`, fj);
                 if (callback) {
                     callback();
@@ -180,21 +180,21 @@ export class FolderJob extends Job {
      */
     public rename(newName: string) {
         let fj = this;
-        let new_path = fj.getDirname() + node_path.sep + newName;
+        let new_path = fj.dirname + node_path.sep + newName;
 
         try {
             fj.e.log(0, `Renaming folder to "${new_path}".`, fj);
-            fs.renameSync(fj.getPath(), new_path);
+            fs.renameSync(fj.path, new_path);
         } catch (err) {
             fj.e.log(3, `Rename folder error: ${err}.`, fj);
         }
 
-        fj.setPath(new_path);
+        fj.path = new_path;
     }
 
     public remove() {
         let fj = this;
-        fj.getFiles().forEach((file) => {
+        fj.files.forEach((file) => {
             file.removeLocal();
         });
     };

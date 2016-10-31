@@ -1,7 +1,7 @@
 import { FolderNest } from "./folderNest";
 import { Environment } from "../environment/environment";
 /**
- * An auto managed folder nest used for temporarily storing files.
+ * An auto managed folder nest used for temporarily storing _files.
  */
 export declare class AutoFolderNest extends FolderNest {
     protected hierarchy: string | string[];

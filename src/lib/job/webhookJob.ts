@@ -97,17 +97,17 @@ export class WebhookJob extends Job {
     }
 
     /**
-     * Returns FileJobs made from files sent via FormData to the webhook.
+     * Returns FileJobs made from _files sent via FormData to the webhook.
      * @returns {FileJob[]}
      */
     public getFormDataFiles() {
         let wh = this;
-        let files = wh.getRequest().files;
+        let files = wh.getRequest()._files;
         let jobs = [];
 
         if (files) {
             files.forEach(function(file){
-                let job = new FileJob(wh.e, file.path);
+                let job = new FileJob(wh.e, file._path);
                 job.rename(file.originalname);
                 jobs.push(job);
             });

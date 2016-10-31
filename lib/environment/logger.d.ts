@@ -36,7 +36,7 @@ export declare class Logger {
      */
     protected getEntry(entry: Object, actor?: any, instances?: any[]): Object;
     /**
-     * Create a log entry. Used for log files and console reporting.
+     * Create a log entry. Used for log _files and console reporting.
      * @param type
      * @param message
      * @param actor

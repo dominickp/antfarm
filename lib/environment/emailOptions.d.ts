@@ -4,7 +4,7 @@ export declare class EmailOptions {
     cc: string | string[];
     bcc: string | string[];
     /**
-     * A path to a Pug template file.
+     * A _path to a Pug template file.
      */
     template: string;
     /**

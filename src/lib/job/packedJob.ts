@@ -32,7 +32,7 @@ export class PackedJob extends FileJob {
     }
 
     /**
-     * Makes job ticket and returns the path to the temporary file.
+     * Makes job ticket and returns the _path to the temporary file.
      * @param job
      * @returns {string}
      */
@@ -66,7 +66,7 @@ export class PackedJob extends FileJob {
             .on("finish", function () {
                 // JSZip generates a readable stream with a "end" event,
                 // but is piped here in a writable stream which emits a "finish" event.
-                pj.setPath(file_path);
+                pj.path = file_path;
                 pj.name = file_name;
                 callback();
             });
@@ -90,7 +90,7 @@ export class PackedJob extends FileJob {
 
             if (job.isFile()) {
 
-                fs.readFile(job.getPath(), (err, data) => {
+                fs.readFile(job.path, (err, data) => {
                     if (err) throw err;
                     zip.file("_asset/" + job.name, data);
                     pj.buildZip(zip, () => {
@@ -98,10 +98,10 @@ export class PackedJob extends FileJob {
                     });
                 });
             } else if (job.isFolder()) {
-                job.getFiles().forEach(file => {
-                    fs.readFile(file.getPath(), function(err, data) {
+                job.files.forEach(file => {
+                    fs.readFile(file.path, function(err, data) {
                         if (err) throw err;
-                        zip.file("_asset" + path.sep + job.getNameProper() + path.sep + file.name, data);
+                        zip.file("_asset" + path.sep + job.nameProper + path.sep + file.name, data);
                         pj.buildZip(zip, () => {
                             done();
                         });
@@ -123,12 +123,12 @@ export class PackedJob extends FileJob {
         try {
             jobObject = JSON.parse(jsonTicket);
 
-            if (jobObject.type === "file") {
-                job = new FileJob(pj.e, jobObject.id);
+            if (jobObject._type === "file") {
+                job = new FileJob(pj.e, jobObject._id);
             } else if (jobObject.type === "folder") {
-                job = new FolderJob(pj.e, jobObject.id);
+                job = new FolderJob(pj.e, jobObject._id);
             } else {
-                pj.e.log(3, `Cannot unpack this type of job: ${jobObject.type}`, pj);
+                pj.e.log(3, `Cannot unpack this type of job: ${jobObject._type}`, pj);
             }
         } catch (err) {
             pj.e.log(3, `Unpack ticket parse error: ${err}.`, pj);
@@ -136,10 +136,10 @@ export class PackedJob extends FileJob {
         }
 
         // Restore property values
-        job.setPropertyValues(jobObject.properties);
+        job.propertyValues = jobObject.properties;
 
         // Restore lifecycle
-        job.setLifeCycle(jobObject.lifeCycle);
+        job.lifeCycle = jobObject.lifeCycle;
 
         return job;
     }
@@ -151,7 +151,7 @@ export class PackedJob extends FileJob {
         let job = pj.getJob();
 
         // Read the zip to a buffer
-        fs.readFile(job.getPath(), (err, data) => {
+        fs.readFile(job.path, (err, data) => {
             if (err) {
                 pj.e.log(3, `Unpacking readFile error: ${err}`, pj);
             }
@@ -165,7 +165,7 @@ export class PackedJob extends FileJob {
                         // Restore old job ticket
                         job = pj.restoreJobTicket(content);
 
-                        // Restore files
+                        // Restore _files
                         pj.restoreFiles(job, zip, (unpackedJob) => {
                             done(unpackedJob);
                         });
@@ -188,13 +188,13 @@ export class PackedJob extends FileJob {
 
         if (job.isFolder()) {
             pj.extractFiles(zip, false, "_asset/", (folderPath, folderName) => {
-                job.setPath(folderPath);
+                job.path = folderPath;
                 job.rename(folderName);
                 callback(job);
             });
         } else if (job.isFile()) {
             pj.extractFiles(zip, true, "_asset/", (filePath, fileName) => {
-                job.setPath(filePath);
+                job.path = filePath;
                 job.rename(fileName);
                 callback(job);
             });

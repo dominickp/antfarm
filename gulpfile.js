@@ -111,10 +111,10 @@ gulp.task('test', function() {
 
 gulp.task('test-travis', function (cb) {
     var mochaErr;
-    // Track src files that should be covered
+    // Track src _files that should be covered
     gulp.src('test/**/*.spec.js')
-        .pipe(istanbul({ includeUntested: true })) // Covering files
-        .pipe(istanbul.hookRequire()) // Force `require` to return covered files
+        .pipe(istanbul({ includeUntested: true })) // Covering _files
+        .pipe(istanbul.hookRequire()) // Force `require` to return covered _files
         .on('finish', function() {
             return gulp.src('test/**/*.spec.js', {read: false})
             // gulp-mocha needs filepaths so you can't have any plugins before it

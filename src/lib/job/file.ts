@@ -7,11 +7,11 @@ const   mime = require("mime-types"),
 
 export class File {
 
-    protected path: string;
-    protected dirname: string;
-    protected basename: string;
-    protected contentType: string;
-    protected extension: string;
+    protected _path: string;
+    protected _dirname: string;
+    protected _basename: string;
+    protected _contentType: string;
+    protected _extension: string;
     protected e: Environment;
 
     /**
@@ -21,9 +21,9 @@ export class File {
      */
     constructor(e: Environment, path: string) {
         this.e = e;
-        this.path = path;
+        this._path = path;
 
-        // verify path leads to a valid, readable file, handle error if not
+        // verify _path leads to a valid, readable file, handle error if not
 
         this.getStatistics();
     }
@@ -33,18 +33,18 @@ export class File {
      */
     protected getStatistics() {
         let f = this;
-        f.contentType = mime.lookup(f.getPath());
-        f.extension = fileExtension(f.getPath());
-        f.basename = node_path.basename(f.getPath());
-        f.dirname = node_path.dirname(f.getPath());
+        f._contentType = mime.lookup(f.path);
+        f._extension = fileExtension(f.path);
+        f._basename = node_path.basename(f.path);
+        f._dirname = node_path.dirname(f.path);
     }
 
     /**
-     * Get the basename.
+     * Get the _basename.
      * @returns {string}
      */
     public get name() {
-        return this.basename;
+        return this._basename;
     }
 
     /**
@@ -52,39 +52,39 @@ export class File {
      * @param filename
      */
     public set name(filename: string) {
-        this.basename = filename;
+        this._basename = filename;
     }
 
     /**
      * Get the file _name of the job without the file extension.
      * @returns {string}
      */
-    public getNameProper() {
-        return node_path.basename(this.getBasename(), node_path.extname(this.getBasename()));
+    public get nameProper() {
+        return node_path.basename(this.basename, node_path.extname(this.basename));
     }
 
     /**
      * Get the top level directory _name.
      * @returns {string}
      */
-    public getDirname() {
-        return this.dirname;
+    public get dirname() {
+        return this._dirname;
     }
 
     /**
-     * Get the complete directory path.
+     * Get the complete directory _path.
      * @returns {string}
      */
-    public getPath() {
-        return this.path;
+    public get path() {
+        return this._path;
     }
 
     /**
-     * Set the complete directory path.
+     * Set the complete directory _path.
      * @param path
      */
-    public setPath(path: string) {
-        this.path = path;
+    public set path(path: string) {
+        this._path = path;
         this.getStatistics();
     }
 
@@ -92,24 +92,24 @@ export class File {
      * Get the content-type of the file.
      * @returns {string}
      */
-    public getContentType() {
-        return this.contentType;
+    public get contentType() {
+        return this._contentType;
     }
 
     /**
      * Get the file extension.
      * @returns {string}
      */
-    public getExtension() {
-        return this.extension;
+    public get extension() {
+        return this._extension;
     }
 
     /**
-     * Get the basename.
+     * Get the _basename.
      * @returns {string}
      */
-    public getBasename() {
-        return this.basename;
+    public get basename() {
+        return this._basename;
     }
 
     /**
@@ -117,9 +117,9 @@ export class File {
      */
     public renameLocal() {
         let f = this;
-        let new_path = f.getDirname() + node_path.sep + f.name;
-        fs.renameSync(f.getPath(), new_path);
-        f.setPath(new_path);
+        let new_path = f.dirname + node_path.sep + f.name;
+        fs.renameSync(f.path, new_path);
+        f.path = new_path;
         f.getStatistics();
     }
 
@@ -130,10 +130,10 @@ export class File {
     public removeLocal() {
         let f = this;
         try {
-            fs.unlinkSync(f.getPath());
+            fs.unlinkSync(f.path);
             return true;
         } catch (e) {
-            f.e.log(3, `File "${f.getPath()}" could not be deleted. ${e}`, f);
+            f.e.log(3, `File "${f.path}" could not be deleted. ${e}`, f);
             return false;
         }
     }

@@ -2,7 +2,7 @@ import { Environment } from "../environment/environment";
 import { Job } from "./job";
 import { File } from "./file";
 export declare class FileJob extends Job {
-    protected file: File;
+    protected _file: File;
     /**
      * FileJob constructor.
      * @param e
@@ -13,7 +13,7 @@ export declare class FileJob extends Job {
      * Get the file object.
      * @returns {File}
      */
-    getFile(): File;
+    readonly file: File;
     /**
      * Get the file _name.
      * @returns {string}
@@ -27,37 +27,36 @@ export declare class FileJob extends Job {
      * Get the file _name proper.
      * @returns {string}
      */
-    getNameProper(): any;
+    readonly nameProper: any;
     /**
      * Get the file directory _name.
      * @returns {string}
      */
-    getDirname(): string;
+    readonly dirname: string;
     /**
-     * Get the file path.
+     * Get the file _path.
      * @returns {string}
      */
-    getPath(): string;
     /**
-     * Set a new file path.
+     * Set a new file _path.
      * @param path
      */
-    setPath(path: string): void;
+    path: string;
     /**
      * Get the file content type.
      * @returns {string}
      */
-    getContentType(): string;
+    readonly contentType: string;
     /**
      * Get the file extension.
      * @returns {string}
      */
-    getExtension(): string;
+    readonly extension: string;
     /**
-     * Get the file basename.
+     * Get the file _basename.
      * @returns {string}
      */
-    getBasename(): string;
+    readonly basename: string;
     /**
      * Check if job is a folder.
      * @returns {boolean}
@@ -71,7 +70,7 @@ export declare class FileJob extends Job {
     /**
      * Moves a file to a nest. This is an asynchronous method which provides a callback on completion.
      * @param destinationNest       The nest object the job will be sent to.
-     * @param callback              The callback provides the updated instance of the job. Depending on the nest it was sent to, it may have been cast to a new job type. This is helpful in case you need the remote path to the job once it has been uploaded to S3, for example.
+     * @param callback              The callback provides the updated instance of the job. Depending on the nest it was sent to, it may have been cast to a new job type. This is helpful in case you need the remote _path to the job once it has been uploaded to S3, for example.
      * #### Example
      * ```js
      * tunnel.run((job, nest) => {

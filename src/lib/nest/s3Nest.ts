@@ -163,7 +163,7 @@ export class S3Nest extends Nest {
 
                         // Download and pipe to file
                         let params = {Bucket: sn.bucket, Key: object.Key};
-                        let file = require("fs").createWriteStream(job.getPath());
+                        let file = require("fs").createWriteStream(job.path);
                         sn.s3.getObject(params).createReadStream().pipe(file);
 
                         sn.e.log(1, `Downloading "${object.Key}".`, sn);
@@ -282,7 +282,7 @@ export class S3Nest extends Nest {
      */
     protected uploadFile(job: FileJob, callback: any) {
         let sn = this;
-        let body = fs.createReadStream(job.getPath());
+        let body = fs.createReadStream(job.path);
         let params = {
             Bucket: sn.bucket,
             Key: sn.keyPrefix + job.name,
@@ -303,8 +303,8 @@ export class S3Nest extends Nest {
 
             // Change job type to a S3FileJob
             let s3Job = job as S3FileJob;
-            s3Job.setLocallyAvailable(false);
-            s3Job.setPath(data.Location);
+            s3Job.locallyAvailable = false;
+            s3Job.path = data.Location;
             s3Job.bucket = data.Bucket;
             s3Job.key = data.Key;
             s3Job.eTag = data.ETag;

@@ -1,10 +1,10 @@
 import { Environment } from "../environment/environment";
 export declare class File {
-    protected path: string;
-    protected dirname: string;
-    protected basename: string;
-    protected contentType: string;
-    protected extension: string;
+    protected _path: string;
+    protected _dirname: string;
+    protected _basename: string;
+    protected _contentType: string;
+    protected _extension: string;
     protected e: Environment;
     /**
      * File constructor
@@ -17,7 +17,7 @@ export declare class File {
      */
     protected getStatistics(): void;
     /**
-     * Get the basename.
+     * Get the _basename.
      * @returns {string}
      */
     /**
@@ -29,37 +29,36 @@ export declare class File {
      * Get the file _name of the job without the file extension.
      * @returns {string}
      */
-    getNameProper(): any;
+    readonly nameProper: any;
     /**
      * Get the top level directory _name.
      * @returns {string}
      */
-    getDirname(): string;
+    readonly dirname: string;
     /**
-     * Get the complete directory path.
+     * Get the complete directory _path.
      * @returns {string}
      */
-    getPath(): string;
     /**
-     * Set the complete directory path.
+     * Set the complete directory _path.
      * @param path
      */
-    setPath(path: string): void;
+    path: string;
     /**
      * Get the content-type of the file.
      * @returns {string}
      */
-    getContentType(): string;
+    readonly contentType: string;
     /**
      * Get the file extension.
      * @returns {string}
      */
-    getExtension(): string;
+    readonly extension: string;
     /**
-     * Get the basename.
+     * Get the _basename.
      * @returns {string}
      */
-    getBasename(): string;
+    readonly basename: string;
     /**
      * Renames the local job file to the current _name.
      */

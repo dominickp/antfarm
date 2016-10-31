@@ -57,7 +57,7 @@ export declare class WebhookJob extends Job {
      */
     getQueryStringValues(): any;
     /**
-     * Returns FileJobs made from files sent via FormData to the webhook.
+     * Returns FileJobs made from _files sent via FormData to the webhook.
      * @returns {FileJob[]}
      */
     getFormDataFiles(): any[];

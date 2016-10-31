@@ -57,13 +57,13 @@ export declare class WebhookNest extends Nest {
      */
     protected setCustomHandleRequest(handleRequest: any): void;
     /**
-     * Set the path as a string or a string array. All parts are URI encoded.
+     * Set the _path as a string or a string array. All parts are URI encoded.
      * Create directory structures with an array: ["one", "two"] results in "/one/two".
      * @param path
      */
     setPath(path: any): void;
     /**
-     * Get the path.
+     * Get the _path.
      * @returns {string}
      */
     getPath(): string;

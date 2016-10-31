@@ -116,10 +116,10 @@ export class Server {
         s.e.log(1, `Watching webhook ${httpMethod.toUpperCase()} ${hook_path}`, s);
 
         s.hookRoutes.push({
-            id: nest.getId(),
+            id: nest.id,
             path: hook_path,
             nest: nest.name,
-            tunnel: nest.getTunnel().name,
+            tunnel: nest.tunnel.name,
             method: httpMethod,
             interface_path: hook_ui_path
         });
@@ -169,9 +169,9 @@ export class Server {
         } else {
             job.responseSent = true;
             let response = {
-                message: message || `Job ${job.getId()} was created!`,
+                message: message || `Job ${job.id} was created!`,
                 job: {
-                    id: job.getId(),
+                    id: job.id,
                     name: job.name
                 },
                 nest: {
@@ -196,7 +196,7 @@ export class Server {
         s.e.log(1, `Watching webhook interface GET ${hook_ui_path}`, s);
 
         this.hookInterfaceRoutes.push({
-            id: nest.getId(),
+            id: nest.id,
             path: hook_ui_path,
             nest: nest.name,
             target: hook_path

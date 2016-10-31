@@ -140,7 +140,7 @@ export class Logger {
     }
 
     /**
-     * Create a log entry. Used for log files and console reporting.
+     * Create a log entry. Used for log _files and console reporting.
      * @param type
      * @param message
      * @param actor

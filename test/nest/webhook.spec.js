@@ -11,19 +11,19 @@ describe('Nest Webhook', function() {
         tunnel = af.createTunnel("Nest testing");
     });
 
-    describe('path', function() {
-        it('should accept a string as the path and add a /', function() {
+    describe('_path', function() {
+        it('should accept a string as the _path and add a /', function() {
             var wh = af.createWebhookNest("path1");
             wh.getPath().should.not.be.empty;
             wh.getPath().should.equal("/path1");
         });
         it('should encode unsafe URI characters', function() {
-            var wh = af.createWebhookNest("path&&11 something");
-            wh.getPath().should.equal("/path%26%2611%20something");
+            var wh = af.createWebhookNest("_path&&11 something");
+            wh.getPath().should.equal("/_path%26%2611%20something");
         });
         it('should accept an array of URI components', function() {
-            var wh = af.createWebhookNest(["path1", "path2", "path 3"]);
-            wh.getPath().should.equal("/path1/path2/path%203");
+            var wh = af.createWebhookNest(["path1", "path2", "_path 3"]);
+            wh.getPath().should.equal("/path1/path2/_path%203");
         });
     });
 

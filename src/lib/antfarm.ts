@@ -56,7 +56,7 @@ export class Antfarm {
 
     /**
      * Factory method which returns an AutoFolderNest. If the auto managed directory does not exist, it is created.
-     * @param hierarchy     Path of the folder as a string or an array of strings as path segments.
+     * @param hierarchy     Path of the folder as a string or an array of strings as _path segments.
      * @returns {AutoFolderNest}
      *
      * #### Example
@@ -109,7 +109,7 @@ export class Antfarm {
 
     /**
      * Factory method which returns a WebhookNest.
-     * @param path              The path which is generated in the webhook's route. You can supply a string or array of strings.
+     * @param path              The _path which is generated in the webhook's route. You can supply a string or array of strings.
      * @param httpMethod        HTTP method for this webhook. Choose "all" for any HTTP method.
      * @param handleRequest     Optional callback function to handle the request, for sending a custom response.
      * @returns {WebhookNest}

@@ -6,7 +6,7 @@ const   tmp = require("tmp");
 
 export class FtpFileJob extends FileJob {
 
-    protected file: File;
+    protected _file: File;
 
     constructor(e: Environment, basename) {
         // Create temp file
@@ -14,7 +14,7 @@ export class FtpFileJob extends FileJob {
         super(e, tmpobj.name);
 
         this.rename(basename);
-        this.setLocallyAvailable(false);
+        this.locallyAvailable = false;
     }
 
 }

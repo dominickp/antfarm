@@ -12,7 +12,7 @@ const   node_watch = require("node-watch"),
         _ = require("lodash");
 
 /**
- * A folder nest is a nest which contains a backing folder at a specific path. If the folder does not exist,
+ * A folder nest is a nest which contains a backing folder at a specific _path. If the folder does not exist,
  * antfarm can optionally create it.
  */
 export class FolderNest extends Nest {
@@ -32,7 +32,7 @@ export class FolderNest extends Nest {
     }
 
     /**
-     * Check if the path for the backing folder is created. If not, optionally create it.
+     * Check if the _path for the backing folder is created. If not, optionally create it.
      * @param directory
      */
     protected checkDirectorySync(directory) {
@@ -92,8 +92,8 @@ export class FolderNest extends Nest {
     }
 
     /**
-     * Checks whether a path starts with or contains a hidden file or a folder.
-     * @param path {string}      The path of the file that needs to be validated.
+     * Checks whether a _path starts with or contains a hidden file or a folder.
+     * @param path {string}      The _path of the file that needs to be validated.
      * returns {boolean} - `true` if the source is blacklisted and otherwise `false`.
      */
     protected isUnixHiddenPath (path: string) {
@@ -172,11 +172,11 @@ export class FolderNest extends Nest {
      * @param callback      Callback is given the job in its parameter.
      */
     public take(job: FileJob, callback: any) {
-        // the other nest that this is taking from should provide a temporary location or local path of the job
-        let new_path = `${this.path}/${job.getBasename()}`;
+        // the other nest that this is taking from should provide a temporary location or local _path of the job
+        let new_path = `${this.path}/${job.basename}`;
 
-        fs.renameSync(job.getPath(), new_path);
-        job.setPath(new_path);
+        fs.renameSync(job.path, new_path);
+        job.path = new_path;
 
         callback(job);
     }

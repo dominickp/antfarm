@@ -9,19 +9,19 @@ const   shortid = require("shortid");
  */
 export abstract class Nest {
 
-    protected id: string;
+    protected _id: string;
     protected _name: string;
-    protected tunnel: Tunnel;
+    protected _tunnel: Tunnel;
     protected e: Environment;
 
     constructor(e: Environment, name: string) {
         this.e = e;
-        this.id = shortid.generate();
+        this._id = shortid.generate();
         this._name = name;
     }
 
-    public getId() {
-        return this.id;
+    public get id() {
+        return this._id;
     }
 
     public toString() {
@@ -36,19 +36,19 @@ export abstract class Nest {
         this._name = name;
     }
 
-    public getTunnel() {
-        return this.tunnel;
+    public get tunnel() {
+        return this._tunnel;
     }
 
     public register(tunnel: Tunnel) {
-        this.tunnel = tunnel;
+        this._tunnel = tunnel;
     }
 
     public arrive(job: Job) {
         let ns = this;
         ns.e.log(1, `Job "${job.name}" arrived in Nest "${ns.name}".`, ns);
-        job.setTunnel(ns.tunnel);
-        job.setNest(ns);
+        job.tunnel = ns.tunnel;
+        job.nest = ns;
         ns.tunnel.arrive(job, ns);
     }
 }

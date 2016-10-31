@@ -76,8 +76,8 @@ export class Emailer {
     }
 
     /**
-     * This finds and compiles a path to a jade template and returns HTML in the callback.
-     * @param filePath {string}     The path to the file.
+     * This finds and compiles a _path to a jade template and returns HTML in the callback.
+     * @param filePath {string}     The _path to the file.
      * @param job {Job}             The job object which is passed into Jade.
      * @param callback              returns the complied jade template as html
      */

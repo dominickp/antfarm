@@ -9,7 +9,7 @@ export class EmailOptions {
     public bcc: string|string[];
 
     /**
-     * A path to a Pug template file.
+     * A _path to a Pug template file.
      */
     public template: string;
 

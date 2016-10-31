@@ -15,14 +15,14 @@ const   shortid = require("shortid"),
 export abstract class Job {
 
     protected _name: string;
-    protected tunnel: Tunnel;
-    protected nest: Nest;
+    protected _tunnel: Tunnel;
+    protected _nest: Nest;
     protected e: Environment;
-    protected locallyAvailable: boolean;
-    protected lifeCycle: LifeEvent[];
-    protected id: string;
-    protected properties;
-    protected type: string;
+    protected _locallyAvailable: boolean;
+    protected _lifeCycle: LifeEvent[];
+    protected _id: string;
+    protected _properties;
+    protected _type: string;
 
     /**
      * Job constructor
@@ -32,14 +32,19 @@ export abstract class Job {
     constructor(e: Environment, name: string) {
         let j = this;
         j.e = e;
-        j.id = shortid.generate();
+        j._id = shortid.generate();
         j._name = name;
-        j.lifeCycle = [];
-        j.properties = {};
-        j.type = "base";
+        j._lifeCycle = [];
+        j._properties = {};
+        j._type = "base";
 
         j.createLifeEvent("created", null, name);
         j.e.log(1, `New Job "${name}" created, id: ${j.id}.`, j);
+    }
+
+
+    public get type() {
+        return this._type;
     }
 
     /**
@@ -54,28 +59,28 @@ export abstract class Job {
      * Check if job is locally available.
      * @returns {boolean}
      */
-    public isLocallyAvailable() {
-        return this.locallyAvailable;
+    public get isLocallyAvailable() {
+        return this._locallyAvailable;
     }
 
     /**
      * Set if the job is locally available.
      * @param available
      */
-    public setLocallyAvailable(available: boolean) {
-        this.locallyAvailable = available;
+    public set locallyAvailable(available: boolean) {
+        this._locallyAvailable = available;
     }
 
     /**
      * Get the life cycle object.
      * @returns {LifeEvent[]}
      */
-    public getLifeCycle() {
-        return this.lifeCycle;
+    public get lifeCycle() {
+        return this._lifeCycle;
     }
 
-    public setLifeCycle(events: LifeEvent[]) {
-        this.lifeCycle = events;
+    public set lifeCycle(events: LifeEvent[]) {
+        this._lifeCycle = events;
     }
 
     /**
@@ -108,15 +113,15 @@ export abstract class Job {
      * Get the ID.
      * @returns {string}
      */
-    public getId() {
-        return this.id;
+    public get id() {
+        return this._id;
     }
 
     /**
      * Get the _name proper.
      * @returns {string}
      */
-    public getNameProper() {
+    public get nameProper() {
         return this.name;
     }
 
@@ -124,32 +129,32 @@ export abstract class Job {
      * Set the nest.
      * @param nest
      */
-    public setNest(nest: Nest) {
-        this.nest = nest;
+    public set nest(nest: Nest) {
+        this._nest = nest;
     }
 
     /**
      * Get the nest.
      * @returns {Nest}
      */
-    public getNest() {
-        return this.nest;
+    public get nest() {
+        return this._nest;
     }
 
     /**
      * Set the tunnel.
      * @param tunnel
      */
-    public setTunnel(tunnel: Tunnel) {
-        this.tunnel = tunnel;
+    public set tunnel(tunnel: Tunnel) {
+        this._tunnel = tunnel;
     }
 
     /**
      * Get the tunnel.
      * @returns {Tunnel}
      */
-    public getTunnel() {
-        return this.tunnel;
+    public get tunnel() {
+        return this._tunnel;
     }
 
     /**
@@ -158,14 +163,14 @@ export abstract class Job {
      */
     public fail(reason: string) {
         let j = this;
-        if (!j.getTunnel()) {
+        if (!j.tunnel) {
             j.e.log(3, `Job "${j.name}" failed before tunnel was set.`, j);
         }
-        if (!j.getNest()) {
+        if (!j.nest) {
             j.e.log(3, `Job "${j.name}" does not have a nest.`, j);
         }
 
-        j.tunnel.executeFail(j, j.getNest(), reason);
+        j.tunnel.executeFail(j, j.nest, reason);
     }
 
     /**
@@ -174,14 +179,14 @@ export abstract class Job {
      */
     public transfer(tunnel: Tunnel) {
         let job = this;
-        let oldTunnel = this.getTunnel();
+        let oldTunnel = this.tunnel;
 
         let oldTunnelName = "";
         if (oldTunnel) {
             oldTunnelName = oldTunnel.name;
         }
 
-        job.setTunnel(tunnel);
+        job.tunnel = tunnel;
         tunnel.arrive(job, null);
 
         job.e.log(1, `Transferred to Tunnel "${tunnel.name}".`, job, [oldTunnel]);
@@ -262,14 +267,14 @@ export abstract class Job {
         let job = this;
         let prop = new JobProperty(key, value);
 
-        job.properties[key] = prop;
+        job._properties[key] = prop;
         job.e.log(1, `Property "${key}" added to job properties.`, job);
     }
 
-    public setPropertyValues(properties: Object) {
+    public set propertyValues(properties: Object) {
         let job = this;
-        job.properties = properties;
-        job.e.log(0, `Restored ${Object.keys(job.properties).length} properties.`, job);
+        job._properties = properties;
+        job.e.log(0, `Restored ${Object.keys(job._properties).length} properties.`, job);
     }
 
 
@@ -279,7 +284,7 @@ export abstract class Job {
      * @returns {JobProperty}
      */
     public getProperty(key: string) {
-        return this.properties[key] as JobProperty;
+        return this._properties[key] as JobProperty;
     }
 
     /**
@@ -289,8 +294,8 @@ export abstract class Job {
      */
     public getPropertyValue(key: string) {
         let job = this;
-        if (job.properties[key]) {
-            return job.properties[key].value;
+        if (job._properties[key]) {
+            return job._properties[key].value;
         } else {
             return null;
         }
@@ -312,8 +317,8 @@ export abstract class Job {
      */
     public getPropertyType(key: string) {
         let job = this;
-        if (job.properties[key]) {
-            return job.properties[key].getType();
+        if (job._properties[key]) {
+            return job._properties[key].getType();
         } else {
             return null;
         }
@@ -372,6 +377,9 @@ export abstract class Job {
             if (key === "nest" || key === "e" || key === "tunnel") {
                 return undefined;
             }
+            if (key === "_nest" || key === "_tunnel") {
+                return undefined;
+            }
             return value;
         };
 
@@ -384,7 +392,7 @@ export abstract class Job {
         return json;
     }
 
-    public getPath() {
+    public get path() {
         return undefined;
     }
 
@@ -396,7 +404,7 @@ export abstract class Job {
         return undefined;
     }
 
-    public getFiles() {
+    public get files() {
         return undefined;
     }
 
@@ -404,8 +412,7 @@ export abstract class Job {
         return undefined;
     }
 
-    public setPath(path: string) {
-        return undefined;
+    public set path(path: string) {
     }
 
     public rename(name: string) {

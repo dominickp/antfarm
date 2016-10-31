@@ -11,7 +11,7 @@ export declare class PackedJob extends FileJob {
      */
     getJob(): Job;
     /**
-     * Makes job ticket and returns the path to the temporary file.
+     * Makes job ticket and returns the _path to the temporary file.
      * @param job
      * @returns {string}
      */

@@ -180,9 +180,9 @@ export class WebhookInterface {
 
         jobs.forEach((job) => {
             jobsArray.push({
-                id: job.getId(),
+                id: job.id,
                 name: job.name,
-                path: job.getPath()
+                path: job.path
             });
         });
 

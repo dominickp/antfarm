@@ -3,7 +3,7 @@ import { Nest } from "./nest";
 import { FileJob } from "./../job/fileJob";
 import { FolderJob } from "./../job/folderJob";
 /**
- * A folder nest is a nest which contains a backing folder at a specific path. If the folder does not exist,
+ * A folder nest is a nest which contains a backing folder at a specific _path. If the folder does not exist,
  * antfarm can optionally create it.
  */
 export declare class FolderNest extends Nest {
@@ -12,7 +12,7 @@ export declare class FolderNest extends Nest {
     protected heldJobs: (FileJob | FolderJob)[];
     constructor(e: Environment, path?: string, allowCreate?: boolean);
     /**
-     * Check if the path for the backing folder is created. If not, optionally create it.
+     * Check if the _path for the backing folder is created. If not, optionally create it.
      * @param directory
      */
     protected checkDirectorySync(directory: any): void;
@@ -24,8 +24,8 @@ export declare class FolderNest extends Nest {
      */
     protected createJob(path: string, arrive?: boolean): any;
     /**
-     * Checks whether a path starts with or contains a hidden file or a folder.
-     * @param path {string}      The path of the file that needs to be validated.
+     * Checks whether a _path starts with or contains a hidden file or a folder.
+     * @param path {string}      The _path of the file that needs to be validated.
      * returns {boolean} - `true` if the source is blacklisted and otherwise `false`.
      */
     protected isUnixHiddenPath(path: string): boolean;

@@ -5,7 +5,7 @@ const   fs = require("fs"),
         tmp = require("tmp");
 
 /**
- * An auto managed folder nest used for temporarily storing files.
+ * An auto managed folder nest used for temporarily storing _files.
  */
 export class AutoFolderNest extends FolderNest {
 
@@ -19,7 +19,7 @@ export class AutoFolderNest extends FolderNest {
         }
 
         /**
-         * Creates the hierarchy string used for the auto managed path.
+         * Creates the hierarchy string used for the auto managed _path.
          * @param hierarchy
          */
         let getHierarchyString = (hierarchy: string|string[]) => {
