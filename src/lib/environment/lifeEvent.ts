@@ -3,22 +3,22 @@
  */
 export class LifeEvent {
 
-    protected date: Date;
-    protected verb: string;
-    protected start: string;
-    protected finish: string;
+    protected _date: Date;
+    protected _verb: string;
+    protected _start: string;
+    protected _finish: string;
 
     constructor(verb, start, finish) {
         let le = this;
-        le.date = new Date();
-        le.verb = verb;
-        le.start = start;
-        le.finish = finish;
+        le._date = new Date();
+        le._verb = verb;
+        le._start = start;
+        le._finish = finish;
     }
 
-    public getStatement() {
+    public get statement() {
         let le = this;
-        return `${le.verb} from ${le.start} to ${le.finish}`;
+        return `${le._verb} from ${le._start} to ${le._finish}`;
     };
 
 }

@@ -139,7 +139,7 @@ gulp.task('test-travis', function (cb) {
 
                 /**
                  * The methods below are a hack to get gulp to exit after mocha tests
-                 * finish. Without them, `gulp mocha` doesn't exit and Travis
+                 * _finish. Without them, `gulp mocha` doesn't exit and Travis
                  * never finishes running the tests.
                  */
                 .on('end', function () {

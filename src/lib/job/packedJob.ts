@@ -63,9 +63,9 @@ export class PackedJob extends FileJob {
         zip
             .generateNodeStream({type: "nodebuffer", streamFiles: true})
             .pipe(fs.createWriteStream(file_path))
-            .on("finish", function () {
+            .on("_finish", function () {
                 // JSZip generates a readable stream with a "end" event,
-                // but is piped here in a writable stream which emits a "finish" event.
+                // but is piped here in a writable stream which emits a "_finish" event.
                 pj.path = file_path;
                 pj.name = file_name;
                 callback();

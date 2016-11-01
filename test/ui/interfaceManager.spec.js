@@ -25,13 +25,13 @@ xdescribe('Interface Manager', function() {
         im = webhook.getInterfaceManager();
     });
 
-    it('should start with no metadata', function () {
+    it('should _start with no metadata', function () {
         var metadata = im.getMetadata();
         metadata.interfaceProperties.should.be.empty;
     });
 
     describe('Fields', function() {
-        it('should start with no fields', function () {
+        it('should _start with no fields', function () {
             var fields = im.getFields();
             fields.length.should.equal(0);
         });
@@ -52,7 +52,7 @@ xdescribe('Interface Manager', function() {
     });
 
     describe('Steps', function() {
-        it('should start with no steps', function () {
+        it('should _start with no steps', function () {
             var steps = im.getSteps();
             steps.length.should.equal(0);
         });
