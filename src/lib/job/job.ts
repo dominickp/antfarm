@@ -244,7 +244,7 @@ export abstract class Job {
      */
     public email(emailOptions: EmailOptions) {
         let job = this;
-        let emailer = job.e.getEmailer();
+        let emailer = job.e.emailer;
 
         emailer.sendMail(emailOptions, job);
     }

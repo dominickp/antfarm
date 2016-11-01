@@ -177,7 +177,7 @@ export class InterfaceManager {
         im.interfaceInstances.push(wi);
 
         // Destruct
-        let sessionExpiration = (im.e.getOptions().webhook_interface_session_timeout * 60000) || 300000;
+        let sessionExpiration = (im.e.options.webhook_interface_session_timeout * 60000) || 300000;
 
         setTimeout(() => {
             im.removeInterfaceInstance(wi);

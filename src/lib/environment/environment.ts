@@ -14,23 +14,23 @@ const   fs = require("fs");
  */
 export class Environment {
 
-    protected options: AntfarmOptions;
+    protected _options: AntfarmOptions;
     protected logger: Logger;
     protected _server: Server;
-    protected emailer: Emailer;
+    protected _emailer: Emailer;
     protected hookRoutes = [];
     protected hookInterfaceRoutes = [];
 
     constructor(options: AntfarmOptions) {
         this.logger = new Logger(options);
-        this.setOptions(options);
+        this.options = options;
     }
 
     /**
      * Sets the options and creates other environmental objects if necessary.
      * @param options
      */
-    protected setOptions(options: AntfarmOptions) {
+    public set options(options: AntfarmOptions) {
         let e = this;
 
         if (options.auto_managed_folder_directory) {
@@ -41,7 +41,7 @@ export class Environment {
             }
         }
 
-        this.options = options;
+        this._options = options;
 
         if (options.port) {
             e.createServer();
@@ -54,32 +54,32 @@ export class Environment {
     }
 
     /**
+     * Get the Antfarm options.
+     * @returns {AntfarmOptions}
+     */
+    public get options() {
+        return this._options;
+    }
+
+    /**
      * Creates an Emailer object to send emails.
      */
     protected createEmailer() {
         let e = this;
         // Get options needed and pass to emailer
         let credentials = e.options.email_credentials;
-        e.emailer = new Emailer(e, credentials);
+        e._emailer = new Emailer(e, credentials);
     }
 
-    public getEmailer() {
-        return this.emailer;
-    }
-
-    /**
-     * Get the Antfarm options.
-     * @returns {AntfarmOptions}
-     */
-    public getOptions() {
-        return this.options;
+    public get emailer() {
+        return this._emailer;
     }
 
     /**
      * Return the auto managed folder directory, if set.
      * @returns {string}
      */
-    public getAutoManagedFolderDirectory() {
+    public get autoManagedFolderDirectory() {
         return this.options.auto_managed_folder_directory;
     }
 

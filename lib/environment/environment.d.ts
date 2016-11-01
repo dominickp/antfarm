@@ -9,33 +9,32 @@ import { Emailer } from "./emailer";
  * and constructing globally referenced objects.
  */
 export declare class Environment {
-    protected options: AntfarmOptions;
+    protected _options: AntfarmOptions;
     protected logger: Logger;
     protected _server: Server;
-    protected emailer: Emailer;
+    protected _emailer: Emailer;
     protected hookRoutes: any[];
     protected hookInterfaceRoutes: any[];
     constructor(options: AntfarmOptions);
     /**
+     * Get the Antfarm options.
+     * @returns {AntfarmOptions}
+     */
+    /**
      * Sets the options and creates other environmental objects if necessary.
      * @param options
      */
-    protected setOptions(options: AntfarmOptions): void;
+    options: AntfarmOptions;
     /**
      * Creates an Emailer object to send emails.
      */
     protected createEmailer(): void;
-    getEmailer(): Emailer;
-    /**
-     * Get the Antfarm options.
-     * @returns {AntfarmOptions}
-     */
-    getOptions(): AntfarmOptions;
+    readonly emailer: Emailer;
     /**
      * Return the auto managed folder directory, if set.
      * @returns {string}
      */
-    getAutoManagedFolderDirectory(): string;
+    readonly autoManagedFolderDirectory: string;
     /**
      * Creates the server.
      */

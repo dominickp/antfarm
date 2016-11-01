@@ -52,7 +52,7 @@ export class Server {
     protected createServer() {
         let s = this;
 
-        let port = s.e.getOptions().port;
+        let port = s.e.options.port;
 
         s.server.use(cors());
 

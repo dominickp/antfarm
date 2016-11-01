@@ -14,7 +14,7 @@ export class AutoFolderNest extends FolderNest {
 
     constructor(e: Environment, hierarchy: string|string[]) {
 
-        if (!e.getAutoManagedFolderDirectory()) {
+        if (!e.autoManagedFolderDirectory) {
             throw "Option auto_managed_folder_directory must be set to use auto managed folders.";
         }
 
@@ -39,7 +39,7 @@ export class AutoFolderNest extends FolderNest {
             return hierarchyString;
         };
 
-        let path = e.getAutoManagedFolderDirectory() + getHierarchyString(hierarchy);
+        let path = e.autoManagedFolderDirectory + getHierarchyString(hierarchy);
 
         super(e, path, true);
 
