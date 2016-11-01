@@ -3,7 +3,8 @@ import {Environment} from "../environment/environment";
 const   mime = require("mime-types"),
         fileExtension = require("file-extension"),
         node_path = require("path"),
-        fs = require("fs");
+        fs = require("fs"),
+        filesize = require("filesize");
 
 export class File {
 
@@ -12,6 +13,7 @@ export class File {
     protected _basename: string;
     protected _contentType: string;
     protected _extension: string;
+    protected _sizeBytes: number;
     protected e: Environment;
 
     /**
@@ -37,6 +39,12 @@ export class File {
         f._extension = fileExtension(f.path);
         f._basename = node_path.basename(f.path);
         f._dirname = node_path.dirname(f.path);
+        try {
+            f._sizeBytes = fs.statSync(f.path).size;
+        } catch (err) {
+            f.e.log(2, `Couldn't determine sizeBytes with statSync. ${err}`, f);
+            f._sizeBytes = 0;
+        }
     }
 
     /**
@@ -110,6 +118,14 @@ export class File {
      */
     public get basename() {
         return this._basename;
+    }
+
+    public get sizeBytes() {
+        return this._sizeBytes;
+    }
+
+    public get size() {
+        return filesize(this.sizeBytes);
     }
 
     /**

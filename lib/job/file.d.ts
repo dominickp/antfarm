@@ -5,6 +5,7 @@ export declare class File {
     protected _basename: string;
     protected _contentType: string;
     protected _extension: string;
+    protected _sizeBytes: number;
     protected e: Environment;
     /**
      * File constructor
@@ -59,6 +60,8 @@ export declare class File {
      * @returns {string}
      */
     readonly basename: string;
+    readonly sizeBytes: number;
+    readonly size: any;
     /**
      * Renames the local job file to the current _name.
      */

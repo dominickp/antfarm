@@ -433,4 +433,8 @@ export abstract class Job {
         let job = this;
         return job.e.log(level, message, job);
     }
+
+    public get size () {
+        return undefined;
+    }
 }

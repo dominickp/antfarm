@@ -168,4 +168,12 @@ export class FileJob extends Job {
         return this.file.removeLocal();
     }
 
+    public get size() {
+        return this.file.size;
+    }
+
+    public get sizeBytes() {
+        return this.file.sizeBytes;
+    }
+
 }

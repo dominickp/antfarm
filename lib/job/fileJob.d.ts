@@ -92,4 +92,6 @@ export declare class FileJob extends Job {
      * Deletes the local file.
      */
     remove(): boolean;
+    readonly size: any;
+    readonly sizeBytes: number;
 }

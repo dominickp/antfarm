@@ -63,7 +63,7 @@ describe('Job', function() {
         triggerNewJob(job_name);
     });
 
-    it('should get the job _name proper', function (done) {
+    it('should get the job name proper', function (done) {
         var job_name = "MyJobFile_001.pdf";
         tunnel.run(function(job){
             job.nameProper.should.equal("MyJobFile_001");
@@ -88,6 +88,18 @@ describe('Job', function() {
         tunnel.run(function(job){
             job.path.should.equal(temp_file_path);
             job.path.should.not.be.empty;
+            done();
+        });
+
+        triggerNewJob(job_name);
+    });
+
+    xit('should get the size', function (done) {
+        var job_name = "MyJobFile_001.pdf";
+        tunnel.run(function(job){
+            job.size.should.equal("16 B");
+            job.sizeBytes.should.equal(16);
+            job.size.should.not.be.empty;
             done();
         });
 
