@@ -157,7 +157,7 @@ export class WebhookNest extends Nest {
      * @returns {string}
      */
     public get name() {
-        return this.name;
+        return this._name;
     }
 
     /**

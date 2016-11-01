@@ -173,7 +173,7 @@ export class InterfaceManager {
         step.name = stepName;
         step.callback = callback;
         step.complete = false;
-        this.steps.push(step);
+        this._steps.push(step);
     }
 
     /**

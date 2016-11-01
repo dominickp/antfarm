@@ -78,7 +78,7 @@ export declare class WebhookNest extends Nest {
      * Get the _name.
      * @returns {string}
      */
-    readonly name: any;
+    readonly name: string;
     /**
      * On load, do nothing.
      */
