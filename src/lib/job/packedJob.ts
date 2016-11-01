@@ -2,6 +2,7 @@ import {Environment} from "../environment/environment";
 import {FileJob} from "./fileJob";
 import {Job} from "./job";
 import {FolderJob} from "./folderJob";
+import {JobProperty} from "./jobProperty";
 
 const   tmp = require("tmp"),
         fs = require("fs"),
@@ -136,7 +137,12 @@ export class PackedJob extends FileJob {
         }
 
         // Restore property values
-        job.propertyValues = jobObject._properties;
+        let props = {};
+
+        _.each(jobObject._properties, prop => {
+            props[prop._key] = new JobProperty(prop._key, prop._value);
+        });
+        job.propertyValues = props;
 
         // Restore lifecycle
         job.lifeCycle = jobObject._lifeCycle;

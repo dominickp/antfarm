@@ -1,10 +1,10 @@
 export declare class JobProperty {
-    protected key: string;
-    protected value: any;
-    protected type: string;
+    protected _key: string;
+    protected _value: any;
+    protected _type: string;
     constructor(key: string, value: any);
-    protected setValue(value: any): void;
+    value: any;
     protected resolveType(): void;
-    getValue(): any;
-    getType(): string;
+    key: string;
+    type: string;
 }

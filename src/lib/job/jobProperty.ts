@@ -1,18 +1,23 @@
 import {isArray} from "util";
+
 export class JobProperty {
 
-    protected key: string;
-    protected value: any;
-    protected type: string;
+    protected _key: string;
+    protected _value: any;
+    protected _type: string;
 
     constructor(key: string, value: any) {
         let jp = this;
         jp.key = key;
-        jp.setValue(value);
+        jp.value = value;
     }
 
-    protected setValue(value: any) {
-        this.value = value;
+    public get value() {
+        return this._value;
+    }
+
+    public set value(value: any) {
+        this._value = value;
         this.resolveType();
     }
 
@@ -26,11 +31,19 @@ export class JobProperty {
         }
     }
 
-    public getValue() {
-        return this.value;
+    public get key() {
+        return this._key;
     }
 
-    public getType() {
-        return this.type;
+    public set key(key: string) {
+        this._key = key;
+    }
+
+    public get type() {
+        return this._type;
+    }
+
+    public set type(type: string) {
+        this._type = type;
     }
 }

@@ -287,6 +287,10 @@ export abstract class Job {
         return this._properties[key] as JobProperty;
     }
 
+    public get properties() {
+        return this._properties;
+    }
+
     /**
      * Get the value of a property if it has been previously set.
      * @param key
@@ -318,7 +322,7 @@ export abstract class Job {
     public getPropertyType(key: string) {
         let job = this;
         if (job._properties[key]) {
-            return job._properties[key].getType();
+            return job._properties[key].type;
         } else {
             return null;
         }

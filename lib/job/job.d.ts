@@ -163,6 +163,7 @@ export declare abstract class Job {
      * @returns {JobProperty}
      */
     getProperty(key: string): JobProperty;
+    readonly properties: any;
     /**
      * Get the value of a property if it has been previously set.
      * @param key
