@@ -5,22 +5,25 @@ export declare class Step {
     /**
      * The human-readable step _name.
      */
-    name: string;
+    protected _name: string;
     /**
      * Flag if step is complete or not
      */
-    complete: boolean;
+    protected _complete: boolean;
     /**
      * Callback function to run on step execution.
      */
-    callback: any;
+    protected _callback: any;
     /**
      * Step validation error.
      */
+    protected _failure: string;
     failure: string;
+    callback: any;
+    name: string;
     /**
      * Set complete and wipe out any failure
      * @param complete
      */
-    setComplete(complete: boolean): void;
+    complete: boolean;
 }

@@ -6,34 +6,46 @@ export class Step {
     /**
      * The human-readable step _name.
      */
-    public name: string;
+    protected _name: string;
 
     /**
      * Flag if step is complete or not
      */
-    public complete: boolean;
+    protected _complete: boolean;
 
     /**
      * Callback function to run on step execution.
      */
-    public callback: any;
+    protected _callback: any;
 
     /**
      * Step validation error.
      */
-    public failure: string;
+    protected _failure: string;
+
+    public set failure(message: string) {
+        this._failure = message;
+    }
+
+    public set callback(callback: any) {
+        this._callback = callback;
+    }
+
+    public set name(name: string) {
+        this._name = name;
+    }
 
     /**
      * Set complete and wipe out any failure
      * @param complete
      */
-    public setComplete(complete: boolean) {
+    public set complete(complete: boolean) {
         let s = this;
         if (complete === true) {
-            s.complete = true;
+            s._complete = true;
             s.failure = null;
         } else {
-            s.complete = false;
+            s._complete = false;
         }
     }
 }
