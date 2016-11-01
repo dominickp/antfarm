@@ -437,4 +437,9 @@ export abstract class Job {
     public get size () {
         return undefined;
     }
+
+    public get sizeBytes () {
+        return undefined;
+    }
+
 }

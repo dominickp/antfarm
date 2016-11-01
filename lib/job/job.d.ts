@@ -229,4 +229,5 @@ export declare abstract class Job {
      */
     log(level: number, message: string): void;
     readonly size: any;
+    readonly sizeBytes: any;
 }
