@@ -46,14 +46,14 @@ describe('Tunnels', function() {
 
     it('should add a run callback to the run list', function () {
         tunnel.run(function(){});
-        tunnel.getRunList().length.should.equal(1);
+        tunnel.runList.length.should.equal(1);
     });
 
     it('should add multiple run callbacks to the run list', function () {
         tunnel.run(function(){});
         tunnel.run(function(){});
         tunnel.run(function(){});
-        tunnel.getRunList().length.should.equal(3);
+        tunnel.runList.length.should.equal(3);
     });
 
     it('should execute a run callback', function () {
@@ -88,10 +88,10 @@ describe('Tunnels', function() {
 
         it('should be able to watch nests', function() {
             tunnel.watch(folder1);
-            tunnel.getNests().length.should.be.equal(1);
+            tunnel.nests.length.should.be.equal(1);
 
             tunnel.watch(folder2);
-            tunnel.getNests().length.should.be.equal(2);
+            tunnel.nests.length.should.be.equal(2);
         });
 
         it('should run on a nest arrival when watching', function(done) {

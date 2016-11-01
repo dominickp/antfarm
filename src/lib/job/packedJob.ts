@@ -14,7 +14,7 @@ const   tmp = require("tmp"),
 export class PackedJob extends FileJob {
 
     protected e: Environment;
-    protected job: Job;
+    protected _job: Job;
 
     constructor(e: Environment, job: Job) {
         // let job_name = job.name;
@@ -24,12 +24,12 @@ export class PackedJob extends FileJob {
         pj.job = job;
     }
 
-    /**
-     *
-     * @returns {Job}
-     */
-    public getJob() {
-        return this.job;
+    protected get job() {
+        return this._job;
+    }
+
+    protected set job(job: Job) {
+        this._job = job;
     }
 
     /**
@@ -56,7 +56,7 @@ export class PackedJob extends FileJob {
     protected buildZip(zip: any, callback) {
         // Save out zip
         let pj = this;
-        let job = this.getJob();
+        let job = this.job;
         let tmpobj = tmp.dirSync();
         let dir = tmpobj.name;
         let file_name = job.name + ".antpack.zip";
@@ -78,7 +78,7 @@ export class PackedJob extends FileJob {
      */
     public execPack(done) {
         let pj = this;
-        let job = pj.getJob();
+        let job = pj.job;
 
         let ticketPath = pj.getJobTicket(job);
 
@@ -154,7 +154,7 @@ export class PackedJob extends FileJob {
         // console.log("unpacking");
 
         let pj = this;
-        let job = pj.getJob();
+        let job = pj.job;
 
         // Read the zip to a buffer
         fs.readFile(job.path, (err, data) => {

@@ -88,7 +88,7 @@
 tunnel.watch(hotfolder_a);
 
 tunnel.run(<span class="hljs-function">(<span class="hljs-params">job, nest</span>) =&gt;</span> {
-    <span class="hljs-keyword">if</span>(job.getExtension() == <span class="hljs-string">"pdf"</span>){
+    <span class="hljs-keyword">if</span>(job.extension == <span class="hljs-string">"pdf"</span>){
         job.move(pdf_folder);
     } <span class="hljs-keyword">else</span> {
         job.move(other_folder);

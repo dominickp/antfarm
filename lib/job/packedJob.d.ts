@@ -3,13 +3,9 @@ import { FileJob } from "./fileJob";
 import { Job } from "./job";
 export declare class PackedJob extends FileJob {
     protected e: Environment;
-    protected job: Job;
+    protected _job: Job;
     constructor(e: Environment, job: Job);
-    /**
-     *
-     * @returns {Job}
-     */
-    getJob(): Job;
+    protected job: Job;
     /**
      * Makes job ticket and returns the _path to the temporary file.
      * @param job

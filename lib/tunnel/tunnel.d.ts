@@ -9,10 +9,10 @@ import { FtpNest } from "../nest/ftpNest";
  */
 export declare class Tunnel {
     protected _name: string;
-    protected nests: Nest[];
-    protected run_list: any[];
-    protected run_sync_list: any[];
-    protected run_fail: any;
+    protected _nests: Nest[];
+    protected _run_list: any[];
+    protected _run_sync_list: any[];
+    protected _run_fail: any;
     protected e: Environment;
     protected job_counter: number;
     protected match_obj: {
@@ -21,12 +21,13 @@ export declare class Tunnel {
         pattern: any;
         orphan_minutes: any;
     };
-    constructor(e: Environment, theName: string);
+    constructor(e: Environment, tunnelName: string);
     toString(): string;
     name: string;
-    getNests(): Nest[];
-    getRunList(): any[];
-    getRunSyncList(): any[];
+    readonly nests: Nest[];
+    readonly runList: any[];
+    readonly runSyncList: any[];
+    runFail: any;
     /**
      * Instructs the tunnel to watch a nest for new jobs.
      * @param nest

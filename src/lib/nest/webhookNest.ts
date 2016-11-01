@@ -77,7 +77,7 @@ export class WebhookNest extends Nest {
         } else if (job.responseSent === true) {
             wn.e.log(0, `Nest responses was already sent. Skipping.`, wn);
         } else {
-            wn.e.server.sendHookResponse(false, job, wn, job.getRequest(), job.getResponse(), wn.getCustomHandleRequest(), message);
+            wn.e.server.sendHookResponse(false, job, wn, job.request, job.response, wn.getCustomHandleRequest(), message);
         }
     }
 

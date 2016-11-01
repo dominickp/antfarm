@@ -4,8 +4,8 @@ import { Job } from "./job";
  * A job that is triggered when a webhook receives a request.
  */
 export declare class WebhookJob extends Job {
-    protected request: any;
-    protected response: any;
+    protected _request: any;
+    protected _response: any;
     protected _responseSent: boolean;
     /**
      * WebhookJob constructor
@@ -27,12 +27,12 @@ export declare class WebhookJob extends Job {
      * Get the HTTP response object.
      * @returns {ClientResponse}
      */
-    getResponse(): any;
+    readonly response: any;
     /**
      * Get the HTTP request object.
      * @returns {ClientRequest}
      */
-    getRequest(): any;
+    readonly request: any;
     /**
      * Return a specific URL parameter.
      * #### Example

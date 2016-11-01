@@ -14,8 +14,8 @@ const   fs = require("fs"),
  */
 export class WebhookJob extends Job {
 
-    protected request;
-    protected response;
+    protected _request;
+    protected _response;
     protected _responseSent: boolean;
 
     /**
@@ -26,8 +26,8 @@ export class WebhookJob extends Job {
      */
     constructor(e: Environment, request, response) {
         super(e, "Webhook Job");
-        this.request = request;
-        this.response = response;
+        this._request = request;
+        this._response = response;
         this._responseSent = false;
     }
 
@@ -51,16 +51,16 @@ export class WebhookJob extends Job {
      * Get the HTTP response object.
      * @returns {ClientResponse}
      */
-    public getResponse() {
-        return this.response;
+    public get response() {
+        return this._response;
     }
 
     /**
      * Get the HTTP request object.
      * @returns {ClientRequest}
      */
-    public getRequest() {
-        return this.request;
+    public get request() {
+        return this._request;
     }
 
     /**
@@ -76,7 +76,7 @@ export class WebhookJob extends Job {
      */
     public getQueryStringValue(parameter: string) {
         let wh = this;
-        let url_parts = url.parse(wh.getRequest().url, true);
+        let url_parts = url.parse(wh.request.url, true);
         return url_parts.query[parameter];
     }
 
@@ -92,7 +92,7 @@ export class WebhookJob extends Job {
      */
     public getQueryStringValues() {
         let wh = this;
-        let url_parts = url.parse(wh.getRequest().url, true);
+        let url_parts = url.parse(wh.request.url, true);
         return url_parts.query;
     }
 
@@ -102,7 +102,7 @@ export class WebhookJob extends Job {
      */
     public getFormDataFiles() {
         let wh = this;
-        let files = wh.getRequest()._files;
+        let files = wh.request._files;
         let jobs = [];
 
         if (files) {
@@ -122,7 +122,7 @@ export class WebhookJob extends Job {
      */
     public getFormDataValues() {
         let wh = this;
-        let body = wh.getRequest().body;
+        let body = wh.request.body;
 
         return body;
     }
@@ -156,7 +156,7 @@ export class WebhookJob extends Job {
      */
     public getDataAsString(callback: any) {
         let wh = this;
-        let req = wh.getRequest();
+        let req = wh.request;
         let data = "";
 
         req.on("data", function(chunk) {

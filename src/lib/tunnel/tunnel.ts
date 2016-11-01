@@ -13,10 +13,10 @@ const   async = require("async"),
 export class Tunnel {
 
     protected _name: string;
-    protected nests: Nest[];
-    protected run_list: any[];
-    protected run_sync_list: any[];
-    protected run_fail: any;
+    protected _nests: Nest[];
+    protected _run_list: any[];
+    protected _run_sync_list: any[];
+    protected _run_fail: any;
     protected e: Environment;
     protected job_counter: number;
 
@@ -27,12 +27,12 @@ export class Tunnel {
         orphan_minutes: null
     };
 
-    constructor(e: Environment, theName: string) {
+    constructor(e: Environment, tunnelName: string) {
         this.e = e;
-        this.nests = [];
-        this._name = theName;
-        this.run_list = [];
-        this.run_sync_list = [];
+        this._nests = [];
+        this._name = tunnelName;
+        this._run_list = [];
+        this._run_sync_list = [];
         this.job_counter = 0;
     }
 
@@ -48,16 +48,24 @@ export class Tunnel {
         this._name = name;
     }
 
-    public getNests() {
-        return this.nests;
+    public get nests() {
+        return this._nests;
     }
 
-    public getRunList() {
-        return this.run_list;
+    public get runList() {
+        return this._run_list;
     }
 
-    public getRunSyncList() {
-        return this.run_sync_list;
+    public get runSyncList() {
+        return this._run_sync_list;
+    }
+
+    public get runFail() {
+        return this._run_fail;
+    }
+
+    public set runFail(callback: any) {
+        this._run_fail = callback;
     }
 
     /**
@@ -84,7 +92,7 @@ export class Tunnel {
      * @param callback
      */
     public run(callback) {
-        this.run_list.push(callback);
+        this.runList.push(callback);
     }
 
     /**
@@ -92,7 +100,7 @@ export class Tunnel {
      * @param callback
      */
     public runSync(callback) {
-        this.run_sync_list.push(callback);
+        this.runSyncList.push(callback);
     }
 
     /**
@@ -100,7 +108,7 @@ export class Tunnel {
      * @param callback
      */
     public fail(callback) {
-        this.run_fail = callback;
+        this.runFail = callback;
     }
 
     /**
@@ -111,8 +119,8 @@ export class Tunnel {
     protected executeRun(job: Job, nest: Nest) {
         let tn = this;
 
-        if (tn.run_list.length > 0) {
-            tn.run_list.forEach((callback) => {
+        if (tn.runList.length > 0) {
+            tn.runList.forEach((callback) => {
                 try {
                     callback(job, nest);
                 } catch (e) {
@@ -134,8 +142,8 @@ export class Tunnel {
         let breakFailure = false;
         let successfulRuns = 0;
 
-        if (tn.run_sync_list.length > 0) {
-            async.eachSeries(tn.run_sync_list, (run, doNextRun) => {
+        if (tn.runSyncList.length > 0) {
+            async.eachSeries(tn.runSyncList, (run, doNextRun) => {
                 if (breakFailure === false) {
                     run(job, nest, () => {
                         successfulRuns++;
@@ -147,7 +155,7 @@ export class Tunnel {
                     breakFailure = true;
                     tn.executeFail(job, nest, err);
                 }
-                tn.e.log(0, `Completed ${successfulRuns}/${tn.getRunSyncList().length} synchronous run list(s).`, tn, [job, nest]);
+                tn.e.log(0, `Completed ${successfulRuns}/${tn.runSyncList.length} synchronous run list(s).`, tn, [job, nest]);
             });
         }
     }
@@ -161,7 +169,8 @@ export class Tunnel {
     public executeFail(job: Job, nest: Nest, reason: string) {
         let tn = this;
         tn.e.log(3, `Failed for reason "${reason}".`, tn, [job, nest]);
-        tn.run_fail(job, nest, reason);
+        let failCallback = tn.runFail;
+        failCallback(job, nest, reason);
     }
 
     /**

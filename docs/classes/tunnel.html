@@ -97,18 +97,22 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="tunnel.html#_name" class="tsd-kind-icon">_name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="tunnel.html#_nests" class="tsd-kind-icon">_nests</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="tunnel.html#_run_fail" class="tsd-kind-icon">_run_<wbr>fail</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="tunnel.html#_run_list" class="tsd-kind-icon">_run_<wbr>list</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="tunnel.html#_run_sync_list" class="tsd-kind-icon">_run_<wbr>sync_<wbr>list</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="tunnel.html#e" class="tsd-kind-icon">e</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="tunnel.html#job_counter" class="tsd-kind-icon">job_<wbr>counter</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="tunnel.html#nests" class="tsd-kind-icon">nests</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="tunnel.html#run_fail" class="tsd-kind-icon">run_<wbr>fail</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="tunnel.html#run_list" class="tsd-kind-icon">run_<wbr>list</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><a href="tunnel.html#run_sync_list" class="tsd-kind-icon">run_<wbr>sync_<wbr>list</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="tunnel.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="tunnel.html#nests" class="tsd-kind-icon">nests</a></li>
+								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="tunnel.html#runfail" class="tsd-kind-icon">run<wbr>Fail</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="tunnel.html#runlist" class="tsd-kind-icon">run<wbr>List</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="tunnel.html#runsynclist" class="tsd-kind-icon">run<wbr>Sync<wbr>List</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -120,9 +124,6 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="tunnel.html#executerun" class="tsd-kind-icon">execute<wbr>Run</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="tunnel.html#executerunsync" class="tsd-kind-icon">execute<wbr>Run<wbr>Sync</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tunnel.html#fail" class="tsd-kind-icon">fail</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tunnel.html#getnests" class="tsd-kind-icon">get<wbr>Nests</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tunnel.html#getrunlist" class="tsd-kind-icon">get<wbr>Run<wbr>List</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tunnel.html#getrunsynclist" class="tsd-kind-icon">get<wbr>Run<wbr>Sync<wbr>List</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tunnel.html#match" class="tsd-kind-icon">match</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tunnel.html#run" class="tsd-kind-icon">run</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="tunnel.html#runsync" class="tsd-kind-icon">run<wbr>Sync</a></li>
@@ -145,13 +146,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Tunnel<span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="environment.html" class="tsd-signature-type">Environment</a>, theName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="tunnel.html" class="tsd-signature-type">Tunnel</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Tunnel<span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="environment.html" class="tsd-signature-type">Environment</a>, tunnelName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="tunnel.html" class="tsd-signature-type">Tunnel</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L28">lib/tunnel/tunnel.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L28">lib/tunnel/tunnel.ts:28</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -160,7 +161,7 @@
 									<h5>e: <a href="environment.html" class="tsd-signature-type">Environment</a></h5>
 								</li>
 								<li>
-									<h5>theName: <span class="tsd-signature-type">string</span></h5>
+									<h5>tunnelName: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="tunnel.html" class="tsd-signature-type">Tunnel</a></h4>
@@ -176,7 +177,47 @@
 					<div class="tsd-signature tsd-kind-icon">_name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L15">lib/tunnel/tunnel.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L15">lib/tunnel/tunnel.ts:15</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="_nests" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _nests</h3>
+					<div class="tsd-signature tsd-kind-icon">_nests<span class="tsd-signature-symbol">:</span> <a href="nest.html" class="tsd-signature-type">Nest</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L16">lib/tunnel/tunnel.ts:16</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="_run_fail" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _run_<wbr>fail</h3>
+					<div class="tsd-signature tsd-kind-icon">_run_<wbr>fail<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L19">lib/tunnel/tunnel.ts:19</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="_run_list" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _run_<wbr>list</h3>
+					<div class="tsd-signature tsd-kind-icon">_run_<wbr>list<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L17">lib/tunnel/tunnel.ts:17</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+					<a name="_run_sync_list" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> _run_<wbr>sync_<wbr>list</h3>
+					<div class="tsd-signature tsd-kind-icon">_run_<wbr>sync_<wbr>list<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L18">lib/tunnel/tunnel.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -186,7 +227,7 @@
 					<div class="tsd-signature tsd-kind-icon">e<span class="tsd-signature-symbol">:</span> <a href="environment.html" class="tsd-signature-type">Environment</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L20">lib/tunnel/tunnel.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L20">lib/tunnel/tunnel.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -196,47 +237,7 @@
 					<div class="tsd-signature tsd-kind-icon">job_<wbr>counter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L21">lib/tunnel/tunnel.ts:21</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-					<a name="nests" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> nests</h3>
-					<div class="tsd-signature tsd-kind-icon">nests<span class="tsd-signature-symbol">:</span> <a href="nest.html" class="tsd-signature-type">Nest</a><span class="tsd-signature-symbol">[]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L16">lib/tunnel/tunnel.ts:16</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-					<a name="run_fail" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> run_<wbr>fail</h3>
-					<div class="tsd-signature tsd-kind-icon">run_<wbr>fail<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L19">lib/tunnel/tunnel.ts:19</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-					<a name="run_list" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> run_<wbr>list</h3>
-					<div class="tsd-signature tsd-kind-icon">run_<wbr>list<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L17">lib/tunnel/tunnel.ts:17</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-					<a name="run_sync_list" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagProtected">Protected</span> run_<wbr>sync_<wbr>list</h3>
-					<div class="tsd-signature tsd-kind-icon">run_<wbr>sync_<wbr>list<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L18">lib/tunnel/tunnel.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L21">lib/tunnel/tunnel.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -254,7 +255,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L43">lib/tunnel/tunnel.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L43">lib/tunnel/tunnel.ts:43</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -262,7 +263,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L47">lib/tunnel/tunnel.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L47">lib/tunnel/tunnel.ts:47</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -272,6 +273,89 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="nests" class="tsd-anchor"></a>
+					<h3>nests</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> nests<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="nest.html" class="tsd-signature-type">Nest</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L51">lib/tunnel/tunnel.ts:51</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="nest.html" class="tsd-signature-type">Nest</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
+					<a name="runfail" class="tsd-anchor"></a>
+					<h3>run<wbr>Fail</h3>
+					<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> runFail<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> runFail<span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L63">lib/tunnel/tunnel.ts:63</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L67">lib/tunnel/tunnel.ts:67</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>callback: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="runlist" class="tsd-anchor"></a>
+					<h3>run<wbr>List</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> runList<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L55">lib/tunnel/tunnel.ts:55</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="runsynclist" class="tsd-anchor"></a>
+					<h3>run<wbr>Sync<wbr>List</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> runSyncList<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L59">lib/tunnel/tunnel.ts:59</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -288,7 +372,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L74">lib/tunnel/tunnel.ts:74</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L82">lib/tunnel/tunnel.ts:82</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -314,7 +398,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L161">lib/tunnel/tunnel.ts:161</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L169">lib/tunnel/tunnel.ts:169</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -350,7 +434,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L184">lib/tunnel/tunnel.ts:184</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L193">lib/tunnel/tunnel.ts:193</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -383,7 +467,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L111">lib/tunnel/tunnel.ts:111</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L119">lib/tunnel/tunnel.ts:119</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -416,7 +500,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L131">lib/tunnel/tunnel.ts:131</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L139">lib/tunnel/tunnel.ts:139</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -449,7 +533,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L102">lib/tunnel/tunnel.ts:102</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L110">lib/tunnel/tunnel.ts:110</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -470,57 +554,6 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getnests" class="tsd-anchor"></a>
-					<h3>get<wbr>Nests</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Nests<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="nest.html" class="tsd-signature-type">Nest</a><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L51">lib/tunnel/tunnel.ts:51</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="nest.html" class="tsd-signature-type">Nest</a><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getrunlist" class="tsd-anchor"></a>
-					<h3>get<wbr>Run<wbr>List</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Run<wbr>List<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L55">lib/tunnel/tunnel.ts:55</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getrunsynclist" class="tsd-anchor"></a>
-					<h3>get<wbr>Run<wbr>Sync<wbr>List</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Run<wbr>Sync<wbr>List<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L59">lib/tunnel/tunnel.ts:59</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="match" class="tsd-anchor"></a>
 					<h3>match</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -530,7 +563,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L173">lib/tunnel/tunnel.ts:173</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L182">lib/tunnel/tunnel.ts:182</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -566,7 +599,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L86">lib/tunnel/tunnel.ts:86</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L94">lib/tunnel/tunnel.ts:94</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -596,7 +629,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L94">lib/tunnel/tunnel.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L102">lib/tunnel/tunnel.ts:102</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -626,7 +659,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L39">lib/tunnel/tunnel.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L39">lib/tunnel/tunnel.ts:39</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -643,7 +676,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L67">lib/tunnel/tunnel.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L75">lib/tunnel/tunnel.ts:75</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -672,7 +705,7 @@
 					<div class="tsd-signature tsd-kind-icon">match_<wbr>obj<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L23">lib/tunnel/tunnel.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L23">lib/tunnel/tunnel.ts:23</a></li>
 						</ul>
 					</aside>
 					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
@@ -681,7 +714,7 @@
 						<div class="tsd-signature tsd-kind-icon">orphan_<wbr>minutes<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L27">lib/tunnel/tunnel.ts:27</a></li>
+								<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L27">lib/tunnel/tunnel.ts:27</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -691,7 +724,7 @@
 						<div class="tsd-signature tsd-kind-icon">pattern<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L26">lib/tunnel/tunnel.ts:26</a></li>
+								<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L26">lib/tunnel/tunnel.ts:26</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -701,7 +734,7 @@
 						<div class="tsd-signature tsd-kind-icon">queue<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L24">lib/tunnel/tunnel.ts:24</a></li>
+								<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L24">lib/tunnel/tunnel.ts:24</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -711,7 +744,7 @@
 						<div class="tsd-signature tsd-kind-icon">run<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/95c370d/src/lib/tunnel/tunnel.ts#L25">lib/tunnel/tunnel.ts:25</a></li>
+								<li>Defined in <a href="https://github.com/dominickp/antfarm/blob/ff326ce/src/lib/tunnel/tunnel.ts#L25">lib/tunnel/tunnel.ts:25</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -740,25 +773,37 @@
 								<a href="tunnel.html#_name" class="tsd-kind-icon">_name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="tunnel.html#_nests" class="tsd-kind-icon">_nests</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="tunnel.html#_run_fail" class="tsd-kind-icon">_run_<wbr>fail</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="tunnel.html#_run_list" class="tsd-kind-icon">_run_<wbr>list</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
+								<a href="tunnel.html#_run_sync_list" class="tsd-kind-icon">_run_<wbr>sync_<wbr>list</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 								<a href="tunnel.html#e" class="tsd-kind-icon">e</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
 								<a href="tunnel.html#job_counter" class="tsd-kind-icon">job_<wbr>counter</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="tunnel.html#nests" class="tsd-kind-icon">nests</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="tunnel.html#run_fail" class="tsd-kind-icon">run_<wbr>fail</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="tunnel.html#run_list" class="tsd-kind-icon">run_<wbr>list</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected">
-								<a href="tunnel.html#run_sync_list" class="tsd-kind-icon">run_<wbr>sync_<wbr>list</a>
-							</li>
 							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="tunnel.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="tunnel.html#nests" class="tsd-kind-icon">nests</a>
+							</li>
+							<li class=" tsd-kind-accessor tsd-parent-kind-class">
+								<a href="tunnel.html#runfail" class="tsd-kind-icon">run<wbr>Fail</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="tunnel.html#runlist" class="tsd-kind-icon">run<wbr>List</a>
+							</li>
+							<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+								<a href="tunnel.html#runsynclist" class="tsd-kind-icon">run<wbr>Sync<wbr>List</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="tunnel.html#arrive" class="tsd-kind-icon">arrive</a>
@@ -777,15 +822,6 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="tunnel.html#fail" class="tsd-kind-icon">fail</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="tunnel.html#getnests" class="tsd-kind-icon">get<wbr>Nests</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="tunnel.html#getrunlist" class="tsd-kind-icon">get<wbr>Run<wbr>List</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="tunnel.html#getrunsynclist" class="tsd-kind-icon">get<wbr>Run<wbr>Sync<wbr>List</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="tunnel.html#match" class="tsd-kind-icon">match</a>
