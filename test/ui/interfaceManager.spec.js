@@ -6,7 +6,7 @@ var path = require('path');
 //var mock = require('mock-fs');
 
 
-xdescribe('Interface Manager', function() {
+describe('Interface Manager', function() {
     var af, tunnel, webhook, im;
 
     var options = {
@@ -22,7 +22,7 @@ xdescribe('Interface Manager', function() {
     beforeEach(function() {
         tunnel = af.createTunnel("Interface manager test tunnel");
         webhook = af.createWebhookNest(["test"], "get");
-        im = webhook.getInterfaceManager();
+        im = webhook.interfaceManager;
     });
 
     it('should _start with no metadata', function () {

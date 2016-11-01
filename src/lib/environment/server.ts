@@ -29,14 +29,16 @@ export class Server {
     };
 
     constructor(e: Environment) {
-        this.e = e;
-        this.server = express();
-        this.createServer();
+        let s = this;
+        s.e = e;
+        s.server = express();
+
+        s.createServer();
 
         // let tmpDir = tmp.dirSync()._name;
         let tmpDir = "./example";
 
-        this.upload = multer({
+        s.upload = multer({
                 destination: tmpDir,
                 storage: multer.diskStorage({
                     filename: function (req, file, cb) {
@@ -68,7 +70,11 @@ export class Server {
         // if (!module.parent) {
         //     s.server.listen(port, () => s.e.log(1, `Server up and listening on port ${port}.`, s));
         // }
-        s.server.listen(port, () => s.e.log(1, `Server up and listening on port ${port}.`, s));
+        s.server.listen(port, () => s.e.log(1, `Server up and listening on port ${port}.`, s))
+            .on("error", (err) => {
+                s.e.log(3, `Server listen error: "${err.message}".`, s);
+            });
+
     }
 
     public createLogServer(logger: Logger) {
