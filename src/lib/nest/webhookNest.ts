@@ -9,11 +9,11 @@ const   http = require("http");
 
 export class WebhookNest extends Nest {
 
-    protected path: string;
-    protected httpMethod: string;
-    protected handleRequest: any;
-    protected ui: WebhookInterface;
-    protected im: InterfaceManager;
+    protected _path: string;
+    protected _httpMethod: string;
+    protected _handleRequest: any;
+    protected _ui: WebhookInterface;
+    protected _im: InterfaceManager;
     protected _holdResponse: boolean;
 
     /**
@@ -26,13 +26,13 @@ export class WebhookNest extends Nest {
     constructor(e: Environment, path: string|string[], httpMethod: string, handleRequest?: any) {
         super(e, path.toString());
         let wh = this;
-        wh.setPath(path);
-        wh.setHttpMethod(httpMethod);
+        wh.path = path;
+        wh.httpMethod = httpMethod;
         if (handleRequest) {
-            wh.setCustomHandleRequest(handleRequest);
+            wh.customHandleRequest = handleRequest;
         }
 
-        this.im = new InterfaceManager(this.e, this);
+        this._im = new InterfaceManager(this.e, this);
         this._holdResponse = false;
     }
 
@@ -77,7 +77,7 @@ export class WebhookNest extends Nest {
         } else if (job.responseSent === true) {
             wn.e.log(0, `Nest responses was already sent. Skipping.`, wn);
         } else {
-            wn.e.server.sendHookResponse(false, job, wn, job.request, job.response, wn.getCustomHandleRequest(), message);
+            wn.e.server.sendHookResponse(false, job, wn, job.request, job.response, wn.customHandleRequest, message);
         }
     }
 
@@ -85,19 +85,19 @@ export class WebhookNest extends Nest {
      * Get the custom handleRequest function.
      * @returns {any}
      */
-    public getCustomHandleRequest() {
-        return this.handleRequest;
+    public get customHandleRequest() {
+        return this._handleRequest;
     }
 
     /**
      * Set the custom handlerRequest function.
      * @param handleRequest
      */
-    protected setCustomHandleRequest(handleRequest) {
+    public set customHandleRequest(handleRequest) {
         if (handleRequest !== null && typeof handleRequest !== "function") {
             throw("Custom handleRequest must be a function.");
         }
-        this.handleRequest = handleRequest;
+        this._handleRequest = handleRequest;
     }
 
     /**
@@ -105,7 +105,7 @@ export class WebhookNest extends Nest {
      * Create directory structures with an array: ["one", "two"] results in "/one/two".
      * @param path
      */
-    public setPath(path: any) {
+    public set path(path: any) {
         let wh = this;
         let modifiedPath = "";
         if (typeof(path) === "string") {
@@ -120,36 +120,36 @@ export class WebhookNest extends Nest {
         if (modifiedPath.charAt(0) !== "/") {
             modifiedPath = "/" + modifiedPath;
         }
-        wh.path = modifiedPath;
+        wh._path = modifiedPath;
     }
 
     /**
      * Get the _path.
      * @returns {string}
      */
-    public getPath() {
-        return this.path;
+    public get path() {
+        return this._path;
     }
 
     /**
      * Get the HTTP method.
      * @returns {string}
      */
-    public getHttpMethod() {
-        return this.httpMethod;
+    public get httpMethod() {
+        return this._httpMethod;
     }
 
     /**
      * Set the HTTP method.
      * @param httpMethod
      */
-    protected setHttpMethod(httpMethod) {
+    public set httpMethod(httpMethod) {
         let lower = httpMethod.toLowerCase();
         let acceptableMethods = [ "get", "post", "put", "head", "delete", "options", "trace", "copy", "lock", "mkcol", "move", "purge", "propfind", "proppatch", "unlock", "report", "mkactivity", "checkout", "merge", "m-search", "notify", "subscribe", "unsubscribe", "patch", "search", "connect", "all" ];
         if (acceptableMethods.indexOf(lower) === -1) {
             throw `HTTP method "${lower}" is not an acceptable value. ${JSON.stringify(acceptableMethods)}`;
         }
-        this.httpMethod = lower;
+        this._httpMethod = lower;
     }
 
     /**
@@ -185,8 +185,8 @@ export class WebhookNest extends Nest {
      * Get the interface manager. Used to manage interface instances for session handling.
      * @returns {InterfaceManager}
      */
-    public getInterfaceManager() {
-        return this.im;
+    public get interfaceManager() {
+        return this._im;
     }
 
 }

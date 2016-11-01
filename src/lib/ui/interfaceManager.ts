@@ -26,13 +26,13 @@ const   _           = require("lodash"),
 export class InterfaceManager {
 
     protected e: Environment;
-    protected nest: WebhookNest;
-    protected fields: FieldOptions[];
-    protected steps: Step[];
-    protected interfaceInstances: WebhookInterface[];
-    protected handleRequest: any;
-    protected metadata: InterfaceMetadata;
-    protected checkpointNest: FolderNest;
+    protected _nest: WebhookNest;
+    protected _fields: FieldOptions[];
+    protected _steps: Step[];
+    protected _interfaceInstances: WebhookInterface[];
+    protected _handleRequest: any;
+    protected _metadata: InterfaceMetadata;
+    protected _checkpointNest: FolderNest;
 
     /**
      *
@@ -42,25 +42,25 @@ export class InterfaceManager {
      */
     constructor(e: Environment, webhookNest: WebhookNest, handleRequest?: any) {
         this.e = e;
-        this.nest = webhookNest;
-        this.interfaceInstances = [];
-        this.fields = [];
-        this.steps = [];
-        this.handleRequest = handleRequest;
+        this._nest = webhookNest;
+        this._interfaceInstances = [];
+        this._fields = [];
+        this._steps = [];
+        this._handleRequest = handleRequest;
         this.initMetadata();
     }
 
     protected initMetadata() {
-        this.metadata = {
+        this._metadata = {
             interfaceProperties: []
         } as InterfaceMetadata;
     }
 
-    public getMetadata() {
-        return this.metadata;
+    public get metadata() {
+        return this._metadata;
     }
 
-    public setMetadata(metadata: InterfaceMetadata) {
+    public set metadata(metadata: InterfaceMetadata) {
 
         let clonedMetadata = clone(metadata);
 
@@ -68,14 +68,14 @@ export class InterfaceManager {
         } else {
             clonedMetadata.interfaceProperties = [];
         }
-        this.metadata = clonedMetadata;
+        this._metadata = clonedMetadata;
     }
 
-    public setDescription(description: string) {
+    public set description(description: string) {
         this.metadata.description = description;
     }
 
-    public setTooltip(tooltip: string) {
+    public set tooltip(tooltip: string) {
         this.metadata.tooltip = tooltip;
     }
 
@@ -83,32 +83,44 @@ export class InterfaceManager {
         this.metadata.interfaceProperties.push(property);
     }
 
-    public setInterfaceProperties(properties: InterfaceProperty[]) {
+    public set interfaceProperties(properties: InterfaceProperty[]) {
         this.metadata.interfaceProperties = properties;
+    }
+
+    public get interfaceInstances() {
+        return this._interfaceInstances;
+    }
+
+    public get checkpointNest() {
+        return this._checkpointNest;
+    }
+
+    public set checkpointNest(nest: FolderNest) {
+        this._checkpointNest = nest;
     }
 
     /**
      * Get the custom handleRequest function.
      * @returns {any}
      */
-    public getCustomHandleRequest() {
-        return this.handleRequest;
+    public get customHandleRequest() {
+        return this._handleRequest;
     }
 
     /**
      * Get the nest
      * @returns {WebhookNest}
      */
-    public getNest() {
-        return this.nest;
+    public get nest() {
+        return this._nest;
     }
 
     /**
      * Get the nest _path.
      * @returns {string}
      */
-    public getPath() {
-        return this.nest.getPath();
+    public get path() {
+        return this.nest.path;
     }
 
     /**
@@ -132,8 +144,8 @@ export class InterfaceManager {
      * Gets an array of interface fields.
      * @returns {FieldOptions[]}
      */
-    public getFields() {
-        return this.fields;
+    public get fields() {
+        return this._fields;
     }
 
     /**
@@ -168,8 +180,8 @@ export class InterfaceManager {
      * Get an array of user interface steps.
      * @returns {Step[]}
      */
-    public getSteps() {
-        return this.steps;
+    public get steps() {
+        return this._steps;
     }
 
     protected addInterfaceInstance(wi: WebhookInterface) {
@@ -188,13 +200,13 @@ export class InterfaceManager {
     protected removeInterfaceInstance(wi: WebhookInterface) {
         let im = this;
         let removeSuccess = _.remove(this.interfaceInstances, (i) => {
-            return i.getSessionId() === wi.getSessionId();
+            return i.getSessionId() === wi.sessionId;
         });
 
         if (removeSuccess) {
-            im.e.log(0, `Removed webhook interface session ${wi.getSessionId()}`, im);
+            im.e.log(0, `Removed webhook interface session ${wi.sessionId}`, im);
         } else {
-            im.e.log(3, `Unable to remove webhook interface session ${wi.getSessionId()}`, im);
+            im.e.log(3, `Unable to remove webhook interface session ${wi.sessionId}`, im);
         }
     };
 
@@ -215,10 +227,10 @@ export class InterfaceManager {
             // Make new interface if not found
             wi = new WebhookInterface(im.e, im.nest);
 
-            wi.setFields(im.getFields());
-            wi.setSteps(im.getSteps());
-            wi.setMetadata(im.getMetadata());
-            wi.setCheckpointNest(im.checkpointNest);
+            wi.fields = im.fields;
+            wi.steps = im.steps;
+            wi.metadata = im.metadata;
+            wi.checkpointNest = im.checkpointNest;
 
             if (im.interfaceInstances.length === 0) {
                 im.e.addWebhookInterface(this);

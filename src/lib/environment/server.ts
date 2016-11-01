@@ -105,13 +105,13 @@ export class Server {
         let s = this;
         let e = s.e;
 
-        let httpMethod = nest.getHttpMethod();
-        let hook_path = s.config.hooks_prefix + nest.getPath();
+        let httpMethod = nest.httpMethod;
+        let hook_path = s.config.hooks_prefix + nest.path;
         let hook_ui_path;
-        let im = nest.getInterfaceManager();
+        let im = nest.interfaceManager;
 
         let wi = im.getInterface();
-        hook_ui_path = s.config.hooks_ui_prefix + im.getPath();
+        hook_ui_path = s.config.hooks_ui_prefix + im.path;
 
         s.e.log(1, `Watching webhook ${httpMethod.toUpperCase()} ${hook_path}`, s);
 
@@ -126,7 +126,7 @@ export class Server {
 
         s.server[httpMethod](hook_path, s.upload.any(), function (req, res) {
 
-            let customHandler = nest.getCustomHandleRequest();
+            let customHandler = nest.customHandleRequest;
 
              s.handleHookRequest(nest, req, res, customHandler);
         });
@@ -188,10 +188,10 @@ export class Server {
      */
     public addWebhookInterface(im: InterfaceManager) {
         let s = this;
-        let nest = im.getNest();
+        let nest = im.nest;
 
-        let hook_path = s.config.hooks_prefix + nest.getPath();
-        let hook_ui_path = s.config.hooks_ui_prefix + im.getPath();
+        let hook_path = s.config.hooks_prefix + nest.path;
+        let hook_ui_path = s.config.hooks_ui_prefix + im.path;
 
         s.e.log(1, `Watching webhook interface GET ${hook_ui_path}`, s);
 
@@ -205,7 +205,7 @@ export class Server {
 
         s.server.get(hook_ui_path,  function (req, res) {
 
-            let customHandler = im.getCustomHandleRequest();
+            let customHandler = im.customHandleRequest;
 
             s.handleHookInterfaceRequest(im, req, res, customHandler);
         });

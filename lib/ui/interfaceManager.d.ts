@@ -21,13 +21,13 @@ import { FolderNest } from "../nest/folderNest";
  */
 export declare class InterfaceManager {
     protected e: Environment;
-    protected nest: WebhookNest;
-    protected fields: FieldOptions[];
-    protected steps: Step[];
-    protected interfaceInstances: WebhookInterface[];
-    protected handleRequest: any;
-    protected metadata: InterfaceMetadata;
-    protected checkpointNest: FolderNest;
+    protected _nest: WebhookNest;
+    protected _fields: FieldOptions[];
+    protected _steps: Step[];
+    protected _interfaceInstances: WebhookInterface[];
+    protected _handleRequest: any;
+    protected _metadata: InterfaceMetadata;
+    protected _checkpointNest: FolderNest;
     /**
      *
      * @param e
@@ -36,27 +36,28 @@ export declare class InterfaceManager {
      */
     constructor(e: Environment, webhookNest: WebhookNest, handleRequest?: any);
     protected initMetadata(): void;
-    getMetadata(): InterfaceMetadata;
-    setMetadata(metadata: InterfaceMetadata): void;
-    setDescription(description: string): void;
-    setTooltip(tooltip: string): void;
+    metadata: InterfaceMetadata;
+    description: string;
+    tooltip: string;
     addInterfaceProperty(property: InterfaceProperty): void;
-    setInterfaceProperties(properties: InterfaceProperty[]): void;
+    interfaceProperties: InterfaceProperty[];
+    readonly interfaceInstances: WebhookInterface[];
+    checkpointNest: FolderNest;
     /**
      * Get the custom handleRequest function.
      * @returns {any}
      */
-    getCustomHandleRequest(): any;
+    readonly customHandleRequest: any;
     /**
      * Get the nest
      * @returns {WebhookNest}
      */
-    getNest(): WebhookNest;
+    readonly nest: WebhookNest;
     /**
      * Get the nest _path.
      * @returns {string}
      */
-    getPath(): string;
+    readonly path: any;
     /**
      * Adds an interface field to the interface.
      * @param {FieldOptions} field
@@ -66,7 +67,7 @@ export declare class InterfaceManager {
      * Gets an array of interface fields.
      * @returns {FieldOptions[]}
      */
-    getFields(): FieldOptions[];
+    readonly fields: FieldOptions[];
     /**
      * Adds a user interface step.
      * @param stepName
@@ -92,7 +93,7 @@ export declare class InterfaceManager {
      * Get an array of user interface steps.
      * @returns {Step[]}
      */
-    getSteps(): Step[];
+    readonly steps: Step[];
     protected addInterfaceInstance(wi: WebhookInterface): void;
     protected removeInterfaceInstance(wi: WebhookInterface): void;
     /**

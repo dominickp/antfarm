@@ -33,13 +33,13 @@ const   shortid     = require("shortid"),
  */
 export class WebhookInterface {
 
-    protected fields: FieldOptions[];
+    protected _fields: FieldOptions[];
     protected e: Environment;
-    protected nest: WebhookNest;
-    protected checkpointNest: FolderNest;
-    protected steps: Step[];
-    protected sessionId: string;
-    protected metadata: InterfaceMetadata;
+    protected _nest: WebhookNest;
+    protected _checkpointNest: FolderNest;
+    protected _steps: Step[];
+    protected _sessionId: string;
+    protected _metadata: InterfaceMetadata;
 
     /**
      * Constructor
@@ -48,10 +48,10 @@ export class WebhookInterface {
      */
     constructor(e: Environment, nest: WebhookNest) {
         this.e = e;
-        this.nest = nest;
-        this.sessionId = shortid.generate();
-        this.steps = [];
-        this.fields = [];
+        this._nest = nest;
+        this._sessionId = shortid.generate();
+        this._steps = [];
+        this._fields = [];
         this.initMetadata();
     }
 
@@ -61,29 +61,29 @@ export class WebhookInterface {
         } as InterfaceMetadata;
     }
 
-    public getMetadata() {
-        return this.metadata;
+    public get metadata() {
+        return this._metadata;
     }
 
     /**
      * Sets a cloned instance of metadata.
      * @param metadata
      */
-    public setMetadata(metadata: InterfaceMetadata) {
+    public set metadata(metadata: InterfaceMetadata) {
         let clonedMetadata = clone(metadata);
         // let clonedMetadata = _.clone(metadata) as InterfaceMetadata;
         if (_.has(clonedMetadata, "interfaceProperties") && clonedMetadata.interfaceProperties.constructor === Array) {
         } else {
             clonedMetadata.interfaceProperties = [];
         }
-        this.metadata = clonedMetadata;
+        this._metadata = clonedMetadata;
     }
 
-    public setDescription(description: string) {
+    public set description(description: string) {
         this.metadata.description = description;
     }
 
-    public setTooltip(tooltip: string) {
+    public set tooltip(tooltip: string) {
         this.metadata.tooltip = tooltip;
     }
 
@@ -91,7 +91,7 @@ export class WebhookInterface {
         this.metadata.interfaceProperties.push(clone(property));
     }
 
-    public setInterfaceProperties(properties: InterfaceProperty[]) {
+    public set interfaceProperties(properties: InterfaceProperty[]) {
         this.metadata.interfaceProperties = clone(properties);
     }
 
@@ -99,16 +99,16 @@ export class WebhookInterface {
      * Return the session id. Used to match to interface instanced within the manager.
      * @returns {string}
      */
-    public getSessionId() {
-        return this.sessionId;
+    public get sessionId() {
+        return this._sessionId;
     }
 
     /**
      * Get the nest
      * @returns {WebhookNest}
      */
-    public getNest() {
-        return this.nest;
+    public get nest() {
+        return this._nest;
     }
 
     /**
@@ -157,16 +157,16 @@ export class WebhookInterface {
      * Overwrites fields with a clone.
      * @param fields
      */
-    public setFields(fields: FieldOptions[]) {
-        this.fields = clone(fields);
+    public set fields(fields: FieldOptions[]) {
+        this._fields = clone(fields);
     }
 
     /**
      * Get an array of all of the fields.
      * @returns {FieldOptions[]}
      */
-    public getFields() {
-        return this.fields;
+    public get fields() {
+        return this._fields;
     }
 
     /**
@@ -190,8 +190,8 @@ export class WebhookInterface {
             sessionId: wi.sessionId,
             fields: wi.fields,
             heldJobs: jobsArray,
-            steps: wi.getSteps(),
-            metadata: wi.getMetadata()
+            steps: wi.steps,
+            metadata: wi.metadata
         };
     }
 
@@ -212,8 +212,12 @@ export class WebhookInterface {
      * Sets the checkpoint nest.
      * @param nest
      */
-    public setCheckpointNest(nest: FolderNest) {
-        this.checkpointNest = nest;
+    public set checkpointNest(nest: FolderNest) {
+        this._checkpointNest = nest;
+    }
+
+    public get checkpointNest() {
+        return this._checkpointNest;
     }
 
     /**
@@ -235,7 +239,7 @@ export class WebhookInterface {
      */
     public completeStep(step: Step): boolean {
         let wi = this;
-        let steps = wi.getSteps();
+        let steps = wi.steps;
         let matchedIndex = _.findIndex(steps, (s) => { return s.name === step.name; });
         if (steps[matchedIndex]) {
             wi.steps.splice(matchedIndex, 1);
@@ -257,15 +261,15 @@ export class WebhookInterface {
      * Get an array of instance steps.
      * @returns {Step[]}
      */
-    public getSteps() {
-        return this.steps;
+    public get steps() {
+        return this._steps;
     }
 
     /**
      * Overwrite the instant steps.
      * @param steps
      */
-    public setSteps(steps: any) {
-        this.steps = clone(steps);
+    public set steps(steps: any) {
+        this._steps = clone(steps);
     }
 }

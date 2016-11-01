@@ -4,11 +4,11 @@ import { WebhookJob } from "../job/webhookJob";
 import { WebhookInterface } from "../ui/webhookInterface";
 import { InterfaceManager } from "../ui/interfaceManager";
 export declare class WebhookNest extends Nest {
-    protected path: string;
-    protected httpMethod: string;
-    protected handleRequest: any;
-    protected ui: WebhookInterface;
-    protected im: InterfaceManager;
+    protected _path: string;
+    protected _httpMethod: string;
+    protected _handleRequest: any;
+    protected _ui: WebhookInterface;
+    protected _im: InterfaceManager;
     protected _holdResponse: boolean;
     /**
      * Webhook Nest constructor
@@ -50,33 +50,30 @@ export declare class WebhookNest extends Nest {
      * Get the custom handleRequest function.
      * @returns {any}
      */
-    getCustomHandleRequest(): any;
     /**
      * Set the custom handlerRequest function.
      * @param handleRequest
      */
-    protected setCustomHandleRequest(handleRequest: any): void;
+    customHandleRequest: any;
+    /**
+     * Get the _path.
+     * @returns {string}
+     */
     /**
      * Set the _path as a string or a string array. All parts are URI encoded.
      * Create directory structures with an array: ["one", "two"] results in "/one/two".
      * @param path
      */
-    setPath(path: any): void;
-    /**
-     * Get the _path.
-     * @returns {string}
-     */
-    getPath(): string;
+    path: any;
     /**
      * Get the HTTP method.
      * @returns {string}
      */
-    getHttpMethod(): string;
     /**
      * Set the HTTP method.
      * @param httpMethod
      */
-    protected setHttpMethod(httpMethod: any): void;
+    httpMethod: string;
     /**
      * Get the _name.
      * @returns {string}
@@ -99,5 +96,5 @@ export declare class WebhookNest extends Nest {
      * Get the interface manager. Used to manage interface instances for session handling.
      * @returns {InterfaceManager}
      */
-    getInterfaceManager(): InterfaceManager;
+    readonly interfaceManager: InterfaceManager;
 }

@@ -27,13 +27,13 @@ import { FolderJob } from "../job/folderJob";
  * ```
  */
 export declare class WebhookInterface {
-    protected fields: FieldOptions[];
+    protected _fields: FieldOptions[];
     protected e: Environment;
-    protected nest: WebhookNest;
-    protected checkpointNest: FolderNest;
-    protected steps: Step[];
-    protected sessionId: string;
-    protected metadata: InterfaceMetadata;
+    protected _nest: WebhookNest;
+    protected _checkpointNest: FolderNest;
+    protected _steps: Step[];
+    protected _sessionId: string;
+    protected _metadata: InterfaceMetadata;
     /**
      * Constructor
      * @param {Environment} e
@@ -41,26 +41,25 @@ export declare class WebhookInterface {
      */
     constructor(e: Environment, nest: WebhookNest);
     protected initMetadata(): void;
-    getMetadata(): InterfaceMetadata;
     /**
      * Sets a cloned instance of metadata.
      * @param metadata
      */
-    setMetadata(metadata: InterfaceMetadata): void;
-    setDescription(description: string): void;
-    setTooltip(tooltip: string): void;
+    metadata: InterfaceMetadata;
+    description: string;
+    tooltip: string;
     addInterfaceProperty(property: InterfaceProperty): void;
-    setInterfaceProperties(properties: InterfaceProperty[]): void;
+    interfaceProperties: InterfaceProperty[];
     /**
      * Return the session id. Used to match to interface instanced within the manager.
      * @returns {string}
      */
-    getSessionId(): string;
+    readonly sessionId: string;
     /**
      * Get the nest
      * @returns {WebhookNest}
      */
-    getNest(): WebhookNest;
+    readonly nest: WebhookNest;
     /**
      * Adds an interface field to the interface.
      * @param {FieldOptions} field
@@ -88,15 +87,14 @@ export declare class WebhookInterface {
      */
     getField(fieldId: string): any;
     /**
-     * Overwrites fields with a clone.
-     * @param fields
-     */
-    setFields(fields: FieldOptions[]): void;
-    /**
      * Get an array of all of the fields.
      * @returns {FieldOptions[]}
      */
-    getFields(): FieldOptions[];
+    /**
+     * Overwrites fields with a clone.
+     * @param fields
+     */
+    fields: FieldOptions[];
     /**
      * Returns the interface for transport.
      * @returns {{fields: Array}}
@@ -105,7 +103,7 @@ export declare class WebhookInterface {
         sessionId: string;
         fields: FieldOptions[];
         heldJobs: any[];
-        steps: Step[];
+        steps: any;
         metadata: InterfaceMetadata;
     };
     /**
@@ -117,7 +115,7 @@ export declare class WebhookInterface {
      * Sets the checkpoint nest.
      * @param nest
      */
-    setCheckpointNest(nest: FolderNest): void;
+    checkpointNest: FolderNest;
     /**
      * Adds a user interface step
      * @param stepName
@@ -138,10 +136,9 @@ export declare class WebhookInterface {
      * Get an array of instance steps.
      * @returns {Step[]}
      */
-    getSteps(): Step[];
     /**
      * Overwrite the instant steps.
      * @param steps
      */
-    setSteps(steps: any): void;
+    steps: any;
 }
