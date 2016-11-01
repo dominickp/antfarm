@@ -36,6 +36,19 @@ tunnel.run((job, nest) => {
     
 ```
 
+## Documentation warning
+During late October, much of antfarm was refactor to use TypeScript's accessors. The documentation may be out of date.
+
+```js
+// Old style
+job.setName("myFile.pdf");
+console.log(job.getName());
+
+// New style, using TypeScript accessors
+job.name = "myFile.pdf";
+console.log(job.name);
+```
+
 ## Wiki
 https://github.com/dominickp/antfarm/wiki
 

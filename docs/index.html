@@ -95,6 +95,16 @@ tunnel.run(<span class="hljs-function">(<span class="hljs-params">job, nest</spa
     }
 });
 </code></pre>
+				<h2 id="documentation-warning">Documentation warning</h2>
+				<p>During late October, much of antfarm was refactor to use TypeScript&#39;s accessors. The documentation may be out of date.</p>
+				<pre><code class="lang-js"><span class="hljs-comment">// Old style</span>
+job.setName(<span class="hljs-string">"myFile.pdf"</span>);
+<span class="hljs-built_in">console</span>.log(job.getName());
+
+<span class="hljs-comment">// New style, using TypeScript accessors</span>
+job.name = <span class="hljs-string">"myFile.pdf"</span>;
+<span class="hljs-built_in">console</span>.log(job.name);
+</code></pre>
 				<h2 id="wiki">Wiki</h2>
 				<p><a href="https://github.com/dominickp/antfarm/wiki">https://github.com/dominickp/antfarm/wiki</a></p>
 				<h2 id="api-reference">API Reference</h2>
