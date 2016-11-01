@@ -232,17 +232,16 @@ export class Server {
 
         let ui = im.getInterface(sessionId);
 
-        if (ui.getSessionId() === sessionId) {
+        if (ui.sessionId === sessionId) {
             // Fill in default values
-            let fields = ui.getFields();
-            fields.forEach(field => {
+            ui.fields.forEach(field => {
                 if (field.id in params && params[field.id] !== "undefined") {
                     field.value = params[field.id];
                 }
             });
 
             // Do steps
-            async.each(ui.getSteps(), (step, cb) => {
+            async.each(ui.steps, (step, cb) => {
                 s.e.log(0, `Running UI step "${step.name}".`, s);
                 step.callback(job, ui, step, () => {
                     cb();
