@@ -102,7 +102,7 @@ export class WebhookJob extends Job {
      */
     public getFormDataFiles() {
         let wh = this;
-        let files = wh.request._files;
+        let files = wh.request.files;
         let jobs = [];
 
         if (files) {
