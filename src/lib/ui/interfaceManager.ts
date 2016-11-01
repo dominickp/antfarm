@@ -199,8 +199,8 @@ export class InterfaceManager {
 
     protected removeInterfaceInstance(wi: WebhookInterface) {
         let im = this;
-        let removeSuccess = _.remove(this.interfaceInstances, (i) => {
-            return i.getSessionId() === wi.sessionId;
+        let removeSuccess = _.remove(im.interfaceInstances, (i) => {
+            return i.sessionId === wi.sessionId;
         });
 
         if (removeSuccess) {
@@ -220,7 +220,7 @@ export class InterfaceManager {
         let wi;
         // Find in this.interfaceInstances
         if (sessionId) {
-            wi = _.find(im.interfaceInstances, function(i) { return i.getSessionId() === sessionId; });
+            wi = _.find(im.interfaceInstances, function(i) { return i.sessionId === sessionId; });
         }
 
         if (!wi) {
@@ -239,7 +239,7 @@ export class InterfaceManager {
             }
             im.addInterfaceInstance(wi);
         } else {
-            im.e.log(0, `Restored interface session ${wi.getSessionId()}.`, im);
+            im.e.log(0, `Restored interface session ${wi.sessionId}.`, im);
         }
 
         return wi;

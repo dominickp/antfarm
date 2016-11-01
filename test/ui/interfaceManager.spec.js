@@ -1,4 +1,5 @@
 var should = require("chai").should();
+var expect = require("chai").should;
 var Antfarm = require("./../../lib/antfarm");
 var tmp = require('tmp');
 var fs = require("fs");
@@ -11,7 +12,7 @@ describe('Interface Manager', function() {
 
     var options = {
         log_out_level: "none",
-        port: 8083
+        port: 53782
     };
 
 
@@ -25,35 +26,33 @@ describe('Interface Manager', function() {
         im = webhook.interfaceManager;
     });
 
-    it('should _start with no metadata', function () {
-        var metadata = im.getMetadata();
-        metadata.interfaceProperties.should.be.empty;
+    it('should start with no metadata', function () {
+        im.metadata.interfaceProperties.should.be.empty;
     });
 
     describe('Fields', function() {
-        it('should _start with no fields', function () {
-            var fields = im.getFields();
-            fields.length.should.equal(0);
+        it('should start with no fields', function () {
+            im.fields.length.should.equal(0);
         });
         it('should be able to add fields', function () {
             im.addField({id:"id1", name:"name1", type:"text"});
-            im.getFields().length.should.equal(1);
+            im.fields.length.should.equal(1);
             im.addField({id:"id2", name:"name2", type:"text"});
-            im.getFields().length.should.equal(2);
+            im.fields.length.should.equal(2);
             im.addField({id:"id3", name:"name3", type:"text"});
-            im.getFields().length.should.equal(3);
+            im.fields.length.should.equal(3);
         });
         it('should not add fields with duplicate ids', function () {
             im.addField({id:"id", name:"name1", type:"text"});
             im.addField({id:"id", name:"name2", type:"text"}); // Should fail to add
             im.addField({id:"other_id", name:"name3", type:"text"});
-            im.getFields().length.should.equal(2);
+            im.fields.length.should.equal(2);
         });
     });
 
     describe('Steps', function() {
         it('should _start with no steps', function () {
-            var steps = im.getSteps();
+            var steps = im.steps;
             steps.length.should.equal(0);
         });
         it('should be able to add steps', function () {
@@ -61,7 +60,7 @@ describe('Interface Manager', function() {
                 // Do nothing
                 done();
             });
-            im.getSteps().length.should.equal(1);
+            im.steps.length.should.equal(1);
         });
     });
 
@@ -71,21 +70,21 @@ describe('Interface Manager', function() {
             ui = im.getInterface();
         });
         it('should return an interface instance', function () {
-            ui.getSessionId().should.not.be.empty;
+            ui.sessionId.should.not.be.empty;
         });
         it('should return a new interface instance if no session is found', function () {
             var newUi = im.getInterface();
-            newUi.getSessionId().should.not.be.empty;
-            ui.getSessionId().should.not.be.empty;
-            ui.getSessionId().should.not.be.equal(newUi.getSessionId());
+            newUi.sessionId.should.not.be.empty;
+            ui.sessionId.should.not.be.empty;
+            ui.sessionId.should.not.be.equal(newUi.sessionId);
         });
         it('should return the same interface instance if the session is found', function () {
             ui = im.getInterface();
-            var sameUI = im.getInterface(ui.getSessionId());
+            var sameUI = im.getInterface(ui.sessionId);
 
-            sameUI.getSessionId().should.not.be.empty;
-            ui.getSessionId().should.not.be.empty;
-            sameUI.getSessionId().should.be.equal(ui.getSessionId());
+            sameUI.sessionId.should.not.be.empty;
+            ui.sessionId.should.not.be.empty;
+            sameUI.sessionId.should.be.equal(ui.sessionId);
         });
     });
 
