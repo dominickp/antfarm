@@ -71,7 +71,7 @@ export class FileJob extends Job {
      * @param filename
      */
     public set name(filename: string) {
-        this.createLifeEvent("set _name", this.name, filename);
+        this.createLifeEvent("set name", this.name, filename);
         this.file.name = filename;
     }
 

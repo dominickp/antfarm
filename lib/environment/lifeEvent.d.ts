@@ -7,5 +7,9 @@ export declare class LifeEvent {
     protected _start: string;
     protected _finish: string;
     constructor(verb: any, start: any, finish: any);
+    date: Date;
+    verb: string;
+    start: string;
+    finish: string;
     readonly statement: string;
 }

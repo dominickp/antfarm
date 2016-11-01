@@ -16,9 +16,41 @@ export class LifeEvent {
         le._finish = finish;
     }
 
+    get date() {
+        return this._date;
+    }
+
+    set date(date: Date) {
+        this._date = date;
+    }
+
+    get verb() {
+        return this._verb;
+    }
+
+    set verb(verb: string) {
+        this._verb = verb;
+    }
+
+    get start() {
+        return this._start;
+    }
+
+    set start(start: string) {
+        this._start = start;
+    }
+
+    get finish() {
+        return this._finish;
+    }
+
+    set finish(finish: string) {
+        this._finish = finish;
+    }
+
     public get statement() {
         let le = this;
-        return `${le._verb} from ${le._start} to ${le._finish}`;
+        return `${le.verb} from ${le.start} to ${le.finish}`;
     };
 
 }
