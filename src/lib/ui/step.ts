@@ -27,8 +27,20 @@ export class Step {
         this._failure = message;
     }
 
+    public get failure() {
+        return this._failure;
+    }
+
     public set callback(callback: any) {
         this._callback = callback;
+    }
+
+    public get callback() {
+        return this._callback;
+    }
+
+    public get name() {
+        return this._name;
     }
 
     public set name(name: string) {
@@ -47,5 +59,9 @@ export class Step {
         } else {
             s._complete = false;
         }
+    }
+
+    public get complete() {
+        return this._complete;
     }
 }
