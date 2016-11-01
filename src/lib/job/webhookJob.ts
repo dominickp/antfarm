@@ -107,7 +107,7 @@ export class WebhookJob extends Job {
 
         if (files) {
             files.forEach(function(file){
-                let job = new FileJob(wh.e, file._path);
+                let job = new FileJob(wh.e, file.path);
                 job.rename(file.originalname);
                 jobs.push(job);
             });
