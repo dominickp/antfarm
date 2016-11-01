@@ -37,7 +37,7 @@ tunnel.run((job, nest) => {
 ```
 
 ## Documentation warning
-During late October, much of antfarm was refactor to use TypeScript's accessors. The documentation may be out of date.
+During late October, much of antfarm was refactored to use TypeScript's accessors. The documentation may be out of date.
 
 ```js
 // Old style
