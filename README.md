@@ -27,7 +27,7 @@ let tunnel = af.createTunnel("Simple pdf sorting workflow");
 tunnel.watch(hotfolder_a);
 
 tunnel.run((job, nest) => {
-    if(job.getExtension() == "pdf"){
+    if(job.extension == "pdf"){
         job.move(pdf_folder);
     } else {
         job.move(other_folder);
