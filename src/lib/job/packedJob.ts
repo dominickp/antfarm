@@ -125,7 +125,7 @@ export class PackedJob extends FileJob {
 
             if (jobObject._type === "file") {
                 job = new FileJob(pj.e, jobObject._id);
-            } else if (jobObject.type === "folder") {
+            } else if (jobObject._type === "folder") {
                 job = new FolderJob(pj.e, jobObject._id);
             } else {
                 pj.e.log(3, `Cannot unpack this type of job: ${jobObject._type}`, pj);
@@ -136,10 +136,10 @@ export class PackedJob extends FileJob {
         }
 
         // Restore property values
-        job.propertyValues = jobObject.properties;
+        job.propertyValues = jobObject._properties;
 
         // Restore lifecycle
-        job.lifeCycle = jobObject.lifeCycle;
+        job.lifeCycle = jobObject._lifeCycle;
 
         return job;
     }

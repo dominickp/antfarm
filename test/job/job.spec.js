@@ -55,7 +55,6 @@ describe('Job', function() {
     it('should get the job name', function (done) {
         var job_name = "MyJobFile_001.pdf";
         tunnel.run(function(job){
-            console.log("job name", job.name);
             expect(job.name).not.to.be.undefined;
             job.name.should.equal(job_name);
             done();
@@ -199,15 +198,13 @@ describe('Job', function() {
                 job.setPropertyValue("prop3", prop3);
                 job.pack(function(packJob){
                     packJob.move(packHolderNest);
-                    console.log("moved");
                 });
             });
 
             unpackTunnel.run(function(packedJob){
-                console.log("got in other tunnel");
+                expect(packedJob.name).to.not.be.undefined;
                 packedJob.name.should.equal(job_name+".antpack.zip");
                 packedJob.unpack(function(origJob){
-                    console.log("unpacked orig");
                     origJob.name.should.equal(job_name);
                     origJob.extension.should.equal("pdf");
                     origJob.getPropertyValue("prop1").should.equal(prop1);
