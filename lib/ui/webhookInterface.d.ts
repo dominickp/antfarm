@@ -103,7 +103,7 @@ export declare class WebhookInterface {
         sessionId: string;
         fields: FieldOptions[];
         heldJobs: any[];
-        steps: any;
+        steps: any[];
         metadata: InterfaceMetadata;
     };
     /**
@@ -141,4 +141,5 @@ export declare class WebhookInterface {
      * @param steps
      */
     steps: any;
+    getStepsTransport(): any[];
 }

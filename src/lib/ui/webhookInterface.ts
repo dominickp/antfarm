@@ -190,7 +190,7 @@ export class WebhookInterface {
             sessionId: wi.sessionId,
             fields: wi.fields,
             heldJobs: jobsArray,
-            steps: wi.steps,
+            steps: wi.getStepsTransport(),
             metadata: wi.metadata
         };
     }
@@ -263,6 +263,14 @@ export class WebhookInterface {
      */
     public get steps() {
         return this._steps;
+    }
+
+    public getStepsTransport () {
+        let steps = [];
+        this.steps.forEach(step => {
+            steps.push({complete: step.complete, name: step.name});
+        });
+        return steps;
     }
 
     /**
