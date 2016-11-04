@@ -83,6 +83,6 @@ describe('FileJob', function() {
 
         });
         triggerNewJob(job_name, hotfolder);
-    });
+    }).timeout(5000);
 });
 

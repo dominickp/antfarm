@@ -121,7 +121,7 @@ describe('FolderJob', function() {
         triggerNewFolderJob(job1.name, job1.files, hotfolder, () => {
             tunnel.watch(hotfolder);
         });
-    });
+    }).timeout(5000);
 
     it('should be transferable to another tunnel', done => {
         var hotfolder = af.createAutoFolderNest(["Move folders in"]);
