@@ -5,10 +5,6 @@ describe('Logger', function() {
 
     var af;
 
-    beforeEach(function() {
-
-    });
-
     describe('Options', function() {
         it('should be able to log to console without a log file', function(done) {
             try {

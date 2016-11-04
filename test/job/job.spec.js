@@ -6,53 +6,35 @@ var tmp = require('tmp');
 var fs = require("fs");
 var path = require('path');
 
-xdescribe('Job', function() {
+describe('Job', function() {
 
-    var options = {
-        log_out_level: "error",
-    };
-    var af, tunnel, tmpDir, nest, temp_file_path;
-
-    before("make temporary log directory", function(done){
-        tmp.dir({ unsafeCleanup: true }, function(err, dir) {
-            if (err) return done(err);
-            setTimeout(function(){
-                options.log_dir = dir;
-                done()
-            }, 300);
-        });
-    });
+    var af, tempFolderCleanupCallback;
 
     beforeEach("make antfarm, tunnel, and nest", function(done) {
-
-        tmp.dir({ unsafeCleanup: true }, function(err, dir) {
-            af = new Antfarm(options);
-            tunnel = af.createTunnel("Test tunnel");
-
-            options.auto_managed_folder_directory = dir;
-
-            if (err) return done(err);
-            tmpDir = dir;
-            setTimeout(function(){
-                nest = af.createFolderNest(dir);
-                tunnel.watch(nest);
-
-                done()
-            }, 100);
+        var tmpDir = tmp.dirSync({unsafeCleanup: true});
+        af = new Antfarm({
+            log_out_level: "error",
+            auto_managed_folder_directory: tmpDir.name
         });
+        tempFolderCleanupCallback = tmpDir.removeCallback;
+        done();
     });
 
     afterEach("remove temporary file", function(){
-        fs.unlinkSync(temp_file_path);
+        tempFolderCleanupCallback();
     });
 
     // Function to add a new job to the watched nest
-    var triggerNewJob = function(name){
-        temp_file_path = tmpDir + path.sep + name;
+    var triggerNewJob = function(name, nest){
+        var temp_file_path = nest.path + path.sep + name;
         fs.writeFileSync(temp_file_path, "Some dummy data.");
     };
 
     it('should get the job name', function (done) {
+        var tunnel = af.createTunnel("Test tunnel");
+        var nest = af.createAutoFolderNest("test-nest");
+        tunnel.watch(nest);
+
         var job_name = "MyJobFile_001.pdf";
         tunnel.run(function(job){
             expect(job.name).not.to.be.undefined;
@@ -60,41 +42,57 @@ xdescribe('Job', function() {
             done();
         });
 
-        triggerNewJob(job_name);
+        triggerNewJob(job_name, nest);
     });
 
     it('should get the job name proper', function (done) {
+        var tunnel = af.createTunnel("Test tunnel");
+        var nest = af.createAutoFolderNest("test-nest");
+        tunnel.watch(nest);
+
         var job_name = "MyJobFile_001.pdf";
         tunnel.run(function(job){
             job.nameProper.should.equal("MyJobFile_001");
             done();
         });
 
-        triggerNewJob(job_name);
+        triggerNewJob(job_name, nest);
     });
 
     it('should get the extension', function (done) {
+        var tunnel = af.createTunnel("Test tunnel");
+        var nest = af.createAutoFolderNest("test-nest");
+        tunnel.watch(nest);
+
         var job_name = "MyJobFile_001.pDf";
         tunnel.run(function(job){
             job.extension.should.equal("pdf");
             done();
         });
 
-        triggerNewJob(job_name);
+        triggerNewJob(job_name, nest);
     });
 
     it('should get the path', function (done) {
+        var tunnel = af.createTunnel("Test tunnel");
+        var nest = af.createAutoFolderNest("test-nest");
+        tunnel.watch(nest);
+
         var job_name = "MyJobFile_001.pdf";
         tunnel.run(function(job){
-            job.path.should.equal(temp_file_path);
+            job.path.should.equal(nest.path + path.sep + job.name);
             job.path.should.not.be.empty;
             done();
         });
 
-        triggerNewJob(job_name);
+        triggerNewJob(job_name, nest);
     });
 
-    xit('should get the size', function (done) {
+    it('should get the size', function (done) {
+        var tunnel = af.createTunnel("Test tunnel");
+        var nest = af.createAutoFolderNest("test-nest");
+        tunnel.watch(nest);
+
         var job_name = "MyJobFile_001.pdf";
         tunnel.run(function(job){
             job.size.should.equal("16 B");
@@ -103,10 +101,14 @@ xdescribe('Job', function() {
             done();
         });
 
-        triggerNewJob(job_name);
+        triggerNewJob(job_name, nest);
     });
 
     it('should be able to write to the log', function (done) {
+        var tunnel = af.createTunnel("Test tunnel");
+        var nest = af.createAutoFolderNest("test-nest");
+        tunnel.watch(nest);
+
         var job_name = "MyJobFile_001.pdf";
         tunnel.run(function(job){
             job.log(0, "Debug message");
@@ -115,10 +117,14 @@ xdescribe('Job', function() {
             done();
         });
 
-        triggerNewJob(job_name);
+        triggerNewJob(job_name, nest);
     });
 
     it('should transfer from one tunnel to another', function (done) {
+        var tunnel = af.createTunnel("Test tunnel");
+        var nest = af.createAutoFolderNest("test-nest");
+        tunnel.watch(nest);
+
         var tunnel2 = af.createTunnel("Another tunnel");
         var job_name = "MyJobFile_001.pdf";
         tunnel.run(function(job){
@@ -129,19 +135,27 @@ xdescribe('Job', function() {
             job.name.should.equal("MyJobFile_001.pdf");
             done();
         });
-        triggerNewJob(job_name);
+        triggerNewJob(job_name, nest);
     });
 
     describe("LifeCycle", function(){
         it('should create a lifecycle', function (done) {
+            var tunnel = af.createTunnel("Test tunnel");
+            var nest = af.createAutoFolderNest("test-nest");
+            tunnel.watch(nest);
+
             var job_name = "MyJobFile_001.pdf";
             tunnel.runSync(function(job){
                 job.lifeCycle.length.should.equal(1);
                 done();
             });
-            triggerNewJob(job_name);
+            triggerNewJob(job_name, nest);
         });
         it('should add lifecycle events', function (done) {
+            var tunnel = af.createTunnel("Test tunnel");
+            var nest = af.createAutoFolderNest("test-nest");
+            tunnel.watch(nest);
+
             var job_name = "MyJobFile_001.pdf";
             tunnel.runSync(function(job){
                 job.name = "Some other _name.pdf";
@@ -150,21 +164,29 @@ xdescribe('Job', function() {
                 job.lifeCycle.length.should.equal(3);
                 done();
             });
-            triggerNewJob(job_name);
+            triggerNewJob(job_name, nest);
         });
     });
 
     describe("properties", function(){
         it('should set and get job property values', function (done) {
+            var tunnel = af.createTunnel("Test tunnel");
+            var nest = af.createAutoFolderNest("test-nest");
+            tunnel.watch(nest);
+
             var job_name = "MyJobFile_001.pdf";
             tunnel.run(function(job){
                 job.setPropertyValue("JobNumber", 123456);
                 job.getPropertyValue("JobNumber").should.equal(123456);
                 done();
             });
-            triggerNewJob(job_name);
+            triggerNewJob(job_name, nest);
         });
         it('should get property types', function (done) {
+            var tunnel = af.createTunnel("Test tunnel");
+            var nest = af.createAutoFolderNest("test-nest");
+            tunnel.watch(nest);
+
             var job_name = "MyJobFile_001.pdf";
             tunnel.run(function(job){
                 job.setPropertyValue("JobNumber", 123456);
@@ -177,7 +199,7 @@ xdescribe('Job', function() {
                 job.getPropertyType("Things").should.equal("array");
                 done();
             });
-            triggerNewJob(job_name);
+            triggerNewJob(job_name, nest);
         });
     });
 
@@ -188,6 +210,10 @@ xdescribe('Job', function() {
         var prop3 = "something";
 
         it('pack jobs into zips', function (done) {
+            var tunnel = af.createTunnel("Test tunnel");
+            var nest = af.createAutoFolderNest("test-nest");
+            tunnel.watch(nest);
+
             var job_name = "MyJobFile_001.pdf";
             tunnel.run(function(job){
                 job.pack(function(packJob){
@@ -196,9 +222,13 @@ xdescribe('Job', function() {
                     done();
                 });
             });
-            triggerNewJob(job_name);
+            triggerNewJob(job_name, nest);
         });
         it('should unpack file jobs and restore properties when moved', function (done) {
+            var tunnel = af.createTunnel("Test tunnel");
+            var nest = af.createAutoFolderNest("test-nest");
+            tunnel.watch(nest);
+
             var unpackTunnel = af.createTunnel("Unpacking tunnel");
             var packHolderNest = af.createAutoFolderNest("job", "packed-holding");
             unpackTunnel.watch(packHolderNest);
@@ -225,9 +255,13 @@ xdescribe('Job', function() {
                     done();
                 });
             });
-            triggerNewJob(job_name);
+            triggerNewJob(job_name, nest);
         });
         it('should unpack file jobs and restore properties when transferred', function (done) {
+            var tunnel = af.createTunnel("Test tunnel");
+            var nest = af.createAutoFolderNest("test-nest");
+            tunnel.watch(nest);
+
             var unpackTunnel = af.createTunnel("Unpacking tunnel");
 
             var job_name = "MyJobFile_008.pdf";
@@ -251,9 +285,8 @@ xdescribe('Job', function() {
                     done();
                 });
             });
-            triggerNewJob(job_name);
+            triggerNewJob(job_name, nest);
         });
     });
-
 });
 

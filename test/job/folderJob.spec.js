@@ -24,13 +24,15 @@ describe('FolderJob', function() {
     });
 
     // Function to add a new job to the watched nest
-    var triggerNewFolderJob = (name, files, nest) => {
+    var triggerNewFolderJob = (name, files, nest, callback) => {
         var tempJobDir = nest.path + path.sep + name;
         fs.mkdirSync(tempJobDir);
 
         files.forEach((file) => {
             fs.writeFileSync(tempJobDir + path.sep + file, "Some dummy data.");
         });
+
+        if (callback) { callback(); }
     };
 
     it('should produce folder jobs with basic properties', done => {
@@ -52,7 +54,6 @@ describe('FolderJob', function() {
         triggerNewFolderJob(job_name, ["this.pdf", "that.pdf"], nest);
     });
 
-
     var assertFolderFiles = (sourceJob, antfarmJob, callback) => {
         expect(antfarmJob.files).not.to.be.undefined;
         antfarmJob.files.length.should.equal(sourceJob.files.length);
@@ -65,29 +66,31 @@ describe('FolderJob', function() {
     it("files within a folder should contain a single file", done =>{
         var tunnel = af.createTunnel("Prop single tunnel");
         var nest = af.createAutoFolderNest("Prop single nest");
-        tunnel.watch(nest);
 
         var job1 = {name: "My job folder 1", files: ["a brochure.pdf"]};
         tunnel.run(job => {
             assertFolderFiles(job1, job, () => { done(); });
         });
-        triggerNewFolderJob(job1.name, job1.files, nest);
+        triggerNewFolderJob(job1.name, job1.files, nest, () => {
+            tunnel.watch(nest);
+        });
     });
 
     it("files within a folder should contain a multiple files", done => {
         var tunnel = af.createTunnel("Prop multiple tunnel");
         var nest = af.createAutoFolderNest("Prop multiple nest");
-        tunnel.watch(nest);
 
         var job1 = {name: "My job folder 3", files: ["1.zip", "2.pdf", "3.png", "4.jpg", "5.rar", "6.tar.gz"]};
         tunnel.run(job => {
             assertFolderFiles(job1, job, () => { done(); });
         });
-        triggerNewFolderJob(job1.name, job1.files, nest);
+
+        triggerNewFolderJob(job1.name, job1.files, nest, () => {
+            tunnel.watch(nest);
+        });
     });
 
     it("should be movable to another nest", done => {
-
         var job1 = {name: "My job folder to be moved", files: ["a brochure.pdf"]};
         var other_nest_name = "Move_folders_out";
         var hotfolder = af.createAutoFolderNest(["Move folders in"]);
@@ -97,11 +100,8 @@ describe('FolderJob', function() {
         var other_tunnel = af.createTunnel("Moving folders");
         other_tunnel.watch(other_folder);
 
-        tunnel.watch(hotfolder);
-
         tunnel.run((job, nest) => {
-            job.move(other_folder, function(){
-            });
+            job.move(other_folder);
         });
 
         other_tunnel.run((movedJob, movedNest) => {
@@ -113,7 +113,9 @@ describe('FolderJob', function() {
             movedJob.name.should.equal(job1.name);
             done();
         });
-        triggerNewFolderJob(job1.name, job1.files, hotfolder);
+        triggerNewFolderJob(job1.name, job1.files, hotfolder, () => {
+            tunnel.watch(hotfolder);
+        });
     });
 
     it('should be transferable to another tunnel', done => {

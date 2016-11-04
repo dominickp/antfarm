@@ -8,48 +8,41 @@ var path = require('path');
 
 describe('Tunnels', function() {
 
-    var af, tunnel, tmpobj, tempFileObj;
+    var af, tempFolderCleanupCallback;
 
-    var options = {
-        log_out_level: "error"
-    };
-
-    before("make temporary log directory", function(done){
-        tmp.dir({ unsafeCleanup: true }, function(err, dir) {
-            if (err) return done(err);
-            setTimeout(function(){
-                options.log_dir = dir;
-                done()
-            }, 300);
+    beforeEach("make antfarm, tunnel, and nest", function(done) {
+        var tmpDir = tmp.dirSync({unsafeCleanup: true});
+        af = new Antfarm({
+            log_out_level: "error",
+            auto_managed_folder_directory: tmpDir.name
         });
+        tempFolderCleanupCallback = tmpDir.removeCallback;
+        done();
     });
 
-    beforeEach(function() {
-        af = new Antfarm(options);
-        tunnel = af.createTunnel("Test tunnel");
-        tmpobj = tmp.dirSync();
-        tempFileObj = tmp.fileSync();
-    });
-
-    afterEach(function() {
-        tmpobj.removeCallback();
-        tempFileObj.removeCallback();
-    });
-
-    after(function(){
-       // mock.restore();
+    afterEach("remove temporary file", function(){
+        tempFolderCleanupCallback();
     });
 
     it('should get the tunnel _name', function () {
-        tunnel.name.should.equal("Test tunnel");
+        var tunnel_name = "Test tunnel 123";
+        var tunnel = af.createTunnel(tunnel_name);
+        var nest = af.createAutoFolderNest("test-nest");
+        tunnel.watch(nest);
+
+        tunnel.name.should.equal(tunnel_name);
     });
 
     it('should add a run callback to the run list', function () {
+        var tunnel = af.createTunnel("Test tunnel");
+
         tunnel.run(function(){});
         tunnel.runList.length.should.equal(1);
     });
 
     it('should add multiple run callbacks to the run list', function () {
+        var tunnel = af.createTunnel("Test tunnel");
+
         tunnel.run(function(){});
         tunnel.run(function(){});
         tunnel.run(function(){});
@@ -57,6 +50,8 @@ describe('Tunnels', function() {
     });
 
     it('should execute a run callback', function () {
+        var tunnel = af.createTunnel("Test tunnel");
+
         var myObj = {num: 0};
         var myString = "";
         tunnel.run(function(){
@@ -71,22 +66,32 @@ describe('Tunnels', function() {
 
     describe('Nests', function() {
 
-        var folder1, folder2;
+        // var tunnel = af.createTunnel("Test tunnel");
 
+        var folder1, folder2;
         var tmpDir;
 
         beforeEach(function(done) {
-            folder1 = af.createFolderNest(tmpobj.name);
-            folder2 = af.createFolderNest(tmpobj.name);
+            var tmpDir = tmp.dirSync({unsafeCleanup: true});
+            af = new Antfarm({
+                log_out_level: "error",
+                auto_managed_folder_directory: tmpDir.name
+            });
+            tempFolderCleanupCallback = tmpDir.removeCallback;
+
+            folder1 = af.createAutoFolderNest("folder-1");
+            folder2 = af.createAutoFolderNest("folder-2");
 
             tmp.dir({ unsafeCleanup: true }, function(err, dir) {
-                if (err) return done(err);
+                // if (err) return done(err);
                 tmpDir = dir;
                 setTimeout(done, 300);
             });
         });
 
         it('should be able to watch nests', function() {
+            var tunnel = af.createTunnel("Test tunnel");
+
             tunnel.watch(folder1);
             tunnel.nests.length.should.be.equal(1);
 
@@ -96,7 +101,8 @@ describe('Tunnels', function() {
 
         it('should run on a nest arrival when watching', function(done) {
             var tn = af.createTunnel("Watch tunnel");
-            tn.watch(af.createFolderNest(tmpDir));
+            var nest = af.createAutoFolderNest("whatever123");
+            tn.watch(nest);
 
             var obj = {num:0};
 
@@ -109,7 +115,7 @@ describe('Tunnels', function() {
                 obj.num.should.equal(1);
             });
 
-            var temp_file_path = tmpDir+"/dummy.tmp";
+            var temp_file_path = nest.path + path.sep + "dummy.tmp";
             fs.writeFileSync(temp_file_path, "Some dummy data.");
             fs.unlinkSync(temp_file_path);
 
