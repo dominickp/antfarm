@@ -52,11 +52,12 @@ describe('FileJob', function() {
         fs.writeFileSync(temp_file_path, "Some dummy data.");
     };
 
-    xit('should get the size of the file', function (done) {
+    it('should get the size of the file', function (done) {
         var job_name = "MyJobFile_001.pdf";
         tunnel.run(function(job){
             expect(job.size).not.to.be.undefined;
-            // job.size.should.equal(1);
+            job.size.should.equal("16 B");
+            job.sizeBytes.should.equal(16);
             done();
         });
 
