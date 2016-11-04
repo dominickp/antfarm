@@ -68,7 +68,7 @@ export class FolderNest extends Nest {
 
             if (path_stats.isDirectory()) {
                 job = new FolderJob(fl.e, path);
-                job.createFiles(function(){
+                job.createFiles(() => {
                     if (arrive) {
                         // Trigger arrived
                         fl.arrive(job);
@@ -134,7 +134,9 @@ export class FolderNest extends Nest {
             recursive: false
         };
 
-        node_watch(fl.path, watch_options, function (filepath) {
+        fl.e.log(0, `Watching ${fl.path}`, fl, [fl.tunnel]);
+
+        node_watch(fl.path, watch_options, filepath => {
             if (!fl.isUnixHiddenPath(filepath)) {
                 let job;
                 if (hold === false) {
@@ -171,12 +173,14 @@ export class FolderNest extends Nest {
      * @param job
      * @param callback      Callback is given the job in its parameter.
      */
-    public take(job: FileJob, callback: any) {
+    public take(job: (FileJob|FolderJob), callback: any) {
+        let fn = this;
         // the other nest that this is taking from should provide a temporary location or local _path of the job
-        let new_path = `${this.path}/${job.basename}`;
+        let new_path = `${fn.path}/${job.name}`;
 
         fs.renameSync(job.path, new_path);
         job.path = new_path;
+        // job.nest = fn;
 
         callback(job);
     }

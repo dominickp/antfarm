@@ -213,7 +213,7 @@ describe('Job', function() {
                 });
             });
 
-            unpackTunnel.run(function(packedJob){
+            unpackTunnel.run(function(packedJob, n){
                 expect(packedJob.name).to.not.be.undefined;
                 packedJob.name.should.equal(job_name+".antpack.zip");
                 packedJob.unpack(function(origJob){

@@ -53,7 +53,7 @@ export declare class FolderNest extends Nest {
      * @param job
      * @param callback      Callback is given the job in its parameter.
      */
-    take(job: FileJob, callback: any): void;
+    take(job: (FileJob | FolderJob), callback: any): void;
     /**
      * Loads jobs that have piled up in the nest if it was not watched.
      * No longer used.

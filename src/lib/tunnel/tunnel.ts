@@ -73,10 +73,12 @@ export class Tunnel {
      * @param nest
      */
     public watch(nest: FolderNest | WebhookNest | FtpNest) {
-        nest.register(this);
+        let t = this;
+        t.e.log(0, `Watching nest.`, t, [nest]);
+        nest.register(t);
         nest.load();
         nest.watch();
-        this.nests.push(nest);
+        t.nests.push(nest);
     }
 
     public arrive(job: Job, nest?: Nest) {

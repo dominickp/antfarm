@@ -16,4 +16,5 @@ export declare abstract class Nest {
     readonly tunnel: Tunnel;
     register(tunnel: Tunnel): void;
     arrive(job: Job): void;
+    take(job: Job, callback: any): void;
 }

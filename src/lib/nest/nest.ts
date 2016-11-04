@@ -51,4 +51,8 @@ export abstract class Nest {
         job.nest = ns;
         ns.tunnel.arrive(job, ns);
     }
+
+    public take(job: Job, callback: any) {
+        throw "Base Nest class cannot take any jobs.";
+    }
 }

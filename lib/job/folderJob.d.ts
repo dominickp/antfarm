@@ -1,6 +1,7 @@
 import { Environment } from "../environment/environment";
 import { Job } from "./job";
 import { File } from "./file";
+import { Nest } from "../nest/nest";
 export declare class FolderJob extends Job {
     protected _path: string;
     protected _dirname: string;
@@ -83,7 +84,7 @@ export declare class FolderJob extends Job {
      * @param destinationNest
      * @param callback
      */
-    move(destinationNest: any, callback: any): void;
+    move(destinationNest: Nest, callback: any): void;
     /**
      * Renames the job folder, leaving its content's names alone.
      * @param newName

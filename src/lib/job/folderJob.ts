@@ -1,6 +1,7 @@
 import {Environment} from "../environment/environment";
 import {Job} from "./job";
 import {File} from "./file";
+import {Nest} from "../nest/nest";
 
 const   node_path = require("path"),
         fs = require("fs");
@@ -156,8 +157,13 @@ export class FolderJob extends Job {
      * @param destinationNest
      * @param callback
      */
-    public move(destinationNest, callback) {
+    public move(destinationNest: Nest, callback: any) {
         let fj = this;
+
+        if (!destinationNest) {
+            fs.e.log(3, `Destination nest does not exist!`, fj);
+        }
+
         try {
             destinationNest.take(fj, function(new_path){
                 fj.path = new_path;

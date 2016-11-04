@@ -62,8 +62,9 @@ export class FileJob extends Job {
      * @param path
      */
     public set path(path: string) {
-        this.e.log(0, `New path set: "${path}".`, this);
-        this.file.path = path;
+        let fj = this;
+        fj.e.log(0, `New path set: "${path}".`, fj);
+        fj.file.path = path;
     }
 
     /**
@@ -131,12 +132,10 @@ export class FileJob extends Job {
      * ```
      */
     public move(destinationNest, callback) {
-
         let fj = this;
 
         try {
-            destinationNest.take(fj, function(newJob){
-                // fj.setPath(new_path);
+            destinationNest.take(fj, newJob => {
                 fj.e.log(1, `Job "${fj.basename}" was moved to Nest "${destinationNest.name}".`, fj, [fj.tunnel]);
                 if (callback) {
                     callback(newJob);

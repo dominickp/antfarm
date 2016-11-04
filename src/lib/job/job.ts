@@ -39,7 +39,7 @@ export abstract class Job {
         j._type = "base";
 
         j.createLifeEvent("created", null, name);
-        j.e.log(1, `New Job "${name}" created, id: ${j.id}.`, j);
+        j.e.log(1, `New Job "${name}" created, id: ${j.id}.`, j, [j.nest, j.tunnel]);
     }
 
 
