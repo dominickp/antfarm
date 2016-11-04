@@ -19,8 +19,13 @@ describe('FolderJob', function() {
         done();
     });
 
-    afterEach("remove temporary file", function(){
+    afterEach("remove temporary file", function(done){
         tempFolderCleanupCallback();
+        if(process.CI === true){
+            setTimeout(done, 500);
+        } else {
+            done();
+        }
     });
 
     // Function to add a new job to the watched nest

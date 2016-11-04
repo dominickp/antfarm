@@ -14,8 +14,13 @@ describe('Nest Folder', function() {
         tmpobj = tmp.dirSync();
     });
 
-    afterEach(function() {
+    afterEach(function(done) {
         tmpobj.removeCallback();
+        if(process.CI === true){
+            setTimeout(done, 500);
+        } else {
+            done();
+        }
     });
 
     describe('Loading', function() {
