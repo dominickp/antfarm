@@ -41,11 +41,13 @@ describe('FolderJob', function() {
         });
     });
 
-    afterEach("remove temporary file", function(){
-        deleteFolderRecursive(tempJobDir);
+    afterEach("remove temporary file", function(done){
+        deleteFolderRecursive(tempJobDir, function() {
+            done();
+        });
     });
 
-    var deleteFolderRecursive = function(path) {
+    var deleteFolderRecursive = function(path, callback) {
         if( fs.existsSync(path) ) {
             fs.readdirSync(path).forEach(function(file) {
                 var curPath = path + "/" + file;
@@ -56,11 +58,12 @@ describe('FolderJob', function() {
                 }
             });
             fs.rmdirSync(path);
+            callback()
         }
     };
 
     // Function to add a new job to the watched nest
-    var triggerNewFolderJob = function(name, files){
+    var triggerNewFolderJob = (name, files) => {
         tempJobDir = tmpDir + path.sep + name;
         fs.mkdirSync(tempJobDir);
 
@@ -69,17 +72,48 @@ describe('FolderJob', function() {
         });
     };
 
-    it('should produce folder jobs', function (done) {
+    it('should produce folder jobs with basic properties', done => {
         var job_name = "My job folder";
-        tunnel.run(function(job){
+        tunnel.run(job => {
             expect(job.isFolder()).not.to.be.undefined;
             job.isFolder().should.equal(true);
             expect(job.isFile()).not.to.be.undefined;
             job.isFile().should.equal(false);
+            job.name.should.equal(job_name);
+            job.nameProper.should.equal(job_name);
             done();
         });
 
         triggerNewFolderJob(job_name, ["this.pdf", "that.pdf"]);
+    });
+
+    describe('files within the folder', () => {
+
+        var assertFolderFiles = (sourceJob, antfarmJob, callback) => {
+            expect(antfarmJob.files).not.to.be.undefined;
+            antfarmJob.files.length.should.equal(sourceJob.files.length);
+            antfarmJob.files.forEach((file, i) => {
+                file.name.should.equal(sourceJob.files[i]);
+            });
+            callback();
+        };
+
+        it("should contain a single file", done =>{
+            var job1 = {name: "My job folder 1", files: ["a brochure.pdf"]};
+            tunnel.run(job => {
+                assertFolderFiles(job1, job, () => { done(); });
+            });
+            triggerNewFolderJob(job1.name, job1.files);
+        });
+
+        it("should contain a multiple files", done => {
+            var job1 = {name: "My job folder 3", files: ["1.zip", "2.pdf", "3.png", "4.jpg", "5.rar", "6.tar.gz"]};
+            tunnel.run(job => {
+                assertFolderFiles(job1, job, () => { done(); });
+            });
+            triggerNewFolderJob(job1.name, job1.files);
+        });
+
     });
 
 
