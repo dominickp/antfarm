@@ -18,7 +18,7 @@ describe('FolderJob', function() {
             setTimeout(function(){
                 options.log_dir = dir;
                 done()
-            }, 600);
+            }, 300);
         });
     });
 
@@ -37,7 +37,7 @@ describe('FolderJob', function() {
                 tunnel.watch(nest);
 
                 done()
-            }, 400);
+            }, 100);
         });
     });
 

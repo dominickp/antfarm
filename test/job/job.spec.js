@@ -19,7 +19,7 @@ describe('Job', function() {
             setTimeout(function(){
                 options.log_dir = dir;
                 done()
-            }, 600);
+            }, 300);
         });
     });
 
@@ -38,7 +38,7 @@ describe('Job', function() {
                 tunnel.watch(nest);
 
                 done()
-            }, 400);
+            }, 100);
         });
     });
 
