@@ -116,6 +116,42 @@ describe('FolderJob', function() {
 
     });
 
+    it('should be movable to another nest', done => {
+        var job1 = {name: "My job folder 1", files: ["a brochure.pdf"]};
+        var other_nest = af.createAutoFolderNest("another_folder_123");
+        var other_tunnel = af.createTunnel("Another tunnel");
+        other_tunnel.watch(other_nest);
+
+        tunnel.run(originalJob => {
+            originalJob.move(other_nest, function() {
+                // moved
+            });
+        });
+
+        other_tunnel.run(movedJob => {
+            movedJob.name.should.equal(job1.name);
+            done();
+        });
+
+        triggerNewFolderJob(job1.name, job1.files);
+    });
+
+    it('should be transferrable to another tunnel', done => {
+        var job1 = {name: "My job folder 1", files: ["a brochure.pdf"]};
+        var other_tunnel = af.createTunnel("Another tunnel");
+
+        tunnel.run(originalJob => {
+            originalJob.move(other_tunnel);
+        });
+
+        other_tunnel.run(transferredJob => {
+            transferredJob.name.should.equal(job1.name);
+            done();
+        });
+
+        triggerNewFolderJob(job1.name, job1.files);
+    });
+
 
 });
 
