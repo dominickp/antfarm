@@ -21,8 +21,8 @@ describe('FolderJob', function() {
 
     afterEach("remove temporary file", function(done){
         tempFolderCleanupCallback();
-        if(process.CI === true){
-            setTimeout(done, 500);
+        if(process.env.NODE_ENV === "TEST") {
+            setTimeout(done, 1500);
         } else {
             done();
         }

@@ -17,18 +17,13 @@ describe('FileJob', function() {
             auto_managed_folder_directory: tmpDir.name
         });
         tempFolderCleanupCallback = tmpDir.removeCallback;
-        if(process.env.NODE_ENV === "TEST") {
-            console.log("CI DELAY...");
-            setTimeout(done, 500);
-        } else {
-            done();
-        }
+        done();
     });
 
     afterEach("remove temporary file", function(done){
         tempFolderCleanupCallback();
         if(process.env.NODE_ENV === "TEST") {
-            setTimeout(done, 500);
+            setTimeout(done, 1500);
         } else {
             done();
         }
