@@ -27,7 +27,6 @@ describe('FileJob', function() {
     // Function to add a new job to the watched nest
     var triggerNewJob = function(name, theNest){
         var temp_file_path = theNest.path + path.sep + name;
-        console.log("writing to", temp_file_path);
         try {
             fs.writeFileSync(temp_file_path, "Some dummy data.");
         } catch (err) {
@@ -37,8 +36,9 @@ describe('FileJob', function() {
 
     it('should get the size of the file', function (done) {
         var job_name = "MyJobFile_001.pdf";
-        var tunnel = af.createTunnel("Initial test tunnel");
-        var nest = af.createAutoFolderNest("general-input");
+
+        var tunnel = af.createTunnel("Size tunnel");
+        var nest = af.createAutoFolderNest("My folder");
         tunnel.watch(nest);
 
         tunnel.run(function(job){
