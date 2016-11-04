@@ -20,7 +20,7 @@ describe('Tunnels', function() {
             setTimeout(function(){
                 options.log_dir = dir;
                 done()
-            }, 600);
+            }, 300);
         });
     });
 
@@ -82,7 +82,7 @@ describe('Tunnels', function() {
             tmp.dir({ unsafeCleanup: true }, function(err, dir) {
                 if (err) return done(err);
                 tmpDir = dir;
-                setTimeout(done, 600);
+                setTimeout(done, 300);
             });
         });
 
