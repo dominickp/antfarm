@@ -10,3 +10,5 @@ node_js:
 before_script:
   - npm install -g gulp
 script: gulp travis && gulp coveralls-travis
+env:
+- NODE_ENV=TEST

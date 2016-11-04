@@ -20,8 +20,13 @@ describe('FileJob', function() {
         done();
     });
 
-    afterEach("remove temporary file", function(){
+    afterEach("remove temporary file", function(done){
         tempFolderCleanupCallback();
+        if(process.NODE_ENV === "TEST") {
+            setTimeout(done, 500);
+        } else {
+            done();
+        }
     });
 
     // Function to add a new job to the watched nest
