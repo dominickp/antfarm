@@ -8,51 +8,39 @@ var path = require('path');
 
 describe('FileJob', function() {
 
-    var options = {
-        log_out_level: "debug",
-    };
-
-    var temp_file_path, af, tunnel, nest, tempFolderCleanupCallback;
-
-    before("make temporary log directory", function(done){
-        tmp.dir({ unsafeCleanup: true }, function(err, dir, cleanupCallback) {
-            tempFolderCleanupCallback = cleanupCallback;
-            if (err) return done(err);
-            setTimeout(function(){
-                options.log_dir = dir;
-                options.auto_managed_folder_directory = dir;
-                done()
-            }, 300);
-        });
-    });
+    var af, tempFolderCleanupCallback;
 
     beforeEach("make antfarm, tunnel, and nest", function(done) {
-        af = new Antfarm(options);
-        tunnel = af.createTunnel("Initial test tunnel");
-
-        nest = af.createAutoFolderNest("general-input");
-        tunnel.watch(nest);
-
-        done()
+        var tmpDir = tmp.dirSync({unsafeCleanup: true});
+        af = new Antfarm({
+            log_out_level: "error",
+            auto_managed_folder_directory: tmpDir.name
+        });
+        tempFolderCleanupCallback = tmpDir.removeCallback;
+        done();
     });
 
     afterEach("remove temporary file", function(){
         tempFolderCleanupCallback();
-        try {
-            fs.unlinkSync(temp_file_path);
-        } catch (e) {
-            return;
-        }
     });
 
     // Function to add a new job to the watched nest
     var triggerNewJob = function(name, theNest){
-        temp_file_path = theNest.path + path.sep + name;
-        fs.writeFileSync(temp_file_path, "Some dummy data.");
+        var temp_file_path = theNest.path + path.sep + name;
+        console.log("writing to", temp_file_path);
+        try {
+            fs.writeFileSync(temp_file_path, "Some dummy data.");
+        } catch (err) {
+            console.log("File creation error", err);
+        }
     };
 
-    xit('should get the size of the file', function (done) {
+    it('should get the size of the file', function (done) {
         var job_name = "MyJobFile_001.pdf";
+        var tunnel = af.createTunnel("Initial test tunnel");
+        var nest = af.createAutoFolderNest("general-input");
+        tunnel.watch(nest);
+
         tunnel.run(function(job){
             expect(job.size).not.to.be.undefined;
             job.size.should.equal("16 B");
@@ -60,43 +48,36 @@ describe('FileJob', function() {
             done();
         });
 
-        triggerNewJob(job_name);
+        triggerNewJob(job_name, nest);
     });
 
-    xit('should move between FolderNests', function (done) {
-        var job_name = "file_to_be_moved.pdf";
-        var other_nest_name = "some-other-folder";
+    it("should move files into other FolderNests", done => {
 
-        var other_tunnel = af.createTunnel("Another tunnel...");
-        var other_nest = af.createAutoFolderNest(other_nest_name);
-        other_tunnel.watch(other_nest);
+        var job_name = "SomeRandomFile.pdf";
+        var other_nest_name = "Move_folders_out";
+        var hotfolder = af.createAutoFolderNest(["Move folders in"]);
+        var tunnel = af.createTunnel("Moving folders");
 
-        console.log("nests tied to tunnel", tunnel.nests.length);
+        var other_folder = af.createAutoFolderNest(other_nest_name);
+        var other_tunnel = af.createTunnel("Moving folders");
+        other_tunnel.watch(other_folder);
 
-        tunnel.run(function(fileJob, initNest){
+        tunnel.watch(hotfolder);
 
-            console.log(initNest.name);
-            fileJob.rename("this.renamed");
-            fileJob.move(other_nest, (theFileJob) => {
-                console.log("CALLBACK CALLED", theFileJob.path, fileJob.path);
-                // done();
+        tunnel.run((job, nest) => {
+            job.move(other_folder, function(){
             });
         });
 
         other_tunnel.run((movedJob, movedNest) => {
-            console.log("FOUND IN OTHER TUNNEL");
             expect(movedJob).not.to.be.undefined;
             expect(movedNest).not.to.be.undefined;
             movedNest.name.should.equal(other_nest_name);
             movedJob.name.should.equal(job_name);
             done();
+
         });
-
-        triggerNewJob(job_name, nest);
-
-
+        triggerNewJob(job_name, hotfolder);
     });
-
-
 });
 

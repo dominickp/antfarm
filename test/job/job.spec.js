@@ -6,7 +6,7 @@ var tmp = require('tmp');
 var fs = require("fs");
 var path = require('path');
 
-describe('Job', function() {
+xdescribe('Job', function() {
 
     var options = {
         log_out_level: "error",

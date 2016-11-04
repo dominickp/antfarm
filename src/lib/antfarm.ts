@@ -37,7 +37,8 @@ export class Antfarm {
      * @returns {Tunnel}
      */
     public createTunnel(name) {
-        return new Tunnel(this.e, name);
+        let a = this;
+        return new Tunnel(a.e, name);
     }
 
     /**
