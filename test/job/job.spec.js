@@ -144,6 +144,26 @@ describe('Job', function() {
     });
 
     describe("LifeCycle", function(){
+
+        beforeEach("make antfarm, tunnel, and nest", function(done) {
+            var tmpDir = tmp.dirSync({unsafeCleanup: true});
+            af = new Antfarm({
+                log_out_level: "error",
+                auto_managed_folder_directory: tmpDir.name
+            });
+            tempFolderCleanupCallback = tmpDir.removeCallback;
+            done();
+        });
+
+        afterEach("remove temporary file", function(done){
+            tempFolderCleanupCallback();
+            if(process.env.NODE_ENV === "TEST") {
+                setTimeout(done, 1500);
+            } else {
+                done();
+            }
+        });
+
         it('should create a lifecycle', function (done) {
             var tunnel = af.createTunnel("Test tunnel");
             var nest = af.createAutoFolderNest("test-nest");
@@ -174,6 +194,26 @@ describe('Job', function() {
     });
 
     describe("properties", function(){
+
+        beforeEach("make antfarm, tunnel, and nest", function(done) {
+            var tmpDir = tmp.dirSync({unsafeCleanup: true});
+            af = new Antfarm({
+                log_out_level: "error",
+                auto_managed_folder_directory: tmpDir.name
+            });
+            tempFolderCleanupCallback = tmpDir.removeCallback;
+            done();
+        });
+
+        afterEach("remove temporary file", function(done){
+            tempFolderCleanupCallback();
+            if(process.env.NODE_ENV === "TEST") {
+                setTimeout(done, 1500);
+            } else {
+                done();
+            }
+        });
+
         it('should set and get job property values', function (done) {
             var tunnel = af.createTunnel("Test tunnel");
             var nest = af.createAutoFolderNest("test-nest");
@@ -209,6 +249,25 @@ describe('Job', function() {
     });
 
     describe("packing", function(){
+
+        beforeEach("make antfarm, tunnel, and nest", function(done) {
+            var tmpDir = tmp.dirSync({unsafeCleanup: true});
+            af = new Antfarm({
+                log_out_level: "error",
+                auto_managed_folder_directory: tmpDir.name
+            });
+            tempFolderCleanupCallback = tmpDir.removeCallback;
+            done();
+        });
+
+        afterEach("remove temporary file", function(done){
+            tempFolderCleanupCallback();
+            if(process.env.NODE_ENV === "TEST") {
+                setTimeout(done, 1500);
+            } else {
+                done();
+            }
+        });
 
         var prop1 = 123;
         var prop2 = { x: 567, y: 123456 };
