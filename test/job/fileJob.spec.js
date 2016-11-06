@@ -71,7 +71,7 @@ describe('FileJob', function() {
 
         tunnel.run((job, nest) => {
             job.move(other_folder, function(){
-                console.log("move callback called.");
+                console.log("move callback called.", job);
             });
         });
 
