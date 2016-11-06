@@ -40,7 +40,7 @@ describe('Job', function() {
         var nest = af.createAutoFolderNest("test-nest");
         tunnel.watch(nest);
 
-        var job_name = "MyJobFile_001.pdf";
+        var job_name = "MyJobFile_0012342.pdf";
         tunnel.run(function(job){
             expect(job.name).not.to.be.undefined;
             job.name.should.equal(job_name);
@@ -55,9 +55,9 @@ describe('Job', function() {
         var nest = af.createAutoFolderNest("test-nest");
         tunnel.watch(nest);
 
-        var job_name = "MyJobFile_001.pdf";
+        var job_name = "MyJobFile_00234861.pdf";
         tunnel.run(function(job){
-            job.nameProper.should.equal("MyJobFile_001");
+            job.nameProper.should.equal(job_name.slice(0, -4));
             done();
         });
 
@@ -69,7 +69,7 @@ describe('Job', function() {
         var nest = af.createAutoFolderNest("test-nest");
         tunnel.watch(nest);
 
-        var job_name = "MyJobFile_001.pDf";
+        var job_name = "MyJobFile_01452301.pDf";
         tunnel.run(function(job){
             job.extension.should.equal("pdf");
             done();
@@ -83,7 +83,7 @@ describe('Job', function() {
         var nest = af.createAutoFolderNest("test-nest");
         tunnel.watch(nest);
 
-        var job_name = "MyJobFile_001.pdf";
+        var job_name = "MyJobFile_05728501.pdf";
         tunnel.run(function(job){
             job.path.should.equal(nest.path + path.sep + job.name);
             job.path.should.not.be.empty;
@@ -98,7 +98,7 @@ describe('Job', function() {
         var nest = af.createAutoFolderNest("test-nest");
         tunnel.watch(nest);
 
-        var job_name = "MyJobFile_001.pdf";
+        var job_name = "MyJobFile_016401.pdf";
         tunnel.run(function(job){
             job.size.should.equal("16 B");
             job.sizeBytes.should.equal(16);
@@ -114,7 +114,7 @@ describe('Job', function() {
         var nest = af.createAutoFolderNest("test-nest");
         tunnel.watch(nest);
 
-        var job_name = "MyJobFile_001.pdf";
+        var job_name = "MyJobFile_0435301.pdf";
         tunnel.run(function(job){
             job.log(0, "Debug message");
             job.log(1, "Info message");
@@ -131,13 +131,13 @@ describe('Job', function() {
         tunnel.watch(nest);
 
         var tunnel2 = af.createTunnel("Another tunnel");
-        var job_name = "MyJobFile_001.pdf";
+        var job_name = "MyJobFile_045301.pdf";
         tunnel.run(function(job){
-            job.name.should.equal("MyJobFile_001.pdf");
+            job.name.should.equal(job_name);
             job.transfer(tunnel2);
         });
         tunnel2.run(function(job){
-            job.name.should.equal("MyJobFile_001.pdf");
+            job.name.should.equal(job_name);
             done();
         });
         triggerNewJob(job_name, nest);
@@ -169,7 +169,7 @@ describe('Job', function() {
             var nest = af.createAutoFolderNest("test-nest");
             tunnel.watch(nest);
 
-            var job_name = "MyJobFile_001.pdf";
+            var job_name = "MyJobFile_00135368.pdf";
             tunnel.runSync(function(job){
                 job.lifeCycle.length.should.equal(1);
                 done();
@@ -219,7 +219,7 @@ describe('Job', function() {
             var nest = af.createAutoFolderNest("test-nest");
             tunnel.watch(nest);
 
-            var job_name = "MyJobFile_001.pdf";
+            var job_name = "MyJobFile_0012375.pdf";
             tunnel.run(function(job){
                 job.setPropertyValue("JobNumber", 123456);
                 job.getPropertyValue("JobNumber").should.equal(123456);
@@ -275,7 +275,7 @@ describe('Job', function() {
 
         it('pack jobs into zips', function (done) {
             var tunnel = af.createTunnel("Test tunnel");
-            var nest = af.createAutoFolderNest("test-nest");
+            var nest = af.createAutoFolderNest("test-nest8437843");
             tunnel.watch(nest);
 
             var job_name = "MyJobFile_001.pdf";
@@ -294,7 +294,7 @@ describe('Job', function() {
             tunnel.watch(nest);
 
             var unpackTunnel = af.createTunnel("Unpacking tunnel");
-            var packHolderNest = af.createAutoFolderNest("job", "packed-holding");
+            var packHolderNest = af.createAutoFolderNest("job", "packed-holding-009");
             unpackTunnel.watch(packHolderNest);
 
             var job_name = "MyJobFile_009.pdf";
@@ -323,7 +323,7 @@ describe('Job', function() {
         });
         it('should unpack file jobs and restore properties when transferred', function (done) {
             var tunnel = af.createTunnel("Test tunnel");
-            var nest = af.createAutoFolderNest("test-nest");
+            var nest = af.createAutoFolderNest("test-nest23872983");
             tunnel.watch(nest);
 
             var unpackTunnel = af.createTunnel("Unpacking tunnel");
