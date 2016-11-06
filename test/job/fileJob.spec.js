@@ -75,6 +75,7 @@ describe('FileJob', function() {
         });
 
         other_tunnel.run((movedJob, movedNest) => {
+            console.log("CALLED");
             // expect(movedJob).not.to.be.undefined;
             // expect(movedJob.name).not.to.be.undefined;
             // expect(movedNest).not.to.be.undefined;
