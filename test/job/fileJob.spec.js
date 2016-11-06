@@ -59,7 +59,7 @@ describe('FileJob', function() {
     it("should move files into other FolderNests", done => {
 
         var job_name = "SomeRandomFile.pdf";
-        var other_nest_name = "Move_folders_out";
+        var other_nest_name = "Move_folders_out728634782364";
         var hotfolder = af.createAutoFolderNest(["FileJob", "Move FileJobs in"]);
         var tunnel = af.createTunnel("FileJob moving files");
 
