@@ -178,7 +178,11 @@ export class FolderNest extends Nest {
         // the other nest that this is taking from should provide a temporary location or local _path of the job
         let new_path = `${fn.path}/${job.name}`;
 
-        fs.renameSync(job.path, new_path);
+        try {
+            fs.renameSync(job.path, new_path);
+        } catch (err) {
+            fn.e.log(3, `Job ${job.name} could not be renamed in take method.`, fn);
+        }
         job.path = new_path;
         // job.nest = fn;
 

@@ -165,7 +165,7 @@ export class FolderJob extends Job {
         }
 
         try {
-            destinationNest.take(fj, function(new_path){
+            destinationNest.take(fj, (new_path) => {
                 fj.path = new_path;
                 fj.e.log(1, `Job "${fj.name}" was moved to Nest "${destinationNest.name}".`, fj);
                 if (callback) {
