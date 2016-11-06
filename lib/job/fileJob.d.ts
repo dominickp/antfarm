@@ -1,6 +1,7 @@
 import { Environment } from "../environment/environment";
 import { Job } from "./job";
 import { File } from "./file";
+import { Nest } from "../nest/nest";
 export declare class FileJob extends Job {
     protected _file: File;
     /**
@@ -82,7 +83,7 @@ export declare class FileJob extends Job {
      * });
      * ```
      */
-    move(destinationNest: any, callback: any): void;
+    move(destinationNest: Nest, callback: any): void;
     /**
      * Rename the job file to a new _name.
      * @param newName

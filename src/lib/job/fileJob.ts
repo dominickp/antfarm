@@ -1,6 +1,7 @@
 import {Environment} from "../environment/environment";
 import {Job} from "./job";
 import {File} from "./file";
+import {Nest} from "../nest/nest";
 
 export class FileJob extends Job {
 
@@ -131,9 +132,9 @@ export class FileJob extends Job {
      * });
      * ```
      */
-    public move(destinationNest, callback) {
+    public move(destinationNest: Nest, callback: any) {
         let fj = this;
-        let theNewJob;
+        let theNewJob = null;
 
         try {
             destinationNest.take(fj, (newJob) => {

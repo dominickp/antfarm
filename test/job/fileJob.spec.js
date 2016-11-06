@@ -60,7 +60,7 @@ describe('FileJob', function() {
 
         var job_name = "SomeRandomFile.pdf";
         var other_nest_name = "Move_folders_out728634782364";
-        var hotfolder = af.createAutoFolderNest(["FileJob", "Move FileJobs in"]);
+        var hotfolder = af.createAutoFolderNest(["FileJob", "MoveFileJobsIn"]);
         var tunnel = af.createTunnel("FileJob moving files");
 
         var other_folder = af.createAutoFolderNest(other_nest_name);
@@ -70,8 +70,9 @@ describe('FileJob', function() {
         tunnel.watch(hotfolder);
 
         tunnel.run((job, nest) => {
+            console.log("Tunnel run once.");
             job.move(other_folder, function(){
-                console.log("move callback called.", job);
+                console.log("move callback called.");
             });
         });
 
