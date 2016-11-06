@@ -308,9 +308,11 @@ describe('Job', function() {
             });
 
             unpackTunnel.run(function(packedJob, n){
-                expect(packedJob.name).to.not.be.undefined;
+                expect(packedJob.name).not.to.be.undefined;
                 packedJob.name.should.equal(job_name+".antpack.zip");
                 packedJob.unpack(function(origJob){
+                    expect(origJob).not.to.be.undefined;
+                    expect(origJob.name).not.to.be.undefined;
                     origJob.name.should.equal(job_name);
                     origJob.extension.should.equal("pdf");
                     origJob.getPropertyValue("prop1").should.equal(prop1);
