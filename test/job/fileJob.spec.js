@@ -71,17 +71,18 @@ describe('FileJob', function() {
 
         tunnel.run((job, nest) => {
             job.move(other_folder, function(){
+                console.log("move callback called.");
             });
         });
 
         other_tunnel.run((movedJob, movedNest) => {
-            console.log("CALLED");
-            // expect(movedJob).not.to.be.undefined;
-            // expect(movedJob.name).not.to.be.undefined;
-            // expect(movedNest).not.to.be.undefined;
-            // expect(movedNest.name).not.to.be.undefined;
-            // movedNest.name.should.equal(other_nest_name);
-            // movedJob.name.should.equal(job_name);
+            // not being triggered
+            expect(movedJob).not.to.be.undefined;
+            expect(movedJob.name).not.to.be.undefined;
+            expect(movedNest).not.to.be.undefined;
+            expect(movedNest.name).not.to.be.undefined;
+            movedNest.name.should.equal(other_nest_name);
+            movedJob.name.should.equal(job_name);
             done();
         });
         triggerNewJob(job_name, hotfolder);
