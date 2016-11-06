@@ -98,7 +98,7 @@ describe('FolderJob', function() {
     it("should be movable to another nest", done => {
         var job1 = {name: "My job folder to be moved", files: ["a brochure.pdf"]};
         var other_nest_name = "Move_folders_out";
-        var hotfolder = af.createAutoFolderNest(["Move folders in"]);
+        var hotfolder = af.createAutoFolderNest(["FolderJob", "Move folders in"]);
         var tunnel = af.createTunnel("Moving folders");
 
         var other_folder = af.createAutoFolderNest(other_nest_name);

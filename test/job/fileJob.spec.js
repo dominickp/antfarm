@@ -60,8 +60,8 @@ describe('FileJob', function() {
 
         var job_name = "SomeRandomFile.pdf";
         var other_nest_name = "Move_folders_out";
-        var hotfolder = af.createAutoFolderNest(["Move folders in"]);
-        var tunnel = af.createTunnel("Moving folders");
+        var hotfolder = af.createAutoFolderNest(["FileJob", "Move FileJobs in"]);
+        var tunnel = af.createTunnel("FileJob moving files");
 
         var other_folder = af.createAutoFolderNest(other_nest_name);
         var other_tunnel = af.createTunnel("Moving folders");
@@ -76,11 +76,12 @@ describe('FileJob', function() {
 
         other_tunnel.run((movedJob, movedNest) => {
             expect(movedJob).not.to.be.undefined;
+            expect(movedJob.name).not.to.be.undefined;
             expect(movedNest).not.to.be.undefined;
+            expect(movedNest.name).not.to.be.undefined;
             movedNest.name.should.equal(other_nest_name);
             movedJob.name.should.equal(job_name);
             done();
-
         });
         triggerNewJob(job_name, hotfolder);
     }).timeout(5000);
