@@ -39,11 +39,11 @@ export class FolderJob extends Job {
      */
     public createFiles(callback: any) {
         let fl = this;
-        let folder_path = this.path;
-        fs.readdir(folder_path, function(err, items) {
+        let folder_path = fl.path;
+        fs.readdir(folder_path, (err, items) => {
             items = items.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
 
-            items.forEach(function(filename){
+            items.forEach((filename) => {
                 let filepath = folder_path + node_path.sep + filename;
                 let file = new File(fl.e, filepath);
                 fl.addFile(file);
@@ -90,8 +90,9 @@ export class FolderJob extends Job {
      * @param path
      */
     public set path(path: string) {
-        this._path = path;
-        this.getStatistics();
+        let fj = this;
+        fj._path = path;
+        fj.getStatistics();
     }
 
     /**
@@ -165,11 +166,11 @@ export class FolderJob extends Job {
         }
 
         try {
-            destinationNest.take(fj, (new_path) => {
-                fj.path = new_path;
+            destinationNest.take(fj, (job) => {
+                // fj.path = new_path;
                 fj.e.log(1, `Job "${fj.name}" was moved to Nest "${destinationNest.name}".`, fj);
                 if (callback) {
-                    callback();
+                    callback(job);
                 }
             });
         } catch (e) {
