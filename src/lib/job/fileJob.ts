@@ -133,19 +133,18 @@ export class FileJob extends Job {
      */
     public move(destinationNest, callback) {
         let fj = this;
+        let theNewJob;
 
         try {
-            destinationNest.take(fj, newJob => {
+            destinationNest.take(fj, (newJob) => {
                 fj.e.log(1, `Job "${fj.basename}" was moved to Nest "${destinationNest.name}".`, fj, [fj.tunnel]);
-                if (callback) {
-                    callback(newJob);
-                }
+                theNewJob = newJob;
             });
         } catch (e) {
             fj.e.log(3, `Job "${fj.basename}" was not moved to Nest "${destinationNest.name}". ${e}`, fj);
-            if (callback) {
-                callback();
-            }
+        }
+        if (callback) {
+            callback(theNewJob);
         }
     }
 
