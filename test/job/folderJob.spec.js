@@ -106,7 +106,10 @@ describe('FolderJob', function() {
         other_tunnel.watch(other_folder);
 
         tunnel.run((job, nest) => {
-            job.move(other_folder);
+            console.log("Folder tunnel run ");
+            job.move(other_folder, () => {
+                console.log("Folder move callback");
+            });
         });
 
         other_tunnel.run((movedJob, movedNest) => {

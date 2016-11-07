@@ -70,9 +70,9 @@ describe('FileJob', function() {
         tunnel.watch(hotfolder);
 
         tunnel.run((job, nest) => {
-            console.log("Tunnel run once.");
+            console.log("Filejob tunnel run.");
             job.move(other_folder, function(){
-                console.log("move callback called.");
+                console.log("Filejob move callback called.");
             });
         });
 
