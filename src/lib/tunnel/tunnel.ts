@@ -6,12 +6,14 @@ import {WebhookNest} from "../nest/webhookNest";
 import {FtpNest} from "../nest/ftpNest";
 
 const   async = require("async"),
-        mm = require("micromatch");
+        mm = require("micromatch"),
+        shortid = require("shortid");
 /**
  * Tunnels are runnable work flow units that can watch nests.
  */
 export class Tunnel {
 
+    private _id: string;
     protected _name: string;
     protected _nests: Nest[];
     protected _run_list: any[];
@@ -29,6 +31,7 @@ export class Tunnel {
 
     constructor(e: Environment, tunnelName: string) {
         this.e = e;
+        this._id = shortid.generate();
         this._nests = [];
         this._name = tunnelName;
         this._run_list = [];
@@ -66,6 +69,10 @@ export class Tunnel {
 
     public set runFail(callback: any) {
         this._run_fail = callback;
+    }
+
+    public get id() {
+        return this._id;
     }
 
     /**
@@ -172,7 +179,12 @@ export class Tunnel {
         let tn = this;
         tn.e.log(3, `Failed for reason "${reason}".`, tn, [job, nest]);
         let failCallback = tn.runFail;
-        failCallback(job, nest, reason);
+        if (failCallback) {
+            failCallback(job, nest, reason);
+        } else {
+            tn.e.log(2, `No fail runner available for this tunnel.`, tn, [job]);
+            throw reason;
+        }
     }
 
     /**

@@ -24,6 +24,7 @@
   "dependencies": {
     "async": "^2.0.1",
     "aws-sdk": "^2.6.7",
+    "chokidar": "^1.6.1",
     "clone": "^2.0.0",
     "cors": "^2.8.1",
     "easy-ftp": "^0.3.22",

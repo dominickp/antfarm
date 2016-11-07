@@ -8,6 +8,7 @@ import { FtpNest } from "../nest/ftpNest";
  * Tunnels are runnable work flow units that can watch nests.
  */
 export declare class Tunnel {
+    private _id;
     protected _name: string;
     protected _nests: Nest[];
     protected _run_list: any[];
@@ -28,6 +29,7 @@ export declare class Tunnel {
     readonly runList: any[];
     readonly runSyncList: any[];
     runFail: any;
+    readonly id: string;
     /**
      * Instructs the tunnel to watch a nest for new jobs.
      * @param nest

@@ -12,7 +12,7 @@ describe('FolderJob', function() {
     beforeEach("make antfarm, tunnel, and nest", function(done) {
         var tmpDir = tmp.dirSync({unsafeCleanup: true});
         af = new Antfarm({
-            log_out_level: "error",
+            log_out_level: "debug",
             auto_managed_folder_directory: tmpDir.name
         });
         tempFolderCleanupCallback = tmpDir.removeCallback;
@@ -42,16 +42,19 @@ describe('FolderJob', function() {
 
     it('should produce folder jobs with basic properties', done => {
         var tunnel = af.createTunnel("Prop test tunnel");
-        var nest = af.createAutoFolderNest("Prop test nest");
+        var nest = af.createAutoFolderNest("Prop-test-nest");
         tunnel.watch(nest);
 
         var job_name = "My job folder";
-        tunnel.run(job => {
+
+        tunnel.run((job, nest) => {
             expect(job.isFolder()).not.to.be.undefined;
             job.isFolder().should.equal(true);
             expect(job.isFile()).not.to.be.undefined;
             job.isFile().should.equal(false);
             job.name.should.equal(job_name);
+            expect(job).not.to.be.undefined;
+            expect(job.nameProper).not.to.be.undefined;
             job.nameProper.should.equal(job_name);
             done();
         });
@@ -106,9 +109,9 @@ describe('FolderJob', function() {
         other_tunnel.watch(other_folder);
 
         tunnel.run((job, nest) => {
-            console.log("Folder tunnel run ");
+            // console.log("Folder tunnel run ");
             job.move(other_folder, () => {
-                console.log("Folder move callback");
+                // console.log("Folder move callback");
             });
         });
 
@@ -124,7 +127,7 @@ describe('FolderJob', function() {
         triggerNewFolderJob(job1.name, job1.files, hotfolder, () => {
             tunnel.watch(hotfolder);
         });
-    }).timeout(5000);
+    });
 
     it('should be transferable to another tunnel', done => {
         var hotfolder = af.createAutoFolderNest(["Move folders in"]);

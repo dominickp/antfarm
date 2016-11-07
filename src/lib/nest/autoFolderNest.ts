@@ -18,6 +18,11 @@ export class AutoFolderNest extends FolderNest {
             throw "Option auto_managed_folder_directory must be set to use auto managed folders.";
         }
 
+        let cleanDirSegment = function(name) {
+            name = name.replace(/\s+/gi, "-"); // Replace white space with dash
+            return name.replace(/[^a-zA-Z0-9\-\_\.]/gi, ""); // Strip any special charactere
+        };
+
         /**
          * Creates the hierarchy string used for the auto managed _path.
          * @param hierarchy
@@ -25,10 +30,10 @@ export class AutoFolderNest extends FolderNest {
         let getHierarchyString = (hierarchy: string|string[]) => {
             let hierarchyString = "";
             if (typeof(hierarchy) === "string") {
-                hierarchyString = encodeURIComponent(hierarchy.toString());
+                hierarchyString = cleanDirSegment(hierarchy.toString());
             } else if (hierarchy instanceof Array) {
                 hierarchy.forEach((pi) => {
-                    hierarchyString += "/" + encodeURIComponent(pi);
+                    hierarchyString += "/" + cleanDirSegment(pi);
                 });
             } else {
                 throw `Path should be a string or array, ${typeof(hierarchy)} found.`;

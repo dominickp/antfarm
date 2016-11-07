@@ -4,8 +4,7 @@ import { FileJob } from "./../job/fileJob";
 import { FolderJob } from "./../job/folderJob";
 import {Job} from "../job/job";
 
-const   node_watch = require("node-watch"),
-        fs = require("fs"),
+const   fs = require("fs"),
         path_mod = require("path"),
         tmp = require("tmp"),
         mkdirp = require("mkdirp"),
@@ -20,15 +19,23 @@ export class FolderNest extends Nest {
     protected path: string;
     protected allowCreate: boolean;
     protected heldJobs: (FileJob|FolderJob)[];
+    private _watcher: any;
 
     constructor(e: Environment, path?: string, allowCreate?: boolean) {
         let nest_name = path_mod.basename(path);
         super(e, nest_name);
 
+        // this._watcher = require("node-watch");
+        this._watcher = require("chokidar");
+
         this.allowCreate = allowCreate;
         this.checkDirectorySync(path);
         this.path = path;
         this.heldJobs = [];
+    }
+
+    private get watcher() {
+        return this._watcher;
     }
 
     /**
@@ -60,32 +67,44 @@ export class FolderNest extends Nest {
         let fl = this;
         let job;
         // Verify file still exists, node-watch fires on any change, even delete
-        try {
-            fs.accessSync(path, fs.F_OK);
 
-            // Check job is folder
-            let path_stats = fs.lstatSync(path);
+        // Check for incorrectly found files
 
-            if (path_stats.isDirectory()) {
-                job = new FolderJob(fl.e, path);
-                job.createFiles(() => {
+        // console.log("job path", path);
+        // console.log("folder path", fl.path);
+        // console.log("vlaiditiy", fl.path.indexOf(path) === -1);
+
+        if (path.indexOf(fl.path) === -1) {
+            fl.e.log(3, `Found job that did not exist in this nest. Job: ${path}`, fl);
+        } else {
+
+            try {
+                fs.accessSync(path, fs.F_OK);
+
+                // Check job is folder
+                let path_stats = fs.lstatSync(path);
+
+                if (path_stats.isDirectory()) {
+                    job = new FolderJob(fl.e, path);
+                    job.createFiles(() => {
+                        if (arrive) {
+                            // Trigger arrived
+                            fl.arrive(job);
+                        }
+                    });
+                } else if (path_stats.isFile()) {
+                    job = new FileJob(fl.e, path);
                     if (arrive) {
                         // Trigger arrived
                         fl.arrive(job);
                     }
-                });
-            } else if (path_stats.isFile()) {
-                job = new FileJob(fl.e, path);
-                if (arrive) {
-                    // Trigger arrived
-                    fl.arrive(job);
+                } else {
+                    throw "Path is not a file or folder!";
                 }
-            } else {
-                throw "Path is not a file or folder!";
+            } catch (e) {
+                // It isn't accessible
+                fl.e.log(0, "Job creation ignored because file did not exist.", fl);
             }
-        } catch (e) {
-            // It isn't accessible
-            fl.e.log(0, "Job creation ignored because file did not exist.", fl);
         }
 
         return job;
@@ -130,24 +149,42 @@ export class FolderNest extends Nest {
      */
     public watch(hold: boolean = false): void {
         let fl = this;
-        let watch_options = {
-            recursive: false
+        // let watch_options = {
+        //     recursive: false,
+        //     followSymLinks: false
+        // };
+
+        let handleWatchEvent = (filepath) => {
+            if (!fl.isUnixHiddenPath(filepath)) {
+                if (fl.path !== filepath) {
+                    let job;
+                    if (hold === false) {
+                        job = fl.createJob(filepath, true); // Arrives as well
+                    } else {
+                        job = fl.createJob(filepath, false);
+                        fl.holdJob(job);
+                    }
+                } else {
+                    fl.e.log(2, `Hidden file "${filepath}" ignored.`, fl);
+                }
+            } else {
+                fl.e.log(2, `Nest found in new watch.`, fl);
+            }
         };
 
         fl.e.log(0, `Watching ${fl.path}`, fl, [fl.tunnel]);
 
-        node_watch(fl.path, watch_options, filepath => {
-            if (!fl.isUnixHiddenPath(filepath)) {
-                let job;
-                if (hold === false) {
-                    job = fl.createJob(filepath, true); // Arrives as well
-                } else {
-                    job = fl.createJob(filepath, false);
-                    fl.holdJob(job);
-                }
-            } else {
-                fl.e.log(2, `Hidden file "${filepath}" ignored.`, fl);
-            }
+        let chokOpts = {ignored: /[\/\\]\./};
+        // let chokOpts = {ignored: /[\/\\]\./, ignoreInitial: true, depth: 1};
+
+
+        // fl.watcher(fl.path, watch_options, filepath => {
+        fl.watcher.watch(fl.path, chokOpts).on("add", (filepath, event) => {
+            handleWatchEvent(filepath);
+        });
+        fl.watcher.watch(fl.path, chokOpts).on("addDir", (filepath, event) => {
+            // console.log("chokidar " + fl.path,  filepath);
+            handleWatchEvent(filepath);
         });
     }
 
@@ -165,6 +202,7 @@ export class FolderNest extends Nest {
      * @param job
      */
     public arrive(job: FileJob) {
+        // console.log("ABOUT TO ARRIVE", job.name, " IN NEST ", this.name);
         super.arrive(job);
     }
 
