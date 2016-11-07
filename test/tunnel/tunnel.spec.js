@@ -6,7 +6,7 @@ var path = require('path');
 //var mock = require('mock-fs');
 
 
-xdescribe('Tunnels', function() {
+describe('Tunnels', function() {
 
     var af, tempFolderCleanupCallback;
 

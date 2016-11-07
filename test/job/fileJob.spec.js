@@ -6,7 +6,7 @@ var tmp = require('tmp');
 var fs = require("fs");
 var path = require('path');
 
-xdescribe('FileJob', function() {
+describe('FileJob', function() {
 
     var af, tempFolderCleanupCallback;
 
@@ -39,7 +39,7 @@ xdescribe('FileJob', function() {
         }
     };
 
-    xit('should get the size of the file', function (done) {
+    it('should get the size of the file', function (done) {
         var job_name = "MyJobFile_001.pdf";
 
         var tunnel = af.createTunnel("Size tunnel");

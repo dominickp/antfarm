@@ -12,7 +12,7 @@ describe('FolderJob', function() {
     beforeEach("make antfarm, tunnel, and nest", function(done) {
         var tmpDir = tmp.dirSync({unsafeCleanup: true});
         af = new Antfarm({
-            log_out_level: "debug",
+            log_out_level: "error",
             auto_managed_folder_directory: tmpDir.name
         });
         tempFolderCleanupCallback = tmpDir.removeCallback;

@@ -1,7 +1,7 @@
 var should = require('chai').should();
 var Antfarm = require('./../../lib/antfarm');
 
-xdescribe('Nest Webhook', function() {
+describe('Nest Webhook', function() {
 
     var options = {log_out_level: "error"};
     var af, tunnel, tmpobj;
