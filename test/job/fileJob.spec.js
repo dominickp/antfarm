@@ -6,7 +6,7 @@ var tmp = require('tmp');
 var fs = require("fs");
 var path = require('path');
 
-describe('FileJob', function() {
+xdescribe('FileJob', function() {
 
     var af, tempFolderCleanupCallback;
 

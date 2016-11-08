@@ -3,7 +3,7 @@ var Antfarm = require('./../../lib/antfarm');
 
 var tmp = require('tmp');
 
-describe('Nest Folder', function() {
+xdescribe('Nest Folder', function() {
 
     var options = {log_out_level: "error"};
     var af, tunnel, tmpobj;
