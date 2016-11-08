@@ -182,7 +182,7 @@ export class FolderNest extends Nest {
             .on("addDir", (filepath, event) => { handleWatchEvent(filepath); })
             .on("error", error => fl.e.log(3, ` Watcher error: ${error}`, fl))
             .on("raw", (event, path, details) => {
-                fl.e.log(0, `Raw event info: ${event}, ${path}, ${details}`, fl);
+                fl.e.log(0, `Raw event info: ${event}, ${path}, ${details.toString()}`, fl);
             });
     }
 
