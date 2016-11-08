@@ -176,14 +176,14 @@ export class FolderNest extends Nest {
 
 
         // fl.watcher(fl.path, watch_options, filepath => {
-        fl.watcher.watch(fl.path, chokOpts).on("add", (filepath, event) => {
-            handleWatchEvent(filepath);
-        }).on("error", error => fl.e.log(3, `add watcher error: ${error}`, fl));
-        
-        fl.watcher.watch(fl.path, chokOpts).on("addDir", (filepath, event) => {
-            // console.log("chokidar " + fl.path,  filepath);
-            handleWatchEvent(filepath);
-        }).on("error", error => fl.e.log(3, `addDir watcher error: ${error}`, fl));
+        let watcherInstance = fl.watcher.watch(fl.path, chokOpts);
+        watcherInstance
+            .on("add", (filepath, event) => { handleWatchEvent(filepath); })
+            .on("addDir", (filepath, event) => { handleWatchEvent(filepath); })
+            .on("error", error => fl.e.log(3, ` Watcher error: ${error}`, fl))
+            .on("raw", (event, path, details) => {
+                fl.e.log(0, `Raw event info: ${event}, ${path}, ${details}`, fl);
+            });
     }
 
     /**
