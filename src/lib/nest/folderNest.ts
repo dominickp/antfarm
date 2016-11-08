@@ -155,18 +155,15 @@ export class FolderNest extends Nest {
         // };
 
         let handleWatchEvent = (filepath) => {
-            if (!fl.isUnixHiddenPath(filepath)) {
-                if (fl.path !== filepath) {
-                    let job;
-                    if (hold === false) {
-                        job = fl.createJob(filepath, true); // Arrives as well
-                    } else {
-                        job = fl.createJob(filepath, false);
-                        fl.holdJob(job);
-                    }
+            if (fl.path !== filepath) {
+                let job;
+                if (hold === false) {
+                    job = fl.createJob(filepath, true); // Arrives as well
                 } else {
-                    fl.e.log(2, `Hidden file "${filepath}" ignored.`, fl);
+                    job = fl.createJob(filepath, false);
+                    fl.holdJob(job);
                 }
+
             } else {
                 fl.e.log(2, `Nest found in new watch.`, fl);
             }
