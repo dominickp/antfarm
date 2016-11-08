@@ -40,7 +40,7 @@ describe('FolderJob', function() {
         if (callback) { callback(); }
     };
 
-    it('should produce folder jobs with basic properties', done => {
+    xit('should produce folder jobs with basic properties', done => {
         var tunnel = af.createTunnel("Prop test tunnel");
         var nest = af.createAutoFolderNest("Prop-test-nest");
         tunnel.watch(nest);
@@ -71,7 +71,7 @@ describe('FolderJob', function() {
         callback();
     };
 
-    it("files within a folder should contain a single file", done =>{
+    xit("files within a folder should contain a single file", done =>{
         var tunnel = af.createTunnel("Prop single tunnel");
         var nest = af.createAutoFolderNest("Prop single nest");
 
@@ -84,7 +84,7 @@ describe('FolderJob', function() {
         });
     });
 
-    it("files within a folder should contain a multiple files", done => {
+    xit("files within a folder should contain a multiple files", done => {
         var tunnel = af.createTunnel("Prop multiple tunnel");
         var nest = af.createAutoFolderNest("Prop multiple nest");
 
@@ -129,7 +129,7 @@ describe('FolderJob', function() {
         });
     });
 
-    it('should be transferable to another tunnel', done => {
+    xit('should be transferable to another tunnel', done => {
         var hotfolder = af.createAutoFolderNest(["Move folders in"]);
         var tunnel = af.createTunnel("Moving folders");
         tunnel.watch(hotfolder);
