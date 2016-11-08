@@ -7,7 +7,7 @@ var path = require('path');
 //var mock = require('mock-fs');
 
 
-xdescribe('Interface Manager', function() {
+describe('Interface Manager', function() {
     var af, tunnel, webhook, im;
 
     var options = {

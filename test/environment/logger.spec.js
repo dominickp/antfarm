@@ -1,7 +1,7 @@
 var should = require('chai').should();
 var Antfarm = require('./../../lib/antfarm');
 
-xdescribe('Logger', function() {
+describe('Logger', function() {
 
     var af;
 
