@@ -16,7 +16,11 @@ describe('Nest Folder', function() {
 
     afterEach(function(done) {
         tmpobj.removeCallback();
-        done();
+        if(process.env.NODE_ENV === "TEST") {
+            setTimeout(done, 500);
+        } else {
+           done();
+        }
     });
 
     describe('Loading', function() {

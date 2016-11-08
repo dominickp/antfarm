@@ -21,7 +21,11 @@ describe('FolderJob', function() {
 
     afterEach("remove temporary file", function(done){
         tempFolderCleanupCallback();
-        done();
+        if(process.env.NODE_ENV === "TEST") {
+            setTimeout(done, 500);
+        } else {
+            done();
+        }
     });
 
     // Function to add a new job to the watched nest
