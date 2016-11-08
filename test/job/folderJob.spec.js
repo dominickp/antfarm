@@ -12,7 +12,7 @@ describe('FolderJob', function() {
     beforeEach("make antfarm, tunnel, and nest", function(done) {
         var tmpDir = tmp.dirSync({unsafeCleanup: true});
         af = new Antfarm({
-            log_out_level: "debug",
+            log_out_level: "error",
             auto_managed_folder_directory: tmpDir.name
         });
         tempFolderCleanupCallback = tmpDir.removeCallback;
@@ -40,7 +40,7 @@ describe('FolderJob', function() {
         if (callback) { callback(); }
     };
 
-    xit('should produce folder jobs with basic properties', done => {
+    it('should produce folder jobs with basic properties', done => {
         var tunnel = af.createTunnel("Prop test tunnel");
         var nest = af.createAutoFolderNest("Prop-test-nest");
         tunnel.watch(nest);
@@ -71,7 +71,7 @@ describe('FolderJob', function() {
         callback();
     };
 
-    xit("files within a folder should contain a single file", done =>{
+    it("files within a folder should contain a single file", done =>{
         var tunnel = af.createTunnel("Prop single tunnel");
         var nest = af.createAutoFolderNest("Prop single nest");
 
@@ -84,7 +84,7 @@ describe('FolderJob', function() {
         });
     });
 
-    xit("files within a folder should contain a multiple files", done => {
+    it("files within a folder should contain a multiple files", done => {
         var tunnel = af.createTunnel("Prop multiple tunnel");
         var nest = af.createAutoFolderNest("Prop multiple nest");
 
@@ -129,7 +129,7 @@ describe('FolderJob', function() {
         });
     });
 
-    xit('should be transferable to another tunnel', done => {
+    it('should be transferable to another tunnel', done => {
         var hotfolder = af.createAutoFolderNest(["Move folders in"]);
         var tunnel = af.createTunnel("Moving folders");
         tunnel.watch(hotfolder);
