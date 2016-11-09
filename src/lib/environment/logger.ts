@@ -41,7 +41,7 @@ export class Logger {
 
         let kvString = "";
 
-        _.forEach(options.meta, function(key, value){
+        _.forEach(options.meta, (key, value) => {
             kvString += " " +
                         winston.config.colorize("silly", `${value}`) +
                         winston.config.colorize("debug", " > ") +
@@ -61,52 +61,52 @@ export class Logger {
      */
     protected createLogger() {
         let lg = this;
-        if (this.options && this.options.log_dir) {
+        if (lg.options && lg.options.log_dir) {
 
             // Create the log directory if it does not exist
-            if (!fs.existsSync(this.options.log_dir)) {
-                fs.mkdirSync(this.options.log_dir);
+            if (!fs.existsSync(lg.options.log_dir)) {
+                fs.mkdirSync(lg.options.log_dir);
             }
 
-            this.logger = new winston.Logger({
+            lg.logger = new winston.Logger({
                 transports: [
                     new winston.transports.File({
-                        level: this.options.log_file_level || "info",
-                        filename: `${this.options.log_dir}/antfarm.log`,
+                        level: lg.options.log_file_level || "info",
+                        filename: `${lg.options.log_dir}/antfarm.log`,
                         handleExceptions: true,
                         json: true,
-                        maxsize: this.options.log_max_size || 5242880, // 5MB
-                        maxFiles: this.options.log_max_files || 5,
+                        maxsize: lg.options.log_max_size || 5242880, // 5MB
+                        maxFiles: lg.options.log_max_files || 5,
                         colorize: false
                     }),
                     new winston.transports.Console({
-                        level: this.options.log_out_level || "info",
+                        level: lg.options.log_out_level || "info",
                         handleExceptions: true,
                         prettyPrint: true,
                         colorize: true,
                         silent: false,
-                        timestamp: function() {
+                        timestamp: () => {
                             return Date();
                         },
-                        formatter: function(options) { return lg.consoleFormatter(options); }
+                        formatter: (options) => { return lg.consoleFormatter(options); }
                     })
                 ],
                 exitOnError: false
             });
 
         } else {
-            this.logger = new winston.Logger({
+            lg.logger = new winston.Logger({
                 transports: [
                     new winston.transports.Console({
-                        level: this.options.log_out_level || "info",
+                        level: lg.options.log_out_level || "info",
                         handleExceptions: true,
                         prettyPrint: true,
                         colorize: true,
                         silent: false,
-                        timestamp: function() {
+                        timestamp: () => {
                             return Date();
                         },
-                        formatter: function(options) { return lg.consoleFormatter(options); }
+                        formatter: (options) => { return lg.consoleFormatter(options); }
                     })
                 ],
                 exitOnError: false
@@ -124,7 +124,7 @@ export class Logger {
     protected getEntry(entry: Object, actor?: any, instances = []) {
         instances.push(actor);
         if (instances) {
-            instances.forEach(function(instance){
+            instances.forEach((instance) => {
                 if (instance && typeof instance !== "undefined") {
                     let super_name = instance.toString();
 

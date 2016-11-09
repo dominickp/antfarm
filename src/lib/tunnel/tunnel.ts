@@ -100,7 +100,7 @@ export class Tunnel {
      * Run program logic asynchronously.
      * @param callback
      */
-    public run(callback) {
+    public run(callback: (job: Job, nest: Nest) => void): void {
         this.runList.push(callback);
     }
 
@@ -108,7 +108,7 @@ export class Tunnel {
      * Run program logic synchronously.
      * @param callback
      */
-    public runSync(callback) {
+    public runSync(callback: (job: Job, nest: Nest, done: any) => void): void {
         this.runSyncList.push(callback);
     }
 
@@ -116,7 +116,7 @@ export class Tunnel {
      * Failed jobs runner.
      * @param callback
      */
-    public fail(callback) {
+    public fail(callback: (job: Job, nest: Nest, reason: string) => void): void {
         this.runFail = callback;
     }
 

@@ -1,3 +1,5 @@
+import {Job} from "../job/job";
+import {WebhookInterface} from "./webhookInterface";
 /**
  * An interface step which allows GET requests to be made against the interface itself.
  */
@@ -31,7 +33,7 @@ export class Step {
         return this._failure;
     }
 
-    public set callback(callback: any) {
+    public set callback(callback: (job: Job, ui: WebhookInterface, step: Step) => void) {
         this._callback = callback;
     }
 

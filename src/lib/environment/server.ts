@@ -4,6 +4,9 @@ import {WebhookJob} from "../job/webhookJob";
 import * as express from "express";
 import {InterfaceManager} from "../ui/interfaceManager";
 import {Logger, LogQueryOptions} from "./logger";
+import {Job} from "../job/job";
+import {WebhookInterface} from "../ui/webhookInterface";
+import {Step} from "../ui/step";
 
 const   cors = require("cors"),
         multer = require("multer"),
@@ -247,7 +250,7 @@ export class Server {
             });
 
             // Do steps
-            async.each(ui.steps, (step, cb) => {
+            async.each(ui.steps, (step, cb: () => void): void => {
                 s.e.log(0, `Running UI step "${step.name}".`, s);
                 step.callback(job, ui, step, () => {
                     cb();

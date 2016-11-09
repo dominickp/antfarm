@@ -40,17 +40,17 @@ export declare class Tunnel {
      * Run program logic asynchronously.
      * @param callback
      */
-    run(callback: any): void;
+    run(callback: (job: Job, nest: Nest) => void): void;
     /**
      * Run program logic synchronously.
      * @param callback
      */
-    runSync(callback: any): void;
+    runSync(callback: (job: Job, nest: Nest, done: any) => void): void;
     /**
      * Failed jobs runner.
      * @param callback
      */
-    fail(callback: any): void;
+    fail(callback: (job: Job, nest: Nest, reason: string) => void): void;
     /**
      * Asynchronous run event.
      * @param job
