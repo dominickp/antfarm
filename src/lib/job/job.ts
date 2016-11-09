@@ -4,6 +4,7 @@ import {Environment} from "../environment/environment";
 import {LifeEvent} from "../environment/lifeEvent";
 import {EmailOptions} from "../environment/emailOptions";
 import {JobProperty} from "./jobProperty";
+import {PackedJob} from "./packedJob";
 
 // Handle the circular dependency by stashing the type in a variable for requiring later.
 // import * as PackedJobTypes from "./packedJob";
@@ -339,7 +340,7 @@ export abstract class Job {
      * });
      * ```
      */
-    public pack(callback) {
+    public pack(callback: (job: PackedJob) => void): void {
         let job = this;
         let PackedJob = require("./packedJob").PackedJob;
         let pj = new PackedJob(job.e, job);
@@ -360,7 +361,7 @@ export abstract class Job {
      * });
      * ```
      */
-    public unpack(callback) {
+    public unpack(callback: (job: Job) => void): void {
         let job = this;
         let PackedJob = require("./packedJob").PackedJob;
         let pj = new PackedJob(job.e, job);

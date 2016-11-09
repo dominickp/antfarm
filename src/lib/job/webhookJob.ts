@@ -154,7 +154,7 @@ export class WebhookJob extends Job {
      * ```
      * @param callback
      */
-    public getDataAsString(callback: any) {
+    public getDataAsString(callback: (data: string) => void): void {
         let wh = this;
         let req = wh.request;
         let data = "";

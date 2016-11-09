@@ -18,7 +18,7 @@ export declare class FolderJob extends Job {
      * Creates file objects for folder contents. Async operation returns a callback on completion.
      * @param callback
      */
-    createFiles(callback: any): void;
+    createFiles(callback: () => void): void;
     /**
      * Gets the job _name.
      * @returns {string}
@@ -84,7 +84,7 @@ export declare class FolderJob extends Job {
      * @param destinationNest
      * @param callback
      */
-    move(destinationNest: Nest, callback: any): void;
+    move(destinationNest: Nest, callback: (job?: Job) => void): void;
     /**
      * Renames the job folder, leaving its content's names alone.
      * @param newName

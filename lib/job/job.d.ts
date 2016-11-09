@@ -4,6 +4,7 @@ import { Environment } from "../environment/environment";
 import { LifeEvent } from "../environment/lifeEvent";
 import { EmailOptions } from "../environment/emailOptions";
 import { JobProperty } from "./jobProperty";
+import { PackedJob } from "./packedJob";
 export declare abstract class Job {
     protected _name: string;
     protected _tunnel: Tunnel;
@@ -196,7 +197,7 @@ export declare abstract class Job {
      * });
      * ```
      */
-    pack(callback: any): void;
+    pack(callback: (job: PackedJob) => void): void;
     /**
      * Unpacks a packed job. Returns a the original unpacked job in the parameter of the callback.
      * @param callback
@@ -209,7 +210,7 @@ export declare abstract class Job {
      * });
      * ```
      */
-    unpack(callback: any): void;
+    unpack(callback: (job: Job) => void): void;
     /**
      * Get the job object as JSON with circular references removed.
      * @returns {string}

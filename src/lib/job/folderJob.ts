@@ -37,7 +37,7 @@ export class FolderJob extends Job {
      * Creates file objects for folder contents. Async operation returns a callback on completion.
      * @param callback
      */
-    public createFiles(callback: any) {
+    public createFiles(callback: () => void): void {
         let fl = this;
         let folder_path = fl.path;
         fs.readdir(folder_path, (err, items) => {
@@ -158,7 +158,7 @@ export class FolderJob extends Job {
      * @param destinationNest
      * @param callback
      */
-    public move(destinationNest: Nest, callback: any) {
+    public move(destinationNest: Nest, callback: (job?: Job) => void): void {
         let fj = this;
 
         if (!destinationNest) {

@@ -209,7 +209,7 @@ export class FolderNest extends Nest {
      * @param job
      * @param callback      Callback is given the job in its parameter.
      */
-    public take(job: (FileJob|FolderJob), callback: any) {
+    public take(job: (FileJob|FolderJob), callback: (job: FileJob|FolderJob) => void) {
         let fn = this;
         // the other nest that this is taking from should provide a temporary location or local _path of the job
         let new_path = `${fn.path}/${job.name}`;
