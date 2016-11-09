@@ -108,7 +108,7 @@ export class Tunnel {
      * Run program logic synchronously.
      * @param callback
      */
-    public runSync(callback: (job: Job, nest: Nest, done: any) => void): void {
+    public runSync(callback: (job: Job, nest: Nest, done: () => void) => void): void {
         this.runSyncList.push(callback);
     }
 
