@@ -5,6 +5,7 @@ import { LifeEvent } from "../environment/lifeEvent";
 import { EmailOptions } from "../environment/emailOptions";
 import { JobProperty } from "./jobProperty";
 import { PackedJob } from "./packedJob";
+import { FileJob } from "./fileJob";
 export declare abstract class Job {
     protected _name: string;
     protected _tunnel: Tunnel;
@@ -231,4 +232,16 @@ export declare abstract class Job {
     log(level: number, message: string): void;
     readonly size: any;
     readonly sizeBytes: any;
+    /**
+     * Compresses the job.
+     * Returns a PackJob in the parameter of the callback.
+     * @param callback
+     * #### Example
+     * ```js
+     * job.compress(function(fileJob){
+     *      fileJob.move(packed_folder_nest);
+     * });
+     * ```
+     */
+    compress(callback: (job: FileJob) => void): void;
 }

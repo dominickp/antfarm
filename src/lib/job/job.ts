@@ -5,13 +5,19 @@ import {LifeEvent} from "../environment/lifeEvent";
 import {EmailOptions} from "../environment/emailOptions";
 import {JobProperty} from "./jobProperty";
 import {PackedJob} from "./packedJob";
+import {FileJob} from "./fileJob";
+
 
 // Handle the circular dependency by stashing the type in a variable for requiring later.
 // import * as PackedJobTypes from "./packedJob";
 // let PackedJob: typeof PackedJobTypes.PackedJob;
 
 const   shortid = require("shortid"),
-        _ = require("lodash");
+        _ = require("lodash"),
+        tmp = require("tmp"),
+        fs = require("fs"),
+        path = require("path"),
+        JSZip = require("jszip");
 
 export abstract class Job {
 
@@ -441,6 +447,36 @@ export abstract class Job {
 
     public get sizeBytes () {
         return undefined;
+    }
+
+/**
+ * Compresses the job.
+ * Returns a PackJob in the parameter of the callback.
+ * @param callback
+ * #### Example
+ * ```js
+ * job.compress(function(fileJob){
+ *      fileJob.move(packed_folder_nest);
+ * });
+ * ```
+ */
+    public compress(callback: (job: FileJob) => void) {
+        let job = this;
+        // Save out zip
+        let zip = new JSZip();
+        let tmpobj = tmp.dirSync();
+        let dir = tmpobj.name;
+        let file_name = job.name + ".zip";
+        let file_path = dir + path.sep + file_name;
+        zip
+            .generateNodeStream({type: "nodebuffer", streamFiles: true})
+            .pipe(fs.createWriteStream(file_path))
+            .on("finish", () => {
+                // JSZip generates a readable stream with a "end" event,
+                // but is piped here in a writable stream which emits a "_finish" event.
+                let fileJob = new FileJob(job.e, file_path)
+                callback(fileJob);
+            });
     }
 
 }

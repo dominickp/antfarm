@@ -74,8 +74,11 @@ export class FolderNest extends Nest {
         // console.log("folder path", fl.path);
         // console.log("vlaiditiy", fl.path.indexOf(path) === -1);
 
-        if (path.indexOf(fl.path) === -1) {
-            fl.e.log(3, `Found job that did not exist in this nest. Job: ${path}`, fl);
+        let fn_path = path_mod.normalize(fl.path)
+        let incoming_job_path = path_mod.normalize(path)
+
+        if (incoming_job_path.indexOf(fn_path) === -1) {
+            fl.e.log(3, `Found job that did not exist in this nest. Job: ${incoming_job_path}:${fn_path}`, fl);
         } else {
 
             try {
