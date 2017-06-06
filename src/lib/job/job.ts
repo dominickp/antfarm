@@ -17,7 +17,8 @@ const   shortid = require("shortid"),
         tmp = require("tmp"),
         fs = require("fs"),
         path = require("path"),
-        JSZip = require("jszip");
+        JSZip = require("jszip"),
+        async = require("async");
 
 export abstract class Job {
 
@@ -464,21 +465,17 @@ export abstract class Job {
         let job = this;
         // Save out zip
         let zip = new JSZip();
+        let tmpobj = tmp.dirSync();
+        let dir = tmpobj.name;
+        let file_name = job.nameProper + ".zip";
+        let file_path = dir + path.sep + file_name;
 
-        let buildZip = (zip: any, done) => {
-            // Save out zip
-            let tmpobj = tmp.dirSync();
-            let dir = tmpobj.name;
-            let file_name = job.nameProper + ".zip";
-            let file_path = dir + path.sep + file_name;
+        let addFileToZip = (zip: any, done) => {
             zip
                 .generateNodeStream({type: "nodebuffer", streamFiles: true})
                 .pipe(fs.createWriteStream(file_path))
-                .on("finish", function () {
-                    // JSZip generates a readable stream with a "end" event,
-                    // but is piped here in a writable stream which emits a "_finish" event.
-                    let fileJob = new FileJob(job.e, file_path);
-                    callback(fileJob);
+                .on("finish", () => {
+                    done();
                 });
         };
 
@@ -486,22 +483,33 @@ export abstract class Job {
             fs.readFile(job.path, (err, data) => {
                 if (err) throw err;
                 zip.file(job.name, data);
-                buildZip(zip, (done) => {});
-            });
-        } else if (job.isFolder()) {
-            job.files.forEach(file => {
-                fs.readFile(file.path, function(err, data) {
-                    if (err) throw err;
-                    zip.file(file.name, data);
-                    buildZip(zip, (done) => {});
+                addFileToZip(zip, (done) => {
+                    let fileJob = new FileJob(job.e, file_path);
+                    callback(fileJob);
                 });
             });
+        } else if (job.isFolder()) {
+            async.forEachOfSeries(job.files, (file, key, cb) => {
+                fs.readFile(file.path, (err, data) => {
+                    if (err) throw err;
+                    zip.file(file.name, data);
+                    addFileToZip(zip, (done) => {
+                        job.e.log(0, `Compressing file ${key} of ${job.files.length}.`, job);
+                        cb();
+                    });
+                });
+            }, (err) => {
+                if (err) throw err;
+                job.e.log(0, `Compressing complete. Compressed ${job.files.length} files.`, job);
+                let fileJob = new FileJob(job.e, file_path);
+                callback(fileJob);
+            });
         } else {
-            buildZip(zip, (done) => {
+            // FIXME
+            addFileToZip(zip, (done) => {
                 done();
             });
         }
-                
                 
     }
 

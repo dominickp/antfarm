@@ -30,7 +30,7 @@ export class FolderNest extends Nest {
 
         this.allowCreate = allowCreate;
         this.checkDirectorySync(path);
-        this.path = path;
+        this.path = path_mod.normalize(path);
         this.heldJobs = [];
     }
 
@@ -157,7 +157,18 @@ export class FolderNest extends Nest {
         //     followSymLinks: false
         // };
 
-        let handleWatchEvent = (filepath) => {
+        let handleWatchEvent = (filepath: string, event: string) => {
+
+
+            if (event === "add") {
+                let fn_path = path_mod.normalize(fl.path);
+                let found_job_path = path_mod.normalize(filepath);
+                let found_job_folder = path_mod.dirname(found_job_path);
+                if (fn_path !== found_job_folder) {
+                    return;
+                }
+            }
+
             if (fl.path !== filepath) {
                 let job;
                 if (hold === false) {
@@ -174,18 +185,16 @@ export class FolderNest extends Nest {
 
         fl.e.log(0, `Watching ${fl.path}`, fl, [fl.tunnel]);
 
-        let chokOpts = {ignored: /[\/\\]\./};
+        let chokOpts = {ignored: /[\/\\]\./, ignoreInitial: true};
         // let chokOpts = {ignored: /[\/\\]\./, ignoreInitial: true, depth: 1};
 
-
-        // fl.watcher(fl.path, watch_options, filepath => {
         let watcherInstance = fl.watcher.watch(fl.path, chokOpts);
         watcherInstance
-            .on("add", (filepath, event) => { handleWatchEvent(filepath); })
-            .on("addDir", (filepath, event) => { handleWatchEvent(filepath); })
+            .on("add", (filepath, event) => { handleWatchEvent(filepath, "add"); })
+            .on("addDir", (filepath, event) => { handleWatchEvent(filepath, "addDir"); })
             .on("error", error => fl.e.log(3, ` Watcher error: ${error}`, fl))
             .on("raw", (event, path, details) => {
-                fl.e.log(0, `Raw event info: ${event}, ${path}, ${details.toString()}`, fl);
+                fl.e.log(1, `Raw event info: ${event}, ${path}, ${details.toString()}`, fl);
             });
     }
 
