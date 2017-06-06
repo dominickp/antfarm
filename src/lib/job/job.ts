@@ -464,19 +464,45 @@ export abstract class Job {
         let job = this;
         // Save out zip
         let zip = new JSZip();
-        let tmpobj = tmp.dirSync();
-        let dir = tmpobj.name;
-        let file_name = job.name + ".zip";
-        let file_path = dir + path.sep + file_name;
-        zip
-            .generateNodeStream({type: "nodebuffer", streamFiles: true})
-            .pipe(fs.createWriteStream(file_path))
-            .on("finish", () => {
-                // JSZip generates a readable stream with a "end" event,
-                // but is piped here in a writable stream which emits a "_finish" event.
-                let fileJob = new FileJob(job.e, file_path)
-                callback(fileJob);
+
+        let buildZip = (zip: any, done) => {
+            // Save out zip
+            let tmpobj = tmp.dirSync();
+            let dir = tmpobj.name;
+            let file_name = job.nameProper + ".zip";
+            let file_path = dir + path.sep + file_name;
+            zip
+                .generateNodeStream({type: "nodebuffer", streamFiles: true})
+                .pipe(fs.createWriteStream(file_path))
+                .on("finish", function () {
+                    // JSZip generates a readable stream with a "end" event,
+                    // but is piped here in a writable stream which emits a "_finish" event.
+                    let fileJob = new FileJob(job.e, file_path);
+                    callback(fileJob);
+                });
+        };
+
+        if (job.isFile()) {
+            fs.readFile(job.path, (err, data) => {
+                if (err) throw err;
+                zip.file(job.name, data);
+                buildZip(zip, (done) => {});
             });
+        } else if (job.isFolder()) {
+            job.files.forEach(file => {
+                fs.readFile(file.path, function(err, data) {
+                    if (err) throw err;
+                    zip.file(file.name, data);
+                    buildZip(zip, (done) => {});
+                });
+            });
+        } else {
+            buildZip(zip, (done) => {
+                done();
+            });
+        }
+                
+                
     }
 
 }

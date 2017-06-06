@@ -199,11 +199,18 @@ export class FolderJob extends Job {
         fj.path = new_path;
     }
 
+/** 
+ * Removes the folder.
+ */
     public remove() {
         let fj = this;
-        fj.files.forEach((file) => {
-            file.removeLocal();
-        });
+        if (fj.files.length > 0) {
+            fj.files.forEach((file) => {
+                file.removeLocal();
+            });
+        }
+        // Remove the empty folder
+        fs.rmdirSync(fj.path);
     };
 
 }
